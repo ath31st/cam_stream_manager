@@ -9,3 +9,16 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Stream {
+  id                Int      @id @default(autoincrement())
+  location          String
+  isVisible         Boolean  @default(true)
+  streamUrl         String
+  status            String
+  comment           String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  responsiblePerson String?
+  responsiblePhone  String?
+}
