@@ -2,8 +2,6 @@
     "name": "cam_stream_manager",
     "version": "0.1.0",
     "scripts": {
-        "format": "prettier --write .",
-        "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "client": "cd client && yarn start",
         "server": "cd server && nodemon index.js",
         "dev": "concurrently \"yarn server\" \"yarn client\""
@@ -11,14 +9,5 @@
     "dependencies": {
         "concurrently": "^8.2.2"
     },
-    "devDependencies": {
-        "@eslint/js": "^9.9.1",
-        "eslint": "^9.9.1",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-import": "^2.30.0",
-        "eslint-plugin-prettier": "^5.2.1",
-        "eslint-plugin-react": "^7.35.2",
-        "eslint-plugin-react-hooks": "^4.6.2",
-        "globals": "^15.9.0"
-    }
+    "devDependencies": {}
 }

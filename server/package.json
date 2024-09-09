@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "dbr": "npx sequelize db:migrate && npx sequelize db:seed:all"
