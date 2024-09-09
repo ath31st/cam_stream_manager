@@ -28,3 +28,4 @@ yarn-error.log*
 /clien/node_modules
 
 .env
+*.db

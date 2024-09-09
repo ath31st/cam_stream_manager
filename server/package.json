@@ -9,7 +9,7 @@
     "dev": "ts-node-dev --respawn src/index.ts",
     "dev:debug": "ts-node-dev --inspect=0.0.0.0:9229 src/index.ts",
     "build": "tsc",
-    "dbr": "npx sequelize db:migrate && npx sequelize db:seed:all"
+    "dbr": "npx prisma migrate dev --name init"
   },
   "keywords": [],
   "author": "",
