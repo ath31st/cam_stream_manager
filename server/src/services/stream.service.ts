@@ -1,6 +1,6 @@
 import { Stream } from '@prisma/client';
 import { StreamRepository } from '../repositories/stream.repository';
-import { NewStreamDto, UpdateStreamDto } from '../utils/types';
+import { NewStreamDto, UpdateStreamDto } from '../types/types';
 import axios from 'axios';
 import { StreamStatus } from '../utils/stream.status';
 
@@ -82,10 +82,18 @@ export class StreamService {
             console.error(
               `Stream ${stream.id} returned status ${response.status}`,
             );
+            if (stream.status !== StreamStatus.BadConnection) {
+              await this.updateStreamStatus(
+                stream.id,
+                StreamStatus.BadConnection,
+              );
+            }
           }
-          await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
         } catch (error) {
           console.error(`Stream ${stream.id} is not reachable:`, error);
+          if (stream.status !== StreamStatus.NoConnection) {
+            await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
+          }
         }
       }
     } catch (error) {

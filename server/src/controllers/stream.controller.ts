@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { StreamService } from '../services/stream.service';
-import { NewStreamDto, UpdateStreamDto } from '../utils/types';
+import { NewStreamDto, UpdateStreamDto } from '../types/types';
 
 export class StreamController {
   private streamService: StreamService;
