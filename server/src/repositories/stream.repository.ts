@@ -1,6 +1,6 @@
 import { NewStreamDto, UpdateStreamDto } from '../utils/types';
 import { StreamStatus } from '../utils/stream.status';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Stream } from '@prisma/client';
 
 class StreamRepository {
   private prismaClient: PrismaClient;
@@ -8,6 +8,16 @@ class StreamRepository {
   constructor(prismaClient: PrismaClient) {
     this.prismaClient = prismaClient;
   }
+
+  findStream = async (id: number): Promise<Stream> => {
+    return await this.prismaClient.stream.findUniqueOrThrow({
+      where: { id: id },
+    });
+  };
+
+  findAllStreams = async (): Promise<Stream[]> => {
+    return await this.prismaClient.stream.findMany();
+  };
 
   createStream = async (dto: NewStreamDto) => {
     const status = StreamStatus.Created;
