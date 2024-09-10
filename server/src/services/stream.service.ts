@@ -1,3 +1,4 @@
+import { Stream } from '@prisma/client';
 import { StreamRepository } from '../repositories/stream.repository';
 import { NewStreamDto, UpdateStreamDto } from '../utils/types';
 
@@ -7,6 +8,24 @@ export class StreamService {
   constructor(streamRepository: StreamRepository) {
     this.streamRepository = streamRepository;
   }
+
+  getStream = async (id: number): Promise<Stream> => {
+    try {
+      return await this.streamRepository.findStream(id);
+    } catch (error) {
+      console.error(`Error finding stream with id ${id}:`, error);
+      throw new Error('Stream not found');
+    }
+  };
+
+  getAllStreams = async (): Promise<Stream[]> => {
+    try {
+      return await this.streamRepository.findAllStreams();
+    } catch (error) {
+      console.error('Error getting streams:', error);
+      throw new Error('Cannot get all streams');
+    }
+  };
 
   createStream = async (dto: NewStreamDto) => {
     try {
