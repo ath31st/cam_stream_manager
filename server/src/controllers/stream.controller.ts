@@ -15,7 +15,7 @@ export class StreamController {
       return await this.streamService.getStream(streamId);
     } catch (error) {
       if (error instanceof Error) {
-        res.status(500).json({ message: 'Failed to get stream' });
+        res.status(404).json({ message: error.message });
       } else {
         res.status(500).json({
           message: 'Failed to get stream',
@@ -33,7 +33,7 @@ export class StreamController {
     } catch (error) {
       if (error instanceof Error) {
         res
-          .status(500)
+          .status(400)
           .json({ message: 'Failed to create stream', error: error.message });
       } else {
         res.status(500).json({
@@ -52,7 +52,7 @@ export class StreamController {
     } catch (error) {
       if (error instanceof Error) {
         res
-          .status(500)
+          .status(400)
           .json({ message: 'Failed to update stream', error: error.message });
       } else {
         res.status(500).json({
@@ -71,7 +71,7 @@ export class StreamController {
     } catch (error) {
       if (error instanceof Error) {
         res
-          .status(500)
+          .status(400)
           .json({ message: 'Failed to delete stream', error: error.message });
       } else {
         res.status(500).json({
@@ -88,7 +88,7 @@ export class StreamController {
       res.status(200).json(streams);
     } catch (error) {
       if (error instanceof Error) {
-        res.status(500).json({
+        res.status(404).json({
           message: 'Failed to retrieve streams',
           error: error.message,
         });
