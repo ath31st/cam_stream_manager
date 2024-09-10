@@ -51,6 +51,16 @@ class StreamRepository {
     console.log(stream);
   };
 
+  updateStreamStatus = async (streamId: number, newStatus: StreamStatus) => {
+    await this.prismaClient.stream.update({
+      where: { id: streamId },
+      data: {
+        status: newStatus,
+        updatedAt: new Date(),
+      },
+    });
+  };
+
   deleteStream = async (id: number) => {
     await this.prismaClient.stream.delete({
       where: { id: id },

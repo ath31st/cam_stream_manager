@@ -1,6 +1,8 @@
 import { Stream } from '@prisma/client';
 import { StreamRepository } from '../repositories/stream.repository';
 import { NewStreamDto, UpdateStreamDto } from '../utils/types';
+import axios from 'axios';
+import { StreamStatus } from '../utils/stream.status';
 
 export class StreamService {
   private streamRepository: StreamRepository;
@@ -45,12 +47,49 @@ export class StreamService {
     }
   };
 
+  updateStreamStatus = async (streamId: number, newStatus: StreamStatus) => {
+    try {
+      await this.streamRepository.updateStreamStatus(streamId, newStatus);
+    } catch (error) {
+      console.error('Error updating stream status:', error);
+    }
+  };
+
   deleteStream = async (streamId: number) => {
     try {
       await this.streamRepository.deleteStream(streamId);
     } catch (error) {
       console.error('Error deleting stream:', error);
       throw new Error('Could not delete stream');
+    }
+  };
+
+  pingAllStreams = async (): Promise<void> => {
+    try {
+      const streams = await this.streamRepository.findAllStreams();
+
+      for (const stream of streams) {
+        try {
+          const response = await axios.get(stream.streamUrl);
+
+          if (
+            response.status === 200 &&
+            stream.status !== StreamStatus.Active
+          ) {
+            console.log(`Stream ${stream.id} is reachable`);
+            await this.updateStreamStatus(stream.id, StreamStatus.Active);
+          } else {
+            console.error(
+              `Stream ${stream.id} returned status ${response.status}`,
+            );
+          }
+          await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
+        } catch (error) {
+          console.error(`Stream ${stream.id} is not reachable:`, error);
+        }
+      }
+    } catch (error) {
+      console.error('Error retrieving streams:', error);
     }
   };
 }
