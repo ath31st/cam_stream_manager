@@ -12,13 +12,33 @@ export class StreamController {
   getStream = async (req: Request, res: Response) => {
     try {
       const streamId = Number(req.params.id);
-      return await this.streamService.getStream(streamId);
+      const stream = await this.streamService.getStream(streamId);
+      res.status(200).json(stream);
     } catch (error) {
       if (error instanceof Error) {
         res.status(404).json({ message: error.message });
       } else {
         res.status(500).json({
           message: 'Failed to get stream',
+          error: 'Unknown error occurred',
+        });
+      }
+    }
+  };
+
+  getAllStreams = async (req: Request, res: Response) => {
+    try {
+      const streams = await this.streamService.getAllStreams();
+      res.status(200).json(streams);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(404).json({
+          message: 'Failed to retrieve streams',
+          error: error.message,
+        });
+      } else {
+        res.status(500).json({
+          message: 'Failed to retrieve streams',
           error: 'Unknown error occurred',
         });
       }
@@ -76,25 +96,6 @@ export class StreamController {
       } else {
         res.status(500).json({
           message: 'Failed to delete stream',
-          error: 'Unknown error occurred',
-        });
-      }
-    }
-  };
-
-  getAllStreams = async (req: Request, res: Response) => {
-    try {
-      const streams = await this.streamService.getAllStreams();
-      res.status(200).json(streams);
-    } catch (error) {
-      if (error instanceof Error) {
-        res.status(404).json({
-          message: 'Failed to retrieve streams',
-          error: error.message,
-        });
-      } else {
-        res.status(500).json({
-          message: 'Failed to retrieve streams',
           error: 'Unknown error occurred',
         });
       }
