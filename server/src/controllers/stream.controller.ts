@@ -9,6 +9,22 @@ export class StreamController {
     this.streamService = streamService;
   }
 
+  getStream = async (req: Request, res: Response) => {
+    try {
+      const streamId = Number(req.params.id);
+      return await this.streamService.getStream(streamId);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(500).json({ message: 'Failed to get stream' });
+      } else {
+        res.status(500).json({
+          message: 'Failed to get stream',
+          error: 'Unknown error occurred',
+        });
+      }
+    }
+  };
+
   createStream = async (req: Request, res: Response) => {
     try {
       const dto: NewStreamDto = req.body;
