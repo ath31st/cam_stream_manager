@@ -4,6 +4,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import streamRoutes from './routes/stream.routes';
+import { startStreamCronJob } from './cron/stream.cron';
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(streamRoutes);
+
+startStreamCronJob();
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
