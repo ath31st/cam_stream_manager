@@ -3,4 +3,5 @@ export enum StreamStatus {
   Updated = 'Updated',
   Active = 'Active',
   NoConnection = 'No connection',
+  BadConnection = 'Bad connection',
 }
