@@ -1,14 +1,19 @@
 -- CreateTable
 CREATE TABLE "Region" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL
+    "name" TEXT NOT NULL,
+    "isVisible" BOOLEAN NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "ResponsiblePerson" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
-    "phone" TEXT NOT NULL
+    "phone" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
 );
 
 -- CreateTable
