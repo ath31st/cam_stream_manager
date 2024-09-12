@@ -14,7 +14,7 @@ model Region {
   id        Int      @id @default(autoincrement())
   name      String
   isVisible Boolean
-  Streams   Stream[]
+  streams   Stream[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -23,7 +23,7 @@ model ResponsiblePerson {
   id        Int      @id @default(autoincrement())
   name      String
   phone     String
-  Streams   Stream[]
+  streams   Stream[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -35,11 +35,9 @@ model Stream {
   streamUrl          String
   status             String
   comment            String?
-  responsiblePerson  String?
-  responsiblePhone   String?
   region             Region              @relation(fields: [regionId], references: [id])
   regionId           Int
-  ResponsiblePersons ResponsiblePerson[]
+  responsiblePersons ResponsiblePerson[]
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
 }

@@ -24,8 +24,6 @@ CREATE TABLE "Stream" (
     "streamUrl" TEXT NOT NULL,
     "status" TEXT NOT NULL,
     "comment" TEXT,
-    "responsiblePerson" TEXT,
-    "responsiblePhone" TEXT,
     "regionId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
