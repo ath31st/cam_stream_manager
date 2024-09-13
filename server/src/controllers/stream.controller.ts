@@ -5,7 +5,7 @@ import {
   NewStreamDto,
   UpdateStreamDto,
 } from '../types/types';
-import { ResponsiblePersonService } from '../services/reponsible.person.service';
+import { ResponsiblePersonService } from '../services/responsible.person.service';
 
 export class StreamController {
   private streamService: StreamService;
