@@ -38,4 +38,11 @@ export class RegionRepository {
     });
     console.log(region);
   };
+
+  deleteRegion = async (id: number) => {
+    await this.prismaClient.region.delete({
+      where: { id: id },
+    });
+    console.log(`Region with id ${id} has been deleted.`);
+  };
 }
