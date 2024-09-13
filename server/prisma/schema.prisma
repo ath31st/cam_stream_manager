@@ -23,7 +23,8 @@ model ResponsiblePerson {
   id        Int      @id @default(autoincrement())
   name      String
   phone     String
-  streams   Stream[]
+  stream    Stream   @relation(fields: [streamId], references: [id])
+  streamId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
