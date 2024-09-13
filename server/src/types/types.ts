@@ -1,4 +1,5 @@
 export interface NewStreamDto {
+  regionId: number;
   location: string;
   streamUrl: string;
   comment: string | null;
@@ -8,10 +9,25 @@ export interface NewStreamDto {
 
 export interface UpdateStreamDto {
   id: number;
+  regionId?: number;
   location?: string;
   isVisible?: boolean;
   streamUrl?: string;
   comment?: string;
-  responsiblePerson?: string;
-  responsiblePhone?: string;
+}
+
+export interface NewRegionDto {
+  name: string;
+}
+
+export interface RegionDto {
+  id: number;
+  name: string;
+  isVisible: boolean;
+}
+
+export interface UpdateRegionDto {
+  id: number;
+  name?: string;
+  isVisible?: boolean;
 }
