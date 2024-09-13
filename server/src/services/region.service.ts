@@ -18,7 +18,7 @@ export class RegionService {
     }
   };
 
-  getAllStreams = async (): Promise<Region[]> => {
+  getAllRegions = async (): Promise<Region[]> => {
     try {
       return await this.regionRepository.findAllRegions();
     } catch (error) {
