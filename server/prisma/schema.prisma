@@ -36,7 +36,7 @@ model Stream {
   streamUrl          String
   status             String
   comment            String?
-  region             Region              @relation(fields: [regionId], references: [id])
+  region             Region              @relation(fields: [regionId], references: [id], onDelete: Cascade)
   regionId           Int
   responsiblePersons ResponsiblePerson[]
   createdAt          DateTime            @default(now())
