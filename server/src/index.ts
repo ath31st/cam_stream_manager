@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import streamRoutes from './routes/stream.routes';
 import { startStreamCronJob } from './cron/stream.cron';
+import regionRoutes from './routes/region.routes';
+import rpRoutes from './routes/responsible.person.routes';
 
 dotenv.config();
 
@@ -15,6 +17,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(regionRoutes);
+app.use(rpRoutes);
 app.use(streamRoutes);
 
 startStreamCronJob();

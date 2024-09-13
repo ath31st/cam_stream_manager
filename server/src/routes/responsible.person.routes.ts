@@ -3,10 +3,10 @@ import { rpController } from '../utils/init';
 
 const router = Router();
 
-router.post('/responsible_persons', rpController.createResponsiblePerson);
-router.put('/responsible_persons/:id', rpController.updateResponsiblePerson);
-router.delete('/responsible_persons/:id', rpController.deleteResponsiblePerson);
-router.get('/responsible_persons/:id', rpController.getResponsiblePerson);
+router.post('/responsible-persons', rpController.createResponsiblePerson);
+router.put('/responsible-persons/:id', rpController.updateResponsiblePerson);
+router.delete('/responsible-persons/:id', rpController.deleteResponsiblePerson);
+router.get('/responsible-persons/:id', rpController.getResponsiblePerson);
 
 const rpRoutes = Router();
 const apiPrefix = '/api/v1';
