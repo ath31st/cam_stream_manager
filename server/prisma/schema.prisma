@@ -23,7 +23,7 @@ model ResponsiblePerson {
   id        Int      @id @default(autoincrement())
   name      String
   phone     String
-  stream    Stream   @relation(fields: [streamId], references: [id])
+  stream    Stream   @relation(fields: [streamId], references: [id], onDelete: Cascade)
   streamId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

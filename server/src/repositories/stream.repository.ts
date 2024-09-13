@@ -63,7 +63,6 @@ export class StreamRepository {
   deleteStream = async (id: number) => {
     await this.prismaClient.stream.delete({
       where: { id: id },
-      include: { responsiblePersons: true },
     });
     console.log(`Stream with id ${id} has been deleted.`);
   };
