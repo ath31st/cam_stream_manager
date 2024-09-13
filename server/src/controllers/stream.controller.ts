@@ -1,12 +1,22 @@
 import { Request, Response } from 'express';
 import { StreamService } from '../services/stream.service';
-import { NewStreamDto, UpdateStreamDto } from '../types/types';
+import {
+  NewResponsiblePersonDto,
+  NewStreamDto,
+  UpdateStreamDto,
+} from '../types/types';
+import { ResponsiblePersonService } from '../services/reponsible.person.service';
 
 export class StreamController {
   private streamService: StreamService;
+  private rpService: ResponsiblePersonService;
 
-  constructor(streamService: StreamService) {
+  constructor(
+    streamService: StreamService,
+    rpService: ResponsiblePersonService,
+  ) {
     this.streamService = streamService;
+    this.rpService = rpService;
   }
 
   getStream = async (req: Request, res: Response) => {
@@ -48,7 +58,15 @@ export class StreamController {
   createStream = async (req: Request, res: Response) => {
     try {
       const dto: NewStreamDto = req.body;
-      await this.streamService.createStream(dto);
+      const stream = await this.streamService.createStream(dto);
+      if (dto.responsiblePerson && dto.responsiblePhone) {
+        const rpDto: NewResponsiblePersonDto = {
+          name: dto.responsiblePerson,
+          phone: dto.responsiblePhone,
+          streamId: stream.id,
+        };
+        await this.rpService.createResponsiblePerson(rpDto);
+      }
       res.status(201).json({ message: 'Stream created successfully' });
     } catch (error) {
       if (error instanceof Error) {
