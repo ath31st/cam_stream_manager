@@ -29,9 +29,9 @@ export class StreamService {
     }
   };
 
-  createStream = async (dto: NewStreamDto) => {
+  createStream = async (dto: NewStreamDto): Promise<Stream> => {
     try {
-      await this.streamRepository.createStream(dto);
+      return await this.streamRepository.createStream(dto);
     } catch (error) {
       console.error('Error creating stream:', error);
       throw new Error('Could not create stream');

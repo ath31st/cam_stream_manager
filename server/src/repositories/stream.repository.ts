@@ -19,7 +19,7 @@ export class StreamRepository {
     return await this.prismaClient.stream.findMany();
   };
 
-  createStream = async (dto: NewStreamDto) => {
+  createStream = async (dto: NewStreamDto): Promise<Stream> => {
     const status = StreamStatus.Created;
     const stream = await this.prismaClient.stream.create({
       data: {
@@ -32,6 +32,7 @@ export class StreamRepository {
       },
     });
     console.log(stream);
+    return stream;
   };
 
   updateStream = async (dto: UpdateStreamDto) => {
