@@ -1,6 +1,6 @@
 import { Region } from '@prisma/client';
 import { RegionRepository } from '../repositories/region.repository';
-import { NewRegionDto, UpdateRegionDto } from '../types/types';
+import { NewRegionDto, UpdateRegionDto } from '@shared/types';
 
 export class RegionService {
   private regionRepository: RegionRepository;

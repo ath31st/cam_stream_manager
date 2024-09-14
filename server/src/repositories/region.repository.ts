@@ -1,5 +1,5 @@
 import { PrismaClient, Region } from '@prisma/client';
-import { NewRegionDto, UpdateRegionDto } from '../types/types';
+import { NewRegionDto, UpdateRegionDto } from '@shared/types';
 
 export class RegionRepository {
   private prismaClient: PrismaClient;

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { RegionService } from '../services/region.service';
-import { NewRegionDto, UpdateRegionDto } from '../types/types';
+import { NewRegionDto, UpdateRegionDto } from '@shared/types';
 
 export class RegionController {
   private regionService: RegionService;

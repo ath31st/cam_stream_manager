@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
-} from '../types/types';
+} from '@shared/types';
 import { ResponsiblePersonService } from '../services/responsible.person.service';
 
 export class ResponsiblePersonController {

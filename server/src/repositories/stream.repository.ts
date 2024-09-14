@@ -1,4 +1,4 @@
-import { NewStreamDto, UpdateStreamDto } from '../types/types';
+import { NewStreamDto, UpdateStreamDto } from '@shared/types';
 import { StreamStatus } from '../utils/stream.status';
 import { PrismaClient, Stream } from '@prisma/client';
 

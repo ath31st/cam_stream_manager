@@ -3,7 +3,7 @@ import { ResponsiblePersonRepository } from '../repositories/responsible.person.
 import {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
-} from '../types/types';
+} from '@shared/types';
 
 export class ResponsiblePersonService {
   private responsiblePersonRepository: ResponsiblePersonRepository;

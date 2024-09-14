@@ -1,6 +1,6 @@
 import { Stream } from '@prisma/client';
 import { StreamRepository } from '../repositories/stream.repository';
-import { NewStreamDto, UpdateStreamDto } from '../types/types';
+import { NewStreamDto, UpdateStreamDto } from '@shared/types';
 import axios from 'axios';
 import { StreamStatus } from '../utils/stream.status';
 

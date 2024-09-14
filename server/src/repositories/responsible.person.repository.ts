@@ -2,7 +2,7 @@ import { PrismaClient, ResponsiblePerson } from '@prisma/client';
 import {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
-} from '../types/types';
+} from '@shared/types';
 
 export class ResponsiblePersonRepository {
   private prismaClient: PrismaClient;
