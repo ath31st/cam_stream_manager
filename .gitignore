@@ -28,4 +28,5 @@ yarn-error.log*
 /clien/node_modules
 
 .env
+.env.production
 *.db

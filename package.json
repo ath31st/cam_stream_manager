@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "scripts": {
         "client": "cd client && yarn start",
-        "server": "cd server && nodemon index.js",
+        "server": "cd server && nodemon dist/index.js",
         "dev": "concurrently \"yarn server\" \"yarn client\""
     },
     "dependencies": {
