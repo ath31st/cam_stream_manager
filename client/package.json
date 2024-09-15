@@ -21,9 +21,13 @@
     "eslint": "^9.10.0",
     "eslint-plugin-react": "^7.36.1",
     "globals": "^15.9.0",
+    "prettier": "^3.3.3",
     "typescript-eslint": "^8.5.0"
   },
   "scripts": {
+    "clean": "rimraf build/*",
+    "format": "prettier --write .",
+    "lint": "eslint .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
