@@ -1,6 +1,7 @@
 {
     "name": "cam_stream_manager",
     "version": "0.1.0",
+    "license": "MIT",
     "scripts": {
         "client": "cd client && yarn start",
         "server": "cd server && nodemon dist/index.js",
