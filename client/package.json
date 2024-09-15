@@ -1,7 +1,16 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "keywords": [
+    "react",
+    "frontend",
+    "typescript",
+    "web"
+  ],
+  "author": "Olennikov Vladimir <ath31st@yandex.ru>",
+  "license": "MIT",
+  "description": "A React frontend application using TypeScript and styled-components.",
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

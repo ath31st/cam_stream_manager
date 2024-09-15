@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist/*",
@@ -12,10 +12,16 @@
     "build": "tsc",
     "dbr": "npx prisma migrate dev --name init && ts-node src/database/seed.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "node",
+    "express",
+    "prisma",
+    "typescript",
+    "backend"
+  ],
+  "author": "Olennikov Vladimir <ath31st@yandex.ru>",
+  "license": "MIT",
+  "description": "A Node.js server with Express and TypeScript for handling backend operations.",
   "dependencies": {
     "@prisma/client": "5.19.1",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
