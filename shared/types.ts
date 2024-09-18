@@ -9,6 +9,16 @@ export interface NewStreamDto {
   responsiblePhone: string | null;
 }
 
+export interface StreamDto {
+  id: number;
+  regionId: number;
+  location: string;
+  isVisible: boolean;
+  streamUrl: string;
+  status: string;
+  comment: string | null;
+}
+
 export interface UpdateStreamDto {
   id: number;
   regionId?: number;
