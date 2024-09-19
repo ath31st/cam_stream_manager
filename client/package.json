@@ -12,6 +12,7 @@
   "license": "MIT",
   "description": "A React frontend application using TypeScript and styled-components.",
   "dependencies": {
+    "antd": "^5.20.6",
     "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
