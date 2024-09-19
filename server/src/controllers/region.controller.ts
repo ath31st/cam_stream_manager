@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { RegionService } from '../services/region.service';
 import { NewRegionDto, UpdateRegionDto } from '@shared/types';
+import { toRegionDto, toRegionDtos } from '../mappers/region.mapper';
 
 export class RegionController {
   private regionService: RegionService;
@@ -13,7 +14,8 @@ export class RegionController {
     try {
       const regionId = Number(req.params.id);
       const region = await this.regionService.getRegion(regionId);
-      res.status(200).json(region);
+      const regionDto = toRegionDto(region);
+      res.status(200).json(regionDto);
     } catch (error) {
       if (error instanceof Error) {
         res
@@ -31,7 +33,8 @@ export class RegionController {
   getAllRegions = async (req: Request, res: Response) => {
     try {
       const regions = await this.regionService.getAllRegions();
-      res.status(200).json(regions);
+      const regionsDto = toRegionDtos(regions);
+      res.status(200).json(regionsDto);
     } catch (error) {
       if (error instanceof Error) {
         res.status(404).json({
