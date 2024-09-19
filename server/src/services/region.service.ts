@@ -1,6 +1,7 @@
 import { Region } from '@prisma/client';
 import { RegionRepository } from '../repositories/region.repository';
-import { NewRegionDto, UpdateRegionDto } from '@shared/types';
+import { NewRegionDto, RegionDto, UpdateRegionDto } from '@shared/types';
+import { toRegionDto, toRegionDtos } from '../mappers/region.mapper';
 
 export class RegionService {
   private regionRepository: RegionRepository;
@@ -18,6 +19,10 @@ export class RegionService {
     }
   };
 
+  getRegionDto = async (id: number): Promise<RegionDto> => {
+    return this.getRegion(id).then(toRegionDto);
+  };
+
   getAllRegions = async (): Promise<Region[]> => {
     try {
       return await this.regionRepository.findAllRegions();
@@ -25,6 +30,10 @@ export class RegionService {
       console.error('Error getting regions:', error);
       throw new Error('Cannot get all regions');
     }
+  };
+
+  getAllRegionDtos = async (): Promise<RegionDto[]> => {
+    return this.getAllRegions().then(toRegionDtos);
   };
 
   createRegion = async (dto: NewRegionDto) => {
