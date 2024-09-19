@@ -15,9 +15,9 @@ export class ResponsiblePersonController {
   getResponsiblePerson = async (req: Request, res: Response) => {
     try {
       const personId = Number(req.params.id);
-      const person =
-        await this.responsiblePersonService.getResponsiblePerson(personId);
-      res.status(200).json(person);
+      const personDto =
+        await this.responsiblePersonService.getResponsiblePersonDto(personId);
+      res.status(200).json(personDto);
     } catch (error) {
       if (error instanceof Error) {
         res.status(404).json({

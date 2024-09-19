@@ -2,8 +2,10 @@ import { ResponsiblePerson } from '@prisma/client';
 import { ResponsiblePersonRepository } from '../repositories/responsible.person.repository';
 import {
   NewResponsiblePersonDto,
+  ResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
+import { toRpDto } from '../mappers/responsible.person.mapper';
 
 export class ResponsiblePersonService {
   private responsiblePersonRepository: ResponsiblePersonRepository;
@@ -19,6 +21,12 @@ export class ResponsiblePersonService {
       console.error(`Error finding responsible person with id ${id}:`, error);
       throw new Error('Responsible person not found');
     }
+  };
+
+  getResponsiblePersonDto = async (
+    id: number,
+  ): Promise<ResponsiblePersonDto> => {
+    return this.getResponsiblePerson(id).then(toRpDto);
   };
 
   createResponsiblePerson = async (dto: NewResponsiblePersonDto) => {
