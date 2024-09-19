@@ -1,11 +1,13 @@
 import React from 'react';
-import css from './Header.module.css';
+import { Layout } from 'antd';
+import styles from './Header.module.css';
 
-export function Header() {
+const { Header } = Layout;
+
+export const AppHeader: React.FC = () => {
   return (
-    <header className={css.root} data-fsd="widget/header">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-    </header>
+    <Header className={styles.header}>
+      <div className={styles.logo} />
+    </Header>
   );
-}
+};
