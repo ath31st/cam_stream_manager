@@ -1,8 +1,9 @@
 import { Stream } from '@prisma/client';
 import { StreamRepository } from '../repositories/stream.repository';
-import { NewStreamDto, UpdateStreamDto } from '@shared/types';
+import { NewStreamDto, StreamDto, UpdateStreamDto } from '@shared/types';
 import axios from 'axios';
 import { StreamStatus } from '../utils/stream.status';
+import { toStreamDto, toStreamDtos } from '../mappers/stream.mapper';
 
 export class StreamService {
   private streamRepository: StreamRepository;
@@ -20,6 +21,10 @@ export class StreamService {
     }
   };
 
+  getStreamDto = async (id: number): Promise<StreamDto> => {
+    return this.getStream(id).then(toStreamDto);
+  };
+
   getAllStreams = async (): Promise<Stream[]> => {
     try {
       return await this.streamRepository.findAllStreams();
@@ -27,6 +32,10 @@ export class StreamService {
       console.error('Error getting streams:', error);
       throw new Error('Cannot get all streams');
     }
+  };
+
+  getAllStreamDtos = async (): Promise<StreamDto[]> => {
+    return this.getAllStreams().then(toStreamDtos);
   };
 
   createStream = async (dto: NewStreamDto): Promise<Stream> => {
