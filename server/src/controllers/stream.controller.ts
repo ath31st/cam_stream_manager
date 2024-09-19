@@ -6,6 +6,7 @@ import {
   UpdateStreamDto,
 } from '@shared/types';
 import { ResponsiblePersonService } from '../services/responsible.person.service';
+import { toStreamDto, toStreamDtos } from '../mappers/stream.mapper';
 
 export class StreamController {
   private streamService: StreamService;
@@ -23,7 +24,8 @@ export class StreamController {
     try {
       const streamId = Number(req.params.id);
       const stream = await this.streamService.getStream(streamId);
-      res.status(200).json(stream);
+      const streamDto = toStreamDto(stream);
+      res.status(200).json(streamDto);
     } catch (error) {
       if (error instanceof Error) {
         res.status(404).json({ message: error.message });
@@ -39,7 +41,8 @@ export class StreamController {
   getAllStreams = async (req: Request, res: Response) => {
     try {
       const streams = await this.streamService.getAllStreams();
-      res.status(200).json(streams);
+      const streamDtos = toStreamDtos(streams);
+      res.status(200).json(streamDtos);
     } catch (error) {
       if (error instanceof Error) {
         res.status(404).json({
