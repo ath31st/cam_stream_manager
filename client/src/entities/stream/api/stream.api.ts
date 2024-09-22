@@ -8,6 +8,11 @@ export const fetchStreams = async (): Promise<Stream[]> => {
   return response.data;
 };
 
+export const fetchStreamsByRegion = async (regionId: number) => {
+  const response = await axios.get<Stream[]>(`${API_URL}/region/${regionId}`);
+  return response.data;
+};
+
 export const fetchStream = async (id: number): Promise<Stream> => {
   const response = await axios.get<Stream>(`${API_URL}/${id}`);
   return response.data;

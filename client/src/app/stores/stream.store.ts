@@ -6,6 +6,7 @@ import {
   createStream,
   updateStream,
   deleteStream,
+  fetchStreamsByRegion,
 } from '../../entities/stream/api/stream.api';
 
 interface StreamState {
@@ -14,6 +15,7 @@ interface StreamState {
   loading: boolean;
   error: string | null;
   fetchAllStreams: () => Promise<void>;
+  fetchStreamsByRegion: (regionId: number) => Promise<void>;
   fetchStreamById: (id: number) => Promise<void>;
   addStream: (stream: NewStream) => Promise<void>;
   editStream: (id: number, stream: UpdateStream) => Promise<void>;
@@ -30,6 +32,20 @@ export const useStreamStore = create<StreamState>((set) => ({
     set({ loading: true });
     try {
       const streams = await fetchStreams();
+      set({ streams, loading: false });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        set({ error: error.message, loading: false });
+      } else {
+        set({ error: 'Unknown error', loading: false });
+      }
+    }
+  },
+
+  fetchStreamsByRegion: async (regionId: number) => {
+    set({ loading: true });
+    try {
+      const streams = await fetchStreamsByRegion(regionId);
       set({ streams, loading: false });
     } catch (error: unknown) {
       if (error instanceof Error) {
