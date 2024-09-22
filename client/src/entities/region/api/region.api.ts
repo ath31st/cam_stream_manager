@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Region, NewRegion, UpdateRegion } from '../index';
 
-const API_URL = '/api/v1/regions';
+const API_URL = process.env.REACT_APP_API_URL + '/regions';
 
 export const fetchRegions = async (): Promise<Region[]> => {
   const response = await axios.get<Region[]>(API_URL);

@@ -5,7 +5,7 @@ import {
   ResponsiblePerson,
 } from '../index';
 
-const API_URL = '/api/v1/responsible-persons';
+const API_URL = process.env.REACT_APP_API_URL + '/responsible-persons';
 
 export const fetchResponsiblePerson = async (
   id: number,
