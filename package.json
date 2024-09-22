@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "client": "cd client && yarn start",
-        "server": "cd server && nodemon dist/index.js",
+        "server": "cd server && yarn dev",
         "dev": "concurrently \"yarn server\" \"yarn client\""
     },
     "dependencies": {
