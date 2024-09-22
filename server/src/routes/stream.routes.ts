@@ -8,6 +8,7 @@ router.put('/streams/:id', streamController.updateStream);
 router.delete('/streams/:id', streamController.deleteStream);
 router.get('/streams', streamController.getAllStreams);
 router.get('/streams/:id', streamController.getStream);
+router.get('/streams/region/:id', streamController.getStreamsByRegion);
 
 const streamRoutes = Router();
 const apiPrefix = '/api/v1';

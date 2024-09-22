@@ -55,6 +55,26 @@ export class StreamController {
     }
   };
 
+  getStreamsByRegion = async (req: Request, res: Response) => {
+    try {
+      const regionId = Number(req.params.id);
+      const streamDtos = await this.streamService.getStreamsByRegion(regionId);
+      res.status(200).json(streamDtos);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(404).json({
+          message: 'Failed to retrieve streams',
+          error: error.message,
+        });
+      } else {
+        res.status(500).json({
+          message: 'Failed to retrieve streams',
+          error: 'Unknown error occurred',
+        });
+      }
+    }
+  };
+
   createStream = async (req: Request, res: Response) => {
     try {
       const dto: NewStreamDto = req.body;

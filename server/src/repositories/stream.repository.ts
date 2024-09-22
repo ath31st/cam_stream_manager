@@ -19,6 +19,12 @@ export class StreamRepository {
     return await this.prismaClient.stream.findMany();
   };
 
+  findStreamsByRegion = async (regionId: number): Promise<Stream[]> => {
+    return await this.prismaClient.stream.findMany({
+      where: { regionId: regionId },
+    });
+  };
+
   createStream = async (dto: NewStreamDto): Promise<Stream> => {
     const status = StreamStatus.Created;
     const stream = await this.prismaClient.stream.create({

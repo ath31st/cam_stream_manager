@@ -38,6 +38,15 @@ export class StreamService {
     return this.getAllStreams().then(toStreamDtos);
   };
 
+  getStreamsByRegion = async (regionId: number): Promise<Stream[]> => {
+    try {
+      return await this.streamRepository.findStreamsByRegion(regionId);
+    } catch (error) {
+      console.error('Error getting streams by region:', error);
+      throw new Error('Cannot get streams by region');
+    }
+  };
+
   createStream = async (dto: NewStreamDto): Promise<Stream> => {
     try {
       return await this.streamRepository.createStream(dto);
