@@ -14,9 +14,9 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Sider />
         <Layout>
           <Content>{children}</Content>
-          <Footer />
         </Layout>
       </Layout>
+      <Footer />
     </Layout>
   );
 };
