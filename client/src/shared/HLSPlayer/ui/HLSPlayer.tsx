@@ -11,8 +11,8 @@ export const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
   const videoRef = useHLS(url, isPlaying);
 
   return (
-    <div>
+    <>
       <video ref={videoRef} controls className={styles.player} />
-    </div>
+    </>
   );
 };
