@@ -31,7 +31,7 @@ const getLevelKeys = (items: LevelKeysProps[]) => {
 
 export const AppSider: React.FC = () => {
   const { regions, fetchAllRegions } = useRegionStore();
-  const { streams, fetchStreamsByRegion } = useStreamStore();
+  const { streams, fetchStreamsByRegion, setSelectedStream } = useStreamStore();
   const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(['0']);
 
   useEffect(() => {
@@ -51,6 +51,7 @@ export const AppSider: React.FC = () => {
       .map((stream) => ({
         key: `${region.id}-${stream.id}`,
         label: stream.location,
+        onClick: () => setSelectedStream(streams.find((s) => s.id === stream.id)!),
       })),
   }));
 
