@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import HLSPlayer from '../../../shared';
+import HLSPlayer from '../../../shared/HLSPlayer';
 import styles from './Player.module.css';
 
 export const Player: React.FC = () => {
