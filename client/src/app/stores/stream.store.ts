@@ -20,6 +20,7 @@ interface StreamState {
   addStream: (stream: NewStream) => Promise<void>;
   editStream: (id: number, stream: UpdateStream) => Promise<void>;
   removeStream: (id: number) => Promise<void>;
+  setSelectedStream: (stream: Stream) => void;
 }
 
 export const useStreamStore = create<StreamState>((set) => ({
@@ -112,4 +113,6 @@ export const useStreamStore = create<StreamState>((set) => ({
       }
     }
   },
+
+  setSelectedStream: (stream) => set({ selectedStream: stream }),
 }));
