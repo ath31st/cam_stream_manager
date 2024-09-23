@@ -89,13 +89,13 @@ export class StreamService {
       for (const stream of streams) {
         try {
           const response = await axios.get(stream.streamUrl);
+          console.log(response.status + ' ' + stream.status);
 
-          if (
-            response.status === 200 &&
-            stream.status !== StreamStatus.Active
-          ) {
-            console.log(`Stream ${stream.id} is reachable`);
-            await this.updateStreamStatus(stream.id, StreamStatus.Active);
+          if (response.status === 200) {
+            if (stream.status !== StreamStatus.Active) {
+              console.log(`Stream ${stream.id} is reachable`);
+              await this.updateStreamStatus(stream.id, StreamStatus.Active);
+            }
           } else {
             console.error(
               `Stream ${stream.id} returned status ${response.status}`,
