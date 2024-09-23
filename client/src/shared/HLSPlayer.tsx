@@ -50,9 +50,6 @@ const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
         controls
         style={{ width: '100%', height: 'auto' }}
       />
-      <button onClick={handlePlay} disabled={isPlaying}>
-        {isPlaying ? 'Playing...' : 'Play'}
-      </button>
     </div>
   );
 };
