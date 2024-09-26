@@ -87,35 +87,53 @@ export class StreamService {
       const streams = await this.streamRepository.findAllStreams();
 
       for (const stream of streams) {
-        try {
-          const response = await axios.get(stream.streamUrl);
-          console.log(response.status + ' ' + stream.status);
-
-          if (response.status === 200) {
-            if (stream.status !== StreamStatus.Active) {
-              console.log(`Stream ${stream.id} is reachable`);
-              await this.updateStreamStatus(stream.id, StreamStatus.Active);
-            }
-          } else {
-            console.error(
-              `Stream ${stream.id} returned status ${response.status}`,
-            );
-            if (stream.status !== StreamStatus.BadConnection) {
-              await this.updateStreamStatus(
-                stream.id,
-                StreamStatus.BadConnection,
-              );
-            }
-          }
-        } catch (error) {
-          console.error(`Stream ${stream.id} is not reachable:`, error);
-          if (stream.status !== StreamStatus.NoConnection) {
-            await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
-          }
-        }
+        await this.pingStream(stream);
       }
     } catch (error) {
       console.error('Error retrieving streams:', error);
+    }
+  };
+
+  private pingStream = async (stream: Stream): Promise<void> => {
+    try {
+      const response = await axios.get(stream.streamUrl);
+
+      if (response.status === 200) {
+        await this.handleActiveStream(stream);
+      } else {
+        await this.handleBadConnection(stream, response.status);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(`Error pinging stream ${stream.id}:`, error.message);
+      } else {
+        console.error(`Error pinging stream ${stream.id}:`, error);
+      }
+      await this.handleNoConnection(stream);
+    }
+  };
+
+  private handleActiveStream = async (stream: Stream): Promise<void> => {
+    if (stream.status !== StreamStatus.Active) {
+      console.log(`Stream ${stream.id} is reachable`);
+      await this.updateStreamStatus(stream.id, StreamStatus.Active);
+    }
+  };
+
+  private handleBadConnection = async (
+    stream: Stream,
+    status: number,
+  ): Promise<void> => {
+    console.error(`Stream ${stream.id} returned status ${status}`);
+    if (stream.status !== StreamStatus.BadConnection) {
+      await this.updateStreamStatus(stream.id, StreamStatus.BadConnection);
+    }
+  };
+
+  private handleNoConnection = async (stream: Stream): Promise<void> => {
+    console.error(`Stream ${stream.id} is not reachable`);
+    if (stream.status !== StreamStatus.NoConnection) {
+      await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
     }
   };
 }
