@@ -1,5 +1,6 @@
 import { PrismaClient, Region } from '@prisma/client';
 import { NewRegionDto, UpdateRegionDto } from '@shared/types';
+import { Logger } from '../utils/logger';
 
 export class RegionRepository {
   private prismaClient: PrismaClient;
@@ -25,7 +26,7 @@ export class RegionRepository {
         isVisible: true,
       },
     });
-    console.log(region);
+    Logger.log(region);
   };
 
   updateRegion = async (dto: UpdateRegionDto) => {
@@ -36,13 +37,13 @@ export class RegionRepository {
         isVisible: dto.isVisible,
       },
     });
-    console.log(region);
+    Logger.log(region);
   };
 
   deleteRegion = async (id: number) => {
     await this.prismaClient.region.delete({
       where: { id: id },
     });
-    console.log(`Region with id ${id} has been deleted.`);
+    Logger.log(`Region with id ${id} has been deleted.`);
   };
 }

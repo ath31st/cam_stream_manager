@@ -3,6 +3,7 @@ import {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
+import { Logger } from '../utils/logger';
 
 export class ResponsiblePersonRepository {
   private prismaClient: PrismaClient;
@@ -25,7 +26,7 @@ export class ResponsiblePersonRepository {
         streamId: dto.streamId,
       },
     });
-    console.log(person);
+    Logger.log(person);
   };
 
   updateResponsiblePerson = async (dto: UpdateResponsiblePersonDto) => {
@@ -36,13 +37,13 @@ export class ResponsiblePersonRepository {
         phone: dto.phone,
       },
     });
-    console.log(person);
+    Logger.log(person);
   };
 
   deleteResponsiblePerson = async (id: number) => {
     await this.prismaClient.responsiblePerson.delete({
       where: { id: id },
     });
-    console.log(`Responsible person with id ${id} has been deleted.`);
+    Logger.log(`Responsible person with id ${id} has been deleted.`);
   };
 }

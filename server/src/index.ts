@@ -7,6 +7,7 @@ import streamRoutes from './routes/stream.routes';
 import { startStreamCronJob } from './cron/stream.cron';
 import regionRoutes from './routes/region.routes';
 import rpRoutes from './routes/responsible.person.routes';
+import { Logger } from './utils/logger';
 
 dotenv.config();
 
@@ -25,5 +26,5 @@ startStreamCronJob();
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  Logger.log(`[server]: Server is running at http://localhost:${port}`);
 });

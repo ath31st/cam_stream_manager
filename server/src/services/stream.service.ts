@@ -4,6 +4,7 @@ import { NewStreamDto, StreamDto, UpdateStreamDto } from '@shared/types';
 import axios from 'axios';
 import { StreamStatus } from '../utils/stream.status';
 import { toStreamDto, toStreamDtos } from '../mappers/stream.mapper';
+import { Logger } from '../utils/logger';
 
 export class StreamService {
   private streamRepository: StreamRepository;
@@ -16,7 +17,7 @@ export class StreamService {
     try {
       return await this.streamRepository.findStream(id);
     } catch (error) {
-      console.error(`Error finding stream with id ${id}:`, error);
+      Logger.error(`Error finding stream with id ${id}:`, error);
       throw new Error('Stream not found');
     }
   };
@@ -29,7 +30,7 @@ export class StreamService {
     try {
       return await this.streamRepository.findAllStreams();
     } catch (error) {
-      console.error('Error getting streams:', error);
+      Logger.error('Error getting streams:', error);
       throw new Error('Cannot get all streams');
     }
   };
@@ -42,7 +43,7 @@ export class StreamService {
     try {
       return await this.streamRepository.findStreamsByRegion(regionId);
     } catch (error) {
-      console.error('Error getting streams by region:', error);
+      Logger.error('Error getting streams by region:', error);
       throw new Error('Cannot get streams by region');
     }
   };
@@ -51,7 +52,7 @@ export class StreamService {
     try {
       return await this.streamRepository.createStream(dto);
     } catch (error) {
-      console.error('Error creating stream:', error);
+      Logger.error('Error creating stream:', error);
       throw new Error('Could not create stream');
     }
   };
@@ -60,7 +61,7 @@ export class StreamService {
     try {
       await this.streamRepository.updateStream(dto);
     } catch (error) {
-      console.error('Error updating stream:', error);
+      Logger.error('Error updating stream:', error);
       throw new Error('Could not update stream');
     }
   };
@@ -69,7 +70,7 @@ export class StreamService {
     try {
       await this.streamRepository.updateStreamStatus(streamId, newStatus);
     } catch (error) {
-      console.error('Error updating stream status:', error);
+      Logger.error('Error updating stream status:', error);
     }
   };
 
@@ -77,7 +78,7 @@ export class StreamService {
     try {
       await this.streamRepository.deleteStream(streamId);
     } catch (error) {
-      console.error('Error deleting stream:', error);
+      Logger.error('Error deleting stream:', error);
       throw new Error('Could not delete stream');
     }
   };
@@ -90,7 +91,7 @@ export class StreamService {
         await this.pingStream(stream);
       }
     } catch (error) {
-      console.error('Error retrieving streams:', error);
+      Logger.error('Error retrieving streams:', error);
     }
   };
 
@@ -105,9 +106,9 @@ export class StreamService {
       }
     } catch (error) {
       if (error instanceof Error) {
-        console.error(`Error pinging stream ${stream.id}:`, error.message);
+        Logger.error(`Error pinging stream ${stream.id}:`, error.message);
       } else {
-        console.error(`Error pinging stream ${stream.id}:`, error);
+        Logger.error(`Error pinging stream ${stream.id}:`, error);
       }
       await this.handleNoConnection(stream);
     }
@@ -115,7 +116,7 @@ export class StreamService {
 
   private handleActiveStream = async (stream: Stream): Promise<void> => {
     if (stream.status !== StreamStatus.Active) {
-      console.log(`Stream ${stream.id} is reachable`);
+      Logger.log(`Stream ${stream.id} is reachable`);
       await this.updateStreamStatus(stream.id, StreamStatus.Active);
     }
   };
@@ -124,14 +125,14 @@ export class StreamService {
     stream: Stream,
     status: number,
   ): Promise<void> => {
-    console.error(`Stream ${stream.id} returned status ${status}`);
+    Logger.error(`Stream ${stream.id} returned status ${status}`);
     if (stream.status !== StreamStatus.BadConnection) {
       await this.updateStreamStatus(stream.id, StreamStatus.BadConnection);
     }
   };
 
   private handleNoConnection = async (stream: Stream): Promise<void> => {
-    console.error(`Stream ${stream.id} is not reachable`);
+    Logger.error(`Stream ${stream.id} is not reachable`);
     if (stream.status !== StreamStatus.NoConnection) {
       await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
     }

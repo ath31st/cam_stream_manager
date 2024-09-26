@@ -1,6 +1,7 @@
 import { NewStreamDto, UpdateStreamDto } from '@shared/types';
 import { StreamStatus } from '../utils/stream.status';
 import { PrismaClient, Stream } from '@prisma/client';
+import { Logger } from '../utils/logger';
 
 export class StreamRepository {
   private prismaClient: PrismaClient;
@@ -37,7 +38,7 @@ export class StreamRepository {
         comment: dto.comment,
       },
     });
-    console.log(stream);
+    Logger.log(stream);
     return stream;
   };
 
@@ -53,7 +54,7 @@ export class StreamRepository {
         comment: dto.comment,
       },
     });
-    console.log(stream);
+    Logger.log(stream);
   };
 
   updateStreamStatus = async (streamId: number, newStatus: StreamStatus) => {
@@ -70,6 +71,6 @@ export class StreamRepository {
     await this.prismaClient.stream.delete({
       where: { id: id },
     });
-    console.log(`Stream with id ${id} has been deleted.`);
+    Logger.log(`Stream with id ${id} has been deleted.`);
   };
 }

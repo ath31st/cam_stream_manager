@@ -2,6 +2,7 @@ import { Region } from '@prisma/client';
 import { RegionRepository } from '../repositories/region.repository';
 import { NewRegionDto, RegionDto, UpdateRegionDto } from '@shared/types';
 import { toRegionDto, toRegionDtos } from '../mappers/region.mapper';
+import { Logger } from '../utils/logger';
 
 export class RegionService {
   private regionRepository: RegionRepository;
@@ -14,7 +15,7 @@ export class RegionService {
     try {
       return await this.regionRepository.findRegion(id);
     } catch (error) {
-      console.error(`Error finding region with id ${id}:`, error);
+      Logger.error(`Error finding region with id ${id}:`, error);
       throw new Error('Region not found');
     }
   };
@@ -27,7 +28,7 @@ export class RegionService {
     try {
       return await this.regionRepository.findAllRegions();
     } catch (error) {
-      console.error('Error getting regions:', error);
+      Logger.error('Error getting regions:', error);
       throw new Error('Cannot get all regions');
     }
   };
@@ -40,7 +41,7 @@ export class RegionService {
     try {
       await this.regionRepository.createRegion(dto);
     } catch (error) {
-      console.error('Error creating region:', error);
+      Logger.error('Error creating region:', error);
       throw new Error('Could not create region');
     }
   };
@@ -49,7 +50,7 @@ export class RegionService {
     try {
       await this.regionRepository.updateRegion(dto);
     } catch (error) {
-      console.error('Error updating region:', error);
+      Logger.error('Error updating region:', error);
       throw new Error('Could not update region');
     }
   };
@@ -58,7 +59,7 @@ export class RegionService {
     try {
       await this.regionRepository.deleteRegion(regionId);
     } catch (error) {
-      console.error('Error deleting region:', error);
+      Logger.error('Error deleting region:', error);
       throw new Error('Could not delete region');
     }
   };
