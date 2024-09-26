@@ -20,32 +20,38 @@ export class Logger {
     return String(error);
   }
 
-  static log(message: string) {
+  static log(...args: unknown[]) {
     const timestamp = this.getTimestamp();
-    console.log(
-      `${this.colors.log}[${timestamp}] ${message}${this.resetColor}`,
-    );
+    console.log(`${this.colors.log}[${timestamp}]`, ...args, this.resetColor);
   }
 
-  static error(message: string, error?: unknown) {
+  static error(...args: unknown[]) {
     const timestamp = this.getTimestamp();
-    const formattedError = error ? `\n${this.formatError(error)}` : '';
+    const formattedArgs = args.map((arg) =>
+      arg instanceof Error ? this.formatError(arg) : arg,
+    );
     console.error(
-      `${this.colors.error}[${timestamp}] ERROR: ${message}${formattedError}${this.resetColor}`,
+      `${this.colors.error}[${timestamp}] ERROR:`,
+      ...formattedArgs,
+      this.resetColor,
     );
   }
 
-  static warn(message: string) {
+  static warn(...args: unknown[]) {
     const timestamp = this.getTimestamp();
     console.warn(
-      `${this.colors.warn}[${timestamp}] WARNING: ${message}${this.resetColor}`,
+      `${this.colors.warn}[${timestamp}] WARNING:`,
+      ...args,
+      this.resetColor,
     );
   }
 
-  static info(message: string) {
+  static info(...args: unknown[]) {
     const timestamp = this.getTimestamp();
     console.info(
-      `${this.colors.info}[${timestamp}] INFO: ${message}${this.resetColor}`,
+      `${this.colors.info}[${timestamp}] INFO:`,
+      ...args,
+      this.resetColor,
     );
   }
 }
