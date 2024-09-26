@@ -13,6 +13,13 @@ export class Logger {
     log: '\x1b[32m', // green
   };
 
+  private static formatError(error: unknown): string {
+    if (error instanceof Error) {
+      return `${error.message}\n${error.stack}`;
+    }
+    return String(error);
+  }
+
   static log(message: string) {
     const timestamp = this.getTimestamp();
     console.log(
@@ -20,10 +27,11 @@ export class Logger {
     );
   }
 
-  static error(message: string) {
+  static error(message: string, error?: unknown) {
     const timestamp = this.getTimestamp();
+    const formattedError = error ? `\n${this.formatError(error)}` : '';
     console.error(
-      `${this.colors.error}[${timestamp}] ERROR: ${message}${this.resetColor}`,
+      `${this.colors.error}[${timestamp}] ERROR: ${message}${formattedError}${this.resetColor}`,
     );
   }
 
