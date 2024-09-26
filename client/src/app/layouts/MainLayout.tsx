@@ -3,17 +3,20 @@ import { Layout } from 'antd';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 import Sider from '../../widgets/sider';
+import { Outlet } from 'react-router-dom';
 
 const { Content } = Layout;
 
-const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const MainLayout: React.FC = () => {
   return (
     <Layout>
       <Header />
       <Layout>
         <Sider />
         <Layout>
-          <Content>{children}</Content>
+          <Content>
+            <Outlet />
+          </Content>
         </Layout>
       </Layout>
       <Footer />
