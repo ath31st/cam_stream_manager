@@ -2,16 +2,22 @@ import React from 'react';
 import { Layout } from 'antd';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
+import { Outlet } from 'react-router-dom';
 
 const { Content } = Layout;
-export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+
+const AdminLayout: React.FC = () => {
   return (
     <Layout>
       <Header />
-      <Content>{children}</Content>
+      <Layout>
+        <Content>
+          <Outlet />
+        </Content>
+      </Layout>
       <Footer />
     </Layout>
   );
 };
+
+export default AdminLayout;
