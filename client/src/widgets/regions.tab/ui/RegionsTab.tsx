@@ -1,52 +1,64 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal, Table, Spin, Alert } from 'antd';
+import { Button, Table, Spin, Alert } from 'antd';
 import { useRegionStore } from '../../../app/stores/region.store';
-import { Region } from '../../../entities/region';
+import {
+  Region,
+  AddRegionModal,
+  DeleteRegionModal,
+  UpdateRegionModal,
+  UpdateRegion,
+} from '../../../entities/region';
 
 const RegionsTab: React.FC = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [newRegionName, setNewRegionName] = useState<string>('');
+  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteRegionId, setDeleteRegionId] = useState<number | null>(null);
+  const [updatingRegion, setUpdatingRegion] = useState<Region | null>(null);
 
-  const { regions, fetchAllRegions, loading, error, addRegion, removeRegion } =
-    useRegionStore();
+  const {
+    regions,
+    fetchAllRegions,
+    loading,
+    error,
+    addRegion,
+    updateRegion,
+    removeRegion,
+  } = useRegionStore();
 
   useEffect(() => {
     fetchAllRegions();
   }, [fetchAllRegions]);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = async () => {
-    if (newRegionName) {
-      await addRegion({ name: newRegionName });
-      setNewRegionName('');
-      setIsModalVisible(false);
-    }
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const handleAddRegion = async (name: string) => {
+    await addRegion({ name });
+    setIsAddModalVisible(false);
   };
 
   const showDeleteConfirm = (id: number) => {
     setDeleteRegionId(id);
-    setIsModalVisible(true);
+    setIsDeleteModalVisible(true);
   };
 
   const handleDelete = async () => {
     if (deleteRegionId !== null) {
       await removeRegion(deleteRegionId);
       setDeleteRegionId(null);
-      setIsModalVisible(false);
+      setIsDeleteModalVisible(false);
     }
   };
 
-  const handleDeleteCancel = () => {
-    setDeleteRegionId(null);
-    setIsModalVisible(false);
+  const showUpdateModal = (region: Region) => {
+    setUpdatingRegion(region);
+    setIsUpdateModalVisible(true);
+  };
+
+  const handleUpdateRegion = async (updatedRegion: UpdateRegion) => {
+    if (updatingRegion) {
+      await updateRegion(updatingRegion.id, updatedRegion);
+      setUpdatingRegion(null);
+      setIsUpdateModalVisible(false);
+    }
   };
 
   const dataSource = regions.map((region: Region) => ({
@@ -69,18 +81,23 @@ const RegionsTab: React.FC = () => {
     {
       title: 'Действия',
       key: 'action',
-      render: (_: unknown, record: { key: number }) => (
-        <span>
-          <Button type="link">Редактировать</Button>
-          <Button
-            type="link"
-            danger
-            onClick={() => showDeleteConfirm(record.key)}
-          >
-            Удалить
-          </Button>
-        </span>
-      ),
+      render: (_: unknown, record: { key: number }) => {
+        const region = regions.find((r) => r.id === record.key);
+        return (
+          <span>
+            <Button type="link" onClick={() => showUpdateModal(region!)}>
+              Редактировать
+            </Button>
+            <Button
+              type="link"
+              danger
+              onClick={() => showDeleteConfirm(record.key)}
+            >
+              Удалить
+            </Button>
+          </span>
+        );
+      },
     },
   ];
 
@@ -95,33 +112,35 @@ const RegionsTab: React.FC = () => {
         <Spin size="large" />
       ) : (
         <>
-          <Button type="primary" onClick={showModal}>
+          <Button type="primary" onClick={() => setIsAddModalVisible(true)}>
             Добавить регион
           </Button>
           <Table dataSource={dataSource} columns={columns} />
 
-          <Modal
-            title="Добавить новый регион"
-            open={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <p>Введите название региона:</p>
-            <input
-              value={newRegionName}
-              onChange={(e) => setNewRegionName(e.target.value)}
-              placeholder="Название региона"
-            />
-          </Modal>
+          <AddRegionModal
+            visible={isAddModalVisible}
+            onOk={handleAddRegion}
+            onCancel={() => setIsAddModalVisible(false)}
+          />
 
-          <Modal
-            title="Подтвердите удаление"
-            open={deleteRegionId !== null}
-            onOk={handleDelete}
-            onCancel={handleDeleteCancel}
-          >
-            <p>Вы уверены, что хотите удалить этот регион?</p>
-          </Modal>
+          <DeleteRegionModal
+            visible={isDeleteModalVisible}
+            onConfirm={handleDelete}
+            onCancel={() => {
+              setDeleteRegionId(null);
+              setIsDeleteModalVisible(false);
+            }}
+          />
+
+          <UpdateRegionModal
+            visible={isUpdateModalVisible}
+            region={updatingRegion}
+            onOk={handleUpdateRegion}
+            onCancel={() => {
+              setUpdatingRegion(null);
+              setIsUpdateModalVisible(false);
+            }}
+          />
         </>
       )}
     </>
