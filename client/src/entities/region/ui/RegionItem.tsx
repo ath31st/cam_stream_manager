@@ -8,10 +8,10 @@ interface RegionItemProps {
 }
 
 export const RegionItem: React.FC<RegionItemProps> = ({ region }) => {
-  const { editRegion, removeRegion, loading } = useRegionStore();
+  const { updateRegion, removeRegion, loading } = useRegionStore();
 
   const handleVisibilityToggle = (checked: boolean) => {
-    editRegion(region.id, { id: region.id, isVisible: checked });
+    updateRegion(region.id, { id: region.id, isVisible: checked });
   };
 
   const handleDelete = () => {
