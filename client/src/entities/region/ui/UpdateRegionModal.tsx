@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Input } from 'antd';
-import { Region } from '..';
+import { Modal, Input, Checkbox } from 'antd';
+import { Region, UpdateRegion } from '..';
 
 interface UpdateRegionModalProps {
   visible: boolean;
   region: Region | null;
-  onOk: (updatedRegion: Partial<Region>) => void;
+  onOk: (updatedRegion: UpdateRegion) => void;
   onCancel: () => void;
 }
 
@@ -16,16 +16,21 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
   onCancel,
 }) => {
   const [regionName, setRegionName] = useState<string>('');
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
     if (region) {
       setRegionName(region.name);
+      setIsVisible(region.isVisible);
     }
   }, [region]);
 
   const handleOk = () => {
-    onOk({ name: regionName });
-    setRegionName('');
+    if (region) {
+      onOk({ id: region.id, name: regionName, isVisible });
+      setRegionName('');
+      setIsVisible(true);
+    }
   };
 
   return (
@@ -40,6 +45,12 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
         onChange={(e) => setRegionName(e.target.value)}
         placeholder="Название региона"
       />
+      <Checkbox
+        checked={isVisible}
+        onChange={(e) => setIsVisible(e.target.checked)}
+      >
+        Видимый
+      </Checkbox>
     </Modal>
   );
 };
