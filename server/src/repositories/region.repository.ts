@@ -30,7 +30,7 @@ export class RegionRepository {
     return region;
   };
 
-  updateRegion = async (dto: UpdateRegionDto) => {
+  updateRegion = async (dto: UpdateRegionDto): Promise<Region> => {
     const region = await this.prismaClient.region.update({
       where: { id: dto.id },
       data: {
@@ -39,6 +39,7 @@ export class RegionRepository {
       },
     });
     Logger.log(region);
+    return region;
   };
 
   deleteRegion = async (id: number) => {

@@ -46,9 +46,9 @@ export class RegionService {
     }
   };
 
-  updateRegion = async (dto: UpdateRegionDto) => {
+  updateRegion = async (dto: UpdateRegionDto): Promise<RegionDto> => {
     try {
-      await this.regionRepository.updateRegion(dto);
+      return await this.regionRepository.updateRegion(dto).then(toRegionDto);
     } catch (error) {
       Logger.error('Error updating region:', error);
       throw new Error('Could not update region');

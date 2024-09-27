@@ -69,8 +69,8 @@ export class RegionController {
   updateRegion = async (req: Request, res: Response) => {
     try {
       const dto: UpdateRegionDto = { id: Number(req.params.id), ...req.body };
-      await this.regionService.updateRegion(dto);
-      res.status(200).json({ message: 'Region updated successfully' });
+      const updatedRegion = await this.regionService.updateRegion(dto);
+      res.status(200).json(updatedRegion);
     } catch (error) {
       if (error instanceof Error) {
         res
