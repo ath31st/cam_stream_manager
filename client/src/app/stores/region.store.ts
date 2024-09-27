@@ -16,7 +16,7 @@ interface RegionState {
   fetchAllRegions: () => Promise<void>;
   fetchRegionById: (id: number) => Promise<void>;
   addRegion: (region: NewRegion) => Promise<void>;
-  editRegion: (id: number, region: UpdateRegion) => Promise<void>;
+  updateRegion: (id: number, region: UpdateRegion) => Promise<void>;
   removeRegion: (id: number) => Promise<void>;
 }
 
@@ -67,7 +67,7 @@ export const useRegionStore = create<RegionState>((set) => ({
     }
   },
 
-  editRegion: async (id: number, region: UpdateRegion) => {
+  updateRegion: async (id: number, region: UpdateRegion) => {
     try {
       const updatedRegion = await updateRegion(id, region);
       set((state) => ({
