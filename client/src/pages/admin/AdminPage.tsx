@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs } from 'antd';
+import RegionsTab from '../../widgets/regions-tab';
 
 const AdminPage: React.FC = () => {
   return (
@@ -8,38 +9,28 @@ const AdminPage: React.FC = () => {
       <Tabs
         defaultActiveKey="1"
         centered
-        items={new Array(4).fill(null).map((_, i) => {
-          const id = String(i + 1);
-          let label = '';
-          let content = '';
-
-          switch (id) {
-            case '1':
-              label = 'Дашборд';
-              content = 'Заглушка для Дашборда';
-              break;
-            case '2':
-              label = 'Регионы';
-              content = 'Заглушка для управления регионами';
-              break;
-            case '3':
-              label = 'Потоки';
-              content = 'Заглушка для управления потоками';
-              break;
-            case '4':
-              label = 'Ответственные лица';
-              content = 'Заглушка для управления ответственными лицами';
-              break;
-            default:
-              break;
-          }
-
-          return {
-            label,
-            key: id,
-            children: content,
-          };
-        })}
+        items={[
+          {
+            label: 'Дашборд',
+            key: '1',
+            children: <div>Заглушка для Дашборда</div>,
+          },
+          {
+            label: 'Регионы',
+            key: '2',
+            children: <RegionsTab />,
+          },
+          {
+            label: 'Потоки',
+            key: '3',
+            children: <div>Заглушка для управления потоками</div>,
+          },
+          {
+            label: 'Ответственные лица',
+            key: '4',
+            children: <div>Заглушка для управления ответственными лицами</div>,
+          },
+        ]}
       />
     </>
   );
