@@ -37,9 +37,9 @@ export class RegionService {
     return this.getAllRegions().then(toRegionDtos);
   };
 
-  createRegion = async (dto: NewRegionDto) => {
+  createRegion = async (dto: NewRegionDto): Promise<RegionDto> => {
     try {
-      await this.regionRepository.createRegion(dto);
+      return await this.regionRepository.createRegion(dto).then(toRegionDto);
     } catch (error) {
       Logger.error('Error creating region:', error);
       throw new Error('Could not create region');

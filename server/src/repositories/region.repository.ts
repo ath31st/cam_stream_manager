@@ -19,7 +19,7 @@ export class RegionRepository {
     return await this.prismaClient.region.findMany();
   };
 
-  createRegion = async (dto: NewRegionDto) => {
+  createRegion = async (dto: NewRegionDto): Promise<Region> => {
     const region = await this.prismaClient.region.create({
       data: {
         name: dto.name,
@@ -27,6 +27,7 @@ export class RegionRepository {
       },
     });
     Logger.log(region);
+    return region;
   };
 
   updateRegion = async (dto: UpdateRegionDto) => {

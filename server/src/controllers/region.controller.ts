@@ -50,8 +50,8 @@ export class RegionController {
   createRegion = async (req: Request, res: Response) => {
     try {
       const dto: NewRegionDto = req.body;
-      await this.regionService.createRegion(dto);
-      res.status(201).json({ message: 'Region created successfully' });
+      const createdRegion = await this.regionService.createRegion(dto);
+      res.status(201).json(createdRegion);
     } catch (error) {
       if (error instanceof Error) {
         res
