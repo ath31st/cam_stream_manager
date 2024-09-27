@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'antd';
-import RegionsTab from '../../widgets/regions-tab';
+import RegionsTab from '../../widgets/regions.tab';
 
 const AdminPage: React.FC = () => {
   return (
