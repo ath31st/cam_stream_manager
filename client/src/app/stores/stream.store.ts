@@ -73,8 +73,8 @@ export const useStreamStore = create<StreamState>((set) => ({
 
   addStream: async (stream: NewStream) => {
     try {
-      const newStream = await createStream(stream);
-      set((state) => ({ streams: [...state.streams, newStream] }));
+      const createdStream = await createStream(stream);
+      set((state) => ({ streams: [...state.streams, createdStream] }));
     } catch (error: unknown) {
       if (error instanceof Error) {
         set({ error: error.message });
