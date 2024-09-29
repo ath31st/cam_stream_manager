@@ -78,16 +78,16 @@ export class StreamController {
   createStream = async (req: Request, res: Response) => {
     try {
       const dto: NewStreamDto = req.body;
-      const stream = await this.streamService.createStream(dto);
+      const createdStream = await this.streamService.createStream(dto);
       if (dto.responsiblePerson && dto.responsiblePhone) {
         const rpDto: NewResponsiblePersonDto = {
           name: dto.responsiblePerson,
           phone: dto.responsiblePhone,
-          streamId: stream.id,
+          streamId: createdStream.id,
         };
         await this.rpService.createResponsiblePerson(rpDto);
       }
-      res.status(201).json({ message: 'Stream created successfully' });
+      res.status(201).json(createdStream);
     } catch (error) {
       if (error instanceof Error) {
         res
