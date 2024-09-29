@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
-import { Table, Button, Modal, Space } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Table, Button, Space } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import { Stream } from '../../../entities/stream';
+import { DeleteStreamModal, Stream } from '../../../entities/stream';
 
-const StreamsPage: React.FC = () => {
+const StreamsTab: React.FC = () => {
+  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
+  const [deleteStreamId, setDeleteStreamId] = useState<number | null>(null);
+  const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
   const { streams, fetchAllStreams, removeStream, setSelectedStream } =
     useStreamStore();
 
@@ -15,11 +20,17 @@ const StreamsPage: React.FC = () => {
     setSelectedStream(stream);
   };
 
-  const handleDelete = (id: number) => {
-    Modal.confirm({
-      title: 'Вы уверены, что хотите удалить стрим?',
-      onOk: () => removeStream(id),
-    });
+  const showDeleteConfirm = (id: number) => {
+    setDeleteStreamId(id);
+    setIsDeleteModalVisible(true);
+  };
+
+  const handleDelete = async () => {
+    if (deleteStreamId !== null) {
+      await removeStream(deleteStreamId);
+      setDeleteStreamId(null);
+      setIsDeleteModalVisible(false);
+    }
   };
 
   const columns = [
@@ -50,7 +61,7 @@ const StreamsPage: React.FC = () => {
       render: (text: string, record: Stream) => (
         <Space size="middle">
           <Button onClick={() => handleEdit(record)}>Редактировать</Button>
-          <Button danger onClick={() => handleDelete(record.id)}>
+          <Button danger onClick={() => showDeleteConfirm(record.id)}>
             Удалить
           </Button>
         </Space>
@@ -66,8 +77,17 @@ const StreamsPage: React.FC = () => {
         Добавить стрим
       </Button>
       <Table dataSource={streams} columns={columns} rowKey="id" />
+
+      <DeleteStreamModal
+        visible={isDeleteModalVisible}
+        onConfirm={handleDelete}
+        onCancel={() => {
+          setDeleteStreamId(null);
+          setIsDeleteModalVisible(false);
+        }}
+      />
     </>
   );
 };
 
-export default StreamsPage;
+export default StreamsTab;
