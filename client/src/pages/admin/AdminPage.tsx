@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs } from 'antd';
 import RegionsTab from '../../widgets/regions.tab';
+import StreamsTab from '../../widgets/streams.tab';
 
 const AdminPage: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ const AdminPage: React.FC = () => {
           {
             label: 'Потоки',
             key: '3',
-            children: <div>Заглушка для управления потоками</div>,
+            children: <StreamsTab />,
           },
           {
             label: 'Ответственные лица',
