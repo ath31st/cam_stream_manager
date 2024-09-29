@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Space } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import { DeleteStreamModal, Stream } from '../../../entities/stream';
+import {
+  AddStreamModal,
+  DeleteStreamModal,
+  NewStream,
+  Stream,
+} from '../../../entities/stream';
+import { useRegionStore } from '../../../app/stores/region.store';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -9,12 +15,32 @@ const StreamsTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteStreamId, setDeleteStreamId] = useState<number | null>(null);
   const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
-  const { streams, fetchAllStreams, removeStream, setSelectedStream } =
-    useStreamStore();
+  const {
+    streams,
+    fetchAllStreams,
+    addStream,
+    removeStream,
+    setSelectedStream,
+  } = useStreamStore();
+  const { regions, fetchAllRegions } = useRegionStore();
 
   useEffect(() => {
     fetchAllStreams();
+    fetchAllRegions();
   }, [fetchAllStreams]);
+
+  const handleAddStream = () => {
+    setIsAddModalVisible(true);
+  };
+
+  const handleSaveStream = async (value: NewStream) => {
+    await addStream(value);
+    setIsAddModalVisible(false);
+  };
+
+  const handleCancelAdd = () => {
+    setIsAddModalVisible(false);
+  };
 
   const handleEdit = (stream: Stream) => {
     setSelectedStream(stream);
@@ -73,10 +99,18 @@ const StreamsTab: React.FC = () => {
     <>
       <h1>Управление потоками</h1>
 
-      <Button type="primary" onClick={() => setSelectedStream(null)}>
+      <Button type="primary" onClick={handleAddStream}>
         Добавить стрим
       </Button>
+
       <Table dataSource={streams} columns={columns} rowKey="id" />
+
+      <AddStreamModal
+        visible={isAddModalVisible}
+        regions={regions}
+        onConfirm={handleSaveStream}
+        onCancel={handleCancelAdd}
+      />
 
       <DeleteStreamModal
         visible={isDeleteModalVisible}
