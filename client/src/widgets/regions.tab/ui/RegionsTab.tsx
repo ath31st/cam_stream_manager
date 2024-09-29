@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table, Spin, Alert } from 'antd';
+import { Button, Table, Spin, Alert, Space } from 'antd';
 import { useRegionStore } from '../../../app/stores/region.store';
 import {
   Region,
@@ -84,18 +84,14 @@ const RegionsTab: React.FC = () => {
       render: (_: unknown, record: { key: number }) => {
         const region = regions.find((r) => r.id === record.key);
         return (
-          <span>
-            <Button type="link" onClick={() => showUpdateModal(region!)}>
+          <Space size={'middle'}>
+            <Button onClick={() => showUpdateModal(region!)}>
               Редактировать
             </Button>
-            <Button
-              type="link"
-              danger
-              onClick={() => showDeleteConfirm(record.key)}
-            >
+            <Button danger onClick={() => showDeleteConfirm(record.key)}>
               Удалить
             </Button>
-          </span>
+          </Space>
         );
       },
     },
