@@ -18,7 +18,21 @@ export class ResponsiblePersonRepository {
     });
   };
 
-  createResponsiblePerson = async (dto: NewResponsiblePersonDto) => {
+  findResponsiblePersonByStream = async (
+    streamId: number,
+  ): Promise<ResponsiblePerson[]> => {
+    return await this.prismaClient.responsiblePerson.findMany({
+      where: { streamId: streamId },
+    });
+  };
+
+  findAllResponsiblePersons = async (): Promise<ResponsiblePerson[]> => {
+    return await this.prismaClient.responsiblePerson.findMany();
+  };
+
+  createResponsiblePerson = async (
+    dto: NewResponsiblePersonDto,
+  ): Promise<ResponsiblePerson> => {
     const person = await this.prismaClient.responsiblePerson.create({
       data: {
         name: dto.name,
@@ -27,9 +41,12 @@ export class ResponsiblePersonRepository {
       },
     });
     Logger.log(person);
+    return person;
   };
 
-  updateResponsiblePerson = async (dto: UpdateResponsiblePersonDto) => {
+  updateResponsiblePerson = async (
+    dto: UpdateResponsiblePersonDto,
+  ): Promise<ResponsiblePerson> => {
     const person = await this.prismaClient.responsiblePerson.update({
       where: { id: dto.id },
       data: {
@@ -38,6 +55,7 @@ export class ResponsiblePersonRepository {
       },
     });
     Logger.log(person);
+    return person;
   };
 
   deleteResponsiblePerson = async (id: number) => {
