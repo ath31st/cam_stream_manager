@@ -4,8 +4,10 @@ import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   AddStreamModal,
   DeleteStreamModal,
+  UpdateStreamModal,
   NewStream,
   Stream,
+  UpdateStream,
 } from '../../../entities/stream';
 import { useRegionStore } from '../../../app/stores/region.store';
 
@@ -15,13 +17,8 @@ const StreamsTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteStreamId, setDeleteStreamId] = useState<number | null>(null);
   const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
-  const {
-    streams,
-    fetchAllStreams,
-    addStream,
-    removeStream,
-    setSelectedStream,
-  } = useStreamStore();
+  const { streams, fetchAllStreams, addStream, updateStream, removeStream } =
+    useStreamStore();
   const { regions, fetchAllRegions } = useRegionStore();
 
   useEffect(() => {
@@ -42,8 +39,22 @@ const StreamsTab: React.FC = () => {
     setIsAddModalVisible(false);
   };
 
-  const handleEdit = (stream: Stream) => {
-    setSelectedStream(stream);
+  const handleUpdate = (stream: Stream) => {
+    setUpdatingStream(stream);
+    setIsUpdateModalVisible(true);
+  };
+
+  const handleSaveUpdate = async (value: UpdateStream) => {
+    if (updatingStream) {
+      await updateStream(updatingStream.id, value);
+      setIsUpdateModalVisible(false);
+      setUpdatingStream(null);
+    }
+  };
+
+  const handleCancelUpdate = () => {
+    setIsUpdateModalVisible(false);
+    setUpdatingStream(null);
   };
 
   const showDeleteConfirm = (id: number) => {
@@ -86,7 +97,7 @@ const StreamsTab: React.FC = () => {
       key: 'actions',
       render: (text: string, record: Stream) => (
         <Space size="middle">
-          <Button onClick={() => handleEdit(record)}>Редактировать</Button>
+          <Button onClick={() => handleUpdate(record)}>Редактировать</Button>
           <Button danger onClick={() => showDeleteConfirm(record.id)}>
             Удалить
           </Button>
@@ -110,6 +121,14 @@ const StreamsTab: React.FC = () => {
         regions={regions}
         onConfirm={handleSaveStream}
         onCancel={handleCancelAdd}
+      />
+
+      <UpdateStreamModal
+        visible={isUpdateModalVisible}
+        stream={updatingStream}
+        regions={regions}
+        onConfirm={handleSaveUpdate}
+        onCancel={handleCancelUpdate}
       />
 
       <DeleteStreamModal
