@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import RegionsTab from '../../widgets/regions.tab';
 import StreamsTab from '../../widgets/streams.tab';
+import ResponsiblePersonTab from '../../widgets/responsible.person.tab';
 
 const AdminPage: React.FC = () => {
   return (
@@ -29,7 +30,7 @@ const AdminPage: React.FC = () => {
           {
             label: 'Ответственные лица',
             key: '4',
-            children: <div>Заглушка для управления ответственными лицами</div>,
+            children: <ResponsiblePersonTab />,
           },
         ]}
       />
