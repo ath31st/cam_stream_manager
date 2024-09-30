@@ -5,7 +5,7 @@ import {
   ResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
-import { toRpDto } from '../mappers/responsible.person.mapper';
+import { toRpDto, toRpDtos } from '../mappers/responsible.person.mapper';
 import { Logger } from '../utils/logger';
 
 export class ResponsiblePersonService {
@@ -24,24 +24,56 @@ export class ResponsiblePersonService {
     }
   };
 
+  getAllResponsiblePersonsDtos = async (): Promise<ResponsiblePersonDto[]> => {
+    try {
+      return await this.responsiblePersonRepository
+        .findAllResponsiblePersons()
+        .then(toRpDtos);
+    } catch (error) {
+      Logger.error('Error getting responsible persons:', error);
+      throw new Error('Cannot get all responsible persons');
+    }
+  };
+
+  getResponsiblePersonsDtosByStream = async (
+    streamId: number,
+  ): Promise<ResponsiblePersonDto[]> => {
+    try {
+      return await this.responsiblePersonRepository
+        .findResponsiblePersonByStream(streamId)
+        .then(toRpDtos);
+    } catch (error) {
+      Logger.error('Error getting responsible persons:', error);
+      throw new Error('Cannot get all responsible persons');
+    }
+  };
+
   getResponsiblePersonDto = async (
     id: number,
   ): Promise<ResponsiblePersonDto> => {
     return this.getResponsiblePerson(id).then(toRpDto);
   };
 
-  createResponsiblePerson = async (dto: NewResponsiblePersonDto) => {
+  createResponsiblePerson = async (
+    dto: NewResponsiblePersonDto,
+  ): Promise<ResponsiblePersonDto> => {
     try {
-      await this.responsiblePersonRepository.createResponsiblePerson(dto);
+      return await this.responsiblePersonRepository
+        .createResponsiblePerson(dto)
+        .then(toRpDto);
     } catch (error) {
       Logger.error('Error creating responsible person:', error);
       throw new Error('Could not create responsible person');
     }
   };
 
-  updateResponsiblePerson = async (dto: UpdateResponsiblePersonDto) => {
+  updateResponsiblePerson = async (
+    dto: UpdateResponsiblePersonDto,
+  ): Promise<ResponsiblePersonDto> => {
     try {
-      await this.responsiblePersonRepository.updateResponsiblePerson(dto);
+      return await this.responsiblePersonRepository
+        .updateResponsiblePerson(dto)
+        .then(toRpDto);
     } catch (error) {
       Logger.error('Error updating responsible person:', error);
       throw new Error('Could not update responsible person');
