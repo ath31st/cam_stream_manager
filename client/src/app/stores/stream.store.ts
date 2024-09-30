@@ -18,7 +18,7 @@ interface StreamState {
   fetchStreamsByRegion: (regionId: number) => Promise<void>;
   fetchStreamById: (id: number) => Promise<void>;
   addStream: (stream: NewStream) => Promise<void>;
-  editStream: (id: number, stream: UpdateStream) => Promise<void>;
+  updateStream: (id: number, stream: UpdateStream) => Promise<void>;
   removeStream: (id: number) => Promise<void>;
   setSelectedStream: (stream: Stream) => void;
 }
@@ -84,7 +84,7 @@ export const useStreamStore = create<StreamState>((set) => ({
     }
   },
 
-  editStream: async (id, stream) => {
+  updateStream: async (id, stream) => {
     try {
       const updatedStream = await updateStream(id, stream);
       set((state) => ({
