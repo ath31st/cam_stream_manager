@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, Space } from 'antd';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
-  //   AddResponsiblePersonModal,
-  //   UpdateResponsiblePersonModal,
-  //   DeleteResponsiblePersonModal,
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
+  DeleteResponsiblePersonModal,
+  AddResponsiblePersonModal,
+  UpdateResponsiblePersonModal,
 } from '../../../entities/responsible.person';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const [selectedPerson, setSelectedPerson] = useState<number | null>(null);
+  const [selectedPerson, setSelectedPerson] =
+    useState<ResponsiblePerson | null>(null);
 
   const {
     responsiblePersons,
@@ -39,14 +40,14 @@ const ResponsiblePersonsTab: React.FC = () => {
 
   const handleUpdatePerson = async (person: UpdateResponsiblePerson) => {
     if (selectedPerson) {
-      await updateResponsiblePerson(selectedPerson, person);
+      await updateResponsiblePerson(selectedPerson.id, person);
       setIsUpdateModalVisible(false);
     }
   };
 
   const handleDeletePerson = async () => {
     if (selectedPerson !== null) {
-      await removeResponsiblePerson(selectedPerson);
+      await removeResponsiblePerson(selectedPerson.id);
       setIsDeleteModalVisible(false);
     }
   };
@@ -74,7 +75,7 @@ const ResponsiblePersonsTab: React.FC = () => {
         <Space size="middle">
           <Button
             onClick={() => {
-              setSelectedPerson(record.id);
+              setSelectedPerson(record);
               setIsUpdateModalVisible(true);
             }}
           >
@@ -83,7 +84,7 @@ const ResponsiblePersonsTab: React.FC = () => {
           <Button
             danger
             onClick={() => {
-              setSelectedPerson(record.id);
+              setSelectedPerson(record);
               setIsDeleteModalVisible(true);
             }}
           >
@@ -104,7 +105,7 @@ const ResponsiblePersonsTab: React.FC = () => {
 
       <Table dataSource={responsiblePersons} columns={columns} rowKey="id" />
 
-      {/* <AddResponsiblePersonModal
+      <AddResponsiblePersonModal
         visible={isAddModalVisible}
         onConfirm={handleSavePerson}
         onCancel={() => setIsAddModalVisible(false)}
@@ -112,7 +113,7 @@ const ResponsiblePersonsTab: React.FC = () => {
 
       <UpdateResponsiblePersonModal
         visible={isUpdateModalVisible}
-        personId={selectedPerson}
+        person={selectedPerson}
         onConfirm={handleUpdatePerson}
         onCancel={() => setIsUpdateModalVisible(false)}
       />
@@ -121,7 +122,7 @@ const ResponsiblePersonsTab: React.FC = () => {
         visible={isDeleteModalVisible}
         onConfirm={handleDeletePerson}
         onCancel={() => setIsDeleteModalVisible(false)}
-      /> */}
+      />
     </>
   );
 };
