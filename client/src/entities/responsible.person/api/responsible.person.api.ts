@@ -14,6 +14,22 @@ export const fetchResponsiblePerson = async (
   return response.data;
 };
 
+export const fetchResponsiblePersons = async (): Promise<
+  ResponsiblePerson[]
+> => {
+  const response = await axios.get<ResponsiblePerson[]>(API_URL);
+  return response.data;
+};
+
+export const fetchResponsiblePersonsByStream = async (
+  streamId: number,
+): Promise<ResponsiblePerson[]> => {
+  const response = await axios.get<ResponsiblePerson[]>(
+    `${API_URL}/stream/${streamId}`,
+  );
+  return response.data;
+};
+
 export const createResponsiblePerson = async (
   person: NewResponsiblePerson,
 ): Promise<ResponsiblePerson> => {
