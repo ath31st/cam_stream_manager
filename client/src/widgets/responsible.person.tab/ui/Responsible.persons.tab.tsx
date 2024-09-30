@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, Space } from 'antd';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
-//   AddResponsiblePersonModal,
-//   UpdateResponsiblePersonModal,
-//   DeleteResponsiblePersonModal,
+  //   AddResponsiblePersonModal,
+  //   UpdateResponsiblePersonModal,
+  //   DeleteResponsiblePersonModal,
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
@@ -18,14 +18,14 @@ const ResponsiblePersonsTab: React.FC = () => {
 
   const {
     responsiblePersons,
-    fetchResponsiblePersonById,
+    fetchResponsiblePersons,
     addResponsiblePerson,
-    editResponsiblePerson,
+    updateResponsiblePerson,
     removeResponsiblePerson,
   } = useResponsiblePersonStore();
 
   useEffect(() => {
-    fetchResponsiblePersonById(1);
+    fetchResponsiblePersons();
   }, []);
 
   const handleAddPerson = () => {
@@ -39,7 +39,7 @@ const ResponsiblePersonsTab: React.FC = () => {
 
   const handleUpdatePerson = async (person: UpdateResponsiblePerson) => {
     if (selectedPerson) {
-      await editResponsiblePerson(selectedPerson, person);
+      await updateResponsiblePerson(selectedPerson, person);
       setIsUpdateModalVisible(false);
     }
   };
