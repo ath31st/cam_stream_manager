@@ -42,7 +42,7 @@ export class StreamRepository {
     return stream;
   };
 
-  updateStream = async (dto: UpdateStreamDto) => {
+  updateStream = async (dto: UpdateStreamDto): Promise<Stream> => {
     const stream = await this.prismaClient.stream.update({
       where: { id: dto.id },
       data: {
@@ -55,6 +55,7 @@ export class StreamRepository {
       },
     });
     Logger.log(stream);
+    return stream;
   };
 
   updateStreamStatus = async (streamId: number, newStatus: StreamStatus) => {

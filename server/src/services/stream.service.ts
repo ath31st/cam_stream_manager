@@ -39,27 +39,29 @@ export class StreamService {
     return this.getAllStreams().then(toStreamDtos);
   };
 
-  getStreamsByRegion = async (regionId: number): Promise<Stream[]> => {
+  getStreamsByRegion = async (regionId: number): Promise<StreamDto[]> => {
     try {
-      return await this.streamRepository.findStreamsByRegion(regionId);
+      return await this.streamRepository
+        .findStreamsByRegion(regionId)
+        .then(toStreamDtos);
     } catch (error) {
       Logger.error('Error getting streams by region:', error);
       throw new Error('Cannot get streams by region');
     }
   };
 
-  createStream = async (dto: NewStreamDto): Promise<Stream> => {
+  createStream = async (dto: NewStreamDto): Promise<StreamDto> => {
     try {
-      return await this.streamRepository.createStream(dto);
+      return await this.streamRepository.createStream(dto).then(toStreamDto);
     } catch (error) {
       Logger.error('Error creating stream:', error);
       throw new Error('Could not create stream');
     }
   };
 
-  updateStream = async (dto: UpdateStreamDto) => {
+  updateStream = async (dto: UpdateStreamDto): Promise<StreamDto> => {
     try {
-      await this.streamRepository.updateStream(dto);
+      return await this.streamRepository.updateStream(dto).then(toStreamDto);
     } catch (error) {
       Logger.error('Error updating stream:', error);
       throw new Error('Could not update stream');

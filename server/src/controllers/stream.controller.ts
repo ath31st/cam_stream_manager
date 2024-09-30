@@ -105,8 +105,8 @@ export class StreamController {
   updateStream = async (req: Request, res: Response) => {
     try {
       const dto: UpdateStreamDto = { id: Number(req.params.id), ...req.body };
-      await this.streamService.updateStream(dto);
-      res.status(200).json({ message: 'Stream updated successfully' });
+      const updatedStream = await this.streamService.updateStream(dto);
+      res.status(200).json(updatedStream);
     } catch (error) {
       if (error instanceof Error) {
         res
