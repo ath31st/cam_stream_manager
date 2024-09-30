@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Form, Input, Button, InputNumber } from 'antd';
 import { NewResponsiblePerson } from '../../../entities/responsible.person';
 
 interface AddResponsiblePersonModalProps {
@@ -13,7 +13,7 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
   onConfirm,
   onCancel,
 }) => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<NewResponsiblePerson>();
 
   const handleFinish = (values: NewResponsiblePerson) => {
     onConfirm(values);
@@ -54,7 +54,7 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
           label="Stream ID"
           rules={[{ required: true, message: 'Введите Stream ID' }]}
         >
-          <Input placeholder="Stream ID" />
+          <InputNumber placeholder="Stream ID" />
         </Form.Item>
       </Form>
     </Modal>
