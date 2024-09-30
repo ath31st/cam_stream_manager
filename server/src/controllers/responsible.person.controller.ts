@@ -33,13 +33,55 @@ export class ResponsiblePersonController {
     }
   };
 
+  getAllResponsiblePersons = async (req: Request, res: Response) => {
+    try {
+      const personDtos =
+        await this.responsiblePersonService.getAllResponsiblePersonsDtos();
+      res.status(200).json(personDtos);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(500).json({
+          message: 'Failed to get responsible persons',
+          error: error.message,
+        });
+      } else {
+        res.status(500).json({
+          message: 'Failed to get responsible persons',
+          error: 'Unknown error occurred',
+        });
+      }
+    }
+  };
+
+  getResponsiblePersonsByStream = async (req: Request, res: Response) => {
+    try {
+      const streamId = Number(req.params.id);
+      const personDtos =
+        await this.responsiblePersonService.getResponsiblePersonsDtosByStream(
+          streamId,
+        );
+      res.status(200).json(personDtos);
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(500).json({
+          message: 'Failed to get responsible persons',
+          error: error.message,
+        });
+      } else {
+        res.status(500).json({
+          message: 'Failed to get responsible persons',
+          error: 'Unknown error occurred',
+        });
+      }
+    }
+  };
+
   createResponsiblePerson = async (req: Request, res: Response) => {
     try {
       const dto: NewResponsiblePersonDto = req.body;
-      await this.responsiblePersonService.createResponsiblePerson(dto);
-      res
-        .status(201)
-        .json({ message: 'Responsible person created successfully' });
+      const createdPerson =
+        await this.responsiblePersonService.createResponsiblePerson(dto);
+      res.status(201).json(createdPerson);
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).json({
@@ -61,10 +103,9 @@ export class ResponsiblePersonController {
         id: Number(req.params.id),
         ...req.body,
       };
-      await this.responsiblePersonService.updateResponsiblePerson(dto);
-      res
-        .status(200)
-        .json({ message: 'Responsible person updated successfully' });
+      const updatedPerson =
+        await this.responsiblePersonService.updateResponsiblePerson(dto);
+      res.status(200).json(updatedPerson);
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).json({
