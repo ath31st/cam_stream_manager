@@ -6,6 +6,8 @@ import {
 } from '../../entities/responsible.person';
 import {
   fetchResponsiblePerson,
+  fetchResponsiblePersons,
+  fetchResponsiblePersonsByStream,
   createResponsiblePerson,
   updateResponsiblePerson,
   deleteResponsiblePerson,
@@ -17,8 +19,10 @@ interface ResponsiblePersonState {
   loading: boolean;
   error: string | null;
   fetchResponsiblePersonById: (id: number) => Promise<void>;
+  fetchResponsiblePersons: () => Promise<void>;
+  fetchResponsiblePersonsByStream: (streamId: number) => Promise<void>;
   addResponsiblePerson: (person: NewResponsiblePerson) => Promise<void>;
-  editResponsiblePerson: (
+  updateResponsiblePerson: (
     id: number,
     person: UpdateResponsiblePerson,
   ) => Promise<void>;
@@ -46,6 +50,32 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
       }
     },
 
+    fetchResponsiblePersons: async () => {
+      try {
+        const persons = await fetchResponsiblePersons();
+        set({ responsiblePersons: persons });
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          set({ error: error.message });
+        } else {
+          set({ error: 'Unknown error' });
+        }
+      }
+    },
+
+    fetchResponsiblePersonsByStream: async (streamId: number) => {
+      try {
+        const persons = await fetchResponsiblePersonsByStream(streamId);
+        set({ responsiblePersons: persons });
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          set({ error: error.message });
+        } else {
+          set({ error: 'Unknown error' });
+        }
+      }
+    },
+
     addResponsiblePerson: async (person: NewResponsiblePerson) => {
       try {
         const newPerson = await createResponsiblePerson(person);
@@ -61,7 +91,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
       }
     },
 
-    editResponsiblePerson: async (
+    updateResponsiblePerson: async (
       id: number,
       person: UpdateResponsiblePerson,
     ) => {
