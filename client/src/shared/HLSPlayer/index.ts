@@ -1,3 +1,3 @@
-import { HLSPlayer } from './ui/HLSPlayer';
+import HLSPlayer from './ui/HLSPlayer';
 
-export default HLSPlayer;
+export { HLSPlayer };

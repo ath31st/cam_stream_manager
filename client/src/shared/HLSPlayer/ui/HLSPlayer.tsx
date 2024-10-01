@@ -6,7 +6,7 @@ interface HLSPlayerProps {
   url: string;
 }
 
-export const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
+const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
   const [isPlaying] = useState(false);
   const videoRef = useHLS(url, isPlaying);
 
@@ -16,3 +16,5 @@ export const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
     </>
   );
 };
+
+export default HLSPlayer;
