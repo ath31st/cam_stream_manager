@@ -22,15 +22,7 @@ const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
 
   useEffect(() => {
     if (stream) {
-      form.setFieldsValue({
-        regionId: stream.regionId,
-        location: stream.location,
-        streamUrl: stream.streamUrl,
-        isVisible: stream.isVisible,
-        comment: stream.comment,
-      });
-    } else {
-      form.resetFields();
+      form.setFieldsValue(stream);
     }
   }, [stream, form]);
 
