@@ -26,7 +26,7 @@ const StreamsTab: React.FC = () => {
   useEffect(() => {
     fetchAllStreams();
     fetchAllRegions();
-  }, [fetchAllStreams]);
+  }, [fetchAllStreams, fetchAllRegions]);
 
   const handleAddStream = () => {
     setIsAddModalVisible(true);

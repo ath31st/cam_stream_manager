@@ -32,7 +32,7 @@ const ResponsiblePersonsTab: React.FC = () => {
   useEffect(() => {
     fetchAllStreams();
     fetchResponsiblePersons();
-  }, [fetchResponsiblePersons]);
+  }, [fetchResponsiblePersons, fetchAllStreams]);
 
   const handleAddPerson = () => {
     setIsAddModalVisible(true);
