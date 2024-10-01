@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Space, Select } from 'antd';
+import { Table, Button, Space } from 'antd';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
   ResponsiblePerson,
@@ -10,6 +10,7 @@ import {
   UpdateResponsiblePersonModal,
 } from '../../../entities/responsible.person';
 import { useStreamStore } from '../../../app/stores/stream.store';
+import { StreamSelect } from '../../../shared/StreamSelect';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -117,25 +118,10 @@ const ResponsiblePersonsTab: React.FC = () => {
           Добавить ответственное лицо
         </Button>
 
-        <Select
-          placeholder="Выберите местоположение для фильтрации"
-          style={{ width: 250 }}
-          allowClear
-          showSearch
-          optionFilterProp="children"
-          filterOption={(input, option) =>
-            (option?.children as unknown as string)
-              .toLowerCase()
-              .includes(input.toLowerCase())
-          }
-          onChange={(value) => setSelectedStreamId(value || null)}
-        >
-          {streams.map((stream) => (
-            <Select.Option key={stream.id} value={stream.id}>
-              {stream.location}
-            </Select.Option>
-          ))}
-        </Select>
+        <StreamSelect
+          streams={streams}
+          onChange={(value) => setSelectedStreamId(value)}
+        />
       </Space>
 
       <Table
