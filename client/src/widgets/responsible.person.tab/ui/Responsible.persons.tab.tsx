@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Space } from 'antd';
+import { Table, Button, Space, Select } from 'antd';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
   ResponsiblePerson,
@@ -9,6 +9,7 @@ import {
   AddResponsiblePersonModal,
   UpdateResponsiblePersonModal,
 } from '../../../entities/responsible.person';
+import { useStreamStore } from '../../../app/stores/stream.store';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -16,6 +17,7 @@ const ResponsiblePersonsTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [selectedPerson, setSelectedPerson] =
     useState<ResponsiblePerson | null>(null);
+  const [selectedStreamId, setSelectedStreamId] = useState<number | null>(null);
 
   const {
     responsiblePersons,
@@ -24,10 +26,11 @@ const ResponsiblePersonsTab: React.FC = () => {
     updateResponsiblePerson,
     removeResponsiblePerson,
   } = useResponsiblePersonStore();
+  const { streams } = useStreamStore();
 
   useEffect(() => {
     fetchResponsiblePersons();
-  }, []);
+  }, [fetchResponsiblePersons]);
 
   const handleAddPerson = () => {
     setIsAddModalVisible(true);
@@ -52,6 +55,12 @@ const ResponsiblePersonsTab: React.FC = () => {
     }
   };
 
+  const filteredResponsiblePersons = selectedStreamId
+    ? responsiblePersons.filter(
+        (person) => person.streamId === selectedStreamId,
+      )
+    : responsiblePersons;
+
   const columns = [
     {
       title: 'Имя',
@@ -64,9 +73,13 @@ const ResponsiblePersonsTab: React.FC = () => {
       key: 'phone',
     },
     {
-      title: 'Stream ID',
+      title: 'Местоположение',
       dataIndex: 'streamId',
       key: 'streamId',
+      render: (streamId: number) => {
+        const stream = streams.find((s) => s.id === streamId);
+        return stream ? stream.location : 'Неизвестный стрим';
+      },
     },
     {
       title: 'Действия',
@@ -99,11 +112,37 @@ const ResponsiblePersonsTab: React.FC = () => {
     <>
       <h1>Ответственные лица</h1>
 
-      <Button type="primary" onClick={handleAddPerson}>
-        Добавить ответственное лицо
-      </Button>
+      <Space style={{ marginBottom: 16 }}>
+        <Button type="primary" onClick={handleAddPerson}>
+          Добавить ответственное лицо
+        </Button>
 
-      <Table dataSource={responsiblePersons} columns={columns} rowKey="id" />
+        <Select
+          placeholder="Выберите местоположение для фильтрации"
+          style={{ width: 250 }}
+          allowClear
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) =>
+            (option?.children as unknown as string)
+              .toLowerCase()
+              .includes(input.toLowerCase())
+          }
+          onChange={(value) => setSelectedStreamId(value || null)}
+        >
+          {streams.map((stream) => (
+            <Select.Option key={stream.id} value={stream.id}>
+              {stream.location}
+            </Select.Option>
+          ))}
+        </Select>
+      </Space>
+
+      <Table
+        dataSource={filteredResponsiblePersons}
+        columns={columns}
+        rowKey="id"
+      />
 
       <AddResponsiblePersonModal
         visible={isAddModalVisible}
