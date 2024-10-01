@@ -8,6 +8,7 @@ import {
   UpdateRegionModal,
   UpdateRegion,
 } from '../../../entities/region';
+import { useStreamStore } from '../../../app/stores/stream.store';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -25,6 +26,7 @@ const RegionsTab: React.FC = () => {
     updateRegion,
     removeRegion,
   } = useRegionStore();
+  const { fetchAllStreams } = useStreamStore();
 
   useEffect(() => {
     fetchAllRegions();
@@ -43,6 +45,7 @@ const RegionsTab: React.FC = () => {
   const handleDelete = async () => {
     if (deleteRegionId !== null) {
       await removeRegion(deleteRegionId);
+      await fetchAllStreams();
       setDeleteRegionId(null);
       setIsDeleteModalVisible(false);
     }
