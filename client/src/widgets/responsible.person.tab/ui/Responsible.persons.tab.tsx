@@ -27,9 +27,10 @@ const ResponsiblePersonsTab: React.FC = () => {
     updateResponsiblePerson,
     removeResponsiblePerson,
   } = useResponsiblePersonStore();
-  const { streams } = useStreamStore();
+  const { streams, fetchAllStreams } = useStreamStore();
 
   useEffect(() => {
+    fetchAllStreams();
     fetchResponsiblePersons();
   }, [fetchResponsiblePersons]);
 
