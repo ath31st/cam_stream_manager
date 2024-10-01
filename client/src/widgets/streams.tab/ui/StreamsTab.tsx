@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Space } from 'antd';
+import { Table, Button, Space, Select } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   AddStreamModal,
@@ -17,6 +17,8 @@ const StreamsTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteStreamId, setDeleteStreamId] = useState<number | null>(null);
   const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
+  const [selectedRegionId, setSelectedRegionId] = useState<number | null>(null);
+
   const { streams, fetchAllStreams, addStream, updateStream, removeStream } =
     useStreamStore();
   const { regions, fetchAllRegions } = useRegionStore();
@@ -70,6 +72,10 @@ const StreamsTab: React.FC = () => {
     }
   };
 
+  const filteredStreams = selectedRegionId
+    ? streams.filter((stream) => stream.regionId === selectedRegionId)
+    : streams;
+
   const columns = [
     {
       title: 'Местоположение',
@@ -110,11 +116,26 @@ const StreamsTab: React.FC = () => {
     <>
       <h1>Управление потоками</h1>
 
-      <Button type="primary" onClick={handleAddStream}>
-        Добавить стрим
-      </Button>
+      <Space style={{ marginBottom: 16 }}>
+        <Button type="primary" onClick={handleAddStream}>
+          Добавить стрим
+        </Button>
 
-      <Table dataSource={streams} columns={columns} rowKey="id" />
+        <Select
+          placeholder="Выберите регион для фильтрации"
+          style={{ width: 250 }}
+          allowClear
+          onChange={(value) => setSelectedRegionId(value || null)}
+        >
+          {regions.map((region) => (
+            <Select.Option key={region.id} value={region.id}>
+              {region.name}
+            </Select.Option>
+          ))}
+        </Select>
+      </Space>
+
+      <Table dataSource={filteredStreams} columns={columns} rowKey="id" />
 
       <AddStreamModal
         visible={isAddModalVisible}
