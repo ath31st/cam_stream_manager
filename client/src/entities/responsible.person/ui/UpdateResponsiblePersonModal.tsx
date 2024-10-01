@@ -57,13 +57,6 @@ const UpdateResponsiblePersonModal: React.FC<
         >
           <Input placeholder="Телефон" />
         </Form.Item>
-        <Form.Item
-          name="streamId"
-          label="Stream ID"
-          rules={[{ required: true, message: 'Введите Stream ID' }]}
-        >
-          <Input placeholder="Stream ID" />
-        </Form.Item>
       </Form>
     </Modal>
   );
