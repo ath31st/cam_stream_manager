@@ -146,6 +146,7 @@ const ResponsiblePersonsTab: React.FC = () => {
 
       <AddResponsiblePersonModal
         visible={isAddModalVisible}
+        streams={streams}
         onConfirm={handleSavePerson}
         onCancel={() => setIsAddModalVisible(false)}
       />

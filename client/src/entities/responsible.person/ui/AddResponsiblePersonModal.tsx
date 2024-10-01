@@ -1,17 +1,20 @@
 import React from 'react';
-import { Modal, Form, Input, Button, InputNumber } from 'antd';
+import { Modal, Form, Input, Button, Select } from 'antd';
 import { NewResponsiblePerson } from '../../../entities/responsible.person';
+import { Stream } from '../../../entities/stream';
 
 interface AddResponsiblePersonModalProps {
   visible: boolean;
   onConfirm: (person: NewResponsiblePerson) => void;
   onCancel: () => void;
+  streams: Stream[];
 }
 
 const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
   visible,
   onConfirm,
   onCancel,
+  streams,
 }) => {
   const [form] = Form.useForm<NewResponsiblePerson>();
 
@@ -51,10 +54,25 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
         </Form.Item>
         <Form.Item
           name="streamId"
-          label="Stream ID"
-          rules={[{ required: true, message: 'Введите Stream ID' }]}
+          label="Местоположение"
+          rules={[{ required: true, message: 'Выберите местоположение' }]}
         >
-          <InputNumber placeholder="Stream ID" />
+          <Select
+            showSearch
+            placeholder="Выберите местоположение"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              (option?.children as unknown as string)
+                .toLowerCase()
+                .includes(input.toLowerCase())
+            }
+          >
+            {streams.map((stream) => (
+              <Select.Option key={stream.id} value={stream.id}>
+                {stream.location}
+              </Select.Option>
+            ))}
+          </Select>
         </Form.Item>
       </Form>
     </Modal>
