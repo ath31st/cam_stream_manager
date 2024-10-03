@@ -1,21 +1,13 @@
 // RegionCard.tsx
 import React, { useState } from 'react';
-import { Stream } from '../../../entities/stream';
+import { GroupedRegion } from '../model/dashboard.types';
 
-interface RegionCardProps {
-  regionName: string;
-  activeCount: number;
-  noConnectionCount: number;
-  badConnectionCount: number;
-  streams: Stream[];
-}
-
-const RegionCard: React.FC<RegionCardProps> = ({
+const RegionCard: React.FC<GroupedRegion> = ({
   regionName,
+  streams,
   activeCount,
   noConnectionCount,
   badConnectionCount,
-  streams,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 

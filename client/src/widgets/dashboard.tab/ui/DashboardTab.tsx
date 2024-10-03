@@ -2,15 +2,7 @@ import React, { useEffect } from 'react';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import RegionCard from './RegionCard';
 import { useRegionStore } from '../../../app/stores/region.store';
-import { Stream } from '../../../entities/stream';
-
-interface GroupedRegion {
-  regionName: string;
-  streams: Stream[];
-  activeCount: number;
-  noConnectionCount: number;
-  badConnectionCount: number;
-}
+import { GroupedRegion } from '../model/dashboard.types';
 
 const Dashboard: React.FC = () => {
   const { streams, fetchAllStreams } = useStreamStore();
@@ -21,11 +13,11 @@ const Dashboard: React.FC = () => {
     fetchAllStreams();
 
     const intervalId = setInterval(() => {
-        fetchAllStreams();
-      }, 10000);
-  
-      return () => clearInterval(intervalId);
-    }, [fetchAllRegions, fetchAllStreams]);
+      fetchAllStreams();
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, [fetchAllRegions, fetchAllStreams]);
 
   const groupedRegions: Record<string, GroupedRegion> = streams.reduce(
     (acc: Record<string, GroupedRegion>, stream) => {
