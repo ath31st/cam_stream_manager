@@ -66,3 +66,20 @@ export interface UpdateResponsiblePersonDto {
   name?: string;
   phone?: string;
 }
+
+// dashboard interfaces
+
+export interface RegionInfo {
+  regionName: string;
+  streams: StreamDashboardDto[];
+  activeCount: number;
+  noConnectionCount: number;
+  badConnectionCount: number;
+}
+
+export interface StreamDashboardDto {
+  id: number;
+  regionId: number;
+  location: string;
+  status: string;
+}
