@@ -1,32 +1,35 @@
-import React, { useEffect } from 'react';
-import { useStreamStore } from '../../../app/stores/stream.store';
+import React, { useEffect, useState } from 'react';
 import RegionCard from './RegionCard';
-import { useRegionStore } from '../../../app/stores/region.store';
-import { groupStreamsByRegion } from '../model/group.streams.by.region';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
+import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
 
 const Dashboard: React.FC = () => {
-  const { streams, fetchAllStreams } = useStreamStore();
-  const { regions, fetchAllRegions } = useRegionStore();
+  const [dashboardData, setDashboardData] = useState<RegionInfo[]>([]);
 
   useEffect(() => {
-    fetchAllRegions();
-    fetchAllStreams();
+    const fetchData = async () => {
+      try {
+        const data = await fetchDashboardData();
+        setDashboardData(data);
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      }
+    };
+
+    fetchData();
 
     const intervalId = setInterval(() => {
-      fetchAllStreams();
+      fetchData();
     }, STREAMS_UPDATE_INTERVAL);
 
     return () => clearInterval(intervalId);
-  }, [fetchAllRegions, fetchAllStreams]);
-
-  const groupedRegions = groupStreamsByRegion(streams, regions);
+  }, []);
 
   return (
     <div>
       <h1>Дашборд</h1>
       <div className="region-container">
-        {Object.values(groupedRegions).map((region) => (
+        {dashboardData.map((region) => (
           <RegionCard key={region.regionName} {...region} />
         ))}
       </div>
