@@ -1,4 +1,3 @@
-// RegionCard.tsx
 import React, { useState } from 'react';
 import { GroupedRegion } from '../model/dashboard.types';
 

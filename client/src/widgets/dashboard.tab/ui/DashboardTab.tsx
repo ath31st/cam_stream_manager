@@ -3,6 +3,7 @@ import { useStreamStore } from '../../../app/stores/stream.store';
 import RegionCard from './RegionCard';
 import { useRegionStore } from '../../../app/stores/region.store';
 import { groupStreamsByRegion } from '../model/group.streams.by.region';
+import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 
 const Dashboard: React.FC = () => {
   const { streams, fetchAllStreams } = useStreamStore();
@@ -14,7 +15,7 @@ const Dashboard: React.FC = () => {
 
     const intervalId = setInterval(() => {
       fetchAllStreams();
-    }, 10000);
+    }, STREAMS_UPDATE_INTERVAL);
 
     return () => clearInterval(intervalId);
   }, [fetchAllRegions, fetchAllStreams]);
