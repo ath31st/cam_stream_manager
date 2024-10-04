@@ -69,7 +69,7 @@ export interface UpdateResponsiblePersonDto {
 
 // dashboard interfaces
 
-export interface RegionInfo {
+export interface RegionInfoDto {
   regionName: string;
   streams: StreamDashboardDto[];
   activeCount: number;

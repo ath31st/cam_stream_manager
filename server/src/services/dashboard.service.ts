@@ -1,6 +1,6 @@
 import { RegionService } from './region.service';
 import { StreamService } from './stream.service';
-import { RegionInfo, StreamDashboardDto } from '@shared/types';
+import { RegionInfoDto, StreamDashboardDto } from '@shared/types';
 
 export class DashboardService {
   private regionService: RegionService;
@@ -11,12 +11,12 @@ export class DashboardService {
     this.streamService = streamService;
   }
 
-  async getDashboardData(): Promise<RegionInfo[]> {
+  async getDashboardData(): Promise<RegionInfoDto[]> {
     const regions = await this.regionService.getAllRegions();
-    const dashboardData: RegionInfo[] = [];
+    const dashboardData: RegionInfoDto[] = [];
 
     for (const region of regions) {
-      const regionInfo: RegionInfo = {
+      const regionInfo: RegionInfoDto = {
         regionName: region.name,
         streams: [],
         activeCount: 0,
