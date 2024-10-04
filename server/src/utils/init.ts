@@ -8,6 +8,8 @@ import { RegionRepository } from '../repositories/region.repository';
 import { RegionService } from '../services/region.service';
 import { RegionController } from '../controllers/region.controller';
 import { ResponsiblePersonController } from '../controllers/responsible.person.controller';
+import { DashboardService } from '../services/dashboard.service';
+import { DashboardController } from '../controllers/dashboard.controller';
 
 const prisma = prismaService;
 
@@ -23,4 +25,13 @@ const streamRepository = new StreamRepository(prisma.client);
 const streamService = new StreamService(streamRepository);
 const streamController = new StreamController(streamService, rpService);
 
-export { streamController, streamService, regionController, rpController };
+const dashboardService = new DashboardService(regionService, streamService);
+const dashboardController = new DashboardController(dashboardService);
+
+export {
+  streamController,
+  streamService,
+  regionController,
+  rpController,
+  dashboardController,
+};
