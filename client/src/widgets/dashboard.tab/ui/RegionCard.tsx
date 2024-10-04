@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { GroupedRegion } from '../model/dashboard.types';
+import { RegionInfo } from '../../../entities/dashboard';
 
-const RegionCard: React.FC<GroupedRegion> = ({
+const RegionCard: React.FC<RegionInfo> = ({
   regionName,
   streams,
   activeCount,
