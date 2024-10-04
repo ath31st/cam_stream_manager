@@ -7,6 +7,7 @@ import streamRoutes from './routes/stream.routes';
 import { startStreamCronJob } from './cron/stream.cron';
 import regionRoutes from './routes/region.routes';
 import rpRoutes from './routes/responsible.person.routes';
+import dashboardRoutes from './routes/dashboard.routes';
 import { Logger } from './utils/logger';
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(regionRoutes);
 app.use(rpRoutes);
 app.use(streamRoutes);
+app.use(dashboardRoutes);
 
 startStreamCronJob();
 
