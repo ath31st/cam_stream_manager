@@ -37,17 +37,31 @@ export class RegionService {
     return this.getAllRegions().then(toRegionDtos);
   };
 
+  existsRegionByName = async (name: string): Promise<void> => {
+    const regionExists = await this.regionRepository.existsRegionByName(name);
+    if (regionExists) {
+      throw new Error('Region already exists');
+    }
+  };
+
   createRegion = async (dto: NewRegionDto): Promise<RegionDto> => {
     try {
+      await this.existsRegionByName(dto.name);
+
       return await this.regionRepository.createRegion(dto).then(toRegionDto);
     } catch (error) {
       Logger.error('Error creating region:', error);
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      }
       throw new Error('Could not create region');
     }
   };
 
   updateRegion = async (dto: UpdateRegionDto): Promise<RegionDto> => {
     try {
+      await this.existsRegionByName(dto.name);
+
       return await this.regionRepository.updateRegion(dto).then(toRegionDto);
     } catch (error) {
       Logger.error('Error updating region:', error);
