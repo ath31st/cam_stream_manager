@@ -1,6 +1,10 @@
 import { Request, Response } from 'express';
 import { RegionService } from '../services/region.service';
 import { NewRegionDto, UpdateRegionDto } from '@shared/types';
+import {
+  newRegionSchema,
+  updateRegionSchema,
+} from '../validators/region.validator';
 
 export class RegionController {
   private regionService: RegionService;
@@ -49,6 +53,11 @@ export class RegionController {
 
   createRegion = async (req: Request, res: Response) => {
     try {
+      const { error } = newRegionSchema.validate(req.body);
+      if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+      }
+
       const dto: NewRegionDto = req.body;
       const createdRegion = await this.regionService.createRegion(dto);
       res.status(201).json(createdRegion);
@@ -68,6 +77,14 @@ export class RegionController {
 
   updateRegion = async (req: Request, res: Response) => {
     try {
+      const { error } = updateRegionSchema.validate({
+        id: Number(req.params.id),
+        ...req.body,
+      });
+      if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+      }
+
       const dto: UpdateRegionDto = { id: Number(req.params.id), ...req.body };
       const updatedRegion = await this.regionService.updateRegion(dto);
       res.status(200).json(updatedRegion);
