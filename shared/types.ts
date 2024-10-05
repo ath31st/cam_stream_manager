@@ -21,11 +21,11 @@ export interface StreamDto {
 
 export interface UpdateStreamDto {
   id: number;
-  regionId?: number;
-  location?: string;
-  isVisible?: boolean;
-  streamUrl?: string;
-  comment?: string;
+  regionId: number;
+  location: string;
+  isVisible: boolean;
+  streamUrl: string;
+  comment: string | null;
 }
 
 // region interfaces
@@ -42,8 +42,8 @@ export interface RegionDto {
 
 export interface UpdateRegionDto {
   id: number;
-  name?: string;
-  isVisible?: boolean;
+  name: string;
+  isVisible: boolean;
 }
 
 // responsible person interfaces
@@ -63,8 +63,8 @@ export interface ResponsiblePersonDto {
 
 export interface UpdateResponsiblePersonDto {
   id: number;
-  name?: string;
-  phone?: string;
+  name: string;
+  phone: string;
 }
 
 // dashboard interfaces
