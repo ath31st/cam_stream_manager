@@ -7,6 +7,6 @@ export const newRegionSchema = Joi.object<NewRegionDto>({
 
 export const updateRegionSchema = Joi.object<UpdateRegionDto>({
   id: Joi.number().integer().required(),
-  name: Joi.string().min(2).max(30).optional(),
-  isVisible: Joi.boolean().optional(),
+  name: Joi.string().min(2).max(30).required(),
+  isVisible: Joi.boolean().required(),
 });
