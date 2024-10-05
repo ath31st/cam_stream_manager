@@ -8,6 +8,7 @@ import {
   newResponsiblePersonSchema,
   updateResponsiblePersonSchema,
 } from '../validators/responsible.person.validator';
+import { trimObjectValues } from '../utils/trim.utils';
 
 export class ResponsiblePersonController {
   private responsiblePersonService: ResponsiblePersonService;
@@ -82,7 +83,9 @@ export class ResponsiblePersonController {
 
   createResponsiblePerson = async (req: Request, res: Response) => {
     try {
-      const { error, value } = newResponsiblePersonSchema.validate(req.body);
+      const trimmedBody = trimObjectValues(req.body);
+
+      const { error, value } = newResponsiblePersonSchema.validate(trimmedBody);
       if (error) {
         return res.status(400).json({
           message: 'Validation error',
@@ -111,9 +114,11 @@ export class ResponsiblePersonController {
 
   updateResponsiblePerson = async (req: Request, res: Response) => {
     try {
+      const trimmedBody = trimObjectValues(req.body);
+
       const { error, value } = updateResponsiblePersonSchema.validate({
         id: Number(req.params.id),
-        ...req.body,
+        ...trimmedBody,
       });
       if (error) {
         return res.status(400).json({
