@@ -7,7 +7,7 @@ import {
   updateStream,
   deleteStream,
   fetchStreamsByRegion,
-} from '../../entities/stream/api/stream.api';
+} from '../../entities/stream';
 
 interface StreamState {
   streams: Stream[];

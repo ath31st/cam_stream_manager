@@ -6,7 +6,7 @@ import {
   createRegion,
   updateRegion,
   deleteRegion,
-} from '../../entities/region/api/region.api';
+} from '../../entities/region';
 
 interface RegionState {
   regions: Region[];

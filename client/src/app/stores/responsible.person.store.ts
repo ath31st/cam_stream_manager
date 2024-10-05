@@ -11,7 +11,7 @@ import {
   createResponsiblePerson,
   updateResponsiblePerson,
   deleteResponsiblePerson,
-} from '../../entities/responsible.person/api/responsible.person.api';
+} from '../../entities/responsible.person';
 
 interface ResponsiblePersonState {
   responsiblePersons: ResponsiblePerson[];
