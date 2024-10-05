@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { RegionInfo } from '../../../entities/dashboard';
+import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
+import { ResponsiblePersonModal } from '../../../entities/responsible.person';
 
 const RegionCard: React.FC<RegionInfo> = ({
   regionName,
@@ -8,9 +10,21 @@ const RegionCard: React.FC<RegionInfo> = ({
   noConnectionCount,
   badConnectionCount,
 }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { fetchResponsiblePersonsByStream, responsiblePersons } =
+    useResponsiblePersonStore();
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
+
+  const openModal = async (streamId: number) => {
+    fetchResponsiblePersonsByStream(streamId);
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div className="region-card">
@@ -21,12 +35,22 @@ const RegionCard: React.FC<RegionInfo> = ({
       {isOpen && (
         <ul>
           {streams.map((stream) => (
-            <li key={stream.id}>
+            <li
+              key={stream.id}
+              style={{ cursor: 'pointer' }}
+              onClick={() => openModal(stream.id)}
+            >
               {stream.location}: {stream.status}
             </li>
           ))}
         </ul>
       )}
+
+      <ResponsiblePersonModal
+        onClose={closeModal}
+        isOpen={isModalVisible}
+        responsiblePersons={responsiblePersons}
+      />
     </div>
   );
 };
