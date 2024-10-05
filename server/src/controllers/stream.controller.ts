@@ -10,6 +10,7 @@ import {
   newStreamSchema,
   updateStreamSchema,
 } from '../validators/stream.validator';
+import { trimObjectValues } from '../utils/trim.utils';
 
 export class StreamController {
   private streamService: StreamService;
@@ -81,12 +82,14 @@ export class StreamController {
 
   createStream = async (req: Request, res: Response) => {
     try {
-      const { error } = newStreamSchema.validate(req.body);
+      const trimmedBody = trimObjectValues(req.body);
+
+      const { error, value } = newStreamSchema.validate(trimmedBody);
       if (error) {
         return res.status(400).json({ message: error.details[0].message });
       }
 
-      const dto: NewStreamDto = req.body;
+      const dto: NewStreamDto = value;
       const createdStream = await this.streamService.createStream(dto);
       if (dto.responsiblePerson && dto.responsiblePhone) {
         const rpDto: NewResponsiblePersonDto = {
@@ -113,15 +116,17 @@ export class StreamController {
 
   updateStream = async (req: Request, res: Response) => {
     try {
-      const { error } = updateStreamSchema.validate({
+      const trimmedBody = trimObjectValues(req.body);
+
+      const { error, value } = updateStreamSchema.validate({
         id: Number(req.params.id),
-        ...req.body,
+        ...trimmedBody,
       });
       if (error) {
         return res.status(400).json({ message: error.details[0].message });
       }
 
-      const dto: UpdateStreamDto = { id: Number(req.params.id), ...req.body };
+      const dto: UpdateStreamDto = value;
       const updatedStream = await this.streamService.updateStream(dto);
       res.status(200).json(updatedStream);
     } catch (error) {
