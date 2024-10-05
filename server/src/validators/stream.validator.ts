@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { NewStreamDto, UpdateStreamDto } from '@shared/types';
+import { PHONE_NUMBER_PATTERN } from '../utils/string.constants';
 
 export const newStreamSchema = Joi.object<NewStreamDto>({
   regionId: Joi.number().integer().required(),
@@ -7,9 +8,7 @@ export const newStreamSchema = Joi.object<NewStreamDto>({
   streamUrl: Joi.string().uri().required(),
   comment: Joi.string().max(500).allow(null),
   responsiblePerson: Joi.string().max(100).allow(null),
-  responsiblePhone: Joi.string()
-    .pattern(/^[0-9]{10}$/)
-    .allow(null),
+  responsiblePhone: Joi.string().pattern(PHONE_NUMBER_PATTERN).allow(null),
 }).custom((value, helpers) => {
   const { responsiblePerson, responsiblePhone } = value;
 
