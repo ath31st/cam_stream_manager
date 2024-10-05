@@ -5,6 +5,7 @@ import {
   newRegionSchema,
   updateRegionSchema,
 } from '../validators/region.validator';
+import { trimObjectValues } from '../utils/trim.utils';
 
 export class RegionController {
   private regionService: RegionService;
@@ -53,12 +54,14 @@ export class RegionController {
 
   createRegion = async (req: Request, res: Response) => {
     try {
-      const { error } = newRegionSchema.validate(req.body);
+      const trimmedBody = trimObjectValues(req.body);
+
+      const { error, value } = newRegionSchema.validate(trimmedBody);
       if (error) {
         return res.status(400).json({ message: error.details[0].message });
       }
 
-      const dto: NewRegionDto = req.body;
+      const dto: NewRegionDto = value;
       const createdRegion = await this.regionService.createRegion(dto);
       res.status(201).json(createdRegion);
     } catch (error) {
@@ -77,15 +80,17 @@ export class RegionController {
 
   updateRegion = async (req: Request, res: Response) => {
     try {
-      const { error } = updateRegionSchema.validate({
+      const trimmedBody = trimObjectValues(req.body);
+
+      const { error, value } = updateRegionSchema.validate({
         id: Number(req.params.id),
-        ...req.body,
+        ...trimmedBody,
       });
       if (error) {
         return res.status(400).json({ message: error.details[0].message });
       }
 
-      const dto: UpdateRegionDto = { id: Number(req.params.id), ...req.body };
+      const dto: UpdateRegionDto = value;
       const updatedRegion = await this.regionService.updateRegion(dto);
       res.status(200).json(updatedRegion);
     } catch (error) {
