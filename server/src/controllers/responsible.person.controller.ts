@@ -4,6 +4,10 @@ import {
   UpdateResponsiblePersonDto,
 } from '@shared/types';
 import { ResponsiblePersonService } from '../services/responsible.person.service';
+import {
+  newResponsiblePersonSchema,
+  updateResponsiblePersonSchema,
+} from '../validators/responsible.person.validator';
 
 export class ResponsiblePersonController {
   private responsiblePersonService: ResponsiblePersonService;
@@ -78,7 +82,15 @@ export class ResponsiblePersonController {
 
   createResponsiblePerson = async (req: Request, res: Response) => {
     try {
-      const dto: NewResponsiblePersonDto = req.body;
+      const { error, value } = newResponsiblePersonSchema.validate(req.body);
+      if (error) {
+        return res.status(400).json({
+          message: 'Validation error',
+          error: error.details[0].message,
+        });
+      }
+
+      const dto: NewResponsiblePersonDto = value;
       const createdPerson =
         await this.responsiblePersonService.createResponsiblePerson(dto);
       res.status(201).json(createdPerson);
@@ -99,10 +111,18 @@ export class ResponsiblePersonController {
 
   updateResponsiblePerson = async (req: Request, res: Response) => {
     try {
-      const dto: UpdateResponsiblePersonDto = {
+      const { error, value } = updateResponsiblePersonSchema.validate({
         id: Number(req.params.id),
         ...req.body,
-      };
+      });
+      if (error) {
+        return res.status(400).json({
+          message: 'Validation error',
+          error: error.details[0].message,
+        });
+      }
+
+      const dto: UpdateResponsiblePersonDto = value;
       const updatedPerson =
         await this.responsiblePersonService.updateResponsiblePerson(dto);
       res.status(200).json(updatedPerson);
