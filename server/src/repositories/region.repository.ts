@@ -15,6 +15,13 @@ export class RegionRepository {
     });
   };
 
+  existsRegionByName = async (name: string): Promise<boolean> => {
+    const region = await this.prismaClient.region.findFirst({
+      where: { name: name },
+    });
+    return region !== null;
+  };
+
   findAllRegions = async (): Promise<Region[]> => {
     return await this.prismaClient.region.findMany();
   };
