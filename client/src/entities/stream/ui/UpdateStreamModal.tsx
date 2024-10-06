@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import { Modal, Form, Input, Select, Switch } from 'antd';
 import { Stream, UpdateStream } from '../../../entities/stream';
 import { Region } from '../../../entities/region';
+import {
+  streamCommentValidationRules,
+  streamLocationValidationRules,
+  streamUrlValidationRules,
+} from '../../../shared/validations';
 
 interface UpdateStreamModalProps {
   visible: boolean;
@@ -59,21 +64,25 @@ const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
         <Form.Item
           name="location"
           label="Местоположение"
-          rules={[{ required: true, message: 'Введите местоположение' }]}
+          rules={streamLocationValidationRules}
         >
           <Input placeholder="Введите местоположение" />
         </Form.Item>
         <Form.Item
           name="streamUrl"
           label="URL стрима"
-          rules={[{ required: true, message: 'Введите URL стрима' }]}
+          rules={streamUrlValidationRules}
         >
           <Input placeholder="Введите URL стрима" />
         </Form.Item>
         <Form.Item name="isVisible" label="Видимость" valuePropName="checked">
           <Switch checkedChildren="Виден" unCheckedChildren="Скрыт" />
         </Form.Item>
-        <Form.Item name="comment" label="Комментарий">
+        <Form.Item
+          name="comment"
+          label="Комментарий"
+          rules={streamCommentValidationRules}
+        >
           <Input.TextArea placeholder="Комментарий (опционально)" />
         </Form.Item>
       </Form>

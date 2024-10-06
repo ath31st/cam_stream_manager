@@ -2,6 +2,11 @@ import React from 'react';
 import { Modal, Form, Input, Select } from 'antd';
 import { Region } from '../../../entities/region';
 import { NewStream } from '..';
+import {
+  streamCommentValidationRules,
+  streamLocationValidationRules,
+  streamUrlValidationRules,
+} from '../../../shared/validations';
 
 interface AddStreamModalProps {
   visible: boolean;
@@ -51,18 +56,22 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
         <Form.Item
           name="location"
           label="Местоположение"
-          rules={[{ required: true, message: 'Введите местоположение' }]}
+          rules={streamLocationValidationRules}
         >
           <Input placeholder="Введите местоположение" />
         </Form.Item>
         <Form.Item
           name="streamUrl"
           label="URL стрима"
-          rules={[{ required: true, message: 'Введите URL стрима' }]}
+          rules={streamUrlValidationRules}
         >
           <Input placeholder="Введите URL стрима" />
         </Form.Item>
-        <Form.Item name="comment" label="Комментарий">
+        <Form.Item
+          name="comment"
+          label="Комментарий"
+          rules={streamCommentValidationRules}
+        >
           <Input.TextArea placeholder="Комментарий (опционально)" />
         </Form.Item>
         <Form.Item name="responsiblePerson" label="Ответсвенное лицо">
