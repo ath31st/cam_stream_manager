@@ -29,6 +29,7 @@ interface ResponsiblePersonState {
     person: UpdateResponsiblePerson,
   ) => Promise<void>;
   removeResponsiblePerson: (id: number) => Promise<void>;
+  handleError: (error: unknown) => void;
 }
 
 export const useResponsiblePersonStore = create<ResponsiblePersonState>(
@@ -38,19 +39,24 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
     loading: false,
     error: null,
 
+    handleError: (error: unknown) => {
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getRpErrorMessage(statusCode as number);
+        set({ error: message });
+      } else {
+        set({ error: unknownError });
+      }
+    },
+
     fetchResponsiblePersonById: async (id: number) => {
       set({ loading: true });
       try {
         const person = await fetchResponsiblePerson(id);
         set({ selectedPerson: person, loading: false });
       } catch (error: unknown) {
-        if (error instanceof AxiosError) {
-          const statusCode = error.response?.status;
-          const message = getRpErrorMessage(statusCode as number);
-          set({ error: message, loading: false });
-        } else {
-          set({ error: unknownError, loading: false });
-        }
+        set({ loading: false });
+        useResponsiblePersonStore.getState().handleError(error);
       }
     },
 
@@ -59,13 +65,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
         const persons = await fetchResponsiblePersons();
         set({ responsiblePersons: persons });
       } catch (error: unknown) {
-        if (error instanceof AxiosError) {
-          const statusCode = error.response?.status;
-          const message = getRpErrorMessage(statusCode as number);
-          set({ error: message });
-        } else {
-          set({ error: unknownError });
-        }
+        useResponsiblePersonStore.getState().handleError(error);
       }
     },
 
@@ -74,13 +74,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
         const persons = await fetchResponsiblePersonsByStream(streamId);
         set({ responsiblePersons: persons });
       } catch (error: unknown) {
-        if (error instanceof AxiosError) {
-          const statusCode = error.response?.status;
-          const message = getRpErrorMessage(statusCode as number);
-          set({ error: message });
-        } else {
-          set({ error: unknownError });
-        }
+        useResponsiblePersonStore.getState().handleError(error);
       }
     },
 
@@ -91,13 +85,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
           responsiblePersons: [...state.responsiblePersons, newPerson],
         }));
       } catch (error: unknown) {
-        if (error instanceof AxiosError) {
-          const statusCode = error.response?.status;
-          const message = getRpErrorMessage(statusCode as number);
-          set({ error: message });
-        } else {
-          set({ error: unknownError });
-        }
+        useResponsiblePersonStore.getState().handleError(error);
       }
     },
 
@@ -113,13 +101,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
           ),
         }));
       } catch (error: unknown) {
-        if (error instanceof AxiosError) {
-          const statusCode = error.response?.status;
-          const message = getRpErrorMessage(statusCode as number);
-          set({ error: message });
-        } else {
-          set({ error: unknownError });
-        }
+        useResponsiblePersonStore.getState().handleError(error);
       }
     },
 
@@ -132,13 +114,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
           ),
         }));
       } catch (error: unknown) {
-        if (error instanceof AxiosError) {
-          const statusCode = error.response?.status;
-          const message = getRpErrorMessage(statusCode as number);
-          set({ error: message });
-        } else {
-          set({ error: unknownError });
-        }
+        useResponsiblePersonStore.getState().handleError(error);
       }
     },
   }),
