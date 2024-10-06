@@ -26,6 +26,13 @@ export class StreamRepository {
     });
   };
 
+  existsStreamByUrl = async (streamUrl: string): Promise<boolean> => {
+    const stream = await this.prismaClient.stream.findFirst({
+      where: { streamUrl: streamUrl },
+    });
+    return stream !== null;
+  };
+
   createStream = async (dto: NewStreamDto): Promise<Stream> => {
     const status = StreamStatus.Created;
     const stream = await this.prismaClient.stream.create({
