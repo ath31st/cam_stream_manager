@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal, Form, Input, Button } from 'antd';
+import { regionNameValidationRules } from '../../../shared/validations';
 
 interface AddRegionModalProps {
   visible: boolean;
@@ -12,13 +13,11 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
   onOk,
   onCancel,
 }) => {
-  const [newRegionName, setNewRegionName] = React.useState<string>('');
+  const [form] = Form.useForm();
 
   const handleOk = () => {
-    if (newRegionName) {
-      onOk(newRegionName);
-      setNewRegionName('');
-    }
+    onOk(form.getFieldValue('name'));
+    form.resetFields();
   };
 
   return (
@@ -27,13 +26,24 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
+      footer={[
+        <Button key="cancel" onClick={onCancel}>
+          Отмена
+        </Button>,
+        <Button key="submit" type="primary" onClick={handleOk}>
+          Добавить
+        </Button>,
+      ]}
     >
-      <p>Введите название региона:</p>
-      <input
-        value={newRegionName}
-        onChange={(e) => setNewRegionName(e.target.value)}
-        placeholder="Название региона"
-      />
+      <Form form={form} layout="vertical">
+        <Form.Item
+          name="name"
+          label="Название региона"
+          rules={regionNameValidationRules}
+        >
+          <Input placeholder="Введите название региона" />
+        </Form.Item>
+      </Form>
     </Modal>
   );
 };

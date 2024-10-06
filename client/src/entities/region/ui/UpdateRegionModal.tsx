@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Input, Checkbox } from 'antd';
+import React, { useEffect } from 'react';
+import { Modal, Input, Checkbox, Form, Button } from 'antd';
 import { Region, UpdateRegion } from '..';
+import { regionNameValidationRules } from '../../../shared/validations';
 
 interface UpdateRegionModalProps {
   visible: boolean;
@@ -15,22 +16,17 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
   onOk,
   onCancel,
 }) => {
-  const [regionName, setRegionName] = useState<string>('');
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [form] = Form.useForm();
 
   useEffect(() => {
     if (region) {
-      setRegionName(region.name);
-      setIsVisible(region.isVisible);
+      form.setFieldsValue(region);
     }
-  }, [region]);
+  }, [region, form]);
 
   const handleOk = () => {
-    if (region) {
-      onOk({ id: region.id, name: regionName, isVisible });
-      setRegionName('');
-      setIsVisible(true);
-    }
+    onOk(form.getFieldsValue());
+    form.resetFields();
   };
 
   return (
@@ -39,18 +35,27 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
+      footer={[
+        <Button key="cancel" onClick={onCancel}>
+          Отмена
+        </Button>,
+        <Button key="submit" type="primary" onClick={handleOk}>
+          Сохранить
+        </Button>,
+      ]}
     >
-      <Input
-        value={regionName}
-        onChange={(e) => setRegionName(e.target.value)}
-        placeholder="Название региона"
-      />
-      <Checkbox
-        checked={isVisible}
-        onChange={(e) => setIsVisible(e.target.checked)}
-      >
-        Видимый
-      </Checkbox>
+      <Form form={form} layout="vertical">
+        <Form.Item
+          name="name"
+          label="Название региона"
+          rules={regionNameValidationRules}
+        >
+          <Input placeholder="Введите название региона" />
+        </Form.Item>
+        <Form.Item name="isVisible" valuePropName="checked">
+          <Checkbox>Видимый</Checkbox>
+        </Form.Item>
+      </Form>
     </Modal>
   );
 };
