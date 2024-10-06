@@ -8,6 +8,8 @@ import {
   deleteStream,
   fetchStreamsByRegion,
 } from '../../entities/stream';
+import { AxiosError } from 'axios';
+import { getStreamErrorMessage, unknownError } from '../../shared/errors';
 
 interface StreamState {
   streams: Stream[];
@@ -35,10 +37,12 @@ export const useStreamStore = create<StreamState>((set) => ({
       const streams = await fetchStreams();
       set({ streams, loading: false });
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getStreamErrorMessage(statusCode as number);
+        set({ error: message, loading: false });
       } else {
-        set({ error: 'Unknown error', loading: false });
+        set({ error: unknownError, loading: false });
       }
     }
   },
@@ -49,10 +53,12 @@ export const useStreamStore = create<StreamState>((set) => ({
       const streams = await fetchStreamsByRegion(regionId);
       set({ streams, loading: false });
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getStreamErrorMessage(statusCode as number);
+        set({ error: message, loading: false });
       } else {
-        set({ error: 'Unknown error', loading: false });
+        set({ error: unknownError, loading: false });
       }
     }
   },
@@ -63,10 +69,12 @@ export const useStreamStore = create<StreamState>((set) => ({
       const stream = await fetchStream(id);
       set({ selectedStream: stream, loading: false });
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getStreamErrorMessage(statusCode as number);
+        set({ error: message, loading: false });
       } else {
-        set({ error: 'Unknown error', loading: false });
+        set({ error: unknownError, loading: false });
       }
     }
   },
@@ -76,10 +84,12 @@ export const useStreamStore = create<StreamState>((set) => ({
       const createdStream = await createStream(stream);
       set((state) => ({ streams: [...state.streams, createdStream] }));
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getStreamErrorMessage(statusCode as number);
+        set({ error: message });
       } else {
-        set({ error: 'Unknown error' });
+        set({ error: unknownError });
       }
     }
   },
@@ -91,10 +101,12 @@ export const useStreamStore = create<StreamState>((set) => ({
         streams: state.streams.map((s) => (s.id === id ? updatedStream : s)),
       }));
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getStreamErrorMessage(statusCode as number);
+        set({ error: message });
       } else {
-        set({ error: 'Unknown error' });
+        set({ error: unknownError });
       }
     }
   },
@@ -106,10 +118,12 @@ export const useStreamStore = create<StreamState>((set) => ({
         streams: state.streams.filter((s) => s.id !== id),
       }));
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = getStreamErrorMessage(statusCode as number);
+        set({ error: message });
       } else {
-        set({ error: 'Unknown error' });
+        set({ error: unknownError });
       }
     }
   },
