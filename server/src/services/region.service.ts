@@ -60,7 +60,14 @@ export class RegionService {
 
   updateRegion = async (dto: UpdateRegionDto): Promise<RegionDto> => {
     try {
-      await this.existsRegionByName(dto.name);
+      const region = await this.getRegion(dto.id);
+      const regionExists = await this.regionRepository.existsRegionByName(
+        dto.name,
+      );
+
+      if (regionExists && region.name !== dto.name) {
+        throw new Error('Region with this name already exists');
+      }
 
       return await this.regionRepository.updateRegion(dto).then(toRegionDto);
     } catch (error) {

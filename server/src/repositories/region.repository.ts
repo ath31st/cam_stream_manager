@@ -16,10 +16,11 @@ export class RegionRepository {
   };
 
   existsRegionByName = async (name: string): Promise<boolean> => {
-    const region = await this.prismaClient.region.findFirst({
-      where: { name: name },
-    });
-    return region !== null;
+    const region = await this.prismaClient.$queryRaw<
+      { id: number }[]
+    >`SELECT * FROM "Region" WHERE UPPER("name") = UPPER(${name}) LIMIT 1`;
+
+    return region.length > 0;
   };
 
   findAllRegions = async (): Promise<Region[]> => {
