@@ -23,6 +23,7 @@ interface StreamState {
   updateStream: (id: number, stream: UpdateStream) => Promise<void>;
   removeStream: (id: number) => Promise<void>;
   setSelectedStream: (stream: Stream) => void;
+  handleError: (error: unknown) => void;
 }
 
 export const useStreamStore = create<StreamState>((set) => ({
@@ -31,19 +32,24 @@ export const useStreamStore = create<StreamState>((set) => ({
   loading: false,
   error: null,
 
+  handleError: (error: unknown) => {
+    if (error instanceof AxiosError) {
+      const statusCode = error.response?.status;
+      const message = getStreamErrorMessage(statusCode as number);
+      set({ error: message });
+    } else {
+      set({ error: unknownError });
+    }
+  },
+
   fetchAllStreams: async () => {
     set({ loading: true });
     try {
       const streams = await fetchStreams();
       set({ streams, loading: false });
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getStreamErrorMessage(statusCode as number);
-        set({ error: message, loading: false });
-      } else {
-        set({ error: unknownError, loading: false });
-      }
+      set({ loading: false });
+      useStreamStore.getState().handleError(error);
     }
   },
 
@@ -53,13 +59,8 @@ export const useStreamStore = create<StreamState>((set) => ({
       const streams = await fetchStreamsByRegion(regionId);
       set({ streams, loading: false });
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getStreamErrorMessage(statusCode as number);
-        set({ error: message, loading: false });
-      } else {
-        set({ error: unknownError, loading: false });
-      }
+      set({ loading: false });
+      useStreamStore.getState().handleError(error);
     }
   },
 
@@ -69,13 +70,8 @@ export const useStreamStore = create<StreamState>((set) => ({
       const stream = await fetchStream(id);
       set({ selectedStream: stream, loading: false });
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getStreamErrorMessage(statusCode as number);
-        set({ error: message, loading: false });
-      } else {
-        set({ error: unknownError, loading: false });
-      }
+      set({ loading: false });
+      useStreamStore.getState().handleError(error);
     }
   },
 
@@ -84,13 +80,7 @@ export const useStreamStore = create<StreamState>((set) => ({
       const createdStream = await createStream(stream);
       set((state) => ({ streams: [...state.streams, createdStream] }));
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getStreamErrorMessage(statusCode as number);
-        set({ error: message });
-      } else {
-        set({ error: unknownError });
-      }
+      useStreamStore.getState().handleError(error);
     }
   },
 
@@ -101,13 +91,7 @@ export const useStreamStore = create<StreamState>((set) => ({
         streams: state.streams.map((s) => (s.id === id ? updatedStream : s)),
       }));
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getStreamErrorMessage(statusCode as number);
-        set({ error: message });
-      } else {
-        set({ error: unknownError });
-      }
+      useStreamStore.getState().handleError(error);
     }
   },
 
@@ -118,13 +102,7 @@ export const useStreamStore = create<StreamState>((set) => ({
         streams: state.streams.filter((s) => s.id !== id),
       }));
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getStreamErrorMessage(statusCode as number);
-        set({ error: message });
-      } else {
-        set({ error: unknownError });
-      }
+      useStreamStore.getState().handleError(error);
     }
   },
 
