@@ -20,6 +20,7 @@ interface RegionState {
   addRegion: (region: NewRegion) => Promise<void>;
   updateRegion: (id: number, region: UpdateRegion) => Promise<void>;
   removeRegion: (id: number) => Promise<void>;
+  handleError: (error: unknown) => void;
 }
 
 export const useRegionStore = create<RegionState>((set) => ({
@@ -28,19 +29,24 @@ export const useRegionStore = create<RegionState>((set) => ({
   loading: false,
   error: null,
 
+  handleError: (error: unknown) => {
+    if (error instanceof AxiosError) {
+      const statusCode = error.response?.status;
+      const message = getRegionErrorMessage(statusCode as number);
+      set({ error: message });
+    } else {
+      set({ error: unknownError });
+    }
+  },
+
   fetchAllRegions: async () => {
     set({ loading: true });
     try {
       const regions = await fetchRegions();
       set({ regions, loading: false });
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getRegionErrorMessage(statusCode as number);
-        set({ error: message, loading: false });
-      } else {
-        set({ error: unknownError, loading: false });
-      }
+    } catch (error) {
+      set({ loading: false });
+      useRegionStore.getState().handleError(error);
     }
   },
 
@@ -49,14 +55,9 @@ export const useRegionStore = create<RegionState>((set) => ({
     try {
       const region = await fetchRegion(id);
       set({ selectedRegion: region, loading: false });
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getRegionErrorMessage(statusCode as number);
-        set({ error: message, loading: false });
-      } else {
-        set({ error: unknownError, loading: false });
-      }
+    } catch (error) {
+      set({ loading: false });
+      useRegionStore.getState().handleError(error);
     }
   },
 
@@ -64,14 +65,8 @@ export const useRegionStore = create<RegionState>((set) => ({
     try {
       const newRegion = await createRegion(region);
       set((state) => ({ regions: [...state.regions, newRegion] }));
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getRegionErrorMessage(statusCode as number);
-        set({ error: message });
-      } else {
-        set({ error: unknownError });
-      }
+    } catch (error) {
+      useRegionStore.getState().handleError(error);
     }
   },
 
@@ -81,14 +76,8 @@ export const useRegionStore = create<RegionState>((set) => ({
       set((state) => ({
         regions: state.regions.map((r) => (r.id === id ? updatedRegion : r)),
       }));
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getRegionErrorMessage(statusCode as number);
-        set({ error: message });
-      } else {
-        set({ error: unknownError });
-      }
+    } catch (error) {
+      useRegionStore.getState().handleError(error);
     }
   },
 
@@ -98,14 +87,8 @@ export const useRegionStore = create<RegionState>((set) => ({
       set((state) => ({
         regions: state.regions.filter((r) => r.id !== id),
       }));
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        const statusCode = error.response?.status;
-        const message = getRegionErrorMessage(statusCode as number);
-        set({ error: message });
-      } else {
-        set({ error: unknownError, loading: false });
-      }
+    } catch (error) {
+      useRegionStore.getState().handleError(error);
     }
   },
 }));
