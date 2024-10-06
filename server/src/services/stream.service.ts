@@ -50,8 +50,17 @@ export class StreamService {
     }
   };
 
+  existsStreamByUrl = async (url: string): Promise<void> => {
+    const streamExists = await this.streamRepository.existsStreamByUrl(url);
+    if (streamExists) {
+      throw new Error('Stream with that url already exists');
+    }
+  };
+
   createStream = async (dto: NewStreamDto): Promise<StreamDto> => {
     try {
+      await this.existsStreamByUrl(dto.streamUrl);
+
       return await this.streamRepository.createStream(dto).then(toStreamDto);
     } catch (error) {
       Logger.error('Error creating stream:', error);
@@ -61,6 +70,8 @@ export class StreamService {
 
   updateStream = async (dto: UpdateStreamDto): Promise<StreamDto> => {
     try {
+      await this.existsStreamByUrl(dto.streamUrl);
+
       return await this.streamRepository.updateStream(dto).then(toStreamDto);
     } catch (error) {
       Logger.error('Error updating stream:', error);
