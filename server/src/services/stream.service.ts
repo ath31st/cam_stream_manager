@@ -70,7 +70,14 @@ export class StreamService {
 
   updateStream = async (dto: UpdateStreamDto): Promise<StreamDto> => {
     try {
-      await this.existsStreamByUrl(dto.streamUrl);
+      const stream = await this.getStream(dto.id);
+      const streamUrlExists = await this.streamRepository.existsStreamByUrl(
+        dto.streamUrl,
+      );
+      
+      if (streamUrlExists && stream.streamUrl !== dto.streamUrl) {
+        throw new Error('Stream with that url already exists');
+      }
 
       return await this.streamRepository.updateStream(dto).then(toStreamDto);
     } catch (error) {

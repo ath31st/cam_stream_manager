@@ -27,10 +27,11 @@ export class StreamRepository {
   };
 
   existsStreamByUrl = async (streamUrl: string): Promise<boolean> => {
-    const stream = await this.prismaClient.stream.findFirst({
-      where: { streamUrl: streamUrl },
-    });
-    return stream !== null;
+    const stream = await this.prismaClient.$queryRaw<
+      { id: number }[]
+    >`SELECT * FROM "Stream" WHERE UPPER("streamUrl") = UPPER(${streamUrl}) LIMIT 1`;
+
+    return stream.length > 0;
   };
 
   createStream = async (dto: NewStreamDto): Promise<Stream> => {
