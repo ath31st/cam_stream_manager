@@ -5,6 +5,8 @@ import {
   streamLocationValidationRules,
   streamUrlValidationRules,
   regionNameValidationRules,
+  optioanalPhoneValidationRules,
+  optioanalRpNameValidationRules,
 } from './lib/validation.rules';
 
 export {
@@ -14,4 +16,6 @@ export {
   streamLocationValidationRules,
   streamUrlValidationRules,
   regionNameValidationRules,
+  optioanalPhoneValidationRules,
+  optioanalRpNameValidationRules,
 };
