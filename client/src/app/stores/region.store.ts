@@ -1,11 +1,5 @@
 import { create } from 'zustand';
-import {
-  Region,
-  NewRegion,
-  UpdateRegion,
-  errorMessages,
-  unknownError,
-} from '../../entities/region';
+import { Region, NewRegion, UpdateRegion } from '../../entities/region';
 import {
   fetchRegions,
   fetchRegion,
@@ -14,6 +8,7 @@ import {
   deleteRegion,
 } from '../../entities/region';
 import { AxiosError } from 'axios';
+import { getRegionErrorMessage, unknownError } from '../../shared/errors';
 
 interface RegionState {
   regions: Region[];
@@ -41,7 +36,7 @@ export const useRegionStore = create<RegionState>((set) => ({
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        const message = getRegionErrorMessage(statusCode as number);
         set({ error: message, loading: false });
       } else {
         set({ error: unknownError, loading: false });
@@ -57,7 +52,7 @@ export const useRegionStore = create<RegionState>((set) => ({
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        const message = getRegionErrorMessage(statusCode as number);
         set({ error: message, loading: false });
       } else {
         set({ error: unknownError, loading: false });
@@ -72,7 +67,7 @@ export const useRegionStore = create<RegionState>((set) => ({
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        const message = getRegionErrorMessage(statusCode as number);
         set({ error: message });
       } else {
         set({ error: unknownError });
@@ -89,7 +84,7 @@ export const useRegionStore = create<RegionState>((set) => ({
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        const message = getRegionErrorMessage(statusCode as number);
         set({ error: message });
       } else {
         set({ error: unknownError });
@@ -106,7 +101,7 @@ export const useRegionStore = create<RegionState>((set) => ({
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        const message = getRegionErrorMessage(statusCode as number);
         set({ error: message });
       } else {
         set({ error: unknownError, loading: false });

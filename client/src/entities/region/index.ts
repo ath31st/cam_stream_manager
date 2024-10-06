@@ -9,12 +9,10 @@ import {
   updateRegion,
   deleteRegion,
 } from './api/region.api';
-import { errorMessages, unknownError } from './lib/error.messages';
 
 export type Region = RegionDto;
 export type NewRegion = NewRegionDto;
 export type UpdateRegion = UpdateRegionDto;
 
-export { errorMessages, unknownError };
 export { fetchRegions, fetchRegion, createRegion, updateRegion, deleteRegion };
 export { AddRegionModal, DeleteRegionModal, UpdateRegionModal };
