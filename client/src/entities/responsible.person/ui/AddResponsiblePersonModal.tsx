@@ -3,6 +3,10 @@ import { Modal, Form, Input, Button } from 'antd';
 import { NewResponsiblePerson } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
 import { StreamSelect } from '../../../shared/StreamSelect';
+import {
+  phoneValidationRules,
+  rpNameValidationRules,
+} from '../../../shared/validations';
 
 interface AddResponsiblePersonModalProps {
   visible: boolean;
@@ -39,18 +43,10 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
       ]}
     >
       <Form form={form} layout="vertical" onFinish={handleFinish}>
-        <Form.Item
-          name="name"
-          label="Имя"
-          rules={[{ required: true, message: 'Введите имя' }]}
-        >
+        <Form.Item name="name" label="Имя" rules={rpNameValidationRules}>
           <Input placeholder="Имя" />
         </Form.Item>
-        <Form.Item
-          name="phone"
-          label="Телефон"
-          rules={[{ required: true, message: 'Введите телефон' }]}
-        >
+        <Form.Item name="phone" label="Телефон" rules={phoneValidationRules}>
           <Input placeholder="Телефон" />
         </Form.Item>
         <Form.Item

@@ -4,6 +4,10 @@ import {
   ResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../entities/responsible.person';
+import {
+  phoneValidationRules,
+  rpNameValidationRules,
+} from '../../../shared/validations';
 
 interface UpdateResponsiblePersonModalProps {
   visible: boolean;
@@ -43,18 +47,10 @@ const UpdateResponsiblePersonModal: React.FC<
       ]}
     >
       <Form form={form} layout="vertical" onFinish={handleFinish}>
-        <Form.Item
-          name="name"
-          label="Имя"
-          rules={[{ required: true, message: 'Введите имя' }]}
-        >
+        <Form.Item name="name" label="Имя" rules={rpNameValidationRules}>
           <Input placeholder="Имя" />
         </Form.Item>
-        <Form.Item
-          name="phone"
-          label="Телефон"
-          rules={[{ required: true, message: 'Введите телефон' }]}
-        >
+        <Form.Item name="phone" label="Телефон" rules={phoneValidationRules}>
           <Input placeholder="Телефон" />
         </Form.Item>
       </Form>
