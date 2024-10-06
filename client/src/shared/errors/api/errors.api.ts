@@ -20,7 +20,7 @@ export const getRegionErrorMessage = (statusCode: number) => {
   return commonErrorMessages[statusCode] || unknownError;
 };
 
-export const getResponsiblePersonErrorMessage = (statusCode: number) => {
+export const getRpErrorMessage = (statusCode: number) => {
   if (responsiblePersonErrorMessages[statusCode]) {
     return responsiblePersonErrorMessages[statusCode];
   }

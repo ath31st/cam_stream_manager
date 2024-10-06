@@ -12,6 +12,8 @@ import {
   updateResponsiblePerson,
   deleteResponsiblePerson,
 } from '../../entities/responsible.person';
+import { AxiosError } from 'axios';
+import { getRpErrorMessage, unknownError } from '../../shared/errors';
 
 interface ResponsiblePersonState {
   responsiblePersons: ResponsiblePerson[];
@@ -42,10 +44,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
         const person = await fetchResponsiblePerson(id);
         set({ selectedPerson: person, loading: false });
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message, loading: false });
+        if (error instanceof AxiosError) {
+          const statusCode = error.response?.status;
+          const message = getRpErrorMessage(statusCode as number);
+          set({ error: message, loading: false });
         } else {
-          set({ error: 'Unknown error', loading: false });
+          set({ error: unknownError, loading: false });
         }
       }
     },
@@ -55,10 +59,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
         const persons = await fetchResponsiblePersons();
         set({ responsiblePersons: persons });
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message });
+        if (error instanceof AxiosError) {
+          const statusCode = error.response?.status;
+          const message = getRpErrorMessage(statusCode as number);
+          set({ error: message });
         } else {
-          set({ error: 'Unknown error' });
+          set({ error: unknownError });
         }
       }
     },
@@ -68,10 +74,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
         const persons = await fetchResponsiblePersonsByStream(streamId);
         set({ responsiblePersons: persons });
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message });
+        if (error instanceof AxiosError) {
+          const statusCode = error.response?.status;
+          const message = getRpErrorMessage(statusCode as number);
+          set({ error: message });
         } else {
-          set({ error: 'Unknown error' });
+          set({ error: unknownError });
         }
       }
     },
@@ -83,10 +91,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
           responsiblePersons: [...state.responsiblePersons, newPerson],
         }));
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message });
+        if (error instanceof AxiosError) {
+          const statusCode = error.response?.status;
+          const message = getRpErrorMessage(statusCode as number);
+          set({ error: message });
         } else {
-          set({ error: 'Unknown error' });
+          set({ error: unknownError });
         }
       }
     },
@@ -103,10 +113,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
           ),
         }));
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message });
+        if (error instanceof AxiosError) {
+          const statusCode = error.response?.status;
+          const message = getRpErrorMessage(statusCode as number);
+          set({ error: message });
         } else {
-          set({ error: 'Unknown error' });
+          set({ error: unknownError });
         }
       }
     },
@@ -120,10 +132,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
           ),
         }));
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          set({ error: error.message });
+        if (error instanceof AxiosError) {
+          const statusCode = error.response?.status;
+          const message = getRpErrorMessage(statusCode as number);
+          set({ error: message });
         } else {
-          set({ error: 'Unknown error' });
+          set({ error: unknownError });
         }
       }
     },
