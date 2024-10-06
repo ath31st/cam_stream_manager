@@ -1,5 +1,11 @@
 import { create } from 'zustand';
-import { Region, NewRegion, UpdateRegion } from '../../entities/region';
+import {
+  Region,
+  NewRegion,
+  UpdateRegion,
+  errorMessages,
+  unknownError,
+} from '../../entities/region';
 import {
   fetchRegions,
   fetchRegion,
@@ -7,6 +13,7 @@ import {
   updateRegion,
   deleteRegion,
 } from '../../entities/region';
+import { AxiosError } from 'axios';
 
 interface RegionState {
   regions: Region[];
@@ -32,10 +39,12 @@ export const useRegionStore = create<RegionState>((set) => ({
       const regions = await fetchRegions();
       set({ regions, loading: false });
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        set({ error: message, loading: false });
       } else {
-        set({ error: 'Unknown error', loading: false });
+        set({ error: unknownError, loading: false });
       }
     }
   },
@@ -46,10 +55,12 @@ export const useRegionStore = create<RegionState>((set) => ({
       const region = await fetchRegion(id);
       set({ selectedRegion: region, loading: false });
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        set({ error: message, loading: false });
       } else {
-        set({ error: 'Unknown error', loading: false });
+        set({ error: unknownError, loading: false });
       }
     }
   },
@@ -59,10 +70,12 @@ export const useRegionStore = create<RegionState>((set) => ({
       const newRegion = await createRegion(region);
       set((state) => ({ regions: [...state.regions, newRegion] }));
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        set({ error: message });
       } else {
-        set({ error: 'Unknown error' });
+        set({ error: unknownError });
       }
     }
   },
@@ -74,10 +87,12 @@ export const useRegionStore = create<RegionState>((set) => ({
         regions: state.regions.map((r) => (r.id === id ? updatedRegion : r)),
       }));
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        set({ error: message });
       } else {
-        set({ error: 'Unknown error' });
+        set({ error: unknownError });
       }
     }
   },
@@ -89,10 +104,12 @@ export const useRegionStore = create<RegionState>((set) => ({
         regions: state.regions.filter((r) => r.id !== id),
       }));
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        const message = errorMessages[statusCode as keyof typeof errorMessages];
+        set({ error: message });
       } else {
-        set({ error: 'Unknown error', loading: false });
+        set({ error: unknownError, loading: false });
       }
     }
   },
