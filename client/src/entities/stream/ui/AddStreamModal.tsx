@@ -3,6 +3,8 @@ import { Modal, Form, Input, Select } from 'antd';
 import { Region } from '../../../entities/region';
 import { NewStream } from '..';
 import {
+  optioanalPhoneValidationRules,
+  optioanalRpNameValidationRules,
   streamCommentValidationRules,
   streamLocationValidationRules,
   streamUrlValidationRules,
@@ -30,6 +32,20 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
   const handleFormSubmit = (value: NewStream) => {
     onConfirm(value);
     form.resetFields();
+  };
+
+  const validateResponsibleFields = () => {
+    const responsiblePerson = form.getFieldValue('responsiblePerson');
+    const responsiblePhone = form.getFieldValue('responsiblePhone');
+
+    if (
+      (responsiblePerson && !responsiblePhone) ||
+      (!responsiblePerson && responsiblePhone)
+    ) {
+      return Promise.reject('Оба поля должны быть заполнены или оба пустыми');
+    }
+
+    return Promise.resolve();
   };
 
   return (
@@ -74,10 +90,24 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
         >
           <Input.TextArea placeholder="Комментарий (опционально)" />
         </Form.Item>
-        <Form.Item name="responsiblePerson" label="Ответсвенное лицо">
+        <Form.Item
+          name="responsiblePerson"
+          label="Ответсвенное лицо"
+          rules={[
+            { validator: validateResponsibleFields },
+            ...optioanalRpNameValidationRules,
+          ]}
+        >
           <Input.TextArea placeholder="Ответсвенное лицо (опционально)" />
         </Form.Item>
-        <Form.Item name="responsiblePhone" label="Телефон ответственного лица">
+        <Form.Item
+          name="responsiblePhone"
+          label="Телефон ответственного лица"
+          rules={[
+            { validator: validateResponsibleFields },
+            ...optioanalPhoneValidationRules,
+          ]}
+        >
           <Input.TextArea placeholder="Телефон ответственного лица (опционально)" />
         </Form.Item>
       </Form>
