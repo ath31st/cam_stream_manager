@@ -10,7 +10,7 @@ import {
   UpdateResponsiblePersonModal,
 } from '../../../entities/responsible.person';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import { StreamSelect } from '../../../shared/StreamSelect';
+import { StreamSelect } from '../../../shared/stream.select';
 import { errorNotification } from '../../../shared/notifications';
 
 const ResponsiblePersonsTab: React.FC = () => {
