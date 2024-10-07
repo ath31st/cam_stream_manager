@@ -11,7 +11,10 @@ import {
 } from '../../../entities/responsible.person';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import { StreamSelect } from '../../../shared/stream.select';
-import { errorNotification } from '../../../shared/notifications';
+import {
+  errorNotification,
+  successNotification,
+} from '../../../shared/notifications';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -53,12 +56,20 @@ const ResponsiblePersonsTab: React.FC = () => {
 
   const handleSavePerson = async (person: NewResponsiblePerson) => {
     await addResponsiblePerson(person);
+    successNotification(
+      'Ответсвенное лицо добавлено',
+      `Ответсвенное лицо "${person.name}" успешно добавлено.`,
+    );
     setIsAddModalVisible(false);
   };
 
   const handleUpdatePerson = async (person: UpdateResponsiblePerson) => {
     if (selectedPerson) {
       await updateResponsiblePerson(selectedPerson.id, person);
+      successNotification(
+        'Ответсвенное лицо обновлено',
+        `Ответсвенное лицо "${person.name}" успешно обновлено.`,
+      );
       setIsUpdateModalVisible(false);
     }
   };
@@ -66,6 +77,10 @@ const ResponsiblePersonsTab: React.FC = () => {
   const handleDeletePerson = async () => {
     if (selectedPerson !== null) {
       await removeResponsiblePerson(selectedPerson.id);
+      successNotification(
+        'Ответсвенное лицо удалено',
+        `Ответсвенное лицо успешно удалено.`,
+      );
       setIsDeleteModalVisible(false);
     }
   };

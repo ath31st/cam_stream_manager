@@ -9,7 +9,10 @@ import {
   UpdateRegion,
 } from '../../../entities/region';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import { errorNotification } from '../../../shared/notifications';
+import {
+  errorNotification,
+  successNotification,
+} from '../../../shared/notifications';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -42,6 +45,10 @@ const RegionsTab: React.FC = () => {
 
   const handleAddRegion = async (name: string) => {
     await addRegion({ name });
+    successNotification(
+      'Регион добавлен',
+      `Регион "${name}" успешно добавлен.`,
+    );
     setIsAddModalVisible(false);
   };
 
@@ -54,6 +61,7 @@ const RegionsTab: React.FC = () => {
     if (deleteRegionId !== null) {
       await removeRegion(deleteRegionId);
       await fetchAllStreams();
+      successNotification('Регион удален', 'Регион успешно удален.');
       setDeleteRegionId(null);
       setIsDeleteModalVisible(false);
     }
@@ -67,6 +75,10 @@ const RegionsTab: React.FC = () => {
   const handleUpdateRegion = async (updatedRegion: UpdateRegion) => {
     if (updatingRegion) {
       await updateRegion(updatingRegion.id, updatedRegion);
+      successNotification(
+        'Регион обновлен',
+        `Регион "${updatedRegion.name}" успешно обновлен.`,
+      );
       setUpdatingRegion(null);
       setIsUpdateModalVisible(false);
     }
