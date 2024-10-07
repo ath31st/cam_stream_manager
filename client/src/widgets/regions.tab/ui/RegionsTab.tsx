@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table, Spin, Alert, Space } from 'antd';
+import { Button, Table, Spin, Space } from 'antd';
 import { useRegionStore } from '../../../app/stores/region.store';
 import {
   Region,
@@ -9,6 +9,7 @@ import {
   UpdateRegion,
 } from '../../../entities/region';
 import { useStreamStore } from '../../../app/stores/stream.store';
+import { errorNotification } from '../../../shared/notifications';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -25,8 +26,15 @@ const RegionsTab: React.FC = () => {
     addRegion,
     updateRegion,
     removeRegion,
+    clearError,
   } = useRegionStore();
   const { fetchAllStreams } = useStreamStore();
+
+  useEffect(() => {
+    if (error) {
+      errorNotification('Ошибка в работе с регионами', clearError, error);
+    }
+  }, [error, clearError]);
 
   useEffect(() => {
     fetchAllRegions();
@@ -104,9 +112,6 @@ const RegionsTab: React.FC = () => {
     <>
       <h1>Управление регионами</h1>
 
-      {error && (
-        <Alert message="Ошибка" description={error} type="error" showIcon />
-      )}
       {loading ? (
         <Spin size="large" />
       ) : (
