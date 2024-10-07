@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Space } from 'antd';
+import { Button, Space } from 'antd';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
-  DeleteResponsiblePersonModal,
-  AddResponsiblePersonModal,
-  UpdateResponsiblePersonModal,
 } from '../../../entities/responsible.person';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import { StreamSelect } from '../../../shared/stream.select';
@@ -15,6 +12,9 @@ import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
+import ResponsiblePersonModals from './Responsible.person.modals';
+import ResponsiblePersonsTable from './Responsible.persons.table';
+import { filterResponsiblePersons } from '../lib/filter.responsible.persons';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -85,98 +85,47 @@ const ResponsiblePersonsTab: React.FC = () => {
     }
   };
 
-  const filteredResponsiblePersons = selectedStreamId
-    ? responsiblePersons.filter(
-        (person) => person.streamId === selectedStreamId,
-      )
-    : responsiblePersons;
-
-  const columns = [
-    {
-      title: 'Имя',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Телефон',
-      dataIndex: 'phone',
-      key: 'phone',
-    },
-    {
-      title: 'Местоположение',
-      dataIndex: 'streamId',
-      key: 'streamId',
-      render: (streamId: number) => {
-        const stream = streams.find((s) => s.id === streamId);
-        return stream ? stream.location : 'Неизвестный стрим';
-      },
-    },
-    {
-      title: 'Действия',
-      key: 'actions',
-      render: (text: string, record: ResponsiblePerson) => (
-        <Space size="middle">
-          <Button
-            onClick={() => {
-              setSelectedPerson(record);
-              setIsUpdateModalVisible(true);
-            }}
-          >
-            Редактировать
-          </Button>
-          <Button
-            danger
-            onClick={() => {
-              setSelectedPerson(record);
-              setIsDeleteModalVisible(true);
-            }}
-          >
-            Удалить
-          </Button>
-        </Space>
-      ),
-    },
-  ];
+  const filteredResponsiblePersons = filterResponsiblePersons(
+    selectedStreamId,
+    responsiblePersons,
+  );
 
   return (
     <>
       <h1>Ответственные лица</h1>
-
       <Space style={{ marginBottom: 16 }}>
         <Button type="primary" onClick={handleAddPerson}>
           Добавить ответственное лицо
         </Button>
-
         <StreamSelect
           streams={streams}
           onChange={(value) => setSelectedStreamId(value)}
         />
       </Space>
-
-      <Table
-        dataSource={filteredResponsiblePersons}
-        columns={columns}
-        rowKey="id"
-      />
-
-      <AddResponsiblePersonModal
-        visible={isAddModalVisible}
+      <ResponsiblePersonsTable
+        persons={filteredResponsiblePersons}
         streams={streams}
-        onConfirm={handleSavePerson}
-        onCancel={() => setIsAddModalVisible(false)}
+        onEdit={(person) => {
+          setIsUpdateModalVisible(true);
+          setSelectedPerson(person);
+        }}
+        onDelete={(person) => {
+          setIsDeleteModalVisible(true);
+          setSelectedPerson(person);
+        }}
       />
-
-      <UpdateResponsiblePersonModal
-        visible={isUpdateModalVisible}
-        person={selectedPerson}
-        onConfirm={handleUpdatePerson}
-        onCancel={() => setIsUpdateModalVisible(false)}
-      />
-
-      <DeleteResponsiblePersonModal
-        visible={isDeleteModalVisible}
-        onConfirm={handleDeletePerson}
-        onCancel={() => setIsDeleteModalVisible(false)}
+      <ResponsiblePersonModals
+        isAddVisible={isAddModalVisible}
+        isUpdateVisible={isUpdateModalVisible}
+        isDeleteVisible={isDeleteModalVisible}
+        selectedPerson={selectedPerson}
+        streams={streams}
+        onAdd={handleSavePerson}
+        onUpdate={handleUpdatePerson}
+        onDelete={handleDeletePerson}
+        onCloseAdd={() => setIsAddModalVisible(false)}
+        onCloseUpdate={() => setIsUpdateModalVisible(false)}
+        onCloseDelete={() => setIsDeleteModalVisible(false)}
       />
     </>
   );
