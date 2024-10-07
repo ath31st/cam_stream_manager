@@ -11,6 +11,7 @@ import {
 } from '../../../entities/responsible.person';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import { StreamSelect } from '../../../shared/StreamSelect';
+import { errorNotification } from '../../../shared/notifications';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -26,8 +27,20 @@ const ResponsiblePersonsTab: React.FC = () => {
     addResponsiblePerson,
     updateResponsiblePerson,
     removeResponsiblePerson,
+    error,
+    clearError,
   } = useResponsiblePersonStore();
   const { streams, fetchAllStreams } = useStreamStore();
+
+  useEffect(() => {
+    if (error) {
+      errorNotification(
+        'Ошибка в работе с ответсвенными лицами',
+        clearError,
+        error,
+      );
+    }
+  }, [error, clearError]);
 
   useEffect(() => {
     fetchAllStreams();
