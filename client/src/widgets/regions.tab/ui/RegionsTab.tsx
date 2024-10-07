@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table, Spin, Space } from 'antd';
+import { Button, Spin } from 'antd';
 import { useRegionStore } from '../../../app/stores/region.store';
-import {
-  Region,
-  AddRegionModal,
-  DeleteRegionModal,
-  UpdateRegionModal,
-  UpdateRegion,
-} from '../../../entities/region';
+import { Region, UpdateRegion } from '../../../entities/region';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
+import RegionsTable from './RegionsTable';
+import RegionModals from './RegionModals';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -84,42 +80,6 @@ const RegionsTab: React.FC = () => {
     }
   };
 
-  const dataSource = regions.map((region: Region) => ({
-    key: region.id,
-    name: region.name,
-    isVisible: region.isVisible ? 'Да' : 'Нет',
-  }));
-
-  const columns = [
-    {
-      title: 'Название',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Видимость',
-      dataIndex: 'isVisible',
-      key: 'isVisible',
-    },
-    {
-      title: 'Действия',
-      key: 'action',
-      render: (_: unknown, record: { key: number }) => {
-        const region = regions.find((r) => r.id === record.key);
-        return (
-          <Space size={'middle'}>
-            <Button onClick={() => showUpdateModal(region!)}>
-              Редактировать
-            </Button>
-            <Button danger onClick={() => showDeleteConfirm(record.key)}>
-              Удалить
-            </Button>
-          </Space>
-        );
-      },
-    },
-  ];
-
   return (
     <>
       <h1>Управление регионами</h1>
@@ -131,28 +91,26 @@ const RegionsTab: React.FC = () => {
           <Button type="primary" onClick={() => setIsAddModalVisible(true)}>
             Добавить регион
           </Button>
-          <Table dataSource={dataSource} columns={columns} />
-
-          <AddRegionModal
-            visible={isAddModalVisible}
-            onOk={handleAddRegion}
-            onCancel={() => setIsAddModalVisible(false)}
+          <RegionsTable
+            regions={regions}
+            onEdit={showUpdateModal}
+            onDelete={showDeleteConfirm}
           />
-
-          <DeleteRegionModal
-            visible={isDeleteModalVisible}
-            onConfirm={handleDelete}
-            onCancel={() => {
+          <RegionModals
+            isAddModalVisible={isAddModalVisible}
+            isDeleteModalVisible={isDeleteModalVisible}
+            isUpdateModalVisible={isUpdateModalVisible}
+            updatingRegion={updatingRegion}
+            deleteRegionId={deleteRegionId}
+            onAdd={handleAddRegion}
+            onDelete={handleDelete}
+            onUpdate={handleUpdateRegion}
+            onCloseAdd={() => setIsAddModalVisible(false)}
+            onCloseDelete={() => {
               setDeleteRegionId(null);
               setIsDeleteModalVisible(false);
             }}
-          />
-
-          <UpdateRegionModal
-            visible={isUpdateModalVisible}
-            region={updatingRegion}
-            onOk={handleUpdateRegion}
-            onCancel={() => {
+            onCloseUpdate={() => {
               setUpdatingRegion(null);
               setIsUpdateModalVisible(false);
             }}
