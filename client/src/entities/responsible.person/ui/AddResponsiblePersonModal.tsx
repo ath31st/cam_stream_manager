@@ -23,7 +23,7 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
 }) => {
   const [form] = Form.useForm<NewResponsiblePerson>();
 
-  const handleFinish = (values: NewResponsiblePerson) => {
+  const handleOk = (values: NewResponsiblePerson) => {
     onConfirm(values);
     form.resetFields();
   };
@@ -42,7 +42,7 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
         </Button>,
       ]}
     >
-      <Form form={form} layout="vertical" onFinish={handleFinish}>
+      <Form form={form} layout="vertical" onFinish={handleOk}>
         <Form.Item name="name" label="Имя" rules={rpNameValidationRules}>
           <Input placeholder="Имя" />
         </Form.Item>
