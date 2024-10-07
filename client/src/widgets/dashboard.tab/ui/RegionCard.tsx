@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RegionInfo } from '../../../entities/dashboard';
-import { useResponsiblePersonStore } from '../../../app/stores/responsiblePersonStore';
+import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import { ResponsiblePersonModal } from '../../../entities/responsible.person';
 
 const RegionCard: React.FC<RegionInfo> = ({

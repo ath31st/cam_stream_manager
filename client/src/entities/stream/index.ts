@@ -9,7 +9,7 @@ import {
   updateStream,
   deleteStream,
   fetchStreamsByRegion,
-} from './api/streamApi';
+} from './api/stream.api';
 
 export type Stream = StreamDto;
 export type NewStream = NewStreamDto;

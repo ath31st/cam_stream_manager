@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, Menu, MenuProps } from 'antd';
-import { useRegionStore } from '../../../app/stores/regionStore';
-import { useStreamStore } from '../../../app/stores/streamStore';
+import { useRegionStore } from '../../../app/stores/region.store';
+import { useStreamStore } from '../../../app/stores/stream.store';
 import styles from './Sider.module.css';
 
 const { Sider } = Layout;

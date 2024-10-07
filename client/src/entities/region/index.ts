@@ -8,7 +8,7 @@ import {
   createRegion,
   updateRegion,
   deleteRegion,
-} from './api/regionApi';
+} from './api/region.api';
 
 export type Region = RegionDto;
 export type NewRegion = NewRegionDto;

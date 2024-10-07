@@ -7,7 +7,7 @@ import {
   regionNameValidationRules,
   optioanalPhoneValidationRules,
   optioanalRpNameValidationRules,
-} from './lib/validationRules';
+} from './lib/validation.rules';
 
 export {
   phoneValidationRules,

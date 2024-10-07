@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RegionCard from './RegionCard';
-import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboardConstants';
+import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
 
 const Dashboard: React.FC = () => {

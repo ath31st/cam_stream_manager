@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Space } from 'antd';
-import { useResponsiblePersonStore } from '../../../app/stores/responsiblePersonStore';
+import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../entities/responsible.person';
-import { useStreamStore } from '../../../app/stores/streamStore';
+import { useStreamStore } from '../../../app/stores/stream.store';
 import { StreamSelect } from '../../../shared/stream.select';
 import {
   errorNotification,
@@ -14,7 +14,7 @@ import {
 } from '../../../shared/notifications';
 import ResponsiblePersonModals from './ResponsiblePersonModals';
 import ResponsiblePersonsTable from './ResponsiblePersonsTable';
-import { filterResponsiblePersons } from '../lib/filterResponsiblePersons';
+import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -85,7 +85,7 @@ const ResponsiblePersonsTab: React.FC = () => {
     }
   };
 
-  const filteredResponsiblePersons = filterResponsiblePersons(
+  const filteredResponsiblePersons = useFilterResponsiblePersons(
     selectedStreamId,
     responsiblePersons,
   );

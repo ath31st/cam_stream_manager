@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Spin } from 'antd';
-import { useRegionStore } from '../../../app/stores/regionStore';
+import { useRegionStore } from '../../../app/stores/region.store';
 import { Region, UpdateRegion } from '../../../entities/region';
-import { useStreamStore } from '../../../app/stores/streamStore';
+import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   errorNotification,
   successNotification,

@@ -1,6 +1,6 @@
 import { ResponsiblePerson } from '../../../entities/responsible.person';
 
-export const filterResponsiblePersons = (
+export const useFilterResponsiblePersons = (
   selectedStreamId: number | null,
   responsiblePersons: ResponsiblePerson[],
 ) => {

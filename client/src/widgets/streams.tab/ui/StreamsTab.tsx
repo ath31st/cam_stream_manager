@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Space, Select } from 'antd';
-import { useStreamStore } from '../../../app/stores/streamStore';
+import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   AddStreamModal,
   DeleteStreamModal,
@@ -9,7 +9,7 @@ import {
   Stream,
   UpdateStream,
 } from '../../../entities/stream';
-import { useRegionStore } from '../../../app/stores/regionStore';
+import { useRegionStore } from '../../../app/stores/region.store';
 import {
   errorNotification,
   successNotification,

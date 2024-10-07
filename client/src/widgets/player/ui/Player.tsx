@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { useStreamStore } from '../../../app/stores/streamStore';
+import { useStreamStore } from '../../../app/stores/stream.store';
 import { HLSPlayer } from '../../../shared/hls.player';
 import styles from './Player.module.css';
-import { useResponsiblePersonStore } from '../../../app/stores/responsiblePersonStore';
+import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import ResponsiblePersons from './ResponsiblePersons';
 
 export const Player: React.FC = () => {

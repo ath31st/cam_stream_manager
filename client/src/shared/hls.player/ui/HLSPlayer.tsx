@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useHLS from '../api/useHLS';
+import useHLS from '../api/use.hls';
 import styles from './HLSPlayer.module.css';
 
 interface HLSPlayerProps {
