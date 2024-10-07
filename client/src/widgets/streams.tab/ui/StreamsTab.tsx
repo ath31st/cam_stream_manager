@@ -10,6 +10,7 @@ import {
   UpdateStream,
 } from '../../../entities/stream';
 import { useRegionStore } from '../../../app/stores/region.store';
+import { errorNotification } from '../../../shared/notifications';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -19,9 +20,22 @@ const StreamsTab: React.FC = () => {
   const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
   const [selectedRegionId, setSelectedRegionId] = useState<number | null>(null);
 
-  const { streams, fetchAllStreams, addStream, updateStream, removeStream } =
-    useStreamStore();
+  const {
+    streams,
+    fetchAllStreams,
+    addStream,
+    updateStream,
+    removeStream,
+    error,
+    clearError,
+  } = useStreamStore();
   const { regions, fetchAllRegions } = useRegionStore();
+
+  useEffect(() => {
+    if (error) {
+      errorNotification('Ошибка в работе с потоками', clearError, error);
+    }
+  }, [error, clearError]);
 
   useEffect(() => {
     fetchAllStreams();
