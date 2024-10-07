@@ -21,6 +21,7 @@ interface RegionState {
   updateRegion: (id: number, region: UpdateRegion) => Promise<void>;
   removeRegion: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
+  clearError: () => void;
 }
 
 export const useRegionStore = create<RegionState>((set) => ({
@@ -90,5 +91,9 @@ export const useRegionStore = create<RegionState>((set) => ({
     } catch (error) {
       useRegionStore.getState().handleError(error);
     }
+  },
+  
+  clearError: () => {
+    set({ error: null });
   },
 }));

@@ -30,6 +30,7 @@ interface ResponsiblePersonState {
   ) => Promise<void>;
   removeResponsiblePerson: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
+  clearError: () => void;
 }
 
 export const useResponsiblePersonStore = create<ResponsiblePersonState>(
@@ -116,6 +117,10 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
       } catch (error: unknown) {
         useResponsiblePersonStore.getState().handleError(error);
       }
+    },
+
+    clearError: () => {
+      set({ error: null });
     },
   }),
 );

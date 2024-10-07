@@ -24,6 +24,7 @@ interface StreamState {
   removeStream: (id: number) => Promise<void>;
   setSelectedStream: (stream: Stream) => void;
   handleError: (error: unknown) => void;
+  clearError: () => void;
 }
 
 export const useStreamStore = create<StreamState>((set) => ({
@@ -107,4 +108,6 @@ export const useStreamStore = create<StreamState>((set) => ({
   },
 
   setSelectedStream: (stream) => set({ selectedStream: stream }),
+
+  clearError: () => set({ error: null }),
 }));
