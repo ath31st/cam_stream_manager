@@ -3,8 +3,8 @@ import {
   responsiblePersonErrorMessages,
   streamErrorMessages,
   unknownError,
-} from '../constants/error.messages';
-import { commonErrorMessages } from '../constants/error.messages';
+} from '../constants/errorMessages';
+import { commonErrorMessages } from '../constants/errorMessages';
 
 export const getStreamErrorMessage = (statusCode: number) => {
   if (streamErrorMessages[statusCode]) {

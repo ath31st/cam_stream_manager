@@ -1,4 +1,4 @@
-import { errorNotification } from './ui/error.notification';
-import { successNotification } from './ui/success.notification';
+import { errorNotification } from './ui/errorNotification';
+import { successNotification } from './ui/successNotification';
 
 export { errorNotification, successNotification };

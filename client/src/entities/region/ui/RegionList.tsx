@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRegionStore } from '../../../app/stores/region.store';
+import { useRegionStore } from '../../../app/stores/regionStore';
 import { RegionItem } from './RegionItem';
 import { Spin, Alert } from 'antd';
 

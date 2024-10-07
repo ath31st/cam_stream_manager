@@ -3,7 +3,7 @@ import {
   phonePattern,
   urlErrorMessage,
   urlPattern,
-} from '../constants/validation.constants';
+} from '../constants/validationConstants';
 
 const getLengthRule = (min: number, max: number) => ({
   min,

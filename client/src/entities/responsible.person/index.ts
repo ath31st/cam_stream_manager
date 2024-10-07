@@ -14,7 +14,7 @@ import {
   createResponsiblePerson,
   updateResponsiblePerson,
   deleteResponsiblePerson,
-} from './api/responsible.person.api';
+} from './api/responsiblePersonApi';
 
 export type ResponsiblePerson = ResponsiblePersonDto;
 export type NewResponsiblePerson = NewResponsiblePersonDto;

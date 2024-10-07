@@ -1,3 +1,3 @@
-import ResponsiblePersonTab from '../responsible.person.tab/ui/Responsible.persons.tab';
+import ResponsiblePersonTab from './ui/ResponsiblePersonsTab';
 
 export default ResponsiblePersonTab;

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Space } from 'antd';
-import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
+import { useResponsiblePersonStore } from '../../../app/stores/responsiblePersonStore';
 import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../entities/responsible.person';
-import { useStreamStore } from '../../../app/stores/stream.store';
+import { useStreamStore } from '../../../app/stores/streamStore';
 import { StreamSelect } from '../../../shared/stream.select';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import ResponsiblePersonModals from './Responsible.person.modals';
-import ResponsiblePersonsTable from './Responsible.persons.table';
-import { filterResponsiblePersons } from '../lib/filter.responsible.persons';
+import ResponsiblePersonModals from './ResponsiblePersonModals';
+import ResponsiblePersonsTable from './ResponsiblePersonsTable';
+import { filterResponsiblePersons } from '../lib/filterResponsiblePersons';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);

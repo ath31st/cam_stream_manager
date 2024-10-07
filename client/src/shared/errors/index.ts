@@ -1,7 +1,7 @@
-import { unknownError } from './constants/error.messages';
-import { getRegionErrorMessage } from './api/errors.api';
-import { getRpErrorMessage } from './api/errors.api';
-import { getStreamErrorMessage } from './api/errors.api';
+import { unknownError } from './constants/errorMessages';
+import { getRegionErrorMessage } from './api/errorApi';
+import { getRpErrorMessage } from './api/errorApi';
+import { getStreamErrorMessage } from './api/errorApi';
 
 export {
   getRegionErrorMessage,

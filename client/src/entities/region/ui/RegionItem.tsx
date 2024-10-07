@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, Switch, Spin } from 'antd';
-import { useRegionStore } from '../../../app/stores/region.store';
+import { useRegionStore } from '../../../app/stores/regionStore';
 import { Region } from '../index';
 
 interface RegionItemProps {

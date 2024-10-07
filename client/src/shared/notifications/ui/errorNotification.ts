@@ -1,5 +1,5 @@
 import { notification } from 'antd';
-import { notificationDurations } from '../constants/notification.constants';
+import { notificationDurations } from '../constants/notificationConstants';
 
 export const errorNotification = (
   message: string,
