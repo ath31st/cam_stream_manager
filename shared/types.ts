@@ -83,3 +83,11 @@ export interface StreamDashboardDto {
   location: string;
   status: string;
 }
+
+export interface EventDto {
+  id: number;
+  type: string;
+  level: string;
+  info: string;
+  createdAt: Date;
+}
