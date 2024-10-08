@@ -84,10 +84,20 @@ export interface StreamDashboardDto {
   status: string;
 }
 
+// event interfaces
+
 export interface EventDto {
   id: number;
   type: string;
   level: string;
   info: string;
   createdAt: Date;
+}
+
+export interface Page<T> {
+  items: T[];
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+  pageSize: number;
 }
