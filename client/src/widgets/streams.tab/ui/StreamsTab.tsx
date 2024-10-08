@@ -1,19 +1,15 @@
+// StreamsTab.tsx
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Space, Select } from 'antd';
+import { Button, Space, Select } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import {
-  AddStreamModal,
-  DeleteStreamModal,
-  UpdateStreamModal,
-  NewStream,
-  Stream,
-  UpdateStream,
-} from '../../../entities/stream';
 import { useRegionStore } from '../../../app/stores/region.store';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
+import StreamsTable from './StreamsTable';
+import StreamModals from './StreamsModals';
+import { Stream, NewStream, UpdateStream } from '../../../entities/stream';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -98,45 +94,14 @@ const StreamsTab: React.FC = () => {
     }
   };
 
+  const handleCancelDelete = () => {
+    setIsDeleteModalVisible(false);
+    setDeleteStreamId(null);
+  };
+
   const filteredStreams = selectedRegionId
     ? streams.filter((stream) => stream.regionId === selectedRegionId)
     : streams;
-
-  const columns = [
-    {
-      title: 'Местоположение',
-      dataIndex: 'location',
-      key: 'location',
-    },
-    {
-      title: 'Статус',
-      dataIndex: 'status',
-      key: 'status',
-    },
-    {
-      title: 'Видимость',
-      dataIndex: 'isVisible',
-      key: 'isVisible',
-      render: (isVisible: boolean) => (isVisible ? 'Виден' : 'Скрыт'),
-    },
-    {
-      title: 'Комментарий',
-      dataIndex: 'comment',
-      key: 'comment',
-    },
-    {
-      title: 'Действия',
-      key: 'actions',
-      render: (text: string, record: Stream) => (
-        <Space size="middle">
-          <Button onClick={() => handleUpdate(record)}>Редактировать</Button>
-          <Button danger onClick={() => showDeleteConfirm(record.id)}>
-            Удалить
-          </Button>
-        </Space>
-      ),
-    },
-  ];
 
   return (
     <>
@@ -161,30 +126,25 @@ const StreamsTab: React.FC = () => {
         </Select>
       </Space>
 
-      <Table dataSource={filteredStreams} columns={columns} rowKey="id" />
-
-      <AddStreamModal
-        visible={isAddModalVisible}
-        regions={regions}
-        onConfirm={handleSaveStream}
-        onCancel={handleCancelAdd}
+      <StreamsTable
+        streams={filteredStreams}
+        onEdit={handleUpdate}
+        onDelete={showDeleteConfirm}
       />
 
-      <UpdateStreamModal
-        visible={isUpdateModalVisible}
-        stream={updatingStream}
+      <StreamModals
+        isAddModalVisible={isAddModalVisible}
+        isUpdateModalVisible={isUpdateModalVisible}
+        isDeleteModalVisible={isDeleteModalVisible}
+        updatingStream={updatingStream}
+        deleteStreamId={deleteStreamId}
         regions={regions}
-        onConfirm={handleSaveUpdate}
-        onCancel={handleCancelUpdate}
-      />
-
-      <DeleteStreamModal
-        visible={isDeleteModalVisible}
-        onConfirm={handleDelete}
-        onCancel={() => {
-          setDeleteStreamId(null);
-          setIsDeleteModalVisible(false);
-        }}
+        handleSaveStream={handleSaveStream}
+        handleSaveUpdate={handleSaveUpdate}
+        handleCancelAdd={handleCancelAdd}
+        handleCancelUpdate={handleCancelUpdate}
+        handleDelete={handleDelete}
+        handleCancelDelete={handleCancelDelete}
       />
     </>
   );
