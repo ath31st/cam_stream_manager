@@ -1,6 +1,6 @@
 import { Event } from '@prisma/client';
 import { EventRepository } from '../repositories/event.repository';
-import { EventDto } from '@shared/types';
+import { EventDto, Page } from '@shared/types';
 import { toEventDto, toEventDtos } from '../mappers/event.mapper';
 import { Logger } from '../utils/logger';
 import { EventLevel, EventType, NewEvent } from '../types/event.types';
@@ -25,21 +25,27 @@ export class EventService {
     return this.getEvent(id).then(toEventDto);
   };
 
-  getEventDtos = async (
+  getEventPage = async (
     page?: number,
     pageSize?: number,
     filterByType?: EventType,
     filterByLevel?: EventLevel,
-  ): Promise<EventDto[]> => {
+  ): Promise<Page<EventDto>> => {
     try {
-      const events = await this.eventRepository.findEvents(
+      const eventsPage = await this.eventRepository.findEvents(
         page,
         pageSize,
         filterByType,
         filterByLevel,
       );
 
-      return toEventDtos(events);
+      return {
+        items: toEventDtos(eventsPage.items),
+        totalItems: eventsPage.totalItems,
+        totalPages: eventsPage.totalPages,
+        currentPage: eventsPage.currentPage,
+        pageSize: eventsPage.pageSize,
+      };
     } catch (error) {
       Logger.error('Error getting events:', error);
       throw new Error('Cannot get all events');

@@ -13,14 +13,14 @@ export class EventController {
     const { page, pageSize, type, level } = req.query;
 
     try {
-      const eventDtos = await this.eventService.getEventDtos(
+      const eventPage = await this.eventService.getEventPage(
         page ? Number(page) : undefined,
         pageSize ? Number(pageSize) : undefined,
         type as EventType,
         level as EventLevel,
       );
 
-      res.status(200).json(eventDtos);
+      res.status(200).json(eventPage);
     } catch (error) {
       if (error instanceof Error) {
         res.status(404).json({
