@@ -1,4 +1,3 @@
-// components/StreamModals.tsx
 import React from 'react';
 import {
   AddStreamModal,

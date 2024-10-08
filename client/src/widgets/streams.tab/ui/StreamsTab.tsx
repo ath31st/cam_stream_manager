@@ -1,4 +1,3 @@
-// StreamsTab.tsx
 import React, { useEffect, useState } from 'react';
 import { Button, Space, Select } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';

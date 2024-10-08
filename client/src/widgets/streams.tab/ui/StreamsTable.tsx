@@ -1,4 +1,3 @@
-// components/StreamsTable.tsx
 import React from 'react';
 import { Table, Button, Space } from 'antd';
 import { Stream } from '../../../entities/stream';
