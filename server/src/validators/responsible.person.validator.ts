@@ -3,7 +3,7 @@ import {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
-import { PHONE_NUMBER_PATTERN } from '../utils/string.constants';
+import { PHONE_NUMBER_PATTERN } from '../utils/constants/string.constants';
 
 export const newResponsiblePersonSchema = Joi.object<NewResponsiblePersonDto>({
   name: Joi.string().max(100).required(),

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { NewStreamDto, UpdateStreamDto } from '@shared/types';
-import { PHONE_NUMBER_PATTERN } from '../utils/string.constants';
+import { PHONE_NUMBER_PATTERN } from '../utils/constants/string.constants';
 
 export const newStreamSchema = Joi.object<NewStreamDto>({
   regionId: Joi.number().integer().required(),

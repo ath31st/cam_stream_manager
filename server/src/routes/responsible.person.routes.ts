@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { rpController } from '../utils/init';
-import { API_PREFIX } from '../utils/routes.constants';
+import { API_PREFIX } from '../utils/constants/routes.constants';
 
 const router = Router();
 
