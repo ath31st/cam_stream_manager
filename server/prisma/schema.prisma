@@ -42,3 +42,13 @@ model Stream {
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String?  @unique
+  role      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
