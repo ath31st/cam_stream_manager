@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Button, Space } from 'antd';
 import { ResponsiblePerson } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
+import { PaginationConfig } from '../../../shared/pagination';
 
 interface ResponsiblePersonsTableProps {
   persons: ResponsiblePerson[];
@@ -17,15 +18,34 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
   onDelete,
 }) => {
   const columns = [
-    { title: 'Имя', dataIndex: 'name', key: 'name' },
+    {
+      title: 'Имя',
+      dataIndex: 'name',
+      key: 'name',
+      sorter: (a: ResponsiblePerson, b: ResponsiblePerson) =>
+        a.name.localeCompare(b.name),
+    },
     { title: 'Телефон', dataIndex: 'phone', key: 'phone' },
     {
       title: 'Местоположение',
       dataIndex: 'streamId',
       key: 'streamId',
+      filters: streams.map((stream) => ({
+        text: stream.location,
+        value: stream.id,
+      })),
+      onFilter: (value: unknown, record: ResponsiblePerson) =>
+        record.streamId === value,
       render: (streamId: number) => {
         const stream = streams.find((s) => s.id === streamId);
-        return stream ? stream.location : 'Неизвестный стрим';
+        return stream ? stream.location : 'Неизвестный поток';
+      },
+      sorter: (a: ResponsiblePerson, b: ResponsiblePerson) => {
+        const locationA =
+          streams.find((s) => s.id === a.streamId)?.location || '';
+        const locationB =
+          streams.find((s) => s.id === b.streamId)?.location || '';
+        return locationA.localeCompare(locationB);
       },
     },
     {
@@ -42,7 +62,14 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
     },
   ];
 
-  return <Table dataSource={persons} columns={columns} rowKey="id" />;
+  return (
+    <Table
+      dataSource={persons}
+      columns={columns}
+      rowKey="id"
+      pagination={PaginationConfig}
+    />
+  );
 };
 
 export default ResponsiblePersonsTable;
