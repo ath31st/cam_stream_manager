@@ -2,6 +2,7 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
 import { Stream } from '../../../entities/stream';
+import { paginationConfig } from '../../../shared/pagination';
 
 interface StreamsTableProps {
   streams: Stream[];
@@ -19,11 +20,13 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       title: 'Местоположение',
       dataIndex: 'location',
       key: 'location',
+      sorter: (a: Stream, b: Stream) => a.location.localeCompare(b.location),
     },
     {
       title: 'Статус',
       dataIndex: 'status',
       key: 'status',
+      sorter: (a: Stream, b: Stream) => a.status.localeCompare(b.status),
     },
     {
       title: 'Видимость',
@@ -50,7 +53,14 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
     },
   ];
 
-  return <Table dataSource={streams} columns={columns} rowKey="id" />;
+  return (
+    <Table
+      dataSource={streams}
+      columns={columns}
+      rowKey="id"
+      pagination={paginationConfig}
+    />
+  );
 };
 
 export default StreamsTable;
