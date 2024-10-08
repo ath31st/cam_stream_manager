@@ -1,6 +1,6 @@
 import { TablePaginationConfig } from "antd";
 
-export const PaginationConfig: TablePaginationConfig  = {
+export const paginationConfig: TablePaginationConfig  = {
   defaultCurrent: 1,
   showSizeChanger: true,
   defaultPageSize: 5,

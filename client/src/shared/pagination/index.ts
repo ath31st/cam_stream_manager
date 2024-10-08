@@ -1,3 +1,3 @@
-import { PaginationConfig } from './config/table.pagination.config';
+import { paginationConfig } from './config/table.pagination.config';
 
-export { PaginationConfig };
+export { paginationConfig };

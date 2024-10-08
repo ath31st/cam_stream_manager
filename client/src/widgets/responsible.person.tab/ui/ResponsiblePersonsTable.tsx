@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Button, Space } from 'antd';
 import { ResponsiblePerson } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
-import { PaginationConfig } from '../../../shared/pagination';
+import { paginationConfig } from '../../../shared/pagination';
 
 interface ResponsiblePersonsTableProps {
   persons: ResponsiblePerson[];
@@ -67,7 +67,7 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
       dataSource={persons}
       columns={columns}
       rowKey="id"
-      pagination={PaginationConfig}
+      pagination={paginationConfig}
     />
   );
 };

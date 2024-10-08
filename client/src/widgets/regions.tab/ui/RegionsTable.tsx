@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
 import { Region } from '../../../entities/region';
+import { paginationConfig } from '../../../shared/pagination';
 
 interface RegionsTableProps {
   regions: Region[];
@@ -24,6 +25,8 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       title: 'Название',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a: { name: string }, b: { name: string }) =>
+        a.name.localeCompare(b.name),
     },
     {
       title: 'Видимость',
@@ -48,7 +51,13 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
     },
   ];
 
-  return <Table dataSource={dataSource} columns={columns} />;
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      pagination={paginationConfig}
+    />
+  );
 };
 
 export default RegionsTable;
