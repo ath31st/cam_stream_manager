@@ -4,11 +4,12 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import streamRoutes from './routes/stream.routes';
+import { Logger } from './utils/logger';
 import { startStreamCronJob } from './cron/stream.cron';
 import regionRoutes from './routes/region.routes';
 import rpRoutes from './routes/responsible.person.routes';
 import dashboardRoutes from './routes/dashboard.routes';
-import { Logger } from './utils/logger';
+import eventRoutes from './routes/event.routes';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(eventRoutes);
 app.use(regionRoutes);
 app.use(rpRoutes);
 app.use(streamRoutes);
