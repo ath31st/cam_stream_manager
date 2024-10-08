@@ -12,12 +12,13 @@ import { DashboardService } from '../services/dashboard.service';
 import { DashboardController } from '../controllers/dashboard.controller';
 import { EventService } from '../services/event.service';
 import { EventRepository } from '../repositories/event.repository';
+import { EventController } from '../controllers/event.controller';
 
 const prisma = prismaService;
 
 const eventRepository = new EventRepository(prisma.client);
 const eventService = new EventService(eventRepository);
-//const eventController = new EventController(eventService);
+const eventController = new EventController(eventService);
 
 const rpRepository = new ResponsiblePersonRepository(prisma.client);
 const rpService = new ResponsiblePersonService(rpRepository);
@@ -40,4 +41,5 @@ export {
   regionController,
   rpController,
   dashboardController,
+  eventController,
 };
