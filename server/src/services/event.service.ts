@@ -3,7 +3,7 @@ import { EventRepository } from '../repositories/event.repository';
 import { EventDto } from '@shared/types';
 import { toEventDto, toEventDtos } from '../mappers/event.mapper';
 import { Logger } from '../utils/logger';
-import { NewEvent } from '../types/event.types';
+import { EventLevel, EventType, NewEvent } from '../types/event.types';
 
 export class EventService {
   private eventRepository: EventRepository;
@@ -25,17 +25,25 @@ export class EventService {
     return this.getEvent(id).then(toEventDto);
   };
 
-  getAllEvents = async (): Promise<Event[]> => {
+  getEventDtos = async (
+    page?: number,
+    pageSize?: number,
+    filterByType?: EventType,
+    filterByLevel?: EventLevel,
+  ): Promise<EventDto[]> => {
     try {
-      return await this.eventRepository.findAllEvents();
+      const events = await this.eventRepository.findEvents(
+        page,
+        pageSize,
+        filterByType,
+        filterByLevel,
+      );
+
+      return toEventDtos(events);
     } catch (error) {
       Logger.error('Error getting events:', error);
       throw new Error('Cannot get all events');
     }
-  };
-
-  getAllEventDtos = async (): Promise<EventDto[]> => {
-    return this.getAllEvents().then(toEventDtos);
   };
 
   createEvent = async (dto: NewEvent): Promise<EventDto> => {

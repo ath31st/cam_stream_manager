@@ -1,6 +1,6 @@
 import { PrismaClient, Event } from '@prisma/client';
 import { Logger } from '../utils/logger';
-import { EventLevel } from '../types/event.types';
+import { EventLevel, EventType } from '../types/event.types';
 
 export class EventRepository {
   private prismaClient: PrismaClient;
@@ -15,8 +15,23 @@ export class EventRepository {
     });
   };
 
-  findAllEvents = async (): Promise<Event[]> => {
-    return await this.prismaClient.event.findMany();
+  findEvents = async (
+    page: number = 1,
+    pageSize: number = 10,
+    type?: EventType,
+    level?: EventLevel,
+  ): Promise<Event[]> => {
+    const skip = (page - 1) * pageSize;
+
+    return await this.prismaClient.event.findMany({
+      take: pageSize,
+      skip,
+      where: {
+        ...(type && { type }),
+        ...(level && { level }),
+      },
+      orderBy: { id: 'asc' },
+    });
   };
 
   createEvent = async (
