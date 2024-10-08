@@ -1,6 +1,6 @@
 import { PrismaClient, Event } from '@prisma/client';
 import { Logger } from '../utils/logger';
-import { EventLevel } from '../utils/event.level';
+import { EventLevel } from '../types/event.types';
 
 export class EventRepository {
   private prismaClient: PrismaClient;
