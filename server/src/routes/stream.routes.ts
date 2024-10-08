@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { streamController } from '../utils/init';
+import { API_PREFIX } from '../utils/routes.constants';
 
 const router = Router();
 
@@ -11,7 +12,6 @@ router.get('/streams/:id', streamController.getStream);
 router.get('/streams/region/:id', streamController.getStreamsByRegion);
 
 const streamRoutes = Router();
-const apiPrefix = '/api/v1';
-streamRoutes.use(apiPrefix, router);
+streamRoutes.use(API_PREFIX, router);
 
 export default streamRoutes;

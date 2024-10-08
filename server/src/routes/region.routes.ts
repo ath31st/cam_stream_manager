@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { regionController } from '../utils/init';
+import { API_PREFIX } from '../utils/routes.constants';
 
 const router = Router();
 
@@ -10,7 +11,6 @@ router.get('/regions', regionController.getAllRegions);
 router.get('/regions/:id', regionController.getRegion);
 
 const regionRoutes = Router();
-const apiPrefix = '/api/v1';
-regionRoutes.use(apiPrefix, router);
+regionRoutes.use(API_PREFIX, router);
 
 export default regionRoutes;

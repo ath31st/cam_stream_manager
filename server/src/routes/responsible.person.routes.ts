@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { rpController } from '../utils/init';
+import { API_PREFIX } from '../utils/routes.constants';
 
 const router = Router();
 
@@ -14,7 +15,6 @@ router.get(
 );
 
 const rpRoutes = Router();
-const apiPrefix = '/api/v1';
-rpRoutes.use(apiPrefix, router);
+rpRoutes.use(API_PREFIX, router);
 
 export default rpRoutes;

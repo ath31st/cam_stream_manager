@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import { dashboardController } from '../utils/init';
+import { API_PREFIX } from '../utils/routes.constants';
 
 const router = Router();
 
 router.get('/dashboard', dashboardController.getDashboardData);
 
 const dashboardRoutes = Router();
-const apiPrefix = '/api/v1';
-dashboardRoutes.use(apiPrefix, router);
+dashboardRoutes.use(API_PREFIX, router);
 
 export default dashboardRoutes;
