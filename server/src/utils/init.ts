@@ -10,15 +10,21 @@ import { RegionController } from '../controllers/region.controller';
 import { ResponsiblePersonController } from '../controllers/responsible.person.controller';
 import { DashboardService } from '../services/dashboard.service';
 import { DashboardController } from '../controllers/dashboard.controller';
+import { EventService } from '../services/event.service';
+import { EventRepository } from '../repositories/event.repository';
 
 const prisma = prismaService;
+
+const eventRepository = new EventRepository(prisma.client);
+const eventService = new EventService(eventRepository);
+//const eventController = new EventController(eventService);
 
 const rpRepository = new ResponsiblePersonRepository(prisma.client);
 const rpService = new ResponsiblePersonService(rpRepository);
 const rpController = new ResponsiblePersonController(rpService);
 
 const regionRepository = new RegionRepository(prisma.client);
-const regionService = new RegionService(regionRepository);
+const regionService = new RegionService(regionRepository, eventService);
 const regionController = new RegionController(regionService);
 
 const streamRepository = new StreamRepository(prisma.client);

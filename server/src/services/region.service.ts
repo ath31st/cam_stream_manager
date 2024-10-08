@@ -3,12 +3,16 @@ import { RegionRepository } from '../repositories/region.repository';
 import { NewRegionDto, RegionDto, UpdateRegionDto } from '@shared/types';
 import { toRegionDto, toRegionDtos } from '../mappers/region.mapper';
 import { Logger } from '../utils/logger';
+import { EventService } from './event.service';
+import { EventLevel, EventType, NewEvent } from '../types/event.types';
 
 export class RegionService {
   private regionRepository: RegionRepository;
+  private eventService: EventService;
 
-  constructor(regionRepository: RegionRepository) {
+  constructor(regionRepository: RegionRepository, eventService: EventService) {
     this.regionRepository = regionRepository;
+    this.eventService = eventService;
   }
 
   getRegion = async (id: number): Promise<Region> => {
@@ -47,8 +51,13 @@ export class RegionService {
   createRegion = async (dto: NewRegionDto): Promise<RegionDto> => {
     try {
       await this.existsRegionByName(dto.name);
+      const region = await this.regionRepository
+        .createRegion(dto)
+        .then(toRegionDto);
 
-      return await this.regionRepository.createRegion(dto).then(toRegionDto);
+      await this.logRegionEvent(EventLevel.INFO, `Region ${dto.name} created`);
+
+      return region;
     } catch (error) {
       Logger.error('Error creating region:', error);
       if (error instanceof Error) {
@@ -69,7 +78,13 @@ export class RegionService {
         throw new Error('Region with this name already exists');
       }
 
-      return await this.regionRepository.updateRegion(dto).then(toRegionDto);
+      const updatedRegion = await this.regionRepository
+        .updateRegion(dto)
+        .then(toRegionDto);
+
+      await this.logRegionEvent(EventLevel.INFO, `Region ${dto.name} updated`);
+
+      return updatedRegion;
     } catch (error) {
       Logger.error('Error updating region:', error);
       throw new Error('Could not update region');
@@ -79,9 +94,19 @@ export class RegionService {
   deleteRegion = async (regionId: number) => {
     try {
       await this.regionRepository.deleteRegion(regionId);
+
+      await this.logRegionEvent(
+        EventLevel.INFO,
+        `Region with id: ${regionId} deleted`,
+      );
     } catch (error) {
       Logger.error('Error deleting region:', error);
       throw new Error('Could not delete region');
     }
+  };
+
+  private logRegionEvent = async (level: EventLevel, info: string) => {
+    const event: NewEvent = { type: EventType.REGION, level, info };
+    await this.eventService.createEvent(event);
   };
 }
