@@ -32,7 +32,7 @@ export class EventRepository {
           ...(type && { type }),
           ...(level && { level }),
         },
-        orderBy: { id: 'asc' },
+        orderBy: { id: 'desc' },
       }),
       this.prismaClient.event.count({
         where: {
