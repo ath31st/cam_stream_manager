@@ -20,3 +20,7 @@ export const regionErrorMessages: Record<number, string> = {
 export const responsiblePersonErrorMessages: Record<number, string> = {
   404: 'Запрашиваемое ответственное лицо не найдено.',
 };
+
+export const eventErrorMessages: Record<number, string> = {
+  404: 'Запрашиваемое событие не найдено.',
+};
