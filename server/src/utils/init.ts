@@ -21,7 +21,7 @@ const eventService = new EventService(eventRepository);
 const eventController = new EventController(eventService);
 
 const rpRepository = new ResponsiblePersonRepository(prisma.client);
-const rpService = new ResponsiblePersonService(rpRepository);
+const rpService = new ResponsiblePersonService(rpRepository, eventService);
 const rpController = new ResponsiblePersonController(rpService);
 
 const regionRepository = new RegionRepository(prisma.client);

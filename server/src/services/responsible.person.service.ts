@@ -7,11 +7,18 @@ import {
 } from '@shared/types';
 import { toRpDto, toRpDtos } from '../mappers/responsible.person.mapper';
 import { Logger } from '../utils/logger';
+import { EventLevel, EventType, NewEvent } from '../types/event.types';
+import { EventService } from './event.service';
 
 export class ResponsiblePersonService {
   private responsiblePersonRepository: ResponsiblePersonRepository;
+  private eventService: EventService;
 
-  constructor(responsiblePersonRepository: ResponsiblePersonRepository) {
+  constructor(
+    responsiblePersonRepository: ResponsiblePersonRepository,
+    eventService: EventService,
+  ) {
+    this.eventService = eventService;
     this.responsiblePersonRepository = responsiblePersonRepository;
   }
 
@@ -58,9 +65,16 @@ export class ResponsiblePersonService {
     dto: NewResponsiblePersonDto,
   ): Promise<ResponsiblePersonDto> => {
     try {
-      return await this.responsiblePersonRepository
+      const rp = await this.responsiblePersonRepository
         .createResponsiblePerson(dto)
         .then(toRpDto);
+
+      await this.logRpEvent(
+        EventLevel.INFO,
+        `Created responsible person ${rp.name}`,
+      );
+
+      return rp;
     } catch (error) {
       Logger.error('Error creating responsible person:', error);
       throw new Error('Could not create responsible person');
@@ -71,9 +85,16 @@ export class ResponsiblePersonService {
     dto: UpdateResponsiblePersonDto,
   ): Promise<ResponsiblePersonDto> => {
     try {
-      return await this.responsiblePersonRepository
+      const updatedRp = await this.responsiblePersonRepository
         .updateResponsiblePerson(dto)
         .then(toRpDto);
+
+      await this.logRpEvent(
+        EventLevel.INFO,
+        `Updated responsible person ${updatedRp.name}`,
+      );
+
+      return updatedRp;
     } catch (error) {
       Logger.error('Error updating responsible person:', error);
       throw new Error('Could not update responsible person');
@@ -83,9 +104,19 @@ export class ResponsiblePersonService {
   deleteResponsiblePerson = async (personId: number) => {
     try {
       await this.responsiblePersonRepository.deleteResponsiblePerson(personId);
+
+      await this.logRpEvent(
+        EventLevel.INFO,
+        `Deleted responsible person ${personId}`,
+      );
     } catch (error) {
       Logger.error('Error deleting responsible person:', error);
       throw new Error('Could not delete responsible person');
     }
+  };
+
+  private logRpEvent = async (level: EventLevel, info: string) => {
+    const event: NewEvent = { type: EventType.RP, level, info };
+    await this.eventService.createEvent(event);
   };
 }
