@@ -1,19 +1,14 @@
 import React from 'react';
 import { EventDto } from './../index';
+import { Card } from 'antd';
 
-const EventCard: React.FC<EventDto> = ({
-  type,
-  level,
-  info,
-  createdAt,
-}) => {
+const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
   return (
-    <>
-      <h3>{type}</h3>
+    <Card title={type} style={{ width: 250, height: 200 }}>
       <p>{level}</p>
       <p>{info}</p>
       <p>{new Date(createdAt).toLocaleString()}</p>
-    </>
+    </Card>
   );
 };
 
