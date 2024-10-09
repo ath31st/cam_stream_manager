@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import RegionCard from './RegionCard';
+import { Row, Col } from 'antd';
+import { RegionCard } from '../../../entities/region';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
+import { EventSidebar } from '../../event.sidebar';
 
 const Dashboard: React.FC = () => {
   const [dashboardData, setDashboardData] = useState<RegionInfo[]>([]);
@@ -26,14 +28,18 @@ const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Дашборд</h1>
-      <div className="region-container">
-        {dashboardData.map((region) => (
-          <RegionCard key={region.regionName} {...region} />
-        ))}
-      </div>
-    </div>
+    <Row gutter={10}>
+      <Col span={18}>
+        <div className="region-container">
+          {dashboardData.map((region) => (
+            <RegionCard key={region.regionName} {...region} />
+          ))}
+        </div>
+      </Col>
+      <Col span={6}>
+        <EventSidebar />
+      </Col>
+    </Row>
   );
 };
 
