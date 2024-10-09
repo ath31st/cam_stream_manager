@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
-import { Event, fetchEvents, deleteEvent, Page } from '../../entities/event';
+import { EventDto, fetchEvents, deleteEvent, Page } from '../../entities/event';
 import { AxiosError } from 'axios';
 import { getEventErrorMessage, unknownError } from '../../shared/errors';
 
 interface EventState {
-  events: Event[];
-  selectedEvent: Event | null;
+  events: EventDto[];
+  selectedEvent: EventDto | null;
   loading: boolean;
   error: string | null;
   fetchEvents: () => Promise<void>;
@@ -23,7 +23,7 @@ export const useEventStore = create<EventState>((set) => ({
   fetchEvents: async () => {
     set({ loading: true });
     try {
-      const eventPage: Page<Event> = await fetchEvents();
+      const eventPage: Page<EventDto> = await fetchEvents();
       set({ events: eventPage.items, loading: false });
     } catch (error) {
       set({ loading: false });

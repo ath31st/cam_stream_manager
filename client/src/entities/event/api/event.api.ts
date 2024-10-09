@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Event, Page, EventType, EventLevel } from '../index';
+import { EventDto, Page, EventType, EventLevel } from '../index';
 
 const API_URL = process.env.REACT_APP_API_URL + '/events';
 
@@ -8,14 +8,14 @@ export const fetchEvents = async (
   pageSize?: number,
   filterByType?: EventType,
   filterByLevel?: EventLevel,
-): Promise<Page<Event>> => {
+): Promise<Page<EventDto>> => {
   const params = {
     page,
     pageSize,
     type: filterByType,
     level: filterByLevel,
   };
-  const response = await axios.get<Page<Event>>(API_URL, { params });
+  const response = await axios.get<Page<EventDto>>(API_URL, { params });
   return response.data;
 };
 
