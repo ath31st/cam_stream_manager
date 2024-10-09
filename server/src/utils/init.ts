@@ -29,7 +29,7 @@ const regionService = new RegionService(regionRepository, eventService);
 const regionController = new RegionController(regionService);
 
 const streamRepository = new StreamRepository(prisma.client);
-const streamService = new StreamService(streamRepository);
+const streamService = new StreamService(streamRepository, eventService);
 const streamController = new StreamController(streamService, rpService);
 
 const dashboardService = new DashboardService(regionService, streamService);
