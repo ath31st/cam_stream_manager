@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { checkServerStatus } from '../../features/server.status';
+import { checkServerStatus, INTERVAL } from '../../features/server.status';
 
 interface ServerStatusState {
   isServerUp: boolean;
@@ -20,7 +20,7 @@ const useServerStatusStore = create<ServerStatusState>((set) => ({
     interval = setInterval(async () => {
       const isUp = await checkServerStatus();
       set({ isServerUp: isUp });
-    }, 5000);
+    }, INTERVAL);
   },
 
   stopHealthCheck: () => {
