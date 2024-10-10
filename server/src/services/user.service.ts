@@ -9,7 +9,9 @@ import {
   NewUserDto,
   UpdateUserDto,
   UpdateUserPasswordDto,
+  UserDto,
 } from '@shared/types';
+import { toUserDto, toUserDtos } from '../mappers/user.mapper';
 
 export class UserService {
   private userRepository: UserRepository;
@@ -21,7 +23,7 @@ export class UserService {
     this.eventService = eventService;
   }
 
-  getUser = async (id: number): Promise<User> => {
+  private getUser = async (id: number): Promise<User> => {
     try {
       return await this.userRepository.findUser(id);
     } catch (error) {
@@ -30,25 +32,31 @@ export class UserService {
     }
   };
 
-  getUserByUsername = async (username: string): Promise<User> => {
+  getUserDto = async (id: number): Promise<UserDto> => {
+    return await this.getUser(id).then(toUserDto);
+  };
+
+  getUserByUsername = async (username: string): Promise<UserDto> => {
     try {
-      return await this.userRepository.findUserByUsername(username);
+      return await this.userRepository
+        .findUserByUsername(username)
+        .then(toUserDto);
     } catch (error) {
       Logger.error(`Error finding user with username ${username}:`, error);
       throw new Error('User not found');
     }
   };
 
-  getUserByEmail = async (email: string): Promise<User> => {
+  getUserByEmail = async (email: string): Promise<UserDto> => {
     try {
-      return await this.userRepository.findUserByEmail(email);
+      return await this.userRepository.findUserByEmail(email).then(toUserDto);
     } catch (error) {
       Logger.error(`Error finding user with email ${email}:`, error);
       throw new Error('User not found');
     }
   };
 
-  getAllUsers = async (): Promise<User[]> => {
+  private getAllUsers = async (): Promise<User[]> => {
     try {
       return await this.userRepository.findAllUsers();
     } catch (error) {
@@ -57,21 +65,25 @@ export class UserService {
     }
   };
 
-  existsUserByUsername = async (username: string): Promise<void> => {
+  getAllUsersDto = async (): Promise<UserDto[]> => {
+    return await this.getAllUsers().then(toUserDtos);
+  };
+
+  private existsUserByUsername = async (username: string): Promise<void> => {
     const userExists = await this.userRepository.existsUserByUsername(username);
     if (userExists) {
       throw new Error('User with this username already exists');
     }
   };
 
-  existsUserByEmail = async (email: string): Promise<void> => {
+  private existsUserByEmail = async (email: string): Promise<void> => {
     const userExists = await this.userRepository.existsUserByEmail(email);
     if (userExists) {
       throw new Error('User with this email already exists');
     }
   };
 
-  createUser = async (dto: NewUserDto): Promise<User> => {
+  createUser = async (dto: NewUserDto): Promise<UserDto> => {
     try {
       await this.existsUserByUsername(dto.username);
       if (dto.email) {
@@ -80,10 +92,12 @@ export class UserService {
       this.checkExistsRole(dto.role);
 
       const hashedPassword = await bcrypt.hash(dto.password, this.saltRounds);
-      const createdUser = await this.userRepository.createUser({
-        ...dto,
-        password: hashedPassword,
-      });
+      const createdUser = await this.userRepository
+        .createUser({
+          ...dto,
+          password: hashedPassword,
+        })
+        .then(toUserDto);
 
       await this.logUserEvent(
         EventLevel.INFO,
@@ -100,7 +114,7 @@ export class UserService {
     }
   };
 
-  updateUser = async (dto: UpdateUserDto): Promise<User> => {
+  updateUser = async (dto: UpdateUserDto): Promise<UserDto> => {
     try {
       const user = await this.getUser(dto.id);
 
@@ -113,7 +127,9 @@ export class UserService {
       }
       this.checkExistsRole(dto.role);
 
-      const updatedUser = await this.userRepository.updateUser(dto);
+      const updatedUser = await this.userRepository
+        .updateUser(dto)
+        .then(toUserDto);
 
       await this.logUserEvent(
         EventLevel.INFO,
@@ -127,7 +143,7 @@ export class UserService {
     }
   };
 
-  changePassword = async (dto: UpdateUserPasswordDto) => {
+  changePassword = async (dto: UpdateUserPasswordDto): Promise<void> => {
     const user = await this.getUser(dto.id);
 
     const isMatch = await bcrypt.compare(dto.oldPassword, user.password);

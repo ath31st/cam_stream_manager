@@ -89,7 +89,7 @@ export interface StreamDashboardDto {
 export interface UserDto {
   id: number;
   username: string;
-  email: string;
+  email: string | null;
   role: string;
   registeredAt: Date;
   updatedAt: Date;
@@ -98,14 +98,14 @@ export interface UserDto {
 export interface NewUserDto {
   username: string;
   password: string;
-  email?: string;
+  email: string | null;
   role: string;
 }
 
 export interface UpdateUserDto {
   id: number;
   username: string;
-  email?: string;
+  email: string | null;
   role: string;
 }
 
