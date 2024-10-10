@@ -3,7 +3,8 @@ import { Tabs } from 'antd';
 import RegionsTab from '../../widgets/regions.tab';
 import StreamsTab from '../../widgets/streams.tab';
 import ResponsiblePersonTab from '../../widgets/responsible.person.tab';
-import Dashboard from '../../widgets/dashboard.tab/ui/DashboardTab';
+import Dashboard from '../../widgets/dashboard.tab';
+import EventTab from '../../widgets/event.tab';
 
 const AdminPage: React.FC = () => {
   return (
@@ -32,6 +33,11 @@ const AdminPage: React.FC = () => {
             label: 'Ответственные лица',
             key: '4',
             children: <ResponsiblePersonTab />,
+          },
+          {
+            label: 'События',
+            key: '5',
+            children: <EventTab />,
           },
         ]}
       />
