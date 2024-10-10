@@ -9,6 +9,7 @@ import { startStreamCronJob } from './cron/stream.cron';
 import regionRoutes from './routes/region.routes';
 import rpRoutes from './routes/responsible.person.routes';
 import dashboardRoutes from './routes/dashboard.routes';
+import userRoutes from './routes/user.routes';
 import eventRoutes from './routes/event.routes';
 import healthCheckRoutes from './routes/health.check.routes';
 
@@ -25,6 +26,7 @@ app.use(eventRoutes);
 app.use(regionRoutes);
 app.use(rpRoutes);
 app.use(streamRoutes);
+app.use(userRoutes);
 app.use(dashboardRoutes);
 app.use(healthCheckRoutes);
 
