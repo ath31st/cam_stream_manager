@@ -4,7 +4,7 @@ import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import LocaleProvider from './app/providers/LocaleProvider';
 import AxiosInterceptorProvider from './app/providers/AxiosInterceptorProvider';
-import { ServerStatusOverlay } from './shared/errors';
+import { ServerStatusOverlay } from './features/server.status';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

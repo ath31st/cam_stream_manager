@@ -9,11 +9,17 @@ interface AxiosInterceptorProviderProps {
 const AxiosInterceptorProvider: React.FC<AxiosInterceptorProviderProps> = ({
   children,
 }) => {
-  const { setServerStatus } = useServerStatusStore();
+  const { setServerStatus, startHealthCheck, stopHealthCheck } =
+    useServerStatusStore();
 
   useEffect(() => {
     setupAxiosInterceptor(setServerStatus);
-  }, [setServerStatus]);
+    startHealthCheck();
+
+    return () => {
+      stopHealthCheck();
+    };
+  }, [setServerStatus, startHealthCheck]);
 
   return <>{children}</>;
 };
