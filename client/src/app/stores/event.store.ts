@@ -63,9 +63,11 @@ export const useEventStore = create<EventState>((set) => ({
 
   handleError: (error: unknown) => {
     if (error instanceof AxiosError) {
-      const statusCode = error.response?.status;
-      const message = getEventErrorMessage(statusCode as number);
-      set({ error: message });
+      if (error.response) {
+        const statusCode = error.response?.status;
+        const message = getEventErrorMessage(statusCode as number);
+        set({ error: message });
+      }
     } else {
       set({ error: unknownError });
     }
