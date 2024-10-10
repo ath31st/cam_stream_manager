@@ -84,6 +84,37 @@ export interface StreamDashboardDto {
   status: string;
 }
 
+// user interfaces
+
+export interface UserDto {
+  id: number;
+  username: string;
+  email: string;
+  role: string;
+  registeredAt: Date;
+  updatedAt: Date;
+}
+
+export interface NewUserDto {
+  username: string;
+  password: string;
+  email?: string;
+  role: string;
+}
+
+export interface UpdateUserDto {
+  id: number;
+  username: string;
+  email?: string;
+  role: string;
+}
+
+export interface UpdateUserPasswordDto {
+  id: number;
+  oldPassword: string;
+  newPassword: string;
+}
+
 // event interfaces
 
 export interface EventDto {
