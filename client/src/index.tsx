@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import LocaleProvider from './app/providers/LocaleProvider';
+import AxiosInterceptorProvider from './app/providers/AxiosInterceptorProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LocaleProvider>
-      <App />
+      <AxiosInterceptorProvider>
+        <App />
+      </AxiosInterceptorProvider>
     </LocaleProvider>
   </React.StrictMode>,
 );
