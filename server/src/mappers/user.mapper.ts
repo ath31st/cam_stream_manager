@@ -7,6 +7,7 @@ export const toUserDto = (user: User): UserDto => {
     username: user.username,
     email: user.email,
     role: user.role,
+    isLocked: user.isLocked,
     registeredAt: user.createdAt,
     updatedAt: user.updatedAt,
   };

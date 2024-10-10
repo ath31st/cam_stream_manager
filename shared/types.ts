@@ -91,6 +91,7 @@ export interface UserDto {
   username: string;
   email: string | null;
   role: string;
+  isLocked: boolean;
   registeredAt: Date;
   updatedAt: Date;
 }
@@ -107,6 +108,7 @@ export interface UpdateUserDto {
   username: string;
   email: string | null;
   role: string;
+  isLocked: boolean;
 }
 
 export interface UpdateUserPasswordDto {

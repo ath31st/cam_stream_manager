@@ -54,6 +54,7 @@ export class UserRepository {
         email: dto.email,
         role: dto.role,
         password: dto.password,
+        isLocked: false,
       },
     });
     Logger.log(user);
@@ -67,6 +68,7 @@ export class UserRepository {
         username: dto.username,
         email: dto.email,
         role: dto.role,
+        isLocked: dto.isLocked,
       },
     });
     Logger.log(user);
