@@ -3,6 +3,7 @@ import { getRegionErrorMessage } from './api/error.api';
 import { getRpErrorMessage } from './api/error.api';
 import { getStreamErrorMessage } from './api/error.api';
 import { getEventErrorMessage } from './api/error.api';
+import ServerStatusOverlay from './ui/ServerStatusOverlay';
 
 export {
   getRegionErrorMessage,
@@ -10,4 +11,4 @@ export {
   getStreamErrorMessage,
   getEventErrorMessage,
 };
-export { unknownError };
+export { unknownError, ServerStatusOverlay };
