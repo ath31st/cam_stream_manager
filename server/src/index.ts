@@ -12,6 +12,7 @@ import dashboardRoutes from './routes/dashboard.routes';
 import userRoutes from './routes/user.routes';
 import eventRoutes from './routes/event.routes';
 import healthCheckRoutes from './routes/health.check.routes';
+import authRoutes from './routes/auth.routes';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(regionRoutes);
 app.use(rpRoutes);
 app.use(streamRoutes);
 app.use(userRoutes);
+app.use(authRoutes);
 app.use(dashboardRoutes);
 app.use(healthCheckRoutes);
 

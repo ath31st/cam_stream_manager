@@ -16,6 +16,10 @@ import { EventController } from '../controllers/event.controller';
 import { UserRepository } from '../repositories/user.repository';
 import { UserController } from '../controllers/user.controller';
 import { UserService } from '../services/user.service';
+import { RefreshTokenRepository } from '../repositories/refresh.token.repository';
+import { RefreshTokenService } from '../services/refresh.token.service';
+import { AuthService } from '../services/auth.service';
+import { AuthController } from '../controllers/auth.controller';
 
 const prisma = prismaService;
 
@@ -26,6 +30,12 @@ const eventController = new EventController(eventService);
 const userRepository = new UserRepository(prisma.client);
 const userService = new UserService(userRepository, eventService);
 const userController = new UserController(userService);
+
+const refreshTokenRepository = new RefreshTokenRepository(prisma.client);
+const refreshTokenService = new RefreshTokenService(refreshTokenRepository);
+
+const authService = new AuthService(userService, refreshTokenService);
+const authController = new AuthController(authService);
 
 const rpRepository = new ResponsiblePersonRepository(prisma.client);
 const rpService = new ResponsiblePersonService(rpRepository, eventService);
@@ -50,4 +60,5 @@ export {
   dashboardController,
   eventController,
   userController,
+  authController,
 };
