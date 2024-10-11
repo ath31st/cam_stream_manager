@@ -23,7 +23,7 @@ export class UserService {
     this.eventService = eventService;
   }
 
-  private getUser = async (id: number): Promise<User> => {
+  getUser = async (id: number): Promise<User> => {
     try {
       return await this.userRepository.findUser(id);
     } catch (error) {
@@ -36,20 +36,18 @@ export class UserService {
     return await this.getUser(id).then(toUserDto);
   };
 
-  getUserByUsername = async (username: string): Promise<UserDto> => {
+  getUserByUsername = async (username: string): Promise<User> => {
     try {
-      return await this.userRepository
-        .findUserByUsername(username)
-        .then(toUserDto);
+      return await this.userRepository.findUserByUsername(username);
     } catch (error) {
       Logger.error(`Error finding user with username ${username}:`, error);
       throw new Error('User not found');
     }
   };
 
-  getUserByEmail = async (email: string): Promise<UserDto> => {
+  getUserByEmail = async (email: string): Promise<User> => {
     try {
-      return await this.userRepository.findUserByEmail(email).then(toUserDto);
+      return await this.userRepository.findUserByEmail(email);
     } catch (error) {
       Logger.error(`Error finding user with email ${email}:`, error);
       throw new Error('User not found');
