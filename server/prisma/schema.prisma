@@ -54,6 +54,14 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
 model Event {
   id        Int      @id @default(autoincrement())
   type      String
