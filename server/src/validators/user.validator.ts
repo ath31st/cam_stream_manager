@@ -16,7 +16,7 @@ export const updateUserSchema = Joi.object<UpdateUserDto>({
   id: Joi.number().integer().required(),
   username: Joi.string().min(3).max(30).optional(),
   email: Joi.string().email().optional(),
-  role: Joi.string().valid('USER', 'ADMIN').optional(),
+  role: Joi.string().valid('USER', 'ADMIN').required(),
   isLocked: Joi.boolean().required(),
 });
 

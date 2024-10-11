@@ -170,7 +170,7 @@ export class UserService {
     await this.eventService.createEvent(event);
   };
 
-  private checkExistsRole = async (role: string) => {
+  private checkExistsRole = (role: string) => {
     const roleExists = UserRoles[role as keyof typeof UserRoles];
     if (!roleExists) {
       throw new Error('Role does not exist');
