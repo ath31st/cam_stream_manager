@@ -96,7 +96,10 @@ export class UserController {
     try {
       const trimmedBody = trimObjectValues(req.body);
 
-      const { error, value } = updateUserPasswordSchema.validate(trimmedBody);
+      const { error, value } = updateUserPasswordSchema.validate({
+        id: Number(req.params.id),
+        ...trimmedBody,
+      });
       if (error) {
         return res.status(400).json({ message: error.details[0].message });
       }
