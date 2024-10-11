@@ -117,6 +117,18 @@ export interface UpdateUserPasswordDto {
   newPassword: string;
 }
 
+// auth interfaces
+
+export interface LoginDto {
+  username: string;
+  password: string;
+}
+
+export interface TokensDto {
+  accessToken: string;
+  refreshToken: string;
+}
+
 // event interfaces
 
 export interface EventDto {
