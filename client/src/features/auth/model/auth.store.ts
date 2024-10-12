@@ -13,11 +13,30 @@ interface AuthState {
   refreshAccessToken: () => Promise<void>;
 }
 
+const LOCAL_STORAGE_KEY = 'auth';
+
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   accessToken: null,
   refreshToken: null,
   isAuthenticated: false,
+
+  hydrate: () => {
+    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storedData) {
+      const { accessToken, refreshToken, user } = JSON.parse(storedData);
+      if (accessToken && !isTokenExpired(accessToken)) {
+        set({
+          accessToken,
+          refreshToken,
+          user,
+          isAuthenticated: true,
+        });
+      } else {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+      }
+    }
+  },
 
   login: async (username, password) => {
     try {
@@ -30,6 +49,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         user,
         isAuthenticated: true,
       });
+
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY,
+        JSON.stringify({ accessToken, refreshToken, user }),
+      );
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -42,12 +66,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     try {
       await logout(refreshToken);
+
       set({
         accessToken: null,
         refreshToken: null,
         user: null,
         isAuthenticated: false,
       });
+
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
     } catch (error) {
       console.error('Logout error:', error);
     }
@@ -65,6 +92,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         accessToken: newAccessToken,
         user,
       });
+
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY,
+        JSON.stringify({ accessToken: newAccessToken, refreshToken, user }),
+      );
     } catch (error) {
       console.error('Refresh access token error:', error);
     }
