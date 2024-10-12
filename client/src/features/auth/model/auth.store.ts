@@ -11,6 +11,7 @@ interface AuthState {
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshAccessToken: () => Promise<void>;
+  hydrate: () => void;
 }
 
 const LOCAL_STORAGE_KEY = 'auth';
