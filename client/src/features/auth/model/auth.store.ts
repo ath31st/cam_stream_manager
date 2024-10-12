@@ -2,16 +2,21 @@ import { create } from 'zustand';
 import { login, logout, refreshAccessToken } from '../api/auth.api';
 import { decodeToken, isTokenExpired } from '../lib/jwt';
 import { JwtUser } from '../model/auth.model';
+import { AxiosError } from 'axios';
+import { getAuthErrorMessage, unknownError } from '../../../shared/errors';
 
 interface AuthState {
   user: JwtUser | null;
   accessToken: string | null;
   refreshToken: string | null;
   isAuthenticated: boolean;
+  error: string | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshAccessToken: () => Promise<void>;
   hydrate: () => void;
+  handleError: (error: unknown) => void;
+  clearError: () => void;
 }
 
 const LOCAL_STORAGE_KEY = 'auth';
@@ -21,6 +26,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   accessToken: null,
   refreshToken: null,
   isAuthenticated: false,
+  error: null,
 
   hydrate: () => {
     const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -39,6 +45,19 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }
   },
 
+  handleError: (error: unknown) => {
+    if (error instanceof AxiosError) {
+      const message = getAuthErrorMessage(error.response?.status as number);
+      set({ error: message });
+    } else {
+      set({ error: unknownError });
+    }
+  },
+
+  clearError: () => {
+    set({ error: null });
+  },
+
   login: async (username, password) => {
     try {
       const { accessToken, refreshToken } = await login({ username, password });
@@ -49,6 +68,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         refreshToken,
         user,
         isAuthenticated: true,
+        error: null,
       });
 
       localStorage.setItem(
@@ -57,7 +77,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       );
     } catch (error) {
       console.error('Login error:', error);
-      throw error;
+      get().handleError(error);
     }
   },
 
@@ -73,11 +93,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         refreshToken: null,
         user: null,
         isAuthenticated: false,
+        error: null,
       });
 
       localStorage.removeItem(LOCAL_STORAGE_KEY);
     } catch (error) {
       console.error('Logout error:', error);
+      get().handleError(error);
     }
   },
 
@@ -92,6 +114,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({
         accessToken: newAccessToken,
         user,
+        error: null,
       });
 
       localStorage.setItem(
@@ -100,6 +123,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       );
     } catch (error) {
       console.error('Refresh access token error:', error);
+      get().handleError(error);
     }
   },
 }));
