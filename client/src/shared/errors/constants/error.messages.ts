@@ -24,3 +24,7 @@ export const responsiblePersonErrorMessages: Record<number, string> = {
 export const eventErrorMessages: Record<number, string> = {
   404: 'Запрашиваемое событие не найдено.',
 };
+
+export const authErrorMessages: Record<number, string> = {
+  401: 'Неправильный логин или пароль.',
+};

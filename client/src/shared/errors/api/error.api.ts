@@ -4,6 +4,7 @@ import {
   streamErrorMessages,
   eventErrorMessages,
   unknownError,
+  authErrorMessages,
 } from '../constants/error.messages';
 import { commonErrorMessages } from '../constants/error.messages';
 
@@ -31,6 +32,13 @@ export const getRpErrorMessage = (statusCode: number) => {
 export const getEventErrorMessage = (statusCode: number) => {
   if (eventErrorMessages[statusCode]) {
     return eventErrorMessages[statusCode];
+  }
+  return commonErrorMessages[statusCode] || unknownError;
+};
+
+export const getAuthErrorMessage = (statusCode: number) => {
+  if (authErrorMessages[statusCode]) {
+    return authErrorMessages[statusCode];
   }
   return commonErrorMessages[statusCode] || unknownError;
 };
