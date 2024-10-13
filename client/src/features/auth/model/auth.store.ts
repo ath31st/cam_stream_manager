@@ -10,6 +10,7 @@ interface AuthState {
   accessToken: string | null;
   refreshToken: string | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
   error: string | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -26,6 +27,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   accessToken: null,
   refreshToken: null,
   isAuthenticated: false,
+  isLoading: true,
   error: null,
 
   hydrate: () => {
@@ -38,11 +40,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           refreshToken,
           user,
           isAuthenticated: true,
+          error: null,
         });
       } else {
         localStorage.removeItem(LOCAL_STORAGE_KEY);
       }
     }
+    set({ isLoading: false });
   },
 
   handleError: (error: unknown) => {
@@ -59,6 +63,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   login: async (username, password) => {
+    set({ isLoading: true });
     try {
       const { accessToken, refreshToken } = await login({ username, password });
       const user = decodeToken(accessToken);
@@ -78,6 +83,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     } catch (error) {
       console.error('Login error:', error);
       get().handleError(error);
+    } finally {
+      set({ isLoading: false });
     }
   },
 
@@ -104,6 +111,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   refreshAccessToken: async () => {
+    set({ isLoading: true });
     const { refreshToken, accessToken } = get();
     if (!refreshToken || !accessToken || !isTokenExpired(accessToken)) return;
 
@@ -124,6 +132,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     } catch (error) {
       console.error('Refresh access token error:', error);
       get().handleError(error);
+    } finally {
+      set({ isLoading: false });
     }
   },
 }));
