@@ -19,7 +19,12 @@ const useServerStatusStore = create<ServerStatusState>((set) => ({
 
     interval = setInterval(async () => {
       const isUp = await checkServerStatus();
-      set({ isServerUp: isUp });
+      set((state) => {
+        if (state.isServerUp !== isUp) {
+          return { isServerUp: isUp };
+        }
+        return state;
+      });
     }, INTERVAL);
   },
 
