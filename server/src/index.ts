@@ -13,6 +13,8 @@ import userRoutes from './routes/user.routes';
 import eventRoutes from './routes/event.routes';
 import healthCheckRoutes from './routes/health.check.routes';
 import authRoutes from './routes/auth.routes';
+import passport from 'passport';
+import { configurePassport } from './config/passport';
 
 dotenv.config();
 
@@ -22,6 +24,9 @@ app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+configurePassport(passport);
 
 app.use(eventRoutes);
 app.use(regionRoutes);

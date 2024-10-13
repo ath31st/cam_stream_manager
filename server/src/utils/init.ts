@@ -59,6 +59,7 @@ export {
   rpController,
   dashboardController,
   eventController,
+  userService,
   userController,
   authController,
 };
