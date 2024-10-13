@@ -12,7 +12,9 @@ const Dashboard: React.FC = () => {
     const fetchData = async () => {
       try {
         const data = await fetchDashboardData();
-        setDashboardData(data);
+        if (JSON.stringify(data) !== JSON.stringify(dashboardData)) {
+          setDashboardData(data);
+        }
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }
