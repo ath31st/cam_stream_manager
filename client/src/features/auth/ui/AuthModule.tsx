@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import LoginModal from './LoginModal';
-import UserCardModal from './UserCardModal';
-import LogoutConfirmModal from './LogoutConfirmModal';
 import { useAuthStore } from '../model/auth.store';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
+import AuthModals from './AuthModals';
 
 const AuthModule: React.FC = () => {
   const { isAuthenticated, login, user, logout, clearError } = useAuthStore();
@@ -36,12 +34,6 @@ const AuthModule: React.FC = () => {
     setLogoutConfirmModalVisible(false);
   };
 
-  //   useEffect(() => {
-  //     if (error) {
-  //       errorNotification('Неавторизованный доступ', clearError, error);
-  //     }
-  //   }, [error, clearError]);
-
   return (
     <>
       {isAuthenticated ? (
@@ -57,20 +49,16 @@ const AuthModule: React.FC = () => {
         <Button onClick={() => setLoginModalVisible(true)}>Войти</Button>
       )}
 
-      <LoginModal
-        visible={isLoginModalVisible}
-        onClose={() => setLoginModalVisible(false)}
-        onLogin={handleLogin}
-      />
-      <UserCardModal
-        visible={isUserCardModalVisible}
-        onClose={() => setUserCardModalVisible(false)}
+      <AuthModals
+        isLoginModalVisible={isLoginModalVisible}
+        isUserCardModalVisible={isUserCardModalVisible}
+        isLogoutConfirmModalVisible={isLogoutConfirmModalVisible}
+        onCloseLoginModal={() => setLoginModalVisible(false)}
+        onCloseUserCardModal={() => setUserCardModalVisible(false)}
+        onCloseLogoutConfirmModal={() => setLogoutConfirmModalVisible(false)}
         user={user}
-      />
-      <LogoutConfirmModal
-        visible={isLogoutConfirmModalVisible}
-        onClose={() => setLogoutConfirmModalVisible(false)}
-        onConfirm={handleLogout}
+        onLogin={handleLogin}
+        onConfirmLogout={handleLogout}
       />
     </>
   );
