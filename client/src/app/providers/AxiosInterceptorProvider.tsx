@@ -19,7 +19,7 @@ const AxiosInterceptorProvider: React.FC<AxiosInterceptorProviderProps> = ({
     return () => {
       stopHealthCheck();
     };
-  }, [setServerStatus, startHealthCheck]);
+  }, [setServerStatus, startHealthCheck, stopHealthCheck]);
 
   return <>{children}</>;
 };
