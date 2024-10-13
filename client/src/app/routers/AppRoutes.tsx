@@ -6,22 +6,23 @@ import AdminPage from '../../pages/admin';
 import AdminLayout from '../layouts/AdminLayout';
 import UnauthorizedPage from '../../pages/401';
 import PrivateRoute from './PrivateRoute';
+import routes from '../../shared/routes/routes';
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<MainPage />} />
+          <Route path={routes.HOME} element={<MainPage />} />
         </Route>
 
         <Route element={<PrivateRoute />}>
           <Route element={<AdminLayout />}>
-            <Route path="/admin" element={<AdminPage />} />
+            <Route path={routes.ADMIN} element={<AdminPage />} />
           </Route>
         </Route>
 
-        <Route path="/401" element={<UnauthorizedPage />} />
+        <Route path={routes.UNAUTHORIZED_PAGE} element={<UnauthorizedPage />} />
       </Routes>
     </Router>
   );

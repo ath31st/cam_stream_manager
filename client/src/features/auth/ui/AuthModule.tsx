@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { useAuthStore } from '../model/auth.store';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
 import AuthModals from './AuthModals';
+import routes from '../../../shared/routes/routes';
 
 const AuthModule: React.FC = () => {
   const { isAuthenticated, login, user, logout, clearError } = useAuthStore();
@@ -13,6 +15,9 @@ const AuthModule: React.FC = () => {
   const [isUserCardModalVisible, setUserCardModalVisible] = useState(false);
   const [isLogoutConfirmModalVisible, setLogoutConfirmModalVisible] =
     useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (username: string, password: string) => {
     clearError();
@@ -34,6 +39,14 @@ const AuthModule: React.FC = () => {
     setLogoutConfirmModalVisible(false);
   };
 
+  const handleAdminPageNavigation = () => {
+    navigate(routes.ADMIN);
+  };
+
+  const handlePlayerPageNavigation = () => {
+    navigate(routes.HOME);
+  };
+
   return (
     <>
       {isAuthenticated ? (
@@ -44,6 +57,13 @@ const AuthModule: React.FC = () => {
           <Button onClick={() => setLogoutConfirmModalVisible(true)}>
             Выход
           </Button>
+          {location.pathname === routes.ADMIN ? (
+            <Button onClick={handlePlayerPageNavigation}>Плеер</Button>
+          ) : (
+            <Button onClick={handleAdminPageNavigation}>
+              Админская страница
+            </Button>
+          )}
         </>
       ) : (
         <Button onClick={() => setLoginModalVisible(true)}>Войти</Button>
