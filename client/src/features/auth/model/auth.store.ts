@@ -4,6 +4,7 @@ import { decodeToken, isTokenExpired } from '../lib/jwt';
 import { JwtUser } from '../model/auth.model';
 import { AxiosError } from 'axios';
 import { getAuthErrorMessage, unknownError } from '../../../shared/errors';
+import { LOCAL_STORAGE_KEY } from '../lib/auth.constants';
 
 interface AuthState {
   user: JwtUser | null;
@@ -20,8 +21,6 @@ interface AuthState {
   clearError: () => void;
 }
 
-const LOCAL_STORAGE_KEY = 'auth';
-
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   accessToken: null,
@@ -30,10 +29,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isLoading: true,
   error: null,
 
-  hydrate: () => {
+  hydrate: async () => {
     const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (storedData) {
       const { accessToken, refreshToken, user } = JSON.parse(storedData);
+      console.log('Stored data:', { accessToken, refreshToken, user });
       if (accessToken && !isTokenExpired(accessToken)) {
         set({
           accessToken,
@@ -43,7 +43,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           error: null,
         });
       } else {
-        localStorage.removeItem(LOCAL_STORAGE_KEY);
+        if (refreshToken && !isTokenExpired(refreshToken)) {
+          set({ refreshToken });
+          await get().refreshAccessToken();
+        } else {
+          console.log('Invalid access token or refresh token');
+          localStorage.removeItem(LOCAL_STORAGE_KEY);
+        }
       }
     }
     set({ isLoading: false });
@@ -112,15 +118,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   refreshAccessToken: async () => {
     set({ isLoading: true });
-    const { refreshToken, accessToken } = get();
-    if (!refreshToken || !accessToken || !isTokenExpired(accessToken)) return;
+    const { refreshToken } = get();
 
     try {
-      const newAccessToken = await refreshAccessToken(refreshToken);
+      const newAccessToken = await refreshAccessToken(refreshToken!);
       const user = decodeToken(newAccessToken);
 
       set({
         accessToken: newAccessToken,
+        isAuthenticated: true,
         user,
         error: null,
       });

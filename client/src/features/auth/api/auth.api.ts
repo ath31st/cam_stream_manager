@@ -14,7 +14,7 @@ export const refreshAccessToken = async (
   const response = await axios.post(`${API_URL}/refresh-token`, {
     refreshToken: refreshToken,
   });
-  return response.data;
+  return response.data.accessToken;
 };
 
 export const logout = async (refreshToken: string): Promise<void> => {

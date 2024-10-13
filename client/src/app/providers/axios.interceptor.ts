@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { LOCAL_STORAGE_KEY } from '../../features/auth/lib/auth.constants';
 
 const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
   axios.interceptors.response.use(
@@ -18,7 +19,7 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
 
   axios.interceptors.request.use(
     (config) => {
-      const storedData = localStorage.getItem('auth');
+      const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (storedData) {
         const { accessToken } = JSON.parse(storedData);
         if (accessToken) {
