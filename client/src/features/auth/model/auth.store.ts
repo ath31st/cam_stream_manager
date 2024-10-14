@@ -33,7 +33,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (storedData) {
       const { accessToken, refreshToken, user } = JSON.parse(storedData);
-      console.log('Stored data:', { accessToken, refreshToken, user });
       if (accessToken && !isTokenExpired(accessToken)) {
         set({
           accessToken,
@@ -117,7 +116,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   refreshAccessToken: async () => {
-    set({ isLoading: true });
     const { refreshToken } = get();
 
     try {
@@ -138,8 +136,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     } catch (error) {
       console.error('Refresh access token error:', error);
       get().handleError(error);
-    } finally {
-      set({ isLoading: false });
     }
   },
 }));
