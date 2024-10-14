@@ -32,7 +32,9 @@ const EventTab: React.FC = () => {
   const handleDelete = async () => {
     if (deleteEventId !== null) {
       await removeEvent(deleteEventId);
-      successNotification('Событие удалено', 'Событие успешно удалено.');
+      if (useEventStore.getState().error === null) {
+        successNotification('Событие удалено', 'Событие успешно удалено.');
+      }
       setDeleteEventId(null);
       setIsDeleteModalVisible(false);
     }

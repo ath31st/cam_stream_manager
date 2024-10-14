@@ -41,11 +41,13 @@ const RegionsTab: React.FC = () => {
 
   const handleAddRegion = async (name: string) => {
     await addRegion({ name });
-    successNotification(
-      'Регион добавлен',
-      `Регион "${name}" успешно добавлен.`,
-    );
-    setIsAddModalVisible(false);
+    if (useRegionStore.getState().error === null) {
+      successNotification(
+        'Регион добавлен',
+        `Регион "${name}" успешно добавлен.`,
+      );
+      setIsAddModalVisible(false);
+    }
   };
 
   const showDeleteConfirm = (id: number) => {
@@ -57,7 +59,9 @@ const RegionsTab: React.FC = () => {
     if (deleteRegionId !== null) {
       await removeRegion(deleteRegionId);
       await fetchAllStreams();
-      successNotification('Регион удален', 'Регион успешно удален.');
+      if (useRegionStore.getState().error === null) {
+        successNotification('Регион удален', 'Регион успешно удален.');
+      }
       setDeleteRegionId(null);
       setIsDeleteModalVisible(false);
     }
@@ -71,12 +75,14 @@ const RegionsTab: React.FC = () => {
   const handleUpdateRegion = async (updatedRegion: UpdateRegion) => {
     if (updatingRegion) {
       await updateRegion(updatingRegion.id, updatedRegion);
-      successNotification(
-        'Регион обновлен',
-        `Регион "${updatedRegion.name}" успешно обновлен.`,
-      );
-      setUpdatingRegion(null);
-      setIsUpdateModalVisible(false);
+      if (useRegionStore.getState().error === null) {
+        successNotification(
+          'Регион обновлен',
+          `Регион "${updatedRegion.name}" успешно обновлен.`,
+        );
+        setUpdatingRegion(null);
+        setIsUpdateModalVisible(false);
+      }
     }
   };
 

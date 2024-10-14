@@ -46,11 +46,13 @@ const StreamsTab: React.FC = () => {
 
   const handleSaveStream = async (value: NewStream) => {
     await addStream(value);
-    successNotification(
-      'Поток добавлен',
-      `Поток "${value.location}" успешно добавлен.`,
-    );
-    setIsAddModalVisible(false);
+    if (useStreamStore.getState().error === null) {
+      successNotification(
+        'Поток добавлен',
+        `Поток "${value.location}" успешно добавлен.`,
+      );
+      setIsAddModalVisible(false);
+    }
   };
 
   const handleCancelAdd = () => {
@@ -65,12 +67,14 @@ const StreamsTab: React.FC = () => {
   const handleSaveUpdate = async (value: UpdateStream) => {
     if (updatingStream) {
       await updateStream(updatingStream.id, value);
-      successNotification(
-        'Поток обновлен',
-        `Поток "${value.location}" успешно обновлен.`,
-      );
-      setIsUpdateModalVisible(false);
-      setUpdatingStream(null);
+      if (useStreamStore.getState().error === null) {
+        successNotification(
+          'Поток обновлен',
+          `Поток "${value.location}" успешно обновлен.`,
+        );
+        setIsUpdateModalVisible(false);
+        setUpdatingStream(null);
+      }
     }
   };
 
@@ -87,7 +91,9 @@ const StreamsTab: React.FC = () => {
   const handleDelete = async () => {
     if (deleteStreamId !== null) {
       await removeStream(deleteStreamId);
-      successNotification('Поток удален', `Поток успешно удален.`);
+      if (useStreamStore.getState().error === null) {
+        successNotification('Поток удален', `Поток успешно удален.`);
+      }
       setDeleteStreamId(null);
       setIsDeleteModalVisible(false);
     }

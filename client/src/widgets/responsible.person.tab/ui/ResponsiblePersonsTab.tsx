@@ -56,31 +56,37 @@ const ResponsiblePersonsTab: React.FC = () => {
 
   const handleSavePerson = async (person: NewResponsiblePerson) => {
     await addResponsiblePerson(person);
-    successNotification(
-      'Ответсвенное лицо добавлено',
-      `Ответсвенное лицо "${person.name}" успешно добавлено.`,
-    );
-    setIsAddModalVisible(false);
+    if (useResponsiblePersonStore.getState().error === null) {
+      successNotification(
+        'Ответсвенное лицо добавлено',
+        `Ответсвенное лицо "${person.name}" успешно добавлено.`,
+      );
+      setIsAddModalVisible(false);
+    }
   };
 
   const handleUpdatePerson = async (person: UpdateResponsiblePerson) => {
     if (selectedPerson) {
       await updateResponsiblePerson(selectedPerson.id, person);
-      successNotification(
-        'Ответсвенное лицо обновлено',
-        `Ответсвенное лицо "${person.name}" успешно обновлено.`,
-      );
-      setIsUpdateModalVisible(false);
+      if (useResponsiblePersonStore.getState().error === null) {
+        successNotification(
+          'Ответсвенное лицо обновлено',
+          `Ответсвенное лицо "${person.name}" успешно обновлено.`,
+        );
+        setIsUpdateModalVisible(false);
+      }
     }
   };
 
   const handleDeletePerson = async () => {
     if (selectedPerson !== null) {
       await removeResponsiblePerson(selectedPerson.id);
-      successNotification(
-        'Ответсвенное лицо удалено',
-        `Ответсвенное лицо успешно удалено.`,
-      );
+      if (useResponsiblePersonStore.getState().error === null) {
+        successNotification(
+          'Ответсвенное лицо удалено',
+          `Ответсвенное лицо успешно удалено.`,
+        );
+      }
       setIsDeleteModalVisible(false);
     }
   };
