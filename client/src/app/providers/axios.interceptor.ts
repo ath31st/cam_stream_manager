@@ -12,8 +12,8 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
     async (error) => {
       const originalRequest = error.config;
       const { status } = error.response;
+
       if (status === 401 && !originalRequest._retry) {
-        setServerStatus(true);
         originalRequest._retry = true;
 
         const refreshToken = useAuthStore.getState().refreshToken;
@@ -27,10 +27,12 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
           } catch (refreshError) {
             console.error('Error refreshing access token:', refreshError);
           }
-        } else {
-          await useAuthStore.getState().logout();
         }
-      } else {
+        await useAuthStore.getState().logout();
+        return Promise.reject(error);
+      }
+
+      if (!error.response) {
         setServerStatus(false);
       }
 
