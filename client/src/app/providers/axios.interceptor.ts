@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { LOCAL_STORAGE_KEY } from '../../features/auth/lib/auth.constants';
+import { useAuthStore } from '../../features/auth/model/auth.store';
+import { isTokenExpired } from '../../features/auth/lib/jwt';
 
 const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
   axios.interceptors.response.use(
@@ -7,12 +9,31 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
       setServerStatus(true);
       return response;
     },
-    (error) => {
-      if (!error.response) {
-        setServerStatus(false);
-      } else {
+    async (error) => {
+      const originalRequest = error.config;
+      const { status } = error.response;
+      if (status === 401 && !originalRequest._retry) {
         setServerStatus(true);
+        originalRequest._retry = true;
+
+        const refreshToken = useAuthStore.getState().refreshToken;
+        if (refreshToken && !isTokenExpired(refreshToken)) {
+          try {
+            await useAuthStore.getState().refreshAccessToken();
+            const newAccessToken = useAuthStore.getState().accessToken;
+            originalRequest.headers['Authorization'] =
+              `Bearer ${newAccessToken}`;
+            return await axios(originalRequest);
+          } catch (refreshError) {
+            console.error('Error refreshing access token:', refreshError);
+          }
+        } else {
+          await useAuthStore.getState().logout();
+        }
+      } else {
+        setServerStatus(false);
       }
+
       return Promise.reject(error);
     },
   );
