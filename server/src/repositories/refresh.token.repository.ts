@@ -6,7 +6,7 @@ export class RefreshTokenRepository {
   constructor(prismaClient: PrismaClient) {
     this.prismaClient = prismaClient;
   }
-  
+
   async create(token: string, userId: number, expiresAt: Date) {
     return await this.prismaClient.refreshToken.create({
       data: {

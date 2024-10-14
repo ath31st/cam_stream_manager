@@ -44,10 +44,10 @@ export class EventRepository {
 
     return {
       items,
-      totalItems, 
+      totalItems,
       totalPages: Math.ceil(totalItems / pageSize),
-      currentPage: page, 
-      pageSize, 
+      currentPage: page,
+      pageSize,
     };
   }
 
