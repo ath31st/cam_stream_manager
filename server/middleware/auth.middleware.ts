@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import passport from 'passport';
 
-export const authenticateJWT = (
+export const isAuthenticated = (
   req: Request,
   res: Response,
   next: NextFunction,

@@ -1,14 +1,15 @@
 import { Router } from 'express';
 import { streamController } from '../utils/init';
 import { API_PREFIX } from '../utils/constants/routes.constants';
+import { isAuthenticated } from '../../middleware/auth.middleware';
 
 const router = Router();
 
-router.post('/streams', streamController.createStream);
-router.put('/streams/:id', streamController.updateStream);
-router.delete('/streams/:id', streamController.deleteStream);
-router.get('/streams', streamController.getAllStreams);
-router.get('/streams/:id', streamController.getStream);
+router.post('/streams', isAuthenticated, streamController.createStream);
+router.put('/streams/:id', isAuthenticated, streamController.updateStream);
+router.delete('/streams/:id', isAuthenticated, streamController.deleteStream);
+router.get('/streams', isAuthenticated, streamController.getAllStreams);
+router.get('/streams/:id', isAuthenticated, streamController.getStream);
 router.get('/streams/region/:id', streamController.getStreamsByRegion);
 
 const streamRoutes = Router();
