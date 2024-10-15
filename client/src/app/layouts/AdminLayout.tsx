@@ -9,9 +9,9 @@ const { Content } = Layout;
 
 const AdminLayout: React.FC = () => {
   return (
-    <Layout>
+    <Layout className={styles.pageLayout}>
       <Header />
-      <Layout>
+      <Layout className={styles.innerLayout}>
         <Content className={styles.content}>
           <Outlet />
         </Content>
