@@ -1,0 +1,9 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-left: calc(100vw – 100%);
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw – 100%));
+}
