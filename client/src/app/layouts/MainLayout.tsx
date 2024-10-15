@@ -10,9 +10,9 @@ const { Content } = Layout;
 
 const MainLayout: React.FC = () => {
   return (
-    <Layout>
+    <Layout className={styles.pageLayout}>
       <Header />
-      <Layout>
+      <Layout className={styles.innerLayout}>
         <Sider />
         <Layout>
           <Content className={styles.content}>
