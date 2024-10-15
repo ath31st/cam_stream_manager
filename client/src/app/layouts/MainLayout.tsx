@@ -4,6 +4,7 @@ import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 import Sider from '../../widgets/sider';
 import { Outlet } from 'react-router-dom';
+import styles from './MainLayout.module.css';
 
 const { Content } = Layout;
 
@@ -14,7 +15,7 @@ const MainLayout: React.FC = () => {
       <Layout>
         <Sider />
         <Layout>
-          <Content>
+          <Content className={styles.content}>
             <Outlet />
           </Content>
         </Layout>

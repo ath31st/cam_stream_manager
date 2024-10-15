@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 import { Outlet } from 'react-router-dom';
+import styles from './AdminLayout.module.css';
 
 const { Content } = Layout;
 
@@ -11,7 +12,7 @@ const AdminLayout: React.FC = () => {
     <Layout>
       <Header />
       <Layout>
-        <Content>
+        <Content className={styles.content}>
           <Outlet />
         </Content>
       </Layout>
