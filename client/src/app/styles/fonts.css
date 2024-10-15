@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../../../public/fonts/Vollkorn-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../../../public/fonts/Vollkorn-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../../../public/fonts/Vollkorn-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../../../public/fonts/Vollkorn-BoldItalic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
