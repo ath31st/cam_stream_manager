@@ -14,14 +14,20 @@ const UnavailableStreamCard: React.FC<UnavailableStreamCardProps> = ({
   <Card className={styles['unavailable-card']}>
     <WarningOutlined className={styles['icon']} />
     <h2>Поток временно недоступен</h2>
-    <p>Обратитесь по телефону к ответственным лицам:</p>
-    <ul className={styles['responsible-list']}>
-      {responsiblePersons.map((person) => (
-        <li key={person.id}>
-          {person.name}: <strong>{person.phone}</strong>
-        </li>
-      ))}
-    </ul>
+    {responsiblePersons && responsiblePersons.length > 0 ? (
+      <div>
+        <p>Обратитесь по телефону к ответственным лицам:</p>
+        <ul className={styles['responsible-list']}>
+          {responsiblePersons.map((person) => (
+            <li key={person.id}>
+              {person.name}: <strong>{person.phone}</strong>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ) : (
+      <p>Ответственные лица не указаны</p>
+    )}
   </Card>
 );
 

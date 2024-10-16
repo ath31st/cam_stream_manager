@@ -14,7 +14,7 @@
 
 .icon {
   font-size: 68px;
-  color: #ff4d4f;
+  color: var(--colorError);
 }
 
 .responsible-list {
@@ -23,6 +23,6 @@
 }
 
 .responsible-list li {
-  font-size: 16px;
+  font-size: var(--fontSize);
   margin: 8px 0;
 }
