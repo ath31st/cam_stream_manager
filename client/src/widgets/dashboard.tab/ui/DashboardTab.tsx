@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
     }, STREAMS_UPDATE_INTERVAL);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [dashboardData]);
 
   return (
     <Row gutter={10}>

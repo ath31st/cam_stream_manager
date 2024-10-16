@@ -8,7 +8,7 @@ const EventSidebar: React.FC = () => {
   const { error, clearError, fetchEvents, events } = useEventStore();
 
   useEffect(() => {
-    fetchEvents();
+    fetchEvents(fetchProps.page, fetchProps.pageSize);
 
     const intervalId = setInterval(() => {
       fetchEvents(fetchProps.page, fetchProps.pageSize);
