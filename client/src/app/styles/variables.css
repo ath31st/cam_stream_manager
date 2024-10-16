@@ -1,15 +1,15 @@
 :root {
-  --colorPrimary: '#5138f2',
+  --colorPrimary: '#6d93b0',
 
-  --colorBgBase: '#e0dfe8',
-  --colorBgContainer: '#e0dfe8',
-  --colorTextBase: '#001f3f',
-  --colorBorder: '#343a40',
+  --colorBgBase: '#2c3e50',
+  --colorBgContainer: '#34495e',
+  --colorTextBase: '#ecf0f1',
+  --colorBorder: '#7f8c8d',
 
-  --colorSuccess: '#28a745',
-  --colorWarning: '#ff8800',
-  --colorError: '#dc3545',
-  --colorInfo: '#007bff',
+  --colorSuccess: '#27ae60',
+  --colorWarning: '#e67e22',
+  --colorError: '#c0392b',
+  --colorInfo: '#2980b9',
 
   --borderRadius: 6,
   --fontFamily: 'Vollkorn',
