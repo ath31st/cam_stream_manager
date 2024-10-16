@@ -29,7 +29,7 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
           colorError: '#c0392b',
           colorInfo: '#2980b9',
 
-          borderRadius: 6,
+          borderRadius: 0,
           fontFamily: 'Vollkorn',
           fontSize: 15,
         },
