@@ -1,0 +1,19 @@
+.customButton {
+  background-color: var(--colorPrimary);
+  color: var(--colorTextBase);
+  border: 1px solid var(--colorBorder);
+  border-radius: var(--borderRadius);
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  line-height: var(--lineHeight);
+  box-shadow: var(--shadowLight);
+  transition: var(--transition);
+}
+
+.customButton:hover {
+  box-shadow: var(--shadowMedium);
+}
+
+.customButton:active {
+  box-shadow: var(--shadowHeavy);
+}
