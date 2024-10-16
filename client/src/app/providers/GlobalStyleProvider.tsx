@@ -4,6 +4,7 @@ import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import '../styles/fonts.css';
 import '../styles/global.css';
+import '../styles/variables.css';
 
 interface GlobalStyleProviderProps {
   children: ReactNode;
