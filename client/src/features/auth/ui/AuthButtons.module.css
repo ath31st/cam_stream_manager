@@ -3,7 +3,3 @@
   flex-direction: row;
   gap: 10px;
 }
-
-.fixedWidthButton {
-  width: 120px;
-}

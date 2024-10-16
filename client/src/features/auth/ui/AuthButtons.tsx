@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'antd';
 import {
   UserOutlined,
   LoginOutlined,
@@ -9,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import styles from './AuthButtons.module.css';
 import routes from '../../../shared/routes/routes';
+import IconButton from '../../../shared/ui/buttons/IconButton';
 
 interface AuthButtonsProps {
   isAuthenticated: boolean;
@@ -35,46 +35,29 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
     <div className={styles.buttonContainer}>
       {isAuthenticated ? (
         <>
-          <Button
-            className={styles.fixedWidthButton}
-            icon={<UserOutlined />}
-            onClick={onShowUserCardModal}
-          >
+          <IconButton icon={<UserOutlined />} onClick={onShowUserCardModal}>
             {username}
-          </Button>
+          </IconButton>
           {currentPath === routes.ADMIN ? (
-            <Button
-              className={styles.fixedWidthButton}
+            <IconButton
               icon={<PlayCircleOutlined />}
               onClick={onPlayerPageNavigation}
             >
               Плеер
-            </Button>
+            </IconButton>
           ) : (
-            <Button
-              className={styles.fixedWidthButton}
-              icon={<ToolOutlined />}
-              onClick={onAdminPageNavigation}
-            >
+            <IconButton icon={<ToolOutlined />} onClick={onAdminPageNavigation}>
               Настройки
-            </Button>
+            </IconButton>
           )}
-          <Button
-            className={styles.fixedWidthButton}
-            icon={<LogoutOutlined />}
-            onClick={onLogout}
-          >
+          <IconButton icon={<LogoutOutlined />} onClick={onLogout}>
             Выход
-          </Button>
+          </IconButton>
         </>
       ) : (
-        <Button
-          className={styles.fixedWidthButton}
-          icon={<LoginOutlined />}
-          onClick={onLogin}
-        >
+        <IconButton icon={<LoginOutlined />} onClick={onLogin}>
           Войти
-        </Button>
+        </IconButton>
       )}
     </div>
   );
