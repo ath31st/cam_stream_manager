@@ -8,6 +8,7 @@
   line-height: var(--lineHeight);
   box-shadow: var(--shadowLight);
   transition: var(--transition);
+  width: 120px;
 }
 
 .customButton:hover {
