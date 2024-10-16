@@ -1,7 +1,7 @@
 import React from 'react';
-import { Alert } from 'antd';
 import useServerStatusStore from '../../../app/stores/server.status.store';
 import styles from './ServerStatusOverlay.module.css';
+import CommonAlert from '../../../shared/ui/alerts/CommonAlert';
 
 const ServerStatusOverlay: React.FC = () => {
   const { isServerUp } = useServerStatusStore();
@@ -9,14 +9,10 @@ const ServerStatusOverlay: React.FC = () => {
   if (!isServerUp) {
     return (
       <div className={styles.overlay}>
-        <div className={styles.alertContainer}>
-          <Alert
-            message="Сервер недоступен"
-            description="Пожалуйста, проверьте соединение и повторите попытку позже."
-            type="error"
-            showIcon
-          />
-        </div>
+        <CommonAlert
+          message="Сервер недоступен"
+          description="Пожалуйста, проверьте соединение и повторите попытку позже."
+        ></CommonAlert>
       </div>
     );
   }
