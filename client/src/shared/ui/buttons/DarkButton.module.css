@@ -1,21 +1,7 @@
-.customButton {
-  background-color: var(--colorBgContainer);
-  color: var(--colorTextBase);
-  border: 1px solid var(--colorBorder);
-  border-radius: var(--borderRadius);
-  font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  line-height: var(--lineHeight);
-  box-shadow: var(--shadowLight);
-  transition: var(--transition);
-}
-
-.customButton:hover {
-  background-color: var(--colorPrimary);
-  color: var(--colorTextBase);
-  box-shadow: var(--shadowMedium);
-}
-
-.customButton:active {
-  box-shadow: var(--shadowHeavy);
+.btn {
+  line-height: 50px;
+  height: 40px;
+  text-align: center;
+  width: 300px;
+  cursor: pointer;
 }
