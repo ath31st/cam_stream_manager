@@ -10,8 +10,15 @@
   }
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  position: relative;
+}
+
 .authModule {
-  padding-top: 20px;
   position: relative;
   z-index: 25;
 }
@@ -29,7 +36,7 @@
   position: absolute;
   width: 100%;
   overflow: hidden;
-  height: 8%;
+  height: 65px;
   background-image: linear-gradient(
     to top,
     var(--colorPrimary) 20%,
