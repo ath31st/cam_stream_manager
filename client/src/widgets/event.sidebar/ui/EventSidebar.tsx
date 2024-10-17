@@ -3,6 +3,7 @@ import { useEventStore } from '../../../app/stores/event.store';
 import { errorNotification } from '../../../shared/notifications';
 import { EventCardList } from '../../../entities/event';
 import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
+import styles from './EventSidebar.module.css';
 
 const EventSidebar: React.FC = () => {
   const { error, clearError, fetchEvents, events } = useEventStore();
@@ -25,6 +26,9 @@ const EventSidebar: React.FC = () => {
 
   return (
     <>
+      <p
+        className={styles['event-sidebar-header']}
+      >{`${fetchProps.pageSize} последних события:`}</p>
       <EventCardList events={events} />
     </>
   );
