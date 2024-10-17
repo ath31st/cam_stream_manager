@@ -13,7 +13,6 @@ const AdminPage: React.FC = () => {
         defaultActiveKey="1"
         centered
         tabBarStyle={{
-          fontWeight: 'bold',
           padding: '10px 20px',
           borderBottom: '2px solid var(--colorPrimary)',
         }}

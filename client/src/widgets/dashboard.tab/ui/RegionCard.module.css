@@ -1,9 +1,15 @@
 .card-title {
   color: var(--colorTextBase);
   font-size: var(--fontSize);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .card {
+  height: 140px;
+  width: 250px;
   cursor: pointer;
   transition:
     border-color 0.3s ease,

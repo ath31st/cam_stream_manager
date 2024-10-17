@@ -1,8 +1,9 @@
-/* StatusCounts.module.css */
 .statusCounts {
   display: flex;
   align-items: center;
-  font-size: var(--fontSizeLarge);
+  font-size: 22px;
+  justify-content: center;
+  display: flex;
 }
 
 .statusCount:last-child {
