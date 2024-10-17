@@ -1,0 +1,47 @@
+/* StatusCounts.module.css */
+.statusCounts {
+  display: flex;
+  align-items: center;
+  font-size: var(--fontSizeLarge);
+}
+
+.statusCount:last-child {
+  margin-right: 0;
+}
+
+.statusCount {
+  margin-right: 10px;
+}
+
+.slash {
+  margin-right: 10px;
+  color: var(--colorPrimary);
+}
+
+@keyframes burn {
+  0% {
+    transform: scale(1);
+    color: var(--colorError);
+    text-shadow:
+      0 0 10px var(--colorError),
+      0 0 20px var(--colorError);
+  }
+  50% {
+    transform: scale(1.5);
+    color: var(--colorError);
+    text-shadow:
+      0 0 20px var(--colorError),
+      0 0 30px var(--colorError);
+  }
+  100% {
+    transform: scale(1);
+    color: var(--colorError);
+    text-shadow:
+      0 0 10px var(--colorError),
+      0 0 20px var(--colorError);
+  }
+}
+
+.pulsating {
+  animation: burn 2s infinite;
+}
