@@ -1,0 +1,24 @@
+.streamItem {
+  cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.3s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.streamItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.active {
+  color: var(--colorSuccess);
+}
+
+.noConnection {
+  color: var(--colorError);
+}
+
+.badConnection {
+  color: var(--colorWarning);
+}

@@ -1,0 +1,14 @@
+.card {
+  cursor: pointer;
+  width: 300px;
+}
+
+.cardTitle {
+  font-size: var(--fontSize);
+}
+
+.cardList {
+  margin-top: 10px;
+  list-style-type: none;
+  padding: 0;
+}

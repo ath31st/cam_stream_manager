@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import styles from './LimitedText.module.css';
 import CommonTooltip from '../tooltips/CommonTooltip';
 
 interface LimitedTextProps {
@@ -22,10 +21,8 @@ const LimitedText: React.FC<LimitedTextProps> = ({ text, maxLines = 1 }) => {
   const content = (
     <p
       ref={textRef}
-      className={styles.limitedText}
       style={
         {
-          display: '-webkit-box',
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
           WebkitLineClamp: maxLines,

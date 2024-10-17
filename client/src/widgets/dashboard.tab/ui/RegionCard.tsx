@@ -5,6 +5,8 @@ import { ResponsiblePersonModal } from '../../../entities/responsible.person';
 import { Card } from 'antd';
 import StatusCounts from './StatusCounts';
 import { StreamStatus, StreamStatusType } from '../lib/stream.status';
+import StreamItem from './StreamItem';
+import styles from './RegionCard.module.css'; 
 
 const RegionCard: React.FC<RegionInfo> = ({
   regionName,
@@ -40,21 +42,20 @@ const RegionCard: React.FC<RegionInfo> = ({
 
   return (
     <Card
-      title={regionName}
+      title={<span className={styles.cardTitle}>{regionName}</span>}
       onClick={toggleOpen}
-      style={{ cursor: 'pointer', marginBottom: 16 }}
+      className={styles.card}
     >
       <StatusCounts statusCounts={statusCounts} />
       {isOpen && (
-        <ul style={{ marginTop: 10 }}>
+        <ul className={styles.cardList}>
           {streams.map((stream) => (
-            <li
+            <StreamItem
               key={stream.id}
-              style={{ cursor: 'pointer' }}
+              location={stream.location}
+              status={stream.status}
               onClick={() => openModal(stream.id)}
-            >
-              {stream.location}: {stream.status}
-            </li>
+            />
           ))}
         </ul>
       )}
