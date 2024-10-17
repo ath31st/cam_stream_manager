@@ -48,13 +48,13 @@ const RegionCard: React.FC<RegionInfo> = ({
 
   return (
     <Card
-      title={<span className={styles.cardTitle}>{regionName}</span>}
+      title={<span className={styles['card-title']}>{regionName}</span>}
       onClick={handleCardClick}
       className={styles.card}
     >
       <StatusCounts statusCounts={statusCounts} />
       {isOpen && (
-        <ul className={styles.cardList}>
+        <ul className={styles['card-list']}>
           {streams.map((stream) => (
             <StreamItem
               key={stream.id}

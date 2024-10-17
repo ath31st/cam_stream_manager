@@ -1,14 +1,31 @@
 .card {
   cursor: pointer;
   width: 250px;
+  position: relative;
+  border: 2px solid var(--colorBorder);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: var(--colorBgContainer);
 }
 
-.cardTitle {
+.card-title {
+  color: var(--colorTextBase);
   font-size: var(--fontSize);
 }
 
-.cardList {
-  margin-top: 10px;
+.card-list {
+  min-height: 150px;
   list-style-type: none;
   padding: 0;
+  position: absolute;
+  left: 20px;
+  transform: translateY(-60px);
+  //width: 100%;
+  width: calc(100% - 40px);
+  z-index: 1;
+  background: var(--colorBgContainer);
+  border: 2px solid var(--colorBorder);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: var(--colorBgContainer);
 }
