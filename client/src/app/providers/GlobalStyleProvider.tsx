@@ -22,7 +22,7 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
           colorBgBase: '#2c3e50',
           colorBgContainer: '#34495e',
           colorTextBase: '#ecf0f1',
-          colorBorder: '#7f8c8d',
+          colorBorder: '#84bec2',
 
           colorSuccess: '#27ae60',
           colorWarning: '#e67e22',

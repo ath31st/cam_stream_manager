@@ -1,16 +1,31 @@
-.card {
-  cursor: pointer;
-  width: 250px;
-  position: relative;
-  border: 2px solid var(--colorBorder);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  background: var(--colorBgContainer);
-}
-
 .card-title {
   color: var(--colorTextBase);
   font-size: var(--fontSize);
+}
+
+.card {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 2px solid var(--colorBorder);
+}
+
+.card:hover {
+  border-color: var(--colorPrimary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    border-color: var(--colorPrimary);
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: var(--colorPrimary);
+  }
 }
 
 .card-list {
@@ -20,12 +35,13 @@
   position: absolute;
   left: 20px;
   transform: translateY(-60px);
-  //width: 100%;
   width: calc(100% - 40px);
   z-index: 1;
   background: var(--colorBgContainer);
   border: 2px solid var(--colorBorder);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   background: var(--colorBgContainer);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
