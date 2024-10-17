@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { RegionInfo } from '../../dashboard';
+import { RegionInfo } from '../../../entities/dashboard';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
-import { ResponsiblePersonModal } from '../../responsible.person';
+import { ResponsiblePersonModal } from '../../../entities/responsible.person';
+import { Card } from 'antd';
+import StatusCounts from './StatusCounts';
 
 const RegionCard: React.FC<RegionInfo> = ({
   regionName,
@@ -26,14 +28,24 @@ const RegionCard: React.FC<RegionInfo> = ({
     setIsModalVisible(false);
   };
 
+  const statusCounts: {
+    count: number;
+    type: 'active' | 'noConnection' | 'badConnection';
+  }[] = [
+    { count: activeCount, type: 'active' },
+    { count: noConnectionCount, type: 'noConnection' },
+    { count: badConnectionCount, type: 'badConnection' },
+  ];
+
   return (
-    <div className="region-card">
-      <h3 onClick={toggleOpen} style={{ cursor: 'pointer' }}>
-        {regionName} ({activeCount} активных, {noConnectionCount} без
-        соединения, {badConnectionCount} с плохим соединением)
-      </h3>
+    <Card
+      title={regionName}
+      onClick={toggleOpen}
+      style={{ cursor: 'pointer', marginBottom: 16 }}
+    >
+      <StatusCounts statusCounts={statusCounts} />
       {isOpen && (
-        <ul>
+        <ul style={{ marginTop: 10 }}>
           {streams.map((stream) => (
             <li
               key={stream.id}
@@ -51,7 +63,7 @@ const RegionCard: React.FC<RegionInfo> = ({
         isOpen={isModalVisible}
         responsiblePersons={responsiblePersons}
       />
-    </div>
+    </Card>
   );
 };
 
