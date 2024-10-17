@@ -7,6 +7,7 @@ import { EventSidebar } from '../../event.sidebar';
 
 const Dashboard: React.FC = () => {
   const [dashboardData, setDashboardData] = useState<RegionInfo[]>([]);
+  const [openRegion, setOpenRegion] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,13 +30,21 @@ const Dashboard: React.FC = () => {
     return () => clearInterval(intervalId);
   }, [dashboardData]);
 
+  const toggleRegion = (regionName: string) => {
+    setOpenRegion((prev) => (prev === regionName ? null : regionName));
+  };
+
   return (
     <Row gutter={16}>
       <Col span={18}>
         <Row gutter={[16, 22]}>
           {dashboardData.map((region) => (
             <Col key={region.regionName} xs={24} sm={12} lg={8}>
-              <RegionCard {...region} />
+              <RegionCard
+                {...region}
+                isOpen={openRegion === region.regionName}
+                onToggle={toggleRegion}
+              />
             </Col>
           ))}
         </Row>

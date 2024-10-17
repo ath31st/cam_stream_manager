@@ -8,19 +8,23 @@ import { StreamStatus, StreamStatusType } from '../lib/stream.status';
 import StreamItem from './StreamItem';
 import styles from './RegionCard.module.css';
 
-const RegionCard: React.FC<RegionInfo> = ({
+interface RegionCardProps extends RegionInfo {
+  isOpen: boolean;
+  onToggle: (regionName: string) => void;
+}
+
+const RegionCard: React.FC<RegionCardProps> = ({
   regionName,
   streams,
   activeCount,
   noConnectionCount,
   badConnectionCount,
+  isOpen,
+  onToggle,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const { fetchResponsiblePersonsByStream, responsiblePersons } =
     useResponsiblePersonStore();
-
-  const toggleOpen = () => setIsOpen((prev) => !prev);
 
   const openModal = async (streamId: number) => {
     fetchResponsiblePersonsByStream(streamId);
@@ -29,12 +33,6 @@ const RegionCard: React.FC<RegionInfo> = ({
 
   const closeModal = () => {
     setIsModalVisible(false);
-  };
-
-  const handleCardClick = () => {
-    if (!isModalVisible) {
-      toggleOpen();
-    }
   };
 
   const statusCounts: {
@@ -49,11 +47,11 @@ const RegionCard: React.FC<RegionInfo> = ({
   return (
     <Card
       title={<span className={styles['card-title']}>{regionName}</span>}
-      onClick={handleCardClick}
+      onClick={() => onToggle(regionName)}
       className={styles.card}
     >
       <StatusCounts statusCounts={statusCounts} />
-      {isOpen && (
+      {isOpen && streams.length > 0 && (
         <ul className={styles['card-list']}>
           {streams.map((stream) => (
             <StreamItem
