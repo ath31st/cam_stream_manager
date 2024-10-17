@@ -51,7 +51,8 @@ export const AppSider: React.FC = () => {
       .map((stream) => ({
         key: `${region.id}-${stream.id}`,
         label: stream.location,
-        onClick: () => setSelectedStream(streams.find((s) => s.id === stream.id)!),
+        onClick: () =>
+          setSelectedStream(streams.find((s) => s.id === stream.id)!),
       })),
   }));
 
@@ -77,7 +78,7 @@ export const AppSider: React.FC = () => {
   };
 
   return (
-    <Sider className={styles['site-layout-background']}>
+    <Sider width={300} className={styles['site-layout-background']}>
       <Menu
         mode="inline"
         openKeys={stateOpenKeys}
