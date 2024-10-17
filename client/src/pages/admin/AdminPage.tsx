@@ -9,10 +9,14 @@ import EventTab from '../../widgets/event.tab';
 const AdminPage: React.FC = () => {
   return (
     <>
-      <h1>Админская панель</h1>
       <Tabs
         defaultActiveKey="1"
         centered
+        tabBarStyle={{
+          fontWeight: 'bold',
+          padding: '10px 20px',
+          borderBottom: '2px solid var(--colorPrimary)',
+        }}
         items={[
           {
             label: 'Дашборд',
