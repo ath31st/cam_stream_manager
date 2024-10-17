@@ -30,13 +30,15 @@ const Dashboard: React.FC = () => {
   }, [dashboardData]);
 
   return (
-    <Row gutter={10}>
+    <Row gutter={16}>
       <Col span={18}>
-        <div className="region-container">
+        <Row gutter={[16, 22]}>
           {dashboardData.map((region) => (
-            <RegionCard key={region.regionName} {...region} />
+            <Col key={region.regionName} xs={24} sm={12} lg={8}>
+              <RegionCard {...region} />
+            </Col>
           ))}
-        </div>
+        </Row>
       </Col>
       <Col span={6}>
         <EventSidebar />
