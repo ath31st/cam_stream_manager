@@ -31,7 +31,7 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
 
           borderRadius: 0,
           fontFamily: 'Vollkorn',
-          fontSize: 15,
+          fontSize: 16,
         },
       }}
     >
