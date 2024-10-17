@@ -1,0 +1,21 @@
+.badge {
+  padding: 5px 10px;
+  font-weight: bold;
+  color: var(--colorTextBase);
+}
+
+.error {
+  background-color: var(--colorError);
+}
+
+.warning {
+  background-color: var(--colorWarning);
+}
+
+.info {
+  background-color: var(--colorInfo);
+}
+
+.default {
+  background-color: var(--colorPrimary);
+}
