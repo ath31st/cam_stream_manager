@@ -6,7 +6,7 @@ import { Card } from 'antd';
 import StatusCounts from './StatusCounts';
 import { StreamStatus, StreamStatusType } from '../lib/stream.status';
 import StreamItem from './StreamItem';
-import styles from './RegionCard.module.css'; 
+import styles from './RegionCard.module.css';
 
 const RegionCard: React.FC<RegionInfo> = ({
   regionName,
@@ -31,6 +31,12 @@ const RegionCard: React.FC<RegionInfo> = ({
     setIsModalVisible(false);
   };
 
+  const handleCardClick = () => {
+    if (!isModalVisible) {
+      toggleOpen();
+    }
+  };
+
   const statusCounts: {
     count: number;
     type: StreamStatusType;
@@ -43,7 +49,7 @@ const RegionCard: React.FC<RegionInfo> = ({
   return (
     <Card
       title={<span className={styles.cardTitle}>{regionName}</span>}
-      onClick={toggleOpen}
+      onClick={handleCardClick}
       className={styles.card}
     >
       <StatusCounts statusCounts={statusCounts} />

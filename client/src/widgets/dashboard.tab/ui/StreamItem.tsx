@@ -12,6 +12,11 @@ const StreamItem: React.FC<StreamItemProps> = ({
   status,
   onClick,
 }) => {
+  const handleClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    onClick();
+  };
+
   const getStatusColor = () => {
     switch (status) {
       case 'Active':
@@ -26,7 +31,7 @@ const StreamItem: React.FC<StreamItemProps> = ({
   };
 
   return (
-    <div className={styles.streamItem} onClick={onClick}>
+    <div className={styles.streamItem} onClick={handleClick}>
       <span className={getStatusColor()}>{location}</span>
     </div>
   );
