@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
-import { RegionCard } from '../../../entities/region';
+import RegionCard from './RegionCard';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
 import { EventSidebar } from '../../event.sidebar';

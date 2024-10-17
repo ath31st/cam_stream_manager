@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './StatusCounts.module.css';
+import { StreamStatus, StreamStatusType } from '../lib/stream.status';
 
 interface StatusCount {
   count: number;
-  type: 'active' | 'noConnection' | 'badConnection';
+  type: StreamStatusType;
 }
 
 interface StatusCountsProps {
@@ -11,13 +12,13 @@ interface StatusCountsProps {
 }
 
 const StatusCounts: React.FC<StatusCountsProps> = ({ statusCounts }) => {
-  const getColor = (type: 'active' | 'noConnection' | 'badConnection') => {
+  const getColor = (type: StreamStatusType) => {
     switch (type) {
-      case 'active':
+      case StreamStatus.Active:
         return 'var(--colorSuccess)';
-      case 'noConnection':
+      case StreamStatus.NoConnection:
         return 'var(--colorError)';
-      case 'badConnection':
+      case StreamStatus.BadConnection:
         return 'var(--colorWarning)';
       default:
         return 'var(--colorPrimary)';

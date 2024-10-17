@@ -4,6 +4,7 @@ import { useResponsiblePersonStore } from '../../../app/stores/responsible.perso
 import { ResponsiblePersonModal } from '../../../entities/responsible.person';
 import { Card } from 'antd';
 import StatusCounts from './StatusCounts';
+import { StreamStatus, StreamStatusType } from '../lib/stream.status';
 
 const RegionCard: React.FC<RegionInfo> = ({
   regionName,
@@ -30,11 +31,11 @@ const RegionCard: React.FC<RegionInfo> = ({
 
   const statusCounts: {
     count: number;
-    type: 'active' | 'noConnection' | 'badConnection';
+    type: StreamStatusType;
   }[] = [
-    { count: activeCount, type: 'active' },
-    { count: noConnectionCount, type: 'noConnection' },
-    { count: badConnectionCount, type: 'badConnection' },
+    { count: activeCount, type: StreamStatus.Active },
+    { count: noConnectionCount, type: StreamStatus.NoConnection },
+    { count: badConnectionCount, type: StreamStatus.BadConnection },
   ];
 
   return (
