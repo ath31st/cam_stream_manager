@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Form, Input, Button } from 'antd';
 import { NewResponsiblePerson } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
-import { StreamSelect } from '../../../shared/stream.select';
+import StreamSelect from '../../../shared/ui/selects/StreamSelect';
 import {
   phoneValidationRules,
   rpNameValidationRules,

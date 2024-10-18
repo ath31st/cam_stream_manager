@@ -18,7 +18,7 @@ const StreamSelect: React.FC<StreamSelectProps> = ({
 }) => {
   return (
     <Select
-      className={styles['search-field']}
+      className={styles['search-select-field']}
       showSearch
       allowClear
       value={value}
