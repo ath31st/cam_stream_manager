@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Space } from 'antd';
+import { Space } from 'antd';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import {
   ResponsiblePerson,
@@ -15,6 +15,8 @@ import {
 import ResponsiblePersonModals from './ResponsiblePersonModals';
 import ResponsiblePersonsTable from './ResponsiblePersonsTable';
 import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
+import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import TabContainer from '../../../shared/ui/containers/TabContainer';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -97,12 +99,11 @@ const ResponsiblePersonsTab: React.FC = () => {
   );
 
   return (
-    <>
-      <h1>Ответственные лица</h1>
-      <Space style={{ marginBottom: 16 }}>
-        <Button type="primary" onClick={handleAddPerson}>
+    <TabContainer>
+      <Space>
+        <DarkButton onClick={handleAddPerson}>
           Добавить ответственное лицо
-        </Button>
+        </DarkButton>
         <StreamSelect
           streams={streams}
           onChange={(value) => setSelectedStreamId(value)}
@@ -133,7 +134,7 @@ const ResponsiblePersonsTab: React.FC = () => {
         onCloseUpdate={() => setIsUpdateModalVisible(false)}
         onCloseDelete={() => setIsDeleteModalVisible(false)}
       />
-    </>
+    </TabContainer>
   );
 };
 

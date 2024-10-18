@@ -1,8 +1,10 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { ResponsiblePerson } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
 import { paginationConfig } from '../../../shared/pagination';
+import styles from './ResponsiblePersonsTable.module.css';
 
 interface ResponsiblePersonsTableProps {
   persons: ResponsiblePerson[];
@@ -24,8 +26,14 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
       key: 'name',
       sorter: (a: ResponsiblePerson, b: ResponsiblePerson) =>
         a.name.localeCompare(b.name),
+      width: '25%',
+      render: (text: string) => (
+        <div className={styles['ellipsis-rp-name-cell']} title={text}>
+          {text}
+        </div>
+      ),
     },
-    { title: 'Телефон', dataIndex: 'phone', key: 'phone' },
+    { title: 'Телефон', dataIndex: 'phone', key: 'phone', width: '25%' },
     {
       title: 'Местоположение',
       dataIndex: 'streamId',
@@ -34,11 +42,21 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
         text: stream.location,
         value: stream.id,
       })),
+      width: '40%',
       onFilter: (value: unknown, record: ResponsiblePerson) =>
         record.streamId === value,
       render: (streamId: number) => {
         const stream = streams.find((s) => s.id === streamId);
-        return stream ? stream.location : 'Неизвестный поток';
+        const locationText = stream ? stream.location : 'Неизвестный поток';
+
+        return (
+          <div
+            className={styles['ellipsis-location-cell']}
+            title={locationText}
+          >
+            {locationText}
+          </div>
+        );
       },
       sorter: (a: ResponsiblePerson, b: ResponsiblePerson) => {
         const locationA =
@@ -51,12 +69,15 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
     {
       title: 'Действия',
       key: 'actions',
+      width: '15%',
       render: (text: string, record: ResponsiblePerson) => (
         <Space size="middle">
-          <Button onClick={() => onEdit(record)}>Редактировать</Button>
-          <Button danger onClick={() => onDelete(record)}>
-            Удалить
-          </Button>
+          <Button icon={<EditOutlined />} onClick={() => onEdit(record)} />
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => onDelete(record)}
+          />
         </Space>
       ),
     },
