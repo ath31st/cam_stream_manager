@@ -3,6 +3,8 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { EventDto } from '../../../entities/event';
 import React from 'react';
 import { paginationConfig } from '../../../shared/pagination';
+import LevelBadge from '../../../entities/event/ui/LevelBadge';
+import styles from './EventTable.module.css';
 
 interface EventsTableProps {
   events: EventDto[];
@@ -28,6 +30,11 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       title: 'Уровень',
       dataIndex: 'level',
       key: 'level',
+      render: (level: string) => (
+        <div className={styles['level-badge']}>
+          <LevelBadge level={level} />
+        </div>
+      ),
     },
     {
       title: 'Сообщение',
