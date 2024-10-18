@@ -191,7 +191,7 @@ export class StreamService {
     if (stream.status !== StreamStatus.NoConnection) {
       await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
       await this.logStreamEvent(
-        EventLevel.WARNING,
+        EventLevel.ERROR,
         `Stream ${stream.location} is not reachable`,
       );
     }
