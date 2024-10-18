@@ -1,13 +1,28 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+  CloseCircleOutlined,
+} from '@ant-design/icons';
 import { Stream } from '../../../entities/stream';
 import { paginationConfig } from '../../../shared/pagination';
+import styles from './StreamsTable.module.css';
+import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
 
 interface StreamsTableProps {
   streams: Stream[];
   onEdit: (stream: Stream) => void;
   onDelete: (id: number) => void;
 }
+
+const statusIcons: Record<string, JSX.Element> = {
+  Active: <CheckCircleOutlined style={{ color: 'green' }} />,
+  'Bad connection': <ExclamationCircleOutlined style={{ color: 'orange' }} />,
+  'No connection': <CloseCircleOutlined style={{ color: 'red' }} />,
+};
 
 const StreamsTable: React.FC<StreamsTableProps> = ({
   streams,
@@ -20,33 +35,55 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       dataIndex: 'location',
       key: 'location',
       sorter: (a: Stream, b: Stream) => a.location.localeCompare(b.location),
+      width: '40%',
+      render: (text: string) => (
+        <div className={styles['ellipsis-location-cell']} title={text}>
+          {text}
+        </div>
+      ),
     },
     {
       title: 'Статус',
       dataIndex: 'status',
       key: 'status',
+      width: '10%',
       sorter: (a: Stream, b: Stream) => a.status.localeCompare(b.status),
+      render: (status: string) => (
+        <CommonTooltip title={status} placement="top">
+          {statusIcons[status] || status}
+        </CommonTooltip>
+      ),
     },
     {
       title: 'Видимость',
       dataIndex: 'isVisible',
       key: 'isVisible',
+      width: '15%',
       render: (isVisible: boolean) => (isVisible ? 'Виден' : 'Скрыт'),
     },
     {
       title: 'Комментарий',
       dataIndex: 'comment',
       key: 'comment',
+      width: '20%',
+      render: (text: string) => (
+        <div className={styles['ellipsis-comment-cell']} title={text}>
+          {text}
+        </div>
+      ),
     },
     {
       title: 'Действия',
       key: 'actions',
+      width: '15%',
       render: (text: string, record: Stream) => (
         <Space size="middle">
-          <Button onClick={() => onEdit(record)}>Редактировать</Button>
-          <Button danger onClick={() => onDelete(record.id)}>
-            Удалить
-          </Button>
+          <Button icon={<EditOutlined />} onClick={() => onEdit(record)} />
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => onDelete(record.id)}
+          />
         </Space>
       ),
     },

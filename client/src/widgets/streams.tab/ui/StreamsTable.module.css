@@ -1,0 +1,15 @@
+.ellipsis-location-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.ellipsis-comment-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 230px;
+  min-width: 230px;
+}

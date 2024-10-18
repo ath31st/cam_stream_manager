@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Space, Select } from 'antd';
+import { Space } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import { useRegionStore } from '../../../app/stores/region.store';
 import {
@@ -9,6 +9,9 @@ import {
 import StreamsTable from './StreamsTable';
 import StreamModals from './StreamsModals';
 import { Stream, NewStream, UpdateStream } from '../../../entities/stream';
+import TabContainer from '../../../shared/ui/containers/TabContainer';
+import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import RegionSelect from '../../../shared/ui/selects/RegionSelect';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -109,26 +112,10 @@ const StreamsTab: React.FC = () => {
     : streams;
 
   return (
-    <>
-      <h1>Управление потоками</h1>
-
-      <Space style={{ marginBottom: 16 }}>
-        <Button type="primary" onClick={handleAddStream}>
-          Добавить стрим
-        </Button>
-
-        <Select
-          placeholder="Выберите регион для фильтрации"
-          style={{ width: 250 }}
-          allowClear
-          onChange={(value) => setSelectedRegionId(value || null)}
-        >
-          {regions.map((region) => (
-            <Select.Option key={region.id} value={region.id}>
-              {region.name}
-            </Select.Option>
-          ))}
-        </Select>
+    <TabContainer>
+      <Space>
+        <DarkButton onClick={handleAddStream}>Добавить поток</DarkButton>
+        <RegionSelect regions={regions} onChange={setSelectedRegionId} />
       </Space>
 
       <StreamsTable
@@ -151,7 +138,7 @@ const StreamsTab: React.FC = () => {
         handleDelete={handleDelete}
         handleCancelDelete={handleCancelDelete}
       />
-    </>
+    </TabContainer>
   );
 };
 
