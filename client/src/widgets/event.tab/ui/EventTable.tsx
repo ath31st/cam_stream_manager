@@ -50,13 +50,15 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       title: 'Действия',
       key: 'action',
       render: (_: unknown, record: { key: number }) => (
-        <Space size={'middle'}>
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() => onDelete(record.key)}
-          />
-        </Space>
+        <div className={styles['actions-column']}>
+          <Space size={'middle'}>
+            <Button
+              danger
+              icon={<DeleteOutlined />}
+              onClick={() => onDelete(record.key)}
+            />
+          </Space>
+        </div>
       ),
     },
   ];
