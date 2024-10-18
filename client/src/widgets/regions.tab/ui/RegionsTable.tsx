@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Button, Space } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Region } from '../../../entities/region';
 import { paginationConfig } from '../../../shared/pagination';
 
@@ -17,7 +18,7 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
   const dataSource = regions.map((region) => ({
     key: region.id,
     name: region.name,
-    isVisible: region.isVisible ? 'Да' : 'Нет',
+    isVisible: region.isVisible ? 'Виден' : 'Скрыт',
   }));
 
   const columns = [
@@ -27,25 +28,29 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       key: 'name',
       sorter: (a: { name: string }, b: { name: string }) =>
         a.name.localeCompare(b.name),
+      width: '60%',
     },
     {
       title: 'Видимость',
       dataIndex: 'isVisible',
       key: 'isVisible',
+      width: '20%',
     },
     {
       title: 'Действия',
       key: 'action',
+      width: '20%',
       render: (_: unknown, record: { key: number }) => (
         <Space size={'middle'}>
           <Button
+            icon={<EditOutlined />}
             onClick={() => onEdit(regions.find((r) => r.id === record.key)!)}
-          >
-            Редактировать
-          </Button>
-          <Button danger onClick={() => onDelete(record.key)}>
-            Удалить
-          </Button>
+          />
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => onDelete(record.key)}
+          />
         </Space>
       ),
     },
