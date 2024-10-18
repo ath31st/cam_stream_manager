@@ -5,18 +5,24 @@ import { EventCardList } from '../../../entities/event';
 import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
 import styles from './EventSidebar.module.css';
 
-const EventSidebar: React.FC = () => {
+interface EventSidebarProps {
+  isActiveTab: boolean;
+}
+
+const EventSidebar: React.FC<EventSidebarProps> = ({ isActiveTab }) => {
   const { error, clearError, fetchEvents, events } = useEventStore();
 
   useEffect(() => {
-    fetchEvents(fetchProps.page, fetchProps.pageSize);
-
-    const intervalId = setInterval(() => {
+    if (isActiveTab) {
       fetchEvents(fetchProps.page, fetchProps.pageSize);
-    }, POLLING_INTERVAL);
 
-    return () => clearInterval(intervalId);
-  }, [fetchEvents]);
+      const intervalId = setInterval(() => {
+        fetchEvents(fetchProps.page, fetchProps.pageSize);
+      }, POLLING_INTERVAL);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [fetchEvents, isActiveTab]);
 
   useEffect(() => {
     if (error) {

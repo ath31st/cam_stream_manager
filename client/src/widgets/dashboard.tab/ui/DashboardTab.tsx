@@ -5,7 +5,11 @@ import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
 import { EventSidebar } from '../../event.sidebar';
 
-const Dashboard: React.FC = () => {
+interface DashboardProps {
+  isActiveTab: boolean;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
   const [dashboardData, setDashboardData] = useState<RegionInfo[]>([]);
   const [openRegion, setOpenRegion] = useState<string | null>(null);
 
@@ -21,13 +25,15 @@ const Dashboard: React.FC = () => {
       }
     };
 
-    fetchData();
-
-    const intervalId = setInterval(() => {
+    if (isActiveTab) {
       fetchData();
-    }, STREAMS_UPDATE_INTERVAL);
 
-    return () => clearInterval(intervalId);
+      const intervalId = setInterval(() => {
+        fetchData();
+      }, STREAMS_UPDATE_INTERVAL);
+
+      return () => clearInterval(intervalId);
+    }
   }, [dashboardData]);
 
   const toggleRegion = (regionName: string) => {
@@ -50,7 +56,7 @@ const Dashboard: React.FC = () => {
         </Row>
       </Col>
       <Col span={6}>
-        <EventSidebar />
+        <EventSidebar isActiveTab={isActiveTab} />
       </Col>
     </Row>
   );

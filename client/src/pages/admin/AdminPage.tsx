@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs } from 'antd';
 import RegionsTab from '../../widgets/regions.tab';
 import StreamsTab from '../../widgets/streams.tab';
@@ -7,11 +7,14 @@ import Dashboard from '../../widgets/dashboard.tab';
 import EventTab from '../../widgets/event.tab';
 
 const AdminPage: React.FC = () => {
+  const [activeTabKey, setActiveTabKey] = useState<string>('1');
+
   return (
     <>
       <Tabs
         defaultActiveKey="1"
         centered
+        onChange={setActiveTabKey}
         tabBarStyle={{
           padding: '10px 20px',
           borderBottom: '2px solid var(--colorPrimary)',
@@ -20,7 +23,7 @@ const AdminPage: React.FC = () => {
           {
             label: 'Дашборд',
             key: '1',
-            children: <Dashboard />,
+            children: <Dashboard isActiveTab={activeTabKey === '1'} />,
           },
           {
             label: 'Регионы',
