@@ -13,3 +13,11 @@
   max-width: 230px;
   min-width: 230px;
 }
+
+.rp-phone-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+  min-width: 140px;
+}

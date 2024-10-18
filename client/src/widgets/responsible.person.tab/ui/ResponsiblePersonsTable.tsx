@@ -26,14 +26,22 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
       key: 'name',
       sorter: (a: ResponsiblePerson, b: ResponsiblePerson) =>
         a.name.localeCompare(b.name),
-      width: '25%',
       render: (text: string) => (
         <div className={styles['ellipsis-rp-name-cell']} title={text}>
           {text}
         </div>
       ),
     },
-    { title: 'Телефон', dataIndex: 'phone', key: 'phone', width: '25%' },
+    {
+      title: 'Телефон',
+      dataIndex: 'phone',
+      key: 'phone',
+      render: (text: string) => (
+        <div className={styles['rp-phone-cell']} title={text}>
+          {text}
+        </div>
+      ),
+    },
     {
       title: 'Местоположение',
       dataIndex: 'streamId',
@@ -42,7 +50,6 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
         text: stream.location,
         value: stream.id,
       })),
-      width: '40%',
       onFilter: (value: unknown, record: ResponsiblePerson) =>
         record.streamId === value,
       render: (streamId: number) => {
@@ -69,7 +76,6 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
     {
       title: 'Действия',
       key: 'actions',
-      width: '15%',
       render: (_: string, record: ResponsiblePerson) => (
         <ActionButtons
           onEdit={() => onEdit(record)}
@@ -81,6 +87,7 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
 
   return (
     <Table
+      className={styles.table}
       dataSource={persons}
       columns={columns}
       rowKey="id"

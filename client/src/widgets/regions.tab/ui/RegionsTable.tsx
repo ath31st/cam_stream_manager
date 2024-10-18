@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import { Region } from '../../../entities/region';
 import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
+import styles from './RegionsTable.module.css';
 
 interface RegionsTableProps {
   regions: Region[];
@@ -28,29 +29,29 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       key: 'name',
       sorter: (a: { name: string }, b: { name: string }) =>
         a.name.localeCompare(b.name),
-      width: '60%',
     },
     {
       title: 'Видимость',
       dataIndex: 'isVisible',
       key: 'isVisible',
-      width: '20%',
     },
     {
       title: 'Действия',
       key: 'action',
-      width: '20%',
       render: (_: unknown, record: { key: number }) => (
-        <ActionButtons
-          onEdit={() => onEdit(regions.find((r) => r.id === record.key)!)}
-          onDelete={() => onDelete(record.key)}
-        />
+        <div className={styles['actions-column']}>
+          <ActionButtons
+            onEdit={() => onEdit(regions.find((r) => r.id === record.key)!)}
+            onDelete={() => onDelete(record.key)}
+          />
+        </div>
       ),
     },
   ];
 
   return (
     <Table
+      className={styles.table}
       dataSource={dataSource}
       columns={columns}
       pagination={paginationConfig}
