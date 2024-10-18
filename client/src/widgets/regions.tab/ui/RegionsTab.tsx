@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Spin } from 'antd';
+import { Spin } from 'antd';
 import { useRegionStore } from '../../../app/stores/region.store';
 import { Region, UpdateRegion } from '../../../entities/region';
 import { useStreamStore } from '../../../app/stores/stream.store';
@@ -9,6 +9,8 @@ import {
 } from '../../../shared/notifications';
 import RegionsTable from './RegionsTable';
 import RegionModals from './RegionModals';
+import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import TabContainer from '../../../shared/ui/containers/TabContainer';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -87,16 +89,14 @@ const RegionsTab: React.FC = () => {
   };
 
   return (
-    <>
-      <h1>Управление регионами</h1>
-
+    <TabContainer>
       {loading ? (
         <Spin size="large" />
       ) : (
         <>
-          <Button type="primary" onClick={() => setIsAddModalVisible(true)}>
+          <DarkButton onClick={() => setIsAddModalVisible(true)}>
             Добавить регион
-          </Button>
+          </DarkButton>
           <RegionsTable
             regions={regions}
             onEdit={showUpdateModal}
@@ -123,7 +123,7 @@ const RegionsTab: React.FC = () => {
           />
         </>
       )}
-    </>
+    </TabContainer>
   );
 };
 

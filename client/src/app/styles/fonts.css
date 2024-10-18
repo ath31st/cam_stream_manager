@@ -28,3 +28,10 @@
   font-weight: bold;
   font-style: italic;
 }
+
+@font-face {
+  font-family: 'Monitorca';
+  src: url('../../shared/ui/assets/fonts/Monitorca.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
