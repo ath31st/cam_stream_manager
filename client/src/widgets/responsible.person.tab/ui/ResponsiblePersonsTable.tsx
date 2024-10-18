@@ -1,10 +1,10 @@
 import React from 'react';
-import { Table, Button, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table } from 'antd';
 import { ResponsiblePerson } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './ResponsiblePersonsTable.module.css';
+import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 
 interface ResponsiblePersonsTableProps {
   persons: ResponsiblePerson[];
@@ -70,15 +70,11 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
       title: 'Действия',
       key: 'actions',
       width: '15%',
-      render: (text: string, record: ResponsiblePerson) => (
-        <Space size="middle">
-          <Button icon={<EditOutlined />} onClick={() => onEdit(record)} />
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() => onDelete(record)}
-          />
-        </Space>
+      render: (_: string, record: ResponsiblePerson) => (
+        <ActionButtons
+          onEdit={() => onEdit(record)}
+          onDelete={() => onDelete(record)}
+        />
       ),
     },
   ];

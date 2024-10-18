@@ -1,8 +1,8 @@
 import React from 'react';
-import { Table, Button, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table } from 'antd';
 import { Region } from '../../../entities/region';
 import { paginationConfig } from '../../../shared/pagination';
+import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 
 interface RegionsTableProps {
   regions: Region[];
@@ -41,17 +41,10 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       key: 'action',
       width: '20%',
       render: (_: unknown, record: { key: number }) => (
-        <Space size={'middle'}>
-          <Button
-            icon={<EditOutlined />}
-            onClick={() => onEdit(regions.find((r) => r.id === record.key)!)}
-          />
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() => onDelete(record.key)}
-          />
-        </Space>
+        <ActionButtons
+          onEdit={() => onEdit(regions.find((r) => r.id === record.key)!)}
+          onDelete={() => onDelete(record.key)}
+        />
       ),
     },
   ];

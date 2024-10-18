@@ -1,8 +1,6 @@
 import React from 'react';
-import { Table, Button, Space } from 'antd';
+import { Table } from 'antd';
 import {
-  EditOutlined,
-  DeleteOutlined,
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   CloseCircleOutlined,
@@ -11,6 +9,7 @@ import { Stream } from '../../../entities/stream';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './StreamsTable.module.css';
 import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
+import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 
 interface StreamsTableProps {
   streams: Stream[];
@@ -76,15 +75,11 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       title: 'Действия',
       key: 'actions',
       width: '15%',
-      render: (text: string, record: Stream) => (
-        <Space size="middle">
-          <Button icon={<EditOutlined />} onClick={() => onEdit(record)} />
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() => onDelete(record.id)}
-          />
-        </Space>
+      render: (_: string, record: Stream) => (
+        <ActionButtons
+          onEdit={() => onEdit(record)}
+          onDelete={() => onDelete(record.id)}
+        />
       ),
     },
   ];
