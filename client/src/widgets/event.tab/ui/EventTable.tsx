@@ -1,4 +1,5 @@
 import { Button, Space, Table } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 import { EventDto } from '../../../entities/event';
 import React from 'react';
 import { paginationConfig } from '../../../shared/pagination';
@@ -43,9 +44,11 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       key: 'action',
       render: (_: unknown, record: { key: number }) => (
         <Space size={'middle'}>
-          <Button danger onClick={() => onDelete(record.key)}>
-            Удалить
-          </Button>
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => onDelete(record.key)}
+          />
         </Space>
       ),
     },

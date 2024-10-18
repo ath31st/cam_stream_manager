@@ -6,6 +6,7 @@ import {
 } from '../../../shared/notifications';
 import { DeleteEventModal } from '../../../entities/event';
 import EventTable from './EventTable';
+import TabContainer from '../../../shared/ui/containers/TabContainer';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -41,8 +42,7 @@ const EventTab: React.FC = () => {
   };
 
   return (
-    <>
-      <h1>Управление событиями</h1>
+    <TabContainer>
       <EventTable events={events} onDelete={showDeleteConfirm} />
 
       <DeleteEventModal
@@ -50,7 +50,7 @@ const EventTab: React.FC = () => {
         onConfirm={handleDelete}
         onCancel={() => setIsDeleteModalVisible(false)}
       ></DeleteEventModal>
-    </>
+    </TabContainer>
   );
 };
 
