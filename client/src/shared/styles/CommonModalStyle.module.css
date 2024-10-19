@@ -1,0 +1,20 @@
+.modal {
+  background-color: var(--colorBgContainer);
+  color: var(--colorTextBase);
+  padding: var(--spacingSmall);
+}
+
+.modal-title {
+  text-align: center;
+  font-size: var(--fontSize);
+  color: var(--colorPrimary);
+}
+
+p {
+  margin-bottom: var(--spacingSmall);
+}
+
+.modal-body p {
+  font-size: var(--fontSize);
+  color: var(--colorTextBase);
+}
