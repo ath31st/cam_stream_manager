@@ -1,6 +1,7 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import { ResponsiblePerson } from '../index';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
 
 interface ResponsiblePersonModalProps {
   isOpen: boolean;
@@ -15,28 +16,27 @@ const ResponsiblePersonModal: React.FC<ResponsiblePersonModalProps> = ({
 }) => {
   return (
     <Modal
-      title="Ответственные лица"
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Ответственные лица</p>}
       open={isOpen}
       onCancel={onClose}
-      footer={[
-        <Button key="ok" type="primary" onClick={onClose}>
-          OK
-        </Button>,
-      ]}
+      footer={false}
     >
-      {responsiblePersons.length > 0 ? (
-        <ul>
-          {responsiblePersons.map((person) => (
-            <li key={person.id}>
-              <p>
-                Имя: {person.name} Телефон: {person.phone}
-              </p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Нет данных об ответственных лицах</p>
-      )}
+      <div className={styles['modal-body']}>
+        {responsiblePersons.length > 0 ? (
+          <ul>
+            {responsiblePersons.map((person) => (
+              <li key={person.id}>
+                <p>
+                  Имя: {person.name} Телефон: {person.phone}
+                </p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Нет данных об ответственных лицах</p>
+        )}
+      </div>
     </Modal>
   );
 };

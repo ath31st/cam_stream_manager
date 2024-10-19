@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface DeleteResponsiblePersonModalProps {
   visible: boolean;
@@ -12,19 +14,17 @@ const DeleteResponsiblePersonModal: React.FC<
 > = ({ visible, onConfirm, onCancel }) => {
   return (
     <Modal
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Подтверждение удаления</p>}
       open={visible}
-      title="Удалить ответственное лицо"
       onCancel={onCancel}
-      footer={[
-        <Button key="cancel" onClick={onCancel}>
-          Отмена
-        </Button>,
-        <Button key="delete" type="primary" danger onClick={onConfirm}>
-          Удалить
-        </Button>,
-      ]}
+      footer={
+        <FooterModal onCancel={onCancel} onOk={onConfirm} okText="Удалить" />
+      }
     >
-      <p>Вы уверены, что хотите удалить этого ответственного?</p>
+      <div className={styles['modal-body']}>
+        <p>Вы уверены, что хотите удалить это ответственное лицо?</p>
+      </div>
     </Modal>
   );
 };

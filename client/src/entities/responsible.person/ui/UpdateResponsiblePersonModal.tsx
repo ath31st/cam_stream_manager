@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Form, Input } from 'antd';
 import {
   ResponsiblePerson,
   UpdateResponsiblePerson,
@@ -8,6 +8,8 @@ import {
   phoneValidationRules,
   rpNameValidationRules,
 } from '../../../shared/validations';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface UpdateResponsiblePersonModalProps {
   visible: boolean;
@@ -34,26 +36,32 @@ const UpdateResponsiblePersonModal: React.FC<
 
   return (
     <Modal
+      className={styles.modal}
+      title={
+        <p className={styles['modal-title']}>
+          Редактирование ответственного лица
+        </p>
+      }
       open={visible}
-      title="Редактировать ответственное лицо"
       onCancel={onCancel}
-      footer={[
-        <Button key="cancel" onClick={onCancel}>
-          Отмена
-        </Button>,
-        <Button key="submit" type="primary" onClick={() => form.submit()}>
-          Сохранить
-        </Button>,
-      ]}
+      footer={
+        <FooterModal
+          onCancel={onCancel}
+          onOk={() => form.submit()}
+          okText="Сохранить"
+        />
+      }
     >
-      <Form form={form} layout="vertical" onFinish={handleFinish}>
-        <Form.Item name="name" label="Имя" rules={rpNameValidationRules}>
-          <Input placeholder="Имя" />
-        </Form.Item>
-        <Form.Item name="phone" label="Телефон" rules={phoneValidationRules}>
-          <Input placeholder="Телефон" />
-        </Form.Item>
-      </Form>
+      <div className={styles['modal-body']}>
+        <Form form={form} layout="vertical" onFinish={handleFinish}>
+          <Form.Item name="name" label="Имя" rules={rpNameValidationRules}>
+            <Input placeholder="Введите имя" />
+          </Form.Item>
+          <Form.Item name="phone" label="Телефон" rules={phoneValidationRules}>
+            <Input placeholder="Введите телефон" />
+          </Form.Item>
+        </Form>
+      </div>
     </Modal>
   );
 };

@@ -17,7 +17,7 @@ const DeleteRegionModal: React.FC<DeleteRegionModalProps> = ({
   return (
     <Modal
       className={styles.modal}
-      title={<p className={styles['modal-title']}>Подтвердите удаление</p>}
+      title={<p className={styles['modal-title']}>Подтверждение удаления</p>}
       open={visible}
       onOk={onConfirm}
       onCancel={onCancel}
