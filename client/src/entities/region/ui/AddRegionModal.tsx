@@ -1,6 +1,8 @@
 import React from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Form, Input } from 'antd';
 import { regionNameValidationRules } from '../../../shared/validations';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import NarrowButton from '../../../shared/ui/buttons/NarrowButton';
 
 interface AddRegionModalProps {
   visible: boolean;
@@ -22,28 +24,31 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
 
   return (
     <Modal
-      title="Добавить новый регион"
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Добавить новый регион</p>}
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
       footer={[
-        <Button key="cancel" onClick={onCancel}>
+        <NarrowButton key="cancel" onClick={onCancel}>
           Отмена
-        </Button>,
-        <Button key="submit" type="primary" onClick={handleOk}>
+        </NarrowButton>,
+        <NarrowButton key="submit" onClick={handleOk}>
           Добавить
-        </Button>,
+        </NarrowButton>,
       ]}
     >
-      <Form form={form} layout="vertical">
-        <Form.Item
-          name="name"
-          label="Название региона"
-          rules={regionNameValidationRules}
-        >
-          <Input placeholder="Введите название региона" />
-        </Form.Item>
-      </Form>
+      <div className={styles['modal-body']}>
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="name"
+            label="Название региона"
+            rules={regionNameValidationRules}
+          >
+            <Input placeholder="Введите название региона" />
+          </Form.Item>
+        </Form>
+      </div>
     </Modal>
   );
 };
