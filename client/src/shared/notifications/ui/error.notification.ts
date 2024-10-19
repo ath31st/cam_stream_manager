@@ -12,5 +12,13 @@ export const errorNotification = (
     placement: 'topRight',
     duration: notificationDurations.error,
     onClose,
+    style: {
+      backgroundColor: 'var(--colorPrimary)',
+      boxShadow: 'var(--shadowMedium)',
+      fontFamily: 'var(--fontFamily)',
+      fontSize: 'var(--fontSize)',
+      color: 'var(--colorTextBase)',
+      borderRadius: 'var(--borderRadius)',
+    },
   });
 };

@@ -7,5 +7,13 @@ export const successNotification = (message: string, description?: string) => {
     description,
     placement: 'topRight',
     duration: notificationDurations.success,
+    style: {
+      backgroundColor: 'var(--colorPrimary)',
+      boxShadow: 'var(--shadowMedium)',
+      fontFamily: 'var(--fontFamily)',
+      fontSize: 'var(--fontSize)',
+      color: 'var(--colorTextBase)',
+      borderRadius: 'var(--borderRadius)',
+    },
   });
 };
