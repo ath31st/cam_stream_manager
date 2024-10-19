@@ -16,6 +16,10 @@ interface EventState {
   selectedEvent: EventDto | null;
   loading: boolean;
   error: string | null;
+  currentPage: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
   fetchEvents: (
     page?: number,
     pageSize?: number,
@@ -32,6 +36,10 @@ export const useEventStore = create<EventState>((set) => ({
   selectedEvent: null,
   loading: false,
   error: null,
+  currentPage: 1,
+  pageSize: 5,
+  totalItems: 0,
+  totalPages: 0,
   fetchEvents: async (
     page?: number,
     pageSize?: number,
@@ -46,7 +54,14 @@ export const useEventStore = create<EventState>((set) => ({
         filterByType,
         filterByLevel,
       );
-      set({ events: eventPage.items, loading: false });
+      set({
+        events: eventPage.items,
+        totalItems: eventPage.totalItems,
+        totalPages: eventPage.totalPages,
+        currentPage: eventPage.currentPage,
+        pageSize: eventPage.pageSize,
+        loading: false,
+      });
     } catch (error) {
       set({ loading: false });
       useEventStore.getState().handleError(error);

@@ -1,7 +1,6 @@
 import { Table } from 'antd';
 import { EventDto } from '../../../entities/event';
 import React from 'react';
-import { paginationConfig } from '../../../shared/pagination';
 import LevelBadge from '../../../entities/event/ui/LevelBadge';
 import styles from './EventTable.module.css';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
@@ -61,7 +60,7 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
     <Table
       dataSource={dataSource}
       columns={columns}
-      pagination={paginationConfig}
+      pagination={false}
     />
   );
 };

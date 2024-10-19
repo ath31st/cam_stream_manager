@@ -7,13 +7,21 @@ import {
 import { DeleteEventModal } from '../../../entities/event';
 import EventTable from './EventTable';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
+import { Pagination } from 'antd';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [deleteEventId, setDeleteEventId] = useState<number | null>(null);
 
-  const { events, removeEvent, error, clearError, fetchEvents } =
-    useEventStore();
+  const {
+    events,
+    removeEvent,
+    error,
+    clearError,
+    fetchEvents,
+    currentPage,
+    pageSize,
+  } = useEventStore();
 
   useEffect(() => {
     if (error) {
@@ -22,8 +30,8 @@ const EventTab: React.FC = () => {
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchEvents();
-  }, [fetchEvents]);
+    fetchEvents(currentPage, pageSize);
+  }, [fetchEvents, currentPage, pageSize]);
 
   const showDeleteConfirm = (id: number) => {
     setDeleteEventId(id);
@@ -41,15 +49,26 @@ const EventTab: React.FC = () => {
     }
   };
 
+  const handlePageChange = (page: number) => {
+    useEventStore.getState().fetchEvents(page, pageSize);
+  };
+
   return (
     <TabContainer>
       <EventTable events={events} onDelete={showDeleteConfirm} />
-
+      <Pagination
+        defaultCurrent={1}
+        current={currentPage}
+        pageSize={pageSize}
+        total={useEventStore.getState().totalItems}
+        onChange={handlePageChange}
+        showSizeChanger={false}
+      />
       <DeleteEventModal
         visible={isDeleteModalVisible}
         onConfirm={handleDelete}
         onCancel={() => setIsDeleteModalVisible(false)}
-      ></DeleteEventModal>
+      />
     </TabContainer>
   );
 };
