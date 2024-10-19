@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import { Modal, Input, Checkbox, Form, Button } from 'antd';
+import { Modal, Input, Form, Switch } from 'antd';
 import { Region, UpdateRegion } from '..';
 import { regionNameValidationRules } from '../../../shared/validations';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import NarrowButton from '../../../shared/ui/buttons/NarrowButton';
 
 interface UpdateRegionModalProps {
   visible: boolean;
@@ -31,31 +33,38 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
 
   return (
     <Modal
-      title="Редактировать регион"
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Редактирование региона</p>}
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
       footer={[
-        <Button key="cancel" onClick={onCancel}>
+        <NarrowButton key="cancel" onClick={onCancel}>
           Отмена
-        </Button>,
-        <Button key="submit" type="primary" onClick={handleOk}>
+        </NarrowButton>,
+        <NarrowButton key="submit" onClick={handleOk}>
           Сохранить
-        </Button>,
+        </NarrowButton>,
       ]}
     >
-      <Form form={form} layout="vertical">
-        <Form.Item
-          name="name"
-          label="Название региона"
-          rules={regionNameValidationRules}
-        >
-          <Input placeholder="Введите название региона" />
-        </Form.Item>
-        <Form.Item name="isVisible" valuePropName="checked">
-          <Checkbox>Видимый</Checkbox>
-        </Form.Item>
-      </Form>
+      <div className={styles['modal-body']}>
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="name"
+            label="Название региона"
+            rules={regionNameValidationRules}
+          >
+            <Input placeholder="Введите новое название региона" />
+          </Form.Item>
+          <Form.Item
+            name="isVisible"
+            label="Видимость в списке плеера"
+            valuePropName="checked"
+          >
+            <Switch checkedChildren="Виден" unCheckedChildren="Скрыт" />
+          </Form.Item>
+        </Form>
+      </div>
     </Modal>
   );
 };
