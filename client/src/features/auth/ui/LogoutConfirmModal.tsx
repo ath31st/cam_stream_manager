@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface LogoutConfirmModalProps {
   visible: boolean;
@@ -14,19 +16,17 @@ const LogoutConfirmModal: React.FC<LogoutConfirmModalProps> = ({
 }) => {
   return (
     <Modal
-      title="Подтверждение выхода"
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Подтверждение выхода</p>}
       open={visible}
       onCancel={onClose}
-      footer={[
-        <Button key="cancel" onClick={onClose}>
-          Отмена
-        </Button>,
-        <Button key="confirm" type="primary" onClick={onConfirm}>
-          Да, выйти
-        </Button>,
-      ]}
+      footer={
+        <FooterModal onCancel={onClose} onOk={onConfirm} okText="Выйти" />
+      }
     >
-      <p>Вы уверены, что хотите выйти?</p>
+      <div className={styles['modal-body']}>
+        <p>Вы уверены, что хотите выйти?</p>
+      </div>
     </Modal>
   );
 };

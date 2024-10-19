@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Form, Input } from 'antd';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface LoginModalProps {
   visible: boolean;
@@ -12,39 +14,49 @@ const LoginModal: React.FC<LoginModalProps> = ({
   onClose,
   onLogin,
 }) => {
-  const handleLogin = async (values: {
-    username: string;
-    password: string;
-  }) => {
+  const [form] = Form.useForm();
+
+  const handleLogin = async () => {
     try {
+      const values = await form.validateFields();
       onLogin(values.username, values.password);
       onClose();
     } catch (error) {
-      console.error('Ошибка логина:', error);
+      console.error('Ошибка входа:', error);
     }
   };
 
   return (
-    <Modal title="Вход" open={visible} onCancel={onClose} footer={null}>
-      <Form onFinish={handleLogin}>
-        <Form.Item
-          name="username"
-          rules={[{ required: true, message: 'Введите имя пользователя!' }]}
-        >
-          <Input placeholder="Имя пользователя" />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Введите пароль!' }]}
-        >
-          <Input.Password placeholder="Пароль" />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Войти
-          </Button>
-        </Form.Item>
-      </Form>
+    <Modal
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Вход</p>}
+      open={visible}
+      onCancel={onClose}
+      footer={
+        <FooterModal
+          onCancel={onClose}
+          onOk={handleLogin}
+          cancelText="Отмена"
+          okText="Войти"
+        />
+      }
+    >
+      <div className={styles['modal-body']}>
+        <Form form={form} onFinish={handleLogin}>
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: 'Введите имя пользователя!' }]}
+          >
+            <Input placeholder="Имя пользователя" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: 'Введите пароль!' }]}
+          >
+            <Input.Password placeholder="Пароль" />
+          </Form.Item>
+        </Form>
+      </div>
     </Modal>
   );
 };
