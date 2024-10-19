@@ -25,7 +25,7 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
   return (
     <Modal
       className={styles.modal}
-      title={<p className={styles['modal-title']}>Добавить новый регион</p>}
+      title={<p className={styles['modal-title']}>Создание нового региона</p>}
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
