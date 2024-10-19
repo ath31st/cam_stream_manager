@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ONE_SECOND, ONE_SECOND_IN_MILLIS } from '../constants/event.pulse';
 
 const usePulsing = (createdAt: Date) => {
   const [isPulsing, setIsPulsing] = useState(false);
@@ -7,17 +8,17 @@ const usePulsing = (createdAt: Date) => {
     const createdTime = new Date(createdAt).getTime();
     const now = Date.now();
 
-    if (now - createdTime < 60000) {
+    if (now - createdTime < ONE_SECOND_IN_MILLIS) {
       setIsPulsing(true);
 
       const intervalId = setInterval(() => {
         const timePassed = Date.now() - createdTime;
 
-        if (timePassed >= 60000) {
+        if (timePassed >= ONE_SECOND_IN_MILLIS) {
           setIsPulsing(false);
           clearInterval(intervalId);
         }
-      }, 1000);
+      }, ONE_SECOND);
 
       return () => clearInterval(intervalId);
     }
