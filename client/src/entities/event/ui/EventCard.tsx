@@ -4,12 +4,15 @@ import { Card } from 'antd';
 import LevelBadge from './LevelBadge';
 import styles from './EventCard.module.css';
 import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
+import usePulsing from '../lib/usePulsing';
 
 const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
+  const isPulsing = usePulsing(createdAt);
+
   return (
     <Card
       title={`Категория: ${type}`}
-      className={styles.card}
+      className={`${styles.card} ${isPulsing ? styles.pulse : ''}`}
       styles={{
         header: { minHeight: 30, paddingLeft: 8, fontSize: 14 },
         body: {

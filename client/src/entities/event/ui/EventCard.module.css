@@ -1,6 +1,27 @@
 .card {
-  width: 240px;
-  height: 150px;
+  height: 147px;
+  width: 250px;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid var(--colorBorder);
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    border-color: var(--colorBorder);
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: var(--colorBorder);
+  }
 }
 
 .info {
