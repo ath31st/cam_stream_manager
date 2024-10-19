@@ -8,6 +8,7 @@ import { DeleteEventModal } from '../../../entities/event';
 import EventTable from './EventTable';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import { Pagination } from 'antd';
+import styles from './EventTab.module.css';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -56,14 +57,16 @@ const EventTab: React.FC = () => {
   return (
     <TabContainer>
       <EventTable events={events} onDelete={showDeleteConfirm} />
-      <Pagination
-        defaultCurrent={1}
-        current={currentPage}
-        pageSize={pageSize}
-        total={useEventStore.getState().totalItems}
-        onChange={handlePageChange}
-        showSizeChanger={false}
-      />
+      <div className={styles['pagination-container']}>
+        <Pagination
+          defaultCurrent={1}
+          current={currentPage}
+          pageSize={pageSize}
+          total={useEventStore.getState().totalItems}
+          onChange={handlePageChange}
+          showSizeChanger={false}
+        />
+      </div>
       <DeleteEventModal
         visible={isDeleteModalVisible}
         onConfirm={handleDelete}
