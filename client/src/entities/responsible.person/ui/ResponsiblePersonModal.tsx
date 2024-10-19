@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'antd';
 import { ResponsiblePerson } from '../index';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import listStyles from './ResponsiblePersonModalStyle.module.css';
+import ResponsiblePersonList from './ResponsiblePersonList ';
 
 interface ResponsiblePersonModalProps {
   isOpen: boolean;
@@ -25,16 +25,7 @@ const ResponsiblePersonModal: React.FC<ResponsiblePersonModalProps> = ({
     >
       <div className={styles['modal-body']}>
         {responsiblePersons.length > 0 ? (
-          <ul className={listStyles.list}>
-            {responsiblePersons.map((person) => (
-              <li key={person.id} className={listStyles['list-item']}>
-                <p className={listStyles['person-name']}>Имя: {person.name}</p>
-                <p className={listStyles['person-phone']}>
-                  Телефон: {person.phone}
-                </p>
-              </li>
-            ))}
-          </ul>
+          <ResponsiblePersonList responsiblePersons={responsiblePersons} />
         ) : (
           <p>Нет данных об ответственных лицах</p>
         )}

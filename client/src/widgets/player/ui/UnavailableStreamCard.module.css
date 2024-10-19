@@ -16,13 +16,3 @@
   font-size: 68px;
   color: var(--colorError);
 }
-
-.responsible-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.responsible-list li {
-  font-size: var(--fontSize);
-  margin: 8px 0;
-}
