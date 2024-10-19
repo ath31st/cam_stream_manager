@@ -6,7 +6,7 @@ import { useResponsiblePersonStore } from '../../../app/stores/responsible.perso
 import UnavailableStreamCard from './UnavailableStreamCard';
 import { ResponsiblePersonModal } from '../../../entities/responsible.person';
 import WelcomeCard from './WelcomeCard';
-import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import WideButton from '../../../shared/ui/buttons/WideButton';
 
 export const Player: React.FC = () => {
   const { selectedStream } = useStreamStore();
@@ -36,9 +36,9 @@ export const Player: React.FC = () => {
           {selectedStream.status === 'Active' ? (
             <>
               <HLSPlayer url={selectedStream.streamUrl} />
-              <DarkButton onClick={openModal}>
+              <WideButton onClick={openModal}>
                 Показать ответственных лиц
-              </DarkButton>
+              </WideButton>
             </>
           ) : (
             <UnavailableStreamCard responsiblePersons={responsiblePersons} />

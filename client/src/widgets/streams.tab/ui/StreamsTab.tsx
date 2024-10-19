@@ -10,7 +10,7 @@ import StreamsTable from './StreamsTable';
 import StreamModals from './StreamsModals';
 import { Stream, NewStream, UpdateStream } from '../../../entities/stream';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
-import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import WideButton from '../../../shared/ui/buttons/WideButton';
 import RegionSelect from '../../../shared/ui/selects/RegionSelect';
 
 const StreamsTab: React.FC = () => {
@@ -114,7 +114,7 @@ const StreamsTab: React.FC = () => {
   return (
     <TabContainer>
       <Space>
-        <DarkButton onClick={handleAddStream}>Добавить поток</DarkButton>
+        <WideButton onClick={handleAddStream}>Добавить поток</WideButton>
         <RegionSelect regions={regions} onChange={setSelectedRegionId} />
       </Space>
 

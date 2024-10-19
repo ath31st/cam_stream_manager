@@ -9,7 +9,7 @@ import {
 } from '../../../shared/notifications';
 import RegionsTable from './RegionsTable';
 import RegionModals from './RegionModals';
-import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 
 const RegionsTab: React.FC = () => {
@@ -94,9 +94,9 @@ const RegionsTab: React.FC = () => {
         <Spin size="large" />
       ) : (
         <>
-          <DarkButton onClick={() => setIsAddModalVisible(true)}>
+          <WideButton onClick={() => setIsAddModalVisible(true)}>
             Добавить регион
-          </DarkButton>
+          </WideButton>
           <RegionsTable
             regions={regions}
             onEdit={showUpdateModal}

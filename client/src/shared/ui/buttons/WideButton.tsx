@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button } from 'antd';
 import commonStyles from './CommonButton.module.css';
-import styles from './DarkButton.module.css';
+import styles from './WideButton.module.css';
 
-interface DarkButtonProps {
+interface WideButtonProps {
   onClick: () => void;
   children: React.ReactNode;
   type?: 'default' | 'primary' | 'dashed' | 'link' | 'text';
 }
 
-const DarkButton: React.FC<DarkButtonProps> = ({
+const WideButton: React.FC<WideButtonProps> = ({
   onClick,
   children,
   type = 'default',
@@ -25,4 +25,4 @@ const DarkButton: React.FC<DarkButtonProps> = ({
   );
 };
 
-export default DarkButton;
+export default WideButton;

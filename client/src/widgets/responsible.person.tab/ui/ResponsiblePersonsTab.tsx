@@ -15,7 +15,7 @@ import {
 import ResponsiblePersonModals from './ResponsiblePersonModals';
 import ResponsiblePersonsTable from './ResponsiblePersonsTable';
 import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
-import DarkButton from '../../../shared/ui/buttons/DarkButton';
+import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 
 const ResponsiblePersonsTab: React.FC = () => {
@@ -101,9 +101,9 @@ const ResponsiblePersonsTab: React.FC = () => {
   return (
     <TabContainer>
       <Space>
-        <DarkButton onClick={handleAddPerson}>
+        <WideButton onClick={handleAddPerson}>
           Добавить ответственное лицо
-        </DarkButton>
+        </WideButton>
         <StreamSelect
           streams={streams}
           onChange={(value) => setSelectedStreamId(value)}
