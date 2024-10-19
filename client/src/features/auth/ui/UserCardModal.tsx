@@ -22,9 +22,10 @@ const UserCardModal: React.FC<UserCardModalProps> = ({
     >
       {user ? (
         <div>
-          <p>Имя: {user.username}</p>
+          <p>Логин: {user.username}</p>
           <p>ID пользователя: {user.userId}</p>
-          <p>Роли: {user.roles}</p>
+          <p>Электронная почта: {user.email ? user.email : 'не указана'}</p>
+          <p>Роль: {user.role}</p>
         </div>
       ) : (
         <p>Информация о пользователе недоступна.</p>
