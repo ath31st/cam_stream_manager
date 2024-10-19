@@ -10,19 +10,20 @@ interface EventSidebarProps {
 }
 
 const EventSidebar: React.FC<EventSidebarProps> = ({ isActiveTab }) => {
-  const { error, clearError, fetchEvents, events } = useEventStore();
+  const { error, clearError, fetchSidebarEvents, sidebarEvents } =
+    useEventStore();
 
   useEffect(() => {
     if (isActiveTab) {
-      fetchEvents(fetchProps.page, fetchProps.pageSize);
+      fetchSidebarEvents(fetchProps.page, fetchProps.pageSize);
 
       const intervalId = setInterval(() => {
-        fetchEvents(fetchProps.page, fetchProps.pageSize);
+        fetchSidebarEvents(fetchProps.page, fetchProps.pageSize);
       }, POLLING_INTERVAL);
 
       return () => clearInterval(intervalId);
     }
-  }, [fetchEvents, isActiveTab]);
+  }, [fetchSidebarEvents, isActiveTab]);
 
   useEffect(() => {
     if (error) {
@@ -35,7 +36,7 @@ const EventSidebar: React.FC<EventSidebarProps> = ({ isActiveTab }) => {
       <p
         className={styles['event-sidebar-header']}
       >{`${fetchProps.pageSize} последних события:`}</p>
-      <EventCardList events={events} />
+      <EventCardList events={sidebarEvents} />
     </>
   );
 };

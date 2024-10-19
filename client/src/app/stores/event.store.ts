@@ -13,6 +13,7 @@ import { getEventErrorMessage, unknownError } from '../../shared/errors';
 
 interface EventState {
   events: EventDto[];
+  sidebarEvents: EventDto[];
   selectedEvent: EventDto | null;
   loading: boolean;
   error: string | null;
@@ -26,6 +27,7 @@ interface EventState {
     filterByType?: EventType,
     filterByLevel?: EventLevel,
   ) => Promise<void>;
+  fetchSidebarEvents: (page?: number, pageSize?: number) => Promise<void>;
   removeEvent: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
   clearError: () => void;
@@ -33,11 +35,12 @@ interface EventState {
 
 export const useEventStore = create<EventState>((set) => ({
   events: [],
+  sidebarEvents: [],
   selectedEvent: null,
   loading: false,
   error: null,
   currentPage: 1,
-  pageSize: 5,
+  pageSize: 7,
   totalItems: 0,
   totalPages: 0,
   fetchEvents: async (
@@ -67,6 +70,26 @@ export const useEventStore = create<EventState>((set) => ({
       useEventStore.getState().handleError(error);
     }
   },
+
+  fetchSidebarEvents: async (page?: number, pageSize?: number) => {
+    set({ loading: true });
+    try {
+      const eventPage: Page<EventDto> = await fetchEvents(
+        page,
+        pageSize,
+        undefined,
+        undefined,
+      );
+      set({
+        sidebarEvents: eventPage.items,
+        loading: false,
+      });
+    } catch (error) {
+      set({ loading: false });
+      useEventStore.getState().handleError(error);
+    }
+  },
+
   removeEvent: async (id: number) => {
     try {
       await deleteEvent(id);
