@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
 import RegionsTab from '../../widgets/regions.tab';
 import StreamsTab from '../../widgets/streams.tab';
@@ -8,6 +8,10 @@ import EventTab from '../../widgets/event.tab';
 
 const AdminPage: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<string>('1');
+
+  useEffect(() => {
+    document.title = 'Cam stream manager';
+  }, []);
 
   return (
     <>
