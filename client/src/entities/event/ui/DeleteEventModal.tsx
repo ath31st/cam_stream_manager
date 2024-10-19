@@ -1,5 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface DeleteEventModalProps {
   visible: boolean;
@@ -14,12 +16,18 @@ const DeleteEventModal: React.FC<DeleteEventModalProps> = ({
 }) => {
   return (
     <Modal
-      title="Подтвердите удаление"
+      className={styles.modal}
+      title={<p className={styles['modal-title']}>Подтвердите удаление</p>}
       open={visible}
       onOk={onConfirm}
       onCancel={onCancel}
+      footer={
+        <FooterModal onCancel={onCancel} onOk={onConfirm} okText="Удалить" />
+      }
     >
-      <p>Вы уверены, что хотите удалить это событие?</p>
+      <div className={styles['modal-body']}>
+        <p>Вы уверены, что хотите удалить это событие?</p>
+      </div>
     </Modal>
   );
 };

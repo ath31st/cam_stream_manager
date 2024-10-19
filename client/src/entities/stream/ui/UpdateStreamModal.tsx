@@ -8,7 +8,7 @@ import {
   streamUrlValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import NarrowButton from '../../../shared/ui/buttons/NarrowButton';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface UpdateStreamModalProps {
   visible: boolean;
@@ -49,14 +49,9 @@ const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
-      footer={[
-        <NarrowButton key="cancel" onClick={onCancel}>
-          Отмена
-        </NarrowButton>,
-        <NarrowButton key="submit" onClick={handleOk}>
-          Сохранить
-        </NarrowButton>,
-      ]}
+      footer={
+        <FooterModal onCancel={onCancel} onOk={handleOk} okText="Сохранить" />
+      }
     >
       <div className={styles['modal-body']}>
         <Form form={form} onFinish={handleFormSubmit}>

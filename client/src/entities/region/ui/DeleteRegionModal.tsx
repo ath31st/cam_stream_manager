@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import NarrowButton from '../../../shared/ui/buttons/NarrowButton';
+import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface DeleteRegionModalProps {
   visible: boolean;
@@ -21,14 +21,9 @@ const DeleteRegionModal: React.FC<DeleteRegionModalProps> = ({
       open={visible}
       onOk={onConfirm}
       onCancel={onCancel}
-      footer={[
-        <NarrowButton key="cancel" onClick={onCancel}>
-          Отмена
-        </NarrowButton>,
-        <NarrowButton key="submit" onClick={onConfirm}>
-          Удалить
-        </NarrowButton>,
-      ]}
+      footer={
+        <FooterModal onCancel={onCancel} onOk={onConfirm} okText="Удалить" />
+      }
     >
       <div className={styles['modal-body']}>
         <p>Вы уверены, что хотите удалить этот регион?</p>
