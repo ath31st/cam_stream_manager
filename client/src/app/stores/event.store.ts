@@ -93,7 +93,8 @@ export const useEventStore = create<EventState>((set) => ({
   removeEvent: async (id: number) => {
     try {
       await deleteEvent(id);
-      useEventStore.getState().fetchEvents();
+      const { currentPage, pageSize } = useEventStore.getState();
+      useEventStore.getState().fetchEvents(currentPage, pageSize);
     } catch (error) {
       useEventStore.getState().handleError(error);
     }
