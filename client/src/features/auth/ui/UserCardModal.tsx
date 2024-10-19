@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 import { JwtUser } from '../model/auth.model';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
 
 interface UserCardModalProps {
   visible: boolean;
@@ -15,21 +16,24 @@ const UserCardModal: React.FC<UserCardModalProps> = ({
 }) => {
   return (
     <Modal
-      title="Профиль пользователя"
+      title={<p className={styles['modal-title']}>Профиль пользователя</p>}
       open={visible}
       onCancel={onClose}
       footer={null}
+      className={styles.modal}
     >
-      {user ? (
-        <div>
-          <p>Логин: {user.username}</p>
-          <p>ID пользователя: {user.userId}</p>
-          <p>Электронная почта: {user.email ? user.email : 'не указана'}</p>
-          <p>Роль: {user.role}</p>
-        </div>
-      ) : (
-        <p>Информация о пользователе недоступна.</p>
-      )}
+      <div className={styles['modal-body']}>
+        {user ? (
+          <div>
+            <p>Логин: {user.username}</p>
+            <p>ID пользователя: {user.userId}</p>
+            <p>Электронная почта: {user.email ? user.email : 'не указана'}</p>
+            <p>Роль: {user.role}</p>
+          </div>
+        ) : (
+          <p>Информация о пользователе недоступна.</p>
+        )}
+      </div>
     </Modal>
   );
 };
