@@ -1,4 +1,3 @@
-// AppProvider.tsx
 import React, { ReactNode } from 'react';
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
