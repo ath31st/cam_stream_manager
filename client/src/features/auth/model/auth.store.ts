@@ -68,7 +68,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   login: async (username, password) => {
-    set({ isLoading: true });
     try {
       const { accessToken, refreshToken } = await login({ username, password });
       const user = decodeToken(accessToken);
@@ -88,8 +87,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     } catch (error) {
       console.error('Login error:', error);
       get().handleError(error);
-    } finally {
-      set({ isLoading: false });
     }
   },
 
