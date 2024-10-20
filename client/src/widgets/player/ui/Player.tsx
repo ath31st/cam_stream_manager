@@ -10,7 +10,7 @@ import WideButton from '../../../shared/ui/buttons/WideButton';
 
 export const Player: React.FC = () => {
   const { selectedStream } = useStreamStore();
-  const { fetchResponsiblePersonsByStream, responsiblePersons } =
+  const { fetchResponsiblePersonsByStream, responsiblePersonsByStream } =
     useResponsiblePersonStore();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -41,13 +41,15 @@ export const Player: React.FC = () => {
               </WideButton>
             </>
           ) : (
-            <UnavailableStreamCard responsiblePersons={responsiblePersons} />
+            <UnavailableStreamCard
+              responsiblePersons={responsiblePersonsByStream}
+            />
           )}
 
           <ResponsiblePersonModal
             onClose={closeModal}
             isOpen={isModalVisible}
-            responsiblePersons={responsiblePersons}
+            responsiblePersons={responsiblePersonsByStream}
           />
         </>
       ) : (

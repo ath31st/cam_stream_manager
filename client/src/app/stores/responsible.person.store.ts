@@ -17,6 +17,7 @@ import { getRpErrorMessage, unknownError } from '../../shared/errors';
 
 interface ResponsiblePersonState {
   responsiblePersons: ResponsiblePerson[];
+  responsiblePersonsByStream: ResponsiblePerson[];
   selectedPerson: ResponsiblePerson | null;
   loading: boolean;
   error: string | null;
@@ -36,6 +37,7 @@ interface ResponsiblePersonState {
 export const useResponsiblePersonStore = create<ResponsiblePersonState>(
   (set) => ({
     responsiblePersons: [],
+    responsiblePersonsByStream: [],
     selectedPerson: null,
     loading: false,
     error: null,
@@ -75,7 +77,7 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
     fetchResponsiblePersonsByStream: async (streamId: number) => {
       try {
         const persons = await fetchResponsiblePersonsByStream(streamId);
-        set({ responsiblePersons: persons });
+        set({ responsiblePersonsByStream: persons });
       } catch (error: unknown) {
         useResponsiblePersonStore.getState().handleError(error);
       }

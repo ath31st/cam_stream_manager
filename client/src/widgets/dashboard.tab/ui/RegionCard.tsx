@@ -23,7 +23,7 @@ const RegionCard: React.FC<RegionCardProps> = ({
   onToggle,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { fetchResponsiblePersonsByStream, responsiblePersons } =
+  const { fetchResponsiblePersonsByStream, responsiblePersonsByStream } =
     useResponsiblePersonStore();
 
   const openModal = async (streamId: number) => {
@@ -58,7 +58,7 @@ const RegionCard: React.FC<RegionCardProps> = ({
       <ResponsiblePersonModal
         onClose={closeModal}
         isOpen={isModalVisible}
-        responsiblePersons={responsiblePersons}
+        responsiblePersons={responsiblePersonsByStream}
       />
     </Card>
   );
