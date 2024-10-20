@@ -12,7 +12,8 @@ export class DashboardService {
   }
 
   async getDashboardData(): Promise<RegionInfoDto[]> {
-    const regions = await this.regionService.getAllRegions();
+    const isVisible = true;
+    const regions = await this.regionService.getRegions(isVisible);
     const dashboardData: RegionInfoDto[] = [];
 
     for (const region of regions) {

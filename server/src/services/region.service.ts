@@ -28,17 +28,17 @@ export class RegionService {
     return this.getRegion(id).then(toRegionDto);
   };
 
-  getAllRegions = async (): Promise<Region[]> => {
+  getRegions = async (isVisible: boolean): Promise<Region[]> => {
     try {
-      return await this.regionRepository.findAllRegions();
+      return await this.regionRepository.findRegions(isVisible);
     } catch (error) {
       Logger.error('Error getting regions:', error);
       throw new Error('Cannot get all regions');
     }
   };
 
-  getAllRegionDtos = async (): Promise<RegionDto[]> => {
-    return this.getAllRegions().then(toRegionDtos);
+  getRegionDtos = async (isVisible: boolean): Promise<RegionDto[]> => {
+    return this.getRegions(isVisible).then(toRegionDtos);
   };
 
   existsRegionByName = async (name: string): Promise<void> => {

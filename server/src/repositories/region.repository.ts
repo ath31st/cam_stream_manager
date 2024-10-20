@@ -23,8 +23,10 @@ export class RegionRepository {
     return region.length > 0;
   };
 
-  findAllRegions = async (): Promise<Region[]> => {
-    return await this.prismaClient.region.findMany();
+  findRegions = async (isVisible: boolean): Promise<Region[]> => {
+    return await this.prismaClient.region.findMany({
+      where: { isVisible: isVisible },
+    });
   };
 
   createRegion = async (dto: NewRegionDto): Promise<Region> => {

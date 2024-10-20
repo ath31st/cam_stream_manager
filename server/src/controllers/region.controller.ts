@@ -33,9 +33,10 @@ export class RegionController {
     }
   };
 
-  getAllRegions = async (req: Request, res: Response) => {
+  getRegions = async (req: Request, res: Response) => {
     try {
-      const regionsDto = await this.regionService.getAllRegionDtos();
+      const isVisible = req.query?.isVisible === 'true' || true;
+      const regionsDto = await this.regionService.getRegionDtos(isVisible);
       res.status(200).json(regionsDto);
     } catch (error) {
       if (error instanceof Error) {

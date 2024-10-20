@@ -8,7 +8,7 @@ const router = Router();
 router.post('/regions', isAuthenticated, regionController.createRegion);
 router.put('/regions/:id', isAuthenticated, regionController.updateRegion);
 router.delete('/regions/:id', isAuthenticated, regionController.deleteRegion);
-router.get('/regions', regionController.getAllRegions);
+router.get('/regions', regionController.getRegions);
 router.get('/regions/:id', isAuthenticated, regionController.getRegion);
 
 const regionRoutes = Router();
