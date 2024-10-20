@@ -4,6 +4,7 @@ import RegionCard from './RegionCard';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
 import { EventSidebar } from '../../event.sidebar';
+import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 interface DashboardProps {
   isActiveTab: boolean;
@@ -12,6 +13,7 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
   const [dashboardData, setDashboardData] = useState<RegionInfo[]>([]);
   const [openRegion, setOpenRegion] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,8 +22,10 @@ const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
         if (JSON.stringify(data) !== JSON.stringify(dashboardData)) {
           setDashboardData(data);
         }
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
+        setIsLoading(false);
       }
     };
 
@@ -34,7 +38,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
 
       return () => clearInterval(intervalId);
     }
-  }, [dashboardData]);
+  }, [isActiveTab, dashboardData]);
 
   const toggleRegion = (regionName: string) => {
     setOpenRegion((prev) => (prev === regionName ? null : regionName));
@@ -43,17 +47,21 @@ const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
   return (
     <Row gutter={16}>
       <Col span={18}>
-        <Row gutter={[16, 22]}>
-          {dashboardData.map((region) => (
-            <Col key={region.regionName} xs={24} sm={12} lg={8}>
-              <RegionCard
-                {...region}
-                isOpen={openRegion === region.regionName}
-                onToggle={toggleRegion}
-              />
-            </Col>
-          ))}
-        </Row>
+        {isLoading ? (
+          <LargeLoader />
+        ) : (
+          <Row gutter={[16, 22]}>
+            {dashboardData.map((region) => (
+              <Col key={region.regionName} xs={24} sm={12} lg={8}>
+                <RegionCard
+                  {...region}
+                  isOpen={openRegion === region.regionName}
+                  onToggle={toggleRegion}
+                />
+              </Col>
+            ))}
+          </Row>
+        )}
       </Col>
       <Col span={6}>
         <EventSidebar isActiveTab={isActiveTab} />

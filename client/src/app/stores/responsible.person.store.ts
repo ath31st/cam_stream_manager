@@ -62,10 +62,12 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
     },
 
     fetchResponsiblePersons: async () => {
+      set({ loading: true });
       try {
         const persons = await fetchResponsiblePersons();
-        set({ responsiblePersons: persons });
+        set({ responsiblePersons: persons, loading: false });
       } catch (error: unknown) {
+        set({ loading: false });
         useResponsiblePersonStore.getState().handleError(error);
       }
     },

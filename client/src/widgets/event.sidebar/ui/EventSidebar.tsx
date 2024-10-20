@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useEventStore } from '../../../app/stores/event.store';
 import { errorNotification } from '../../../shared/notifications';
 import { EventCardList } from '../../../entities/event';
 import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
 import styles from './EventSidebar.module.css';
+import MediumLoader from '../../../shared/ui/loaders/MediumLoader';
 
 interface EventSidebarProps {
   isActiveTab: boolean;
@@ -12,10 +13,13 @@ interface EventSidebarProps {
 const EventSidebar: React.FC<EventSidebarProps> = ({ isActiveTab }) => {
   const { error, clearError, fetchSidebarEvents, sidebarEvents } =
     useEventStore();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isActiveTab) {
-      fetchSidebarEvents(fetchProps.page, fetchProps.pageSize);
+      fetchSidebarEvents(fetchProps.page, fetchProps.pageSize).then(() => {
+        setIsLoading(false);
+      });
 
       const intervalId = setInterval(() => {
         fetchSidebarEvents(fetchProps.page, fetchProps.pageSize);
@@ -33,10 +37,16 @@ const EventSidebar: React.FC<EventSidebarProps> = ({ isActiveTab }) => {
 
   return (
     <>
-      <p
-        className={styles['event-sidebar-header']}
-      >{`${fetchProps.pageSize} последних события:`}</p>
-      <EventCardList events={sidebarEvents} />
+      {isLoading ? (
+        <MediumLoader />
+      ) : (
+        <>
+          <p className={styles['event-sidebar-header']}>
+            {`${fetchProps.pageSize} последних события:`}
+          </p>
+          <EventCardList events={sidebarEvents} />
+        </>
+      )}
     </>
   );
 };
