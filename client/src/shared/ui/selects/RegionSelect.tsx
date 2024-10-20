@@ -8,6 +8,7 @@ interface RegionSelectProps {
   value?: number;
   onChange?: (value: number | null) => void;
   placeholder?: string;
+  id?: string;
 }
 
 const RegionSelect: React.FC<RegionSelectProps> = ({
@@ -15,9 +16,11 @@ const RegionSelect: React.FC<RegionSelectProps> = ({
   value,
   onChange,
   placeholder = 'Выберите регион',
+  id,
 }) => {
   return (
     <Select
+      id={id}
       className={styles['search-select-field']}
       showSearch
       allowClear

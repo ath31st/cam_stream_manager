@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Select } from 'antd';
+import { Modal, Form, Input } from 'antd';
 import { Region } from '../../../entities/region';
 import { NewStream } from '..';
 import {
@@ -11,6 +11,7 @@ import {
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
+import RegionSelect from '../../../shared/ui/selects/RegionSelect';
 
 interface AddStreamModalProps {
   visible: boolean;
@@ -66,13 +67,7 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
             label="Регион"
             rules={[{ required: true, message: 'Выберите регион' }]}
           >
-            <Select placeholder="Выберите регион">
-              {regions.map((region) => (
-                <Select.Option key={region.id} value={region.id}>
-                  {region.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <RegionSelect regions={regions} id="regionId" />
           </Form.Item>
           <Form.Item
             name="location"
