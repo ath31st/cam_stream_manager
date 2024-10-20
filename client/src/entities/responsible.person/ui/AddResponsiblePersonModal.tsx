@@ -45,10 +45,10 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
       <div className={styles['modal-body']}>
         <Form form={form} layout="vertical" onFinish={handleOk}>
           <Form.Item name="name" label="Имя" rules={rpNameValidationRules}>
-            <Input placeholder="Введите имя" />
+            <Input placeholder="Введите имя" autoComplete="name" />
           </Form.Item>
           <Form.Item name="phone" label="Телефон" rules={phoneValidationRules}>
-            <Input placeholder="Введите телефон" />
+            <Input placeholder="Введите телефон" autoComplete="phone"/>
           </Form.Item>
           <Form.Item
             name="streamId"

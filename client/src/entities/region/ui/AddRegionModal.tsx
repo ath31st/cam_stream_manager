@@ -38,7 +38,7 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
             label="Название региона"
             rules={regionNameValidationRules}
           >
-            <Input placeholder="Введите название региона" />
+            <Input placeholder="Введите название региона" autoComplete='off' />
           </Form.Item>
         </Form>
       </div>
