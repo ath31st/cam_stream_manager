@@ -6,15 +6,11 @@ interface AuthProviderProps {
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const { hydrate, isLoading } = useAuthStore();
+  const { hydrate } = useAuthStore();
 
   useEffect(() => {
     hydrate();
   }, [hydrate]);
-
-  if (isLoading) {
-    return null;
-  }
 
   return <>{children}</>;
 };
