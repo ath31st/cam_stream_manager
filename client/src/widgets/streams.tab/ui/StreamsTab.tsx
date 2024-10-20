@@ -12,6 +12,7 @@ import { Stream, NewStream, UpdateStream } from '../../../entities/stream';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import RegionSelect from '../../../shared/ui/selects/RegionSelect';
+import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -28,6 +29,7 @@ const StreamsTab: React.FC = () => {
     updateStream,
     removeStream,
     error,
+    loading,
     clearError,
   } = useStreamStore();
   const { regions, fetchAllRegions } = useRegionStore();
@@ -118,11 +120,15 @@ const StreamsTab: React.FC = () => {
         <RegionSelect regions={regions} onChange={setSelectedRegionId} />
       </Space>
 
-      <StreamsTable
-        streams={filteredStreams}
-        onEdit={handleUpdate}
-        onDelete={showDeleteConfirm}
-      />
+      {loading ? (
+        <LargeLoader />
+      ) : (
+        <StreamsTable
+          streams={filteredStreams}
+          onEdit={handleUpdate}
+          onDelete={showDeleteConfirm}
+        />
+      )}
 
       <StreamModals
         isAddModalVisible={isAddModalVisible}

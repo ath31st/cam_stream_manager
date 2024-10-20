@@ -17,6 +17,7 @@ import ResponsiblePersonsTable from './ResponsiblePersonsTable';
 import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
+import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -34,6 +35,7 @@ const ResponsiblePersonsTab: React.FC = () => {
     removeResponsiblePerson,
     error,
     clearError,
+    loading,
   } = useResponsiblePersonStore();
   const { streams, fetchAllStreams } = useStreamStore();
 
@@ -109,18 +111,24 @@ const ResponsiblePersonsTab: React.FC = () => {
           onChange={(value) => setSelectedStreamId(value)}
         />
       </Space>
-      <ResponsiblePersonsTable
-        persons={filteredResponsiblePersons}
-        streams={streams}
-        onEdit={(person) => {
-          setIsUpdateModalVisible(true);
-          setSelectedPerson(person);
-        }}
-        onDelete={(person) => {
-          setIsDeleteModalVisible(true);
-          setSelectedPerson(person);
-        }}
-      />
+
+      {loading ? (
+        <LargeLoader />
+      ) : (
+        <ResponsiblePersonsTable
+          persons={filteredResponsiblePersons}
+          streams={streams}
+          onEdit={(person) => {
+            setIsUpdateModalVisible(true);
+            setSelectedPerson(person);
+          }}
+          onDelete={(person) => {
+            setIsDeleteModalVisible(true);
+            setSelectedPerson(person);
+          }}
+        />
+      )}
+
       <ResponsiblePersonModals
         isAddVisible={isAddModalVisible}
         isUpdateVisible={isUpdateModalVisible}

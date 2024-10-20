@@ -9,6 +9,7 @@ import EventTable from './EventTable';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import { Pagination } from 'antd';
 import styles from './EventTab.module.css';
+import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -22,6 +23,7 @@ const EventTab: React.FC = () => {
     fetchEvents,
     currentPage,
     pageSize,
+    loading,
   } = useEventStore();
 
   useEffect(() => {
@@ -56,17 +58,23 @@ const EventTab: React.FC = () => {
 
   return (
     <TabContainer>
-      <EventTable events={events} onDelete={showDeleteConfirm} />
-      <div className={styles['pagination-container']}>
-        <Pagination
-          defaultCurrent={1}
-          current={currentPage}
-          pageSize={pageSize}
-          total={useEventStore.getState().totalItems}
-          onChange={handlePageChange}
-          showSizeChanger={false}
-        />
-      </div>
+      {loading ? (
+        <LargeLoader />
+      ) : (
+        <>
+          <EventTable events={events} onDelete={showDeleteConfirm} />
+          <div className={styles['pagination-container']}>
+            <Pagination
+              defaultCurrent={1}
+              current={currentPage}
+              pageSize={pageSize}
+              total={useEventStore.getState().totalItems}
+              onChange={handlePageChange}
+              showSizeChanger={false}
+            />
+          </div>
+        </>
+      )}
       <DeleteEventModal
         visible={isDeleteModalVisible}
         onConfirm={handleDelete}

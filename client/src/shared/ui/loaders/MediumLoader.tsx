@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MediumLoader.module.css';
 
-const LargeLoader: React.FC = () => {
+const MediumLoader: React.FC = () => {
   return (
     <div className={styles['loader-container']}>
       <span className={styles.loader}></span>
@@ -9,4 +9,4 @@ const LargeLoader: React.FC = () => {
   );
 };
 
-export default LargeLoader;
+export default MediumLoader;

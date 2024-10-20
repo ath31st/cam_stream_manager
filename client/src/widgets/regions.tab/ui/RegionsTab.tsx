@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Spin } from 'antd';
 import { useRegionStore } from '../../../app/stores/region.store';
 import { Region, UpdateRegion } from '../../../entities/region';
 import { useStreamStore } from '../../../app/stores/stream.store';
@@ -11,6 +10,7 @@ import RegionsTable from './RegionsTable';
 import RegionModals from './RegionModals';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
+import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -90,39 +90,41 @@ const RegionsTab: React.FC = () => {
 
   return (
     <TabContainer>
-      {loading ? (
-        <Spin size="large" />
-      ) : (
-        <>
-          <WideButton onClick={() => setIsAddModalVisible(true)}>
-            Добавить регион
-          </WideButton>
+      <>
+        <WideButton onClick={() => setIsAddModalVisible(true)}>
+          Добавить регион
+        </WideButton>
+
+        {loading ? (
+          <LargeLoader />
+        ) : (
           <RegionsTable
             regions={regions}
             onEdit={showUpdateModal}
             onDelete={showDeleteConfirm}
           />
-          <RegionModals
-            isAddModalVisible={isAddModalVisible}
-            isDeleteModalVisible={isDeleteModalVisible}
-            isUpdateModalVisible={isUpdateModalVisible}
-            updatingRegion={updatingRegion}
-            deleteRegionId={deleteRegionId}
-            onAdd={handleAddRegion}
-            onDelete={handleDelete}
-            onUpdate={handleUpdateRegion}
-            onCloseAdd={() => setIsAddModalVisible(false)}
-            onCloseDelete={() => {
-              setDeleteRegionId(null);
-              setIsDeleteModalVisible(false);
-            }}
-            onCloseUpdate={() => {
-              setUpdatingRegion(null);
-              setIsUpdateModalVisible(false);
-            }}
-          />
-        </>
-      )}
+        )}
+
+        <RegionModals
+          isAddModalVisible={isAddModalVisible}
+          isDeleteModalVisible={isDeleteModalVisible}
+          isUpdateModalVisible={isUpdateModalVisible}
+          updatingRegion={updatingRegion}
+          deleteRegionId={deleteRegionId}
+          onAdd={handleAddRegion}
+          onDelete={handleDelete}
+          onUpdate={handleUpdateRegion}
+          onCloseAdd={() => setIsAddModalVisible(false)}
+          onCloseDelete={() => {
+            setDeleteRegionId(null);
+            setIsDeleteModalVisible(false);
+          }}
+          onCloseUpdate={() => {
+            setUpdatingRegion(null);
+            setIsUpdateModalVisible(false);
+          }}
+        />
+      </>
     </TabContainer>
   );
 };
