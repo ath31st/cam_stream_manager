@@ -1,8 +1,8 @@
 .player-container {
-  padding: 30px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
-  gap: 10px
+  gap: 10px;
 }
