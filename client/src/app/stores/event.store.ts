@@ -86,7 +86,12 @@ export const useEventStore = create<EventState>((set) => ({
       });
     } catch (error) {
       set({ loading: false });
-      useEventStore.getState().handleError(error);
+      if (
+        error instanceof AxiosError &&
+        error.code !== 'ERR_CONNECTION_REFUSED'
+      ) {
+        useEventStore.getState().handleError(error);
+      }
     }
   },
 
