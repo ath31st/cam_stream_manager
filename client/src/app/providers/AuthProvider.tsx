@@ -12,6 +12,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     hydrate();
   }, [hydrate]);
 
+  if (useAuthStore.getState().isLoading) {
+    return null;
+  }
+
   return <>{children}</>;
 };
 
