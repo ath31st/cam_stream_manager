@@ -8,6 +8,7 @@ interface StreamSelectProps {
   value?: number;
   onChange?: (value: number) => void;
   placeholder?: string;
+  id?: string;
 }
 
 const StreamSelect: React.FC<StreamSelectProps> = ({
@@ -15,9 +16,11 @@ const StreamSelect: React.FC<StreamSelectProps> = ({
   value,
   onChange,
   placeholder = 'Выберите местоположение',
+  id,
 }) => {
   return (
     <Select
+      id={id}
       className={styles['search-select-field']}
       showSearch
       allowClear
