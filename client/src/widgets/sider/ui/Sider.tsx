@@ -78,7 +78,11 @@ export const AppSider: React.FC = () => {
   };
 
   return (
-    <Sider width={300} className={styles['site-layout-background']}>
+    <Sider
+      width={300}
+      className={styles.sider}
+      style={{ height: '100vh', overflowY: 'auto' }}
+    >
       <Menu
         mode="inline"
         openKeys={stateOpenKeys}
