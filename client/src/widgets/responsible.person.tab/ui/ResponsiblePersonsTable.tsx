@@ -92,6 +92,7 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
       columns={columns}
       rowKey="id"
       pagination={paginationConfig}
+      showSorterTooltip={false}
     />
   );
 };

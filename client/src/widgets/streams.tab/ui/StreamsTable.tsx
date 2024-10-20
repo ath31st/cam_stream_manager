@@ -90,6 +90,7 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       columns={columns}
       rowKey="id"
       pagination={paginationConfig}
+      showSorterTooltip={false}
     />
   );
 };

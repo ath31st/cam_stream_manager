@@ -55,6 +55,7 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       dataSource={dataSource}
       columns={columns}
       pagination={paginationConfig}
+      showSorterTooltip={false}
     />
   );
 };
