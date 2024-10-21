@@ -4,6 +4,8 @@ import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   CloseCircleOutlined,
+  SyncOutlined,
+  PlusCircleOutlined,
 } from '@ant-design/icons';
 import { Stream } from '../../../entities/stream';
 import { paginationConfig } from '../../../shared/pagination';
@@ -21,6 +23,8 @@ const statusIcons: Record<string, JSX.Element> = {
   Active: <CheckCircleOutlined style={{ color: 'green' }} />,
   'Bad connection': <ExclamationCircleOutlined style={{ color: 'orange' }} />,
   'No connection': <CloseCircleOutlined style={{ color: 'red' }} />,
+  Updated: <SyncOutlined style={{ color: 'blue' }} />,
+  Created: <PlusCircleOutlined style={{ color: 'purple' }} />,
 };
 
 const StreamsTable: React.FC<StreamsTableProps> = ({
