@@ -125,6 +125,7 @@ const StreamsTab: React.FC = () => {
       ) : (
         <StreamsTable
           streams={filteredStreams}
+          regions={regions}
           onEdit={handleUpdate}
           onDelete={showDeleteConfirm}
         />

@@ -2,14 +2,27 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 400px;
-  min-width: 400px;
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.ellipsis-region-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  min-width: 100px;
 }
 
 .ellipsis-comment-cell {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 230px;
-  min-width: 230px;
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.actions-cell {
+  max-width: 80px;
+  min-width: 80px;
 }

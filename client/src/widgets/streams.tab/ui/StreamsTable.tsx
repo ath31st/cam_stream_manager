@@ -12,9 +12,11 @@ import { paginationConfig } from '../../../shared/pagination';
 import styles from './StreamsTable.module.css';
 import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
+import { Region } from '../../../entities/region';
 
 interface StreamsTableProps {
   streams: Stream[];
+  regions: Region[];
   onEdit: (stream: Stream) => void;
   onDelete: (id: number) => void;
 }
@@ -29,6 +31,7 @@ const statusIcons: Record<string, JSX.Element> = {
 
 const StreamsTable: React.FC<StreamsTableProps> = ({
   streams,
+  regions,
   onEdit,
   onDelete,
 }) => {
@@ -38,7 +41,6 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       dataIndex: 'location',
       key: 'location',
       sorter: (a: Stream, b: Stream) => a.location.localeCompare(b.location),
-      width: '40%',
       render: (text: string) => (
         <div className={styles['ellipsis-location-cell']} title={text}>
           {text}
@@ -46,10 +48,23 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       ),
     },
     {
+      title: 'Регион',
+      dataIndex: 'regionId',
+      key: 'region',
+      render: (regionId: number) => {
+        const region = regions.find((r) => r.id === regionId);
+        const regionName = region ? region.name : 'Неизвестно';
+        return (
+          <div className={styles['ellipsis-region-cell']} title={regionName}>
+            {regionName}
+          </div>
+        );
+      },
+    },
+    {
       title: 'Статус',
       dataIndex: 'status',
       key: 'status',
-      width: '10%',
       sorter: (a: Stream, b: Stream) => a.status.localeCompare(b.status),
       render: (status: string) => (
         <CommonTooltip title={status} placement="top">
@@ -61,14 +76,12 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       title: 'Видимость',
       dataIndex: 'isVisible',
       key: 'isVisible',
-      width: '15%',
       render: (isVisible: boolean) => (isVisible ? 'Виден' : 'Скрыт'),
     },
     {
       title: 'Комментарий',
       dataIndex: 'comment',
       key: 'comment',
-      width: '20%',
       render: (text: string) => (
         <div className={styles['ellipsis-comment-cell']} title={text}>
           {text}
@@ -78,12 +91,13 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
     {
       title: 'Действия',
       key: 'actions',
-      width: '15%',
       render: (_: string, record: Stream) => (
-        <ActionButtons
-          onEdit={() => onEdit(record)}
-          onDelete={() => onDelete(record.id)}
-        />
+        <div className={styles['actions-cell']}>
+          <ActionButtons
+            onEdit={() => onEdit(record)}
+            onDelete={() => onDelete(record.id)}
+          />
+        </div>
       ),
     },
   ];
