@@ -33,9 +33,10 @@ export const AppSider: React.FC = () => {
   const { regions, fetchAllRegions } = useRegionStore();
   const { streams, fetchStreamsByRegion, setSelectedStream } = useStreamStore();
   const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(['0']);
+  const onlyVisible = true;
 
   useEffect(() => {
-    fetchAllRegions();
+    fetchAllRegions(onlyVisible);
   }, [fetchAllRegions]);
 
   const handleRegionClick = (regionId: number) => {

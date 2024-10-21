@@ -15,7 +15,7 @@ interface RegionState {
   selectedRegion: Region | null;
   loading: boolean;
   error: string | null;
-  fetchAllRegions: () => Promise<void>;
+  fetchAllRegions: (isVisible?: boolean) => Promise<void>;
   fetchRegionById: (id: number) => Promise<void>;
   addRegion: (region: NewRegion) => Promise<void>;
   updateRegion: (id: number, region: UpdateRegion) => Promise<void>;
@@ -40,10 +40,10 @@ export const useRegionStore = create<RegionState>((set) => ({
     }
   },
 
-  fetchAllRegions: async () => {
+  fetchAllRegions: async (isVisible?: boolean) => {
     set({ loading: true });
     try {
-      const regions = await fetchRegions();
+      const regions = await fetchRegions(isVisible);
       set({ regions, loading: false });
     } catch (error) {
       set({ loading: false });
