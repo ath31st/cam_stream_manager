@@ -16,13 +16,17 @@ export class StreamRepository {
     });
   };
 
-  findAllStreams = async (): Promise<Stream[]> => {
-    return await this.prismaClient.stream.findMany();
+  findStreams = async (isVisible?: boolean): Promise<Stream[]> => {
+    return await this.prismaClient.stream.findMany({
+      where: {
+        ...(isVisible !== undefined && { isVisible: isVisible }),
+      },
+    });
   };
 
   findStreamsByRegion = async (regionId: number): Promise<Stream[]> => {
     return await this.prismaClient.stream.findMany({
-      where: { regionId: regionId },
+      where: { regionId: regionId, isVisible: true },
     });
   };
 

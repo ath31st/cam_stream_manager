@@ -39,7 +39,6 @@ export class RegionController {
         req.query?.isVisible !== undefined
           ? req.query.isVisible === 'true'
           : undefined;
-          console.log(isVisible)
       const regionsDto = await this.regionService.getRegionDtos(isVisible);
       res.status(200).json(regionsDto);
     } catch (error) {

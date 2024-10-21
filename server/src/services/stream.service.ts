@@ -30,17 +30,17 @@ export class StreamService {
     return this.getStream(id).then(toStreamDto);
   };
 
-  getAllStreams = async (): Promise<Stream[]> => {
+  getStreams = async (isVisible?: boolean): Promise<Stream[]> => {
     try {
-      return await this.streamRepository.findAllStreams();
+      return await this.streamRepository.findStreams(isVisible);
     } catch (error) {
       Logger.error('Error getting streams:', error);
       throw new Error('Cannot get all streams');
     }
   };
 
-  getAllStreamDtos = async (): Promise<StreamDto[]> => {
-    return this.getAllStreams().then(toStreamDtos);
+  getStreamDtos = async (isVisible?: boolean): Promise<StreamDto[]> => {
+    return this.getStreams(isVisible).then(toStreamDtos);
   };
 
   getStreamsByRegion = async (regionId: number): Promise<StreamDto[]> => {
@@ -132,7 +132,7 @@ export class StreamService {
 
   pingAllStreams = async (): Promise<void> => {
     try {
-      const streams = await this.streamRepository.findAllStreams();
+      const streams = await this.streamRepository.findStreams();
 
       for (const stream of streams) {
         await this.pingStream(stream);

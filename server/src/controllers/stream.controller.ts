@@ -41,9 +41,13 @@ export class StreamController {
     }
   };
 
-  getAllStreams = async (req: Request, res: Response) => {
+  getStreams = async (req: Request, res: Response) => {
     try {
-      const streamDtos = await this.streamService.getAllStreamDtos();
+      const isVisible =
+      req.query?.isVisible !== undefined
+        ? req.query.isVisible === 'true'
+        : undefined;
+      const streamDtos = await this.streamService.getStreamDtos(isVisible);
       res.status(200).json(streamDtos);
     } catch (error) {
       if (error instanceof Error) {

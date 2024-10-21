@@ -8,7 +8,7 @@ const router = Router();
 router.post('/streams', isAuthenticated, streamController.createStream);
 router.put('/streams/:id', isAuthenticated, streamController.updateStream);
 router.delete('/streams/:id', isAuthenticated, streamController.deleteStream);
-router.get('/streams', isAuthenticated, streamController.getAllStreams);
+router.get('/streams', isAuthenticated, streamController.getStreams);
 router.get('/streams/:id', isAuthenticated, streamController.getStream);
 router.get('/streams/region/:id', streamController.getStreamsByRegion);
 
