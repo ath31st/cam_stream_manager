@@ -35,7 +35,11 @@ export class RegionController {
 
   getRegions = async (req: Request, res: Response) => {
     try {
-      const isVisible = req.query?.isVisible === 'true' || true;
+      const isVisible =
+        req.query?.isVisible !== undefined
+          ? req.query.isVisible === 'true'
+          : undefined;
+          console.log(isVisible)
       const regionsDto = await this.regionService.getRegionDtos(isVisible);
       res.status(200).json(regionsDto);
     } catch (error) {

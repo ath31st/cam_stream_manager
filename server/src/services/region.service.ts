@@ -28,7 +28,7 @@ export class RegionService {
     return this.getRegion(id).then(toRegionDto);
   };
 
-  getRegions = async (isVisible: boolean): Promise<Region[]> => {
+  getRegions = async (isVisible?: boolean): Promise<Region[]> => {
     try {
       return await this.regionRepository.findRegions(isVisible);
     } catch (error) {
@@ -37,7 +37,7 @@ export class RegionService {
     }
   };
 
-  getRegionDtos = async (isVisible: boolean): Promise<RegionDto[]> => {
+  getRegionDtos = async (isVisible?: boolean): Promise<RegionDto[]> => {
     return this.getRegions(isVisible).then(toRegionDtos);
   };
 
