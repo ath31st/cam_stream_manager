@@ -4,6 +4,7 @@ import { Region } from '../../../entities/region';
 import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 import styles from './RegionsTable.module.css';
+import '../../../shared/styles/CommonTabTableStyle.css';
 
 interface RegionsTableProps {
   regions: Region[];

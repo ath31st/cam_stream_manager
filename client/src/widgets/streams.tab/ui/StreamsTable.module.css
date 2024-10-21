@@ -1,4 +1,4 @@
-.ellipsis-location-cell {
+.ellipsis-location-column {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -6,7 +6,7 @@
   min-width: 200px;
 }
 
-.ellipsis-region-cell {
+.ellipsis-region-column {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -14,15 +14,10 @@
   min-width: 100px;
 }
 
-.ellipsis-comment-cell {
+.ellipsis-comment-column {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
   min-width: 200px;
-}
-
-.actions-cell {
-  max-width: 80px;
-  min-width: 80px;
 }

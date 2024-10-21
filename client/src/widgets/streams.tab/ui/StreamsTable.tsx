@@ -42,7 +42,7 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       key: 'location',
       sorter: (a: Stream, b: Stream) => a.location.localeCompare(b.location),
       render: (text: string) => (
-        <div className={styles['ellipsis-location-cell']} title={text}>
+        <div className={styles['ellipsis-location-column']} title={text}>
           {text}
         </div>
       ),
@@ -55,7 +55,7 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
         const region = regions.find((r) => r.id === regionId);
         const regionName = region ? region.name : 'Неизвестно';
         return (
-          <div className={styles['ellipsis-region-cell']} title={regionName}>
+          <div className={styles['ellipsis-region-column']} title={regionName}>
             {regionName}
           </div>
         );
@@ -83,7 +83,7 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       dataIndex: 'comment',
       key: 'comment',
       render: (text: string) => (
-        <div className={styles['ellipsis-comment-cell']} title={text}>
+        <div className={styles['ellipsis-comment-column']} title={text}>
           {text}
         </div>
       ),
@@ -92,7 +92,7 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       title: 'Действия',
       key: 'actions',
       render: (_: string, record: Stream) => (
-        <div className={styles['actions-cell']}>
+        <div className={styles['actions-column']}>
           <ActionButtons
             onEdit={() => onEdit(record)}
             onDelete={() => onDelete(record.id)}

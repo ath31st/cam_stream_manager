@@ -37,7 +37,7 @@ export const AppSider: React.FC = () => {
 
   useEffect(() => {
     fetchAllRegions(onlyVisible);
-  }, [fetchAllRegions]);
+  }, [fetchAllRegions, onlyVisible]);
 
   const handleRegionClick = (regionId: number) => {
     fetchStreamsByRegion(regionId);

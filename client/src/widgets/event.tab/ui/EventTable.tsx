@@ -24,6 +24,11 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       title: 'Тип',
       dataIndex: 'type',
       key: 'type',
+      render: (type: string) => (
+        <div className={styles['type-column']} title={type}>
+          {type}
+        </div>
+      ),
     },
     {
       title: 'Уровень',
@@ -39,11 +44,21 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       title: 'Сообщение',
       dataIndex: 'message',
       key: 'message',
+      render: (text: string) => (
+        <div className={styles['ellipsis-message-column']} title={text}>
+          {text}
+        </div>
+      ),
     },
     {
       title: 'Дата',
       dataIndex: 'date',
       key: 'date',
+      render: (date: string) => (
+        <div className={styles['date-column']} title={date}>
+          {date}
+        </div>
+      ),
     },
     {
       title: 'Действия',
@@ -56,13 +71,7 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
     },
   ];
 
-  return (
-    <Table
-      dataSource={dataSource}
-      columns={columns}
-      pagination={false}
-    />
-  );
+  return <Table dataSource={dataSource} columns={columns} pagination={false} />;
 };
 
 export default EventTable;

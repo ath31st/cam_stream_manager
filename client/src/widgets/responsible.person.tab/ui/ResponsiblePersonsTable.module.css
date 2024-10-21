@@ -2,16 +2,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 400px;
-  min-width: 400px;
+  max-width: 300px;
+  min-width: 300px;
 }
 
 .ellipsis-rp-name-cell {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 230px;
-  min-width: 230px;
+  max-width: 400px;
+  min-width: 400px;
 }
 
 .rp-phone-cell {

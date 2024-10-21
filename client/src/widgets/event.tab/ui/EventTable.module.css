@@ -1,9 +1,27 @@
-/* .level-badge {
-    display: flex;
-    justify-content: center;
+.level-badge {
+  display: flex;
+  justify-content: center;
 }
 
 .actions-column {
-    display: flex;
-    justify-content: center;
-} */
+  display: flex;
+  justify-content: center;
+}
+
+.ellipsis-message-column {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.type-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.date-column {
+  max-width: 150px;
+  min-width: 150px;
+}
