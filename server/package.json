@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist/*",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "start": "NODE_ENV=production node dist/index.js",
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "dev:debug": "ts-node-dev --inspect=0.0.0.0:9229 src/index.ts",
+    "clean": "rimraf dist/*",
+    "start:prod": "dotenv -e .env.prod -- src/index.js",
+    "dev": "dotenv -e .env.dev -- ts-node-dev --respawn src/index.ts",
+    "dev:debug": "dotenv -e .env.dev -- ts-node-dev --inspect=0.0.0.0:9229 src/index.ts",
     "build": "tsc",
-    "dbr": "npx prisma migrate dev --name init && ts-node src/database/seed.ts"
+    "postbuild": "cp package.json dist/ && cp .env.prod dist/",
+    "deploy": "npm run clean && npm run build && npm run postbuild && npm run dbr:prod",
+    "dbr:dev": "dotenv -e .env.dev -- npx prisma migrate dev --name init && ts-node src/database/seed.ts",
+    "dbr:prod": "dotenv -e .env.prod -- npx prisma migrate deploy && mkdir -p dist/prisma && mv prisma/prod.db dist/prisma/prod.db"
   },
   "keywords": [
     "node",
@@ -51,6 +54,7 @@
     "@types/node-cron": "^3.0.11",
     "@types/passport": "^1.0.16",
     "@types/passport-jwt": "^4.0.1",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.9.0",
