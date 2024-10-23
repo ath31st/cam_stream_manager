@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { userController } from '../utils/init';
 import { API_PREFIX } from '../utils/constants/routes.constants';
-import { isAuthenticated } from '../../middleware/auth.middleware';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 const router = Router();
 
