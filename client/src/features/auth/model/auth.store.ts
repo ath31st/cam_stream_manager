@@ -96,7 +96,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     try {
       await logout(refreshToken);
-
+    } catch (error) {
+      get().handleError(error);
+    } finally {
       set({
         accessToken: null,
         refreshToken: null,
@@ -104,17 +106,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         isAuthenticated: false,
         error: null,
       });
-
       localStorage.removeItem(LOCAL_STORAGE_KEY);
-    } catch (error) {
-      console.error('Logout error:', error);
-      get().handleError(error);
     }
   },
 
   refreshAccessToken: async () => {
     const { refreshToken } = get();
-
     try {
       const newAccessToken = await refreshAccessToken(refreshToken!);
       const user = decodeToken(newAccessToken);
@@ -130,9 +127,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         LOCAL_STORAGE_KEY,
         JSON.stringify({ accessToken: newAccessToken, refreshToken, user }),
       );
-    } catch (error) {
-      console.error('Refresh access token error:', error);
-      get().handleError(error);
+    } catch (error: AxiosError | unknown) {
+      if (error instanceof AxiosError && error.status === 401) {
+        await get().logout();
+      } else {
+        console.error('Unexpected error during token refresh:', error);
+        get().handleError(error);
+      }
     }
   },
 }));
