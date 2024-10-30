@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile.server
     ports:
       - "${API_PORT}:${API_PORT}"
+    volumes:
+      - ./server/prisma:/app/dist/server/prisma
     networks:
       - csm-network
     restart: unless-stopped
