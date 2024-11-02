@@ -27,6 +27,7 @@ const DeleteRegionModal: React.FC<DeleteRegionModalProps> = ({
     >
       <div className={styles['modal-body']}>
         <p>Вы уверены, что хотите удалить этот регион?</p>
+        <p>Вместе с регионом будут удалены все потоки, относящиеся к нему.</p>
       </div>
     </Modal>
   );

@@ -27,6 +27,10 @@ const DeleteStreamModal: React.FC<DeleteStreamModalProps> = ({
     >
       <div className={styles['modal-body']}>
         <p>Вы уверены, что хотите удалить этот поток?</p>
+        <p>
+          Вместе с потоком будут удалены все отвественные лица, относящиеся к
+          нему.
+        </p>
       </div>
     </Modal>
   );
