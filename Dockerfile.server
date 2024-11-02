@@ -9,6 +9,10 @@ RUN npm install --prefix ./server
 COPY ./server ./server
 COPY ./shared ./shared
 
+ARG API_PORT
+ENV PORT=${API_PORT}
+RUN echo "API_PORT is set to: ${API_PORT}"
+
 RUN npm run dbr:prod --prefix ./server
 RUN npm run deploy --prefix ./server
 
