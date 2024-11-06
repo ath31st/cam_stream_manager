@@ -15,6 +15,11 @@ const useServerStatusStore = create<ServerStatusState>((set) => ({
   setServerStatus: (status) => set({ isServerUp: status }),
 
   startHealthCheck: () => {
+    if (INTERVAL === undefined) {
+      console.warn('Health check interval is not set. Task will not start.');
+      return;
+    }
+
     if (interval) return;
 
     interval = setInterval(async () => {
