@@ -4,6 +4,7 @@ services:
     image: cam_stream_manager-server:latest
     environment:
       - PORT=${API_PORT}
+      - CRON_SCHEDULE=${API_CRON_SCHEDULE}
     ports:
       - "${API_PORT}:${API_PORT}"
     volumes:

@@ -8,6 +8,7 @@ services:
         API_PORT: "${API_PORT}"
     environment:
       - PORT=${API_PORT}
+      - CRON_SCHEDULE=${API_CRON_SCHEDULE}
     ports:
       - "${API_PORT}:${API_PORT}"
     volumes:
