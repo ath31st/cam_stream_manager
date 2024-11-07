@@ -5,6 +5,13 @@
   "keywords": [
     "react",
     "frontend",
+    "antd",
+    "zustand",
+    "jwt",
+    "jwt-decode",
+    "axios",
+    "hls.js",
+    "react-router-dom",
     "typescript",
     "web"
   ],
