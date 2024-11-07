@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import useHLS from '../api/use.hls';
-import styles from './HLSPlayer.module.css';
+import styles from './VideoPlayer.module.css';
 
-interface HLSPlayerProps {
+interface VideoPlayerProps {
   url: string;
 }
 
-const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
   const [isPlaying] = useState(false);
   const videoRef = useHLS(url, isPlaying);
 
@@ -17,4 +17,4 @@ const HLSPlayer: React.FC<HLSPlayerProps> = ({ url }) => {
   );
 };
 
-export default HLSPlayer;
+export default VideoPlayer;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import { HLSPlayer } from '../../../shared/hls.player';
+import { VideoPlayer } from '../../../shared/video.player';
 import styles from './Player.module.css';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import UnavailableStreamCard from './UnavailableStreamCard';
@@ -35,7 +35,7 @@ export const Player: React.FC = () => {
         <>
           {selectedStream.status === 'Active' ? (
             <>
-              <HLSPlayer url={selectedStream.streamUrl} />
+              <VideoPlayer url={selectedStream.streamUrl} />
               <WideButton onClick={openModal}>
                 Показать ответственных лиц
               </WideButton>
