@@ -1,5 +1,5 @@
 import React from 'react';
-import useHLS from '../api/use.hls';
+import useStreamPlayer from '../api/use.stream.player';
 import styles from './VideoPlayer.module.css';
 
 interface VideoPlayerProps {
@@ -7,7 +7,7 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
-  const videoRef = useHLS(url);
+  const videoRef = useStreamPlayer(url);
 
   return (
     <>

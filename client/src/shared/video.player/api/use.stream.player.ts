@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
-const useHLS = (url: string) => {
+const useStreamPlayer = (url: string) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ const useHLS = (url: string) => {
   return videoRef;
 };
 
-export default useHLS;
+export default useStreamPlayer;
