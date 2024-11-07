@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useHLS from '../api/use.hls';
 import styles from './VideoPlayer.module.css';
 
@@ -7,12 +7,11 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
-  const [isPlaying] = useState(false);
-  const videoRef = useHLS(url, isPlaying);
+  const videoRef = useHLS(url);
 
   return (
     <>
-      <video ref={videoRef} controls className={styles.player} />
+      <video ref={videoRef} className={styles.player} />
     </>
   );
 };

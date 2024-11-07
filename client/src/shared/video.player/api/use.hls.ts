@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
-const useHLS = (url: string, isPlaying: boolean) => {
+const useHLS = (url: string) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -10,9 +10,7 @@ const useHLS = (url: string, isPlaying: boolean) => {
       hls.loadSource(url);
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        if (isPlaying) {
-          videoRef.current?.play();
-        }
+        videoRef.current?.play();
       });
 
       return () => {
@@ -26,12 +24,10 @@ const useHLS = (url: string, isPlaying: boolean) => {
     ) {
       videoRef.current.src = url;
       videoRef.current.addEventListener('loadedmetadata', () => {
-        if (isPlaying) {
-          videoRef.current?.play();
-        }
+        videoRef.current?.play();
       });
     }
-  }, [url, isPlaying]);
+  }, [url]);
 
   return videoRef;
 };
