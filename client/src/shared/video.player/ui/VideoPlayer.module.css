@@ -3,3 +3,8 @@
   height: auto;
   max-height: 700px;
 }
+
+.error-message {
+  font-size: 24px;
+  padding: 100px;
+}

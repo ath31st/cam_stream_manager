@@ -7,12 +7,16 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
-  const videoRef = useStreamPlayer(url);
+  const { videoRef, error } = useStreamPlayer(url);
 
   return (
-    <>
-      <video ref={videoRef} className={styles.player} />
-    </>
+    <div>
+      {error ? (
+        <div className={styles['error-message']}>{error}</div>
+      ) : (
+        <video ref={videoRef} className={styles.player} />
+      )}
+    </div>
   );
 };
 
