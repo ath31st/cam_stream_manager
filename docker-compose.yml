@@ -9,6 +9,7 @@ services:
     environment:
       - PORT=${API_PORT}
       - CRON_SCHEDULE=${API_CRON_SCHEDULE}
+      - STREAM_PING_TIMEOUT=${API_STREAM_PING_TIMEOUT}
     ports:
       - "${API_PORT}:${API_PORT}"
     volumes:

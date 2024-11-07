@@ -154,10 +154,14 @@ export class StreamService {
   };
 
   private pingStream = async (stream: Stream): Promise<void> => {
+    const timeoutDuration = parseInt(
+      process.env.STREAM_PING_TIMEOUT || '5000',
+      10,
+    );
     const source = axios.CancelToken.source();
     const timeoutId = setTimeout(
       () => source.cancel('Ping request timed out'),
-      3000,
+      timeoutDuration,
     );
 
     try {
