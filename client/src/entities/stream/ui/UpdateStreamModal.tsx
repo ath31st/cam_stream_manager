@@ -39,7 +39,6 @@ const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
 
   const handleFormSubmit = (value: UpdateStream) => {
     onConfirm(value);
-    form.resetFields();
   };
 
   return (

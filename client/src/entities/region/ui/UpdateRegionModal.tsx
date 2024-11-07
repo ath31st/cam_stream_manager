@@ -28,7 +28,6 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
 
   const handleOk = () => {
     onOk(form.getFieldsValue());
-    form.resetFields();
   };
 
   return (

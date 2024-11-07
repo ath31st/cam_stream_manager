@@ -31,7 +31,6 @@ const UpdateResponsiblePersonModal: React.FC<
 
   const handleFinish = (value: UpdateResponsiblePerson) => {
     onConfirm(value);
-    form.resetFields();
   };
 
   return (
