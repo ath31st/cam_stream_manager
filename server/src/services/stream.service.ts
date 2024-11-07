@@ -130,34 +130,58 @@ export class StreamService {
     }
   };
 
+  private async pingStreamsInBatches(
+    streams: Stream[],
+    batchSize: number,
+  ): Promise<void> {
+    for (let i = 0; i < streams.length; i += batchSize) {
+      const batch = streams.slice(i, i + batchSize);
+
+      await Promise.all(batch.map((stream) => this.pingStream(stream)));
+    }
+  }
+
   pingAllStreams = async (): Promise<void> => {
     try {
       const streams = await this.streamRepository.findStreams();
+      const batchSize = 5;
 
-      for (const stream of streams) {
-        await this.pingStream(stream);
-      }
+      await this.pingStreamsInBatches(streams, batchSize);
+      Logger.info('All streams have been pinged');
     } catch (error) {
       Logger.error('Error retrieving streams:', error);
     }
   };
 
   private pingStream = async (stream: Stream): Promise<void> => {
+    const source = axios.CancelToken.source();
+    const timeoutId = setTimeout(
+      () => source.cancel('Ping request timed out'),
+      3000,
+    );
+
     try {
-      const response = await axios.get(stream.streamUrl);
+      const response = await axios.get(stream.streamUrl, {
+        cancelToken: source.token,
+      });
 
       if (response.status === 200) {
         await this.handleActiveStream(stream);
       } else {
         await this.handleBadConnection(stream, response.status);
       }
-    } catch (error) {
-      if (error instanceof Error) {
+    } catch (error: unknown) {
+      if (axios.isCancel(error)) {
+        Logger.error(`Ping stream ${stream.id} canceled due to timeout`);
+        await this.handleBadConnection(stream, 408);
+      } else if (error instanceof Error) {
         Logger.error(`Error pinging stream ${stream.id}:`, error.message);
+        await this.handleNoConnection(stream);
       } else {
         Logger.error(`Error pinging stream ${stream.id}:`, error);
       }
-      await this.handleNoConnection(stream);
+    } finally {
+      clearTimeout(timeoutId);
     }
   };
 
