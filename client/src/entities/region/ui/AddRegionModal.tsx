@@ -6,19 +6,19 @@ import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
 interface AddRegionModalProps {
   visible: boolean;
-  onOk: (name: string) => void;
+  onConfirm: (name: string) => void;
   onCancel: () => void;
 }
 
 const AddRegionModal: React.FC<AddRegionModalProps> = ({
   visible,
-  onOk,
+  onConfirm,
   onCancel,
 }) => {
   const [form] = Form.useForm();
 
   const handleOk = () => {
-    onOk(form.getFieldValue('name'));
+    onConfirm(form.getFieldValue('name'));
     form.resetFields();
   };
 
@@ -38,7 +38,7 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
             label="Название региона"
             rules={regionNameValidationRules}
           >
-            <Input placeholder="Введите название региона" autoComplete='off' />
+            <Input placeholder="Введите название региона" autoComplete="off" />
           </Form.Item>
         </Form>
       </div>

@@ -8,14 +8,14 @@ import FooterModal from '../../../shared/ui/buttons/FooterModal';
 interface UpdateRegionModalProps {
   visible: boolean;
   region: Region | null;
-  onOk: (updatedRegion: UpdateRegion) => void;
+  onConfirm: (updatedRegion: UpdateRegion) => void;
   onCancel: () => void;
 }
 
 const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
   visible,
   region,
-  onOk,
+  onConfirm,
   onCancel,
 }) => {
   const [form] = Form.useForm();
@@ -27,7 +27,7 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
   }, [region, form]);
 
   const handleOk = () => {
-    onOk(form.getFieldsValue());
+    onConfirm(form.getFieldsValue());
   };
 
   return (

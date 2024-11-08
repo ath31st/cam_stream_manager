@@ -36,7 +36,7 @@ const RegionModals: React.FC<RegionModalsProps> = ({
   <>
     <AddRegionModal
       visible={isAddModalVisible}
-      onOk={onAdd}
+      onConfirm={onAdd}
       onCancel={onCloseAdd}
     />
 
@@ -49,7 +49,7 @@ const RegionModals: React.FC<RegionModalsProps> = ({
     <UpdateRegionModal
       visible={isUpdateModalVisible}
       region={updatingRegion}
-      onOk={onUpdate}
+      onConfirm={onUpdate}
       onCancel={onCloseUpdate}
     />
   </>
