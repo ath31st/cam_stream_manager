@@ -10,7 +10,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
   const { videoRef, error } = useStreamPlayer(url);
 
   return (
-    <div>
+    <div className={styles['video-container']}>
       {error ? (
         <div className={styles['error-message']}>{error}</div>
       ) : (
