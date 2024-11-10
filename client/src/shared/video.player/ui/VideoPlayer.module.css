@@ -2,9 +2,29 @@
   width: 100%;
   height: auto;
   max-height: 700px;
+  object-fit: contain;
 }
 
 .error-message {
   font-size: 24px;
   padding: 100px;
+}
+
+.player::-webkit-media-controls-timeline {
+  display: none;
+}
+
+.player::-webkit-media-controls-play-button,
+.player::-webkit-media-controls-pause-button {
+  display: none;
+}
+
+.player::-webkit-media-controls-current-time-display,
+.player::-webkit-media-controls-time-remaining-display {
+  display: none;
+}
+
+.player::-webkit-media-controls-volume-slider,
+.player::-webkit-media-controls-mute-button {
+  display: none;
 }

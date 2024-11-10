@@ -14,7 +14,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
       {error ? (
         <div className={styles['error-message']}>{error}</div>
       ) : (
-        <video ref={videoRef} className={styles.player} />
+        <video
+          ref={videoRef}
+          controls
+          controlsList="nodownload, noplaybackrate, noremoteplayback"
+          muted
+          className={styles.player}
+        />
       )}
     </div>
   );
