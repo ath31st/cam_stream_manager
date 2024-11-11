@@ -5,7 +5,7 @@ export const phoneErrorMessage =
 
 // url validation
 export const urlPattern = new RegExp(
-  '^(https?:\\/\\/)?' +
+  '^((https?|rtsp):\\/\\/)?' +
     '((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|' +
     '((\\d{1,3}\\.){3}\\d{1,3}))' +
     '(\\:\\d+)?(\\/[-a-zA-Z\\d%@_.~+&:]*)*' +
