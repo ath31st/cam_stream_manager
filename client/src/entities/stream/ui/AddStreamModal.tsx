@@ -3,8 +3,8 @@ import { Modal, Form, Input } from 'antd';
 import { Region } from '../../../entities/region';
 import { NewStream } from '..';
 import {
-  optioanalPhoneValidationRules,
-  optioanalRpNameValidationRules,
+  optionalPhoneValidationRules,
+  optionalRpNameValidationRules,
   streamCommentValidationRules,
   streamLocationValidationRules,
   streamUrlValidationRules,
@@ -95,7 +95,7 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
             label="Ответсвенное лицо"
             rules={[
               { validator: validateResponsibleFields },
-              ...optioanalRpNameValidationRules,
+              ...optionalRpNameValidationRules,
             ]}
           >
             <Input.TextArea placeholder="Ответсвенное лицо (опционально)" />
@@ -105,7 +105,7 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
             label="Телефон ответственного лица"
             rules={[
               { validator: validateResponsibleFields },
-              ...optioanalPhoneValidationRules,
+              ...optionalPhoneValidationRules,
             ]}
           >
             <Input.TextArea placeholder="Телефон ответственного лица (опционально)" />

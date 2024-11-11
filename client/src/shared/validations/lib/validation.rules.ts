@@ -40,7 +40,7 @@ export const rpNameValidationRules = [
   getLengthRule(2, 100),
 ];
 
-export const optioanalRpNameValidationRules = [
+export const optionalRpNameValidationRules = [
   { required: false, message: 'Введите ответственное лицо' },
   getLengthRule(2, 100),
 ];
@@ -53,7 +53,7 @@ export const phoneValidationRules = [
   },
 ];
 
-export const optioanalPhoneValidationRules = [
+export const optionalPhoneValidationRules = [
   { required: false, message: 'Введите номер телефона' },
   {
     pattern: phonePattern,
