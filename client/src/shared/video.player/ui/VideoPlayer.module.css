@@ -15,6 +15,10 @@
 .error-message {
   font-size: 24px;
   padding: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .player::-webkit-media-controls-timeline {
