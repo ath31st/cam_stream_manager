@@ -21,21 +21,23 @@
   height: 100%;
 }
 
-.player::-webkit-media-controls-timeline {
-  display: none;
-}
-
+.player::-webkit-media-controls-current-time-display,
+.player::-webkit-media-controls-time-remaining-display,
+.player::-webkit-media-controls-timeline,
 .player::-webkit-media-controls-play-button,
+.player::-webkit-media-controls-volume-slider,
+.player::-webkit-media-controls-mute-button,
 .player::-webkit-media-controls-pause-button {
   display: none;
 }
 
-.player::-webkit-media-controls-current-time-display,
-.player::-webkit-media-controls-time-remaining-display {
-  display: none;
-}
-
-.player::-webkit-media-controls-volume-slider,
-.player::-webkit-media-controls-mute-button {
-  display: none;
+.fullscreen-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  z-index: 10;
 }
