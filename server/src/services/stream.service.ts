@@ -165,7 +165,7 @@ export class StreamService {
     );
 
     try {
-      const response = await axios.head(stream.streamUrl, {
+      const response = await axios.get(stream.streamUrl, {
         cancelToken: source.token,
       });
 
