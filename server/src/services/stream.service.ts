@@ -164,9 +164,13 @@ export class StreamService {
     try {
       const response = await axios.get(stream.streamUrl, {
         signal: controller.signal,
+        responseType: 'stream',
+        headers: {
+          Range: 'bytes=0-1',
+        },
       });
-
-      if (response.status === 200) {
+      
+      if (response.status === 206 || response.status === 200) {
         await this.handleActiveStream(stream);
       } else {
         await this.handleBadConnection(stream, response.status);
