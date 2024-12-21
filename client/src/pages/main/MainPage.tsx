@@ -3,7 +3,7 @@ import Player from '../../widgets/player';
 
 const MainPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Cam stream player';
+    document.title = 'Stream player';
   }, []);
 
   return (

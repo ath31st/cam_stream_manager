@@ -10,7 +10,7 @@ const AdminPage: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<string>('1');
 
   useEffect(() => {
-    document.title = 'Cam stream manager';
+    document.title = 'Stream manager';
   }, []);
 
   return (
