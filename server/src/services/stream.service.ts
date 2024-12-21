@@ -158,15 +158,12 @@ export class StreamService {
       process.env.STREAM_PING_TIMEOUT || '5000',
       10,
     );
-    const source = axios.CancelToken.source();
-    const timeoutId = setTimeout(
-      () => source.cancel('Ping request timed out'),
-      timeoutDuration,
-    );
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutDuration);
 
     try {
       const response = await axios.get(stream.streamUrl, {
-        cancelToken: source.token,
+        signal: controller.signal,
       });
 
       if (response.status === 200) {
@@ -175,7 +172,7 @@ export class StreamService {
         await this.handleBadConnection(stream, response.status);
       }
     } catch (error: unknown) {
-      if (axios.isCancel(error)) {
+      if (axios.isAxiosError(error) && error.code === 'ERR_CANCELED') {
         Logger.error(`Ping stream ${stream.id} canceled due to timeout`);
         await this.handleBadConnection(stream, 408);
       } else if (error instanceof Error) {
