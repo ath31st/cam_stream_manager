@@ -9,16 +9,6 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
   const { videoRef, error } = useStreamPlayer(url);
 
-  const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        videoRef.current.requestFullscreen();
-      }
-    }
-  };
-
   return (
     <div className={styles['video-container']}>
       {error ? (
@@ -29,14 +19,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ url }) => {
             ref={videoRef}
             controlsList="nodownload noplaybackrate noremoteplayback"
             muted
+            controls
             className={styles.player}
           />
-          <button
-            onClick={handleFullscreen}
-            className={styles['fullscreen-btn']}
-          >
-            🔲
-          </button>
         </>
       )}
     </div>
