@@ -1,3 +1,4 @@
+import { FormInstance, Rule, RuleObject } from 'antd/es/form';
 import {
   phoneErrorMessage,
   phonePattern,
@@ -59,4 +60,37 @@ export const optionalPhoneValidationRules = [
     pattern: phonePattern,
     message: phoneErrorMessage,
   },
+];
+
+export const usernameValidationRules = [
+  { required: true, message: 'Введите имя пользователя' },
+  getLengthRule(2, 50),
+];
+
+export const emailValidationRules: Rule[] = [
+  { required: false, message: 'Введите адрес электронной почты' },
+  {
+    type: 'email',
+    message: 'Введите корректный адрес электронной почты',
+  },
+];
+
+export const passwordValidationRules = [
+  { required: true, message: 'Введите пароль' },
+  getLengthRule(6, 100),
+];
+
+const passwordMatchRule = (form: FormInstance) => ({
+  validator(_: RuleObject, value: string) {
+    const password = form.getFieldValue('password');
+    if (!value || value === password) {
+      return Promise.resolve();
+    }
+    return Promise.reject(new Error('Пароли не совпадают'));
+  },
+});
+
+export const confirmPasswordValidationRules = [
+  { required: true, message: 'Подтвердите пароль' },
+  passwordMatchRule,
 ];
