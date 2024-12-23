@@ -70,7 +70,7 @@ const useStreamPlayer = (url: string) => {
               flvPlayer.load();
 
               flvPlayer.on(flvjs.Events.ERROR, (error) => {
-                console.error('Error playing HLS stream:', error);
+                console.error('Error playing FLV stream:', error);
                 handleError(
                   `Слишком быстрое переключение потоков, попробуйте выбрать другой поток и вернуться к этому`,
                 );
@@ -85,7 +85,7 @@ const useStreamPlayer = (url: string) => {
 
           case 'mp4':
             videoRef.current?.play().catch((error) => {
-              console.error('Error playing HLS stream:', error);
+              console.error('Error playing MP4 stream:', error);
               handleError(
                 `Слишком быстрое переключение потоков, попробуйте выбрать другой поток и вернуться к этому`,
               );
