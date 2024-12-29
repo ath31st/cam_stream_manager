@@ -27,7 +27,9 @@ div[class*='box'] {
   position: relative;
 }
 .btn-one span {
-  transition: all 0.3s;
+  transition: all 0.3s;  
+  display: inline-block;
+  align-self: center;
 }
 .btn-one::before {
   content: '';
