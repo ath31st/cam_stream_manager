@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Modal, Input, Form, Select } from 'antd';
+import { Modal, Input, Form, Select, Switch } from 'antd';
 import { UpdateUser, User } from '..';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
@@ -30,7 +30,17 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
   }, [user, form]);
 
   const handleOk = () => {
-    onConfirm(form.getFieldsValue());
+    const fieldsValue = form.getFieldsValue();
+
+    const updatedUser: UpdateUser = {
+      id: user?.id || 0,
+      username: fieldsValue.username,
+      email: fieldsValue.email,
+      role: fieldsValue.role,
+      isLocked: fieldsValue.isLocked,
+    };
+
+    onConfirm(updatedUser);
   };
 
   return (
@@ -57,6 +67,16 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
           </Form.Item>
           <Form.Item name="email" label="Email" rules={emailValidationRules}>
             <Input placeholder="Введите новую почту пользователя" />
+          </Form.Item>
+          <Form.Item
+            name="isLocked"
+            label="Статус пользователя"
+            valuePropName="checked"
+          >
+            <Switch
+              checkedChildren="Заблокирован"
+              unCheckedChildren="Активен"
+            />
           </Form.Item>
           <Form.Item
             name="role"
