@@ -18,7 +18,11 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onEdit, onDelete }) => {
     username: user.username,
     email: user.email ? user.email : 'не указан',
     role: user.role,
-    registeredAt: user.registeredAt,
+    registeredAt: new Intl.DateTimeFormat('ru-RU', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).format(new Date(user.registeredAt)),
     isLocked: user.isLocked ? 'Заблок.' : 'Активен',
   }));
 
@@ -29,11 +33,21 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onEdit, onDelete }) => {
       key: 'username',
       sorter: (a: { username: string }, b: { username: string }) =>
         a.username.localeCompare(b.username),
+      render: (username: string) => (
+        <div className={styles['ellipsis-login-column']} title={username}>
+          {username}
+        </div>
+      ),
     },
     {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
+      render: (email: string) => (
+        <div className={styles['ellipsis-email-column']} title={email}>
+          {email}
+        </div>
+      ),
     },
     {
       title: 'Роль',
@@ -49,6 +63,11 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onEdit, onDelete }) => {
       title: 'Статус',
       dataIndex: 'isLocked',
       key: 'isLocked',
+      render: (username: string) => (
+        <div className={styles['status-column']} title={username}>
+          {username}
+        </div>
+      ),
     },
     {
       title: 'Действия',

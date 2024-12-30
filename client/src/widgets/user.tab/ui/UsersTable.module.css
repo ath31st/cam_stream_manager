@@ -1,0 +1,25 @@
+.ellipsis-login-column {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.ellipsis-email-column {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  min-width: 250px;
+}
+
+.status-column {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.actions-column {
+  display: flex;
+  justify-content: center;
+}
