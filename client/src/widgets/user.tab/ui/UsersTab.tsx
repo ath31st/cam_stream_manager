@@ -9,6 +9,7 @@ import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 import { NewUser, UpdateUser, User } from '../../../entities/user';
 import { useUserStore } from '../../../app/stores/user.store';
 import UserTabModals from './UserTabModals';
+import UsersTable from './UsersTable';
 
 const UsersTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -98,12 +99,11 @@ const UsersTab: React.FC = () => {
         {loading ? (
           <LargeLoader />
         ) : (
-          <br />
-          // <UsersTable
-          //   users={users}
-          //   onEdit={showUpdateModal}
-          //   onDelete={showDeleteConfirm}
-          // />
+          <UsersTable
+            users={users}
+            onEdit={showUpdateModal}
+            onDelete={showDeleteConfirm}
+          />
         )}
 
         <UserTabModals
