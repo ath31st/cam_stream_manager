@@ -51,6 +51,7 @@ const AuthModule: React.FC = () => {
     <>
       <AuthButtons
         isAuthenticated={isAuthenticated}
+        userRole={user?.role}
         username={user?.username}
         onShowUserCardModal={() => setUserCardModalVisible(true)}
         onLogin={() => setLoginModalVisible(true)}

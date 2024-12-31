@@ -9,9 +9,11 @@ import {
 import styles from './AuthButtons.module.css';
 import routes from '../../../shared/routes/routes';
 import IconButton from '../../../shared/ui/buttons/IconButton';
+import UserRoles from '../lib/user.roles';
 
 interface AuthButtonsProps {
   isAuthenticated: boolean;
+  userRole?: string;
   username?: string;
   onShowUserCardModal: () => void;
   onLogin: () => void;
@@ -23,6 +25,7 @@ interface AuthButtonsProps {
 
 const AuthButtons: React.FC<AuthButtonsProps> = ({
   isAuthenticated,
+  userRole,
   username,
   onShowUserCardModal,
   onLogin,
@@ -38,18 +41,24 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
           <IconButton icon={<UserOutlined />} onClick={onShowUserCardModal}>
             {username}
           </IconButton>
-          {currentPath === routes.ADMIN ? (
-            <IconButton
-              icon={<PlayCircleOutlined />}
-              onClick={onPlayerPageNavigation}
-            >
-              Плеер
-            </IconButton>
-          ) : (
-            <IconButton icon={<ToolOutlined />} onClick={onAdminPageNavigation}>
-              Настройки
-            </IconButton>
-          )}
+
+          {userRole === UserRoles.ADMIN &&
+            (currentPath === routes.ADMIN ? (
+              <IconButton
+                icon={<PlayCircleOutlined />}
+                onClick={onPlayerPageNavigation}
+              >
+                Плеер
+              </IconButton>
+            ) : (
+              <IconButton
+                icon={<ToolOutlined />}
+                onClick={onAdminPageNavigation}
+              >
+                Настройки
+              </IconButton>
+            ))}
+
           <IconButton icon={<LogoutOutlined />} onClick={onLogout}>
             Выход
           </IconButton>
