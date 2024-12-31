@@ -7,6 +7,7 @@ import AdminLayout from '../layouts/AdminLayout';
 import UnauthorizedPage from '../../pages/401';
 import PrivateRoute from './PrivateRoute';
 import routes from '../../shared/routes/routes';
+import AccessDeniedPage from '../../pages/403';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -16,13 +17,17 @@ const AppRoutes: React.FC = () => {
           <Route path={routes.HOME} element={<MainPage />} />
         </Route>
 
-        <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute requiredRole="ADMIN" />}>
           <Route element={<AdminLayout />}>
             <Route path={routes.ADMIN} element={<AdminPage />} />
           </Route>
         </Route>
 
         <Route path={routes.UNAUTHORIZED_PAGE} element={<UnauthorizedPage />} />
+        <Route
+          path={routes.ACCESS_DENIED_PAGE}
+          element={<AccessDeniedPage />}
+        />
       </Routes>
     </Router>
   );
