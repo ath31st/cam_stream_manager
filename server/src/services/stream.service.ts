@@ -187,6 +187,7 @@ export class StreamService {
       }
     } finally {
       clearTimeout(timeoutId);
+      controller.signal.onabort = null;
     }
   };
 
