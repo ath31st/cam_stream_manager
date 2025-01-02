@@ -28,8 +28,8 @@ div[class*='box'] {
 }
 .btn-one span {
   transition: all 0.3s;  
-  display: inline-block;
-  align-self: center;
+  display: inline-flex !important;
+  align-self: center !important;
 }
 .btn-one::before {
   content: '';
