@@ -1,6 +1,5 @@
 :root {
   --colorPrimary: #6d93b0;
-  --colorSecondary: #f39c12;
   --colorBgBase: #2c3e50;
   --colorBgContainer: #34495e;
   --colorTextBase: #ecf0f1;
@@ -11,21 +10,4 @@
   --colorWarning: #e67e22;
   --colorError: #c0392b;
   --colorInfo: #2980b9;
-
-  --borderRadius: 0px;
-  --fontFamily: 'Vollkorn', sans-serif;
-  --fontSize: 18px;
-  --fontSizeSmall: 12px;
-  --fontSizeLarge: 28px;
-
-  --lineHeight: 1.5; /* Высота строки */
-  --spacingSmall: 8px; /* Маленькие отступы */
-  --spacingMedium: 16px; /* Средние отступы */
-  --spacingLarge: 24px; /* Большие отступы */
-
-  --shadowLight: 0 1px 3px rgba(0, 0, 0, 0.1); /* Легкая тень */
-  --shadowMedium: 0 2px 6px rgba(0, 0, 0, 0.2); /* Средняя тень */
-  --shadowHeavy: 0 4px 12px rgba(0, 0, 0, 0.3); /* Сильная тень */
-
-  --transition: all 0.3s ease; /* Параметры перехода */
 }

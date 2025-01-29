@@ -48,7 +48,7 @@
 
 .footer h3 {
   color: var(--colorTextBase);
-  font-size: var(--fontSizeLarge);
+  font-size: 28px;
   font-weight: 100;
   margin-top: 25px;
 }

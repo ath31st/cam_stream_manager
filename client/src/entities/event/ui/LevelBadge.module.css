@@ -2,7 +2,7 @@
   padding: 5px 10px;
   font-weight: bold;
   color: var(--colorTextBase);
-  font-size: var(--fontSizeSmall);
+  font-size: 12px;
 }
 
 .error {

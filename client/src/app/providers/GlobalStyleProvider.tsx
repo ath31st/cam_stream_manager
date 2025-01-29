@@ -23,11 +23,6 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
           colorTextBase: '#ecf0f1',
           colorBorder: '#84bec2',
 
-          colorSuccess: '#27ae60',
-          colorWarning: '#e67e22',
-          colorError: '#c0392b',
-          colorInfo: '#2980b9',
-
           borderRadius: 0,
           fontFamily: 'Vollkorn',
           fontSize: 16,
