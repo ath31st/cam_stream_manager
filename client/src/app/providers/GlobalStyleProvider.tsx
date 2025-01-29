@@ -27,6 +27,11 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
           fontFamily: 'Vollkorn',
           fontSize: 16,
         },
+        components: {
+          Layout: {
+            siderBg: 'transparent',
+          },
+        },
       }}
     >
       {children}
