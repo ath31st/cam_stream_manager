@@ -1,11 +1,10 @@
 :root {
-  --colorPrimary: #6d93b0;
-  --colorBgBase: #2c3e50;
-  --colorBgContainer: #34495e;
-  --colorTextBase: #ecf0f1;
-  --colorTextSecondary: #bdc3c7;
-  --colorBorder: #84bec2;
-
+  --colorPrimary: #808080;
+  --colorBgBase: #2c333a;
+  --colorBgContainer: #3a3f45;
+  --colorTextBase: #ffffff;
+  --colorTextSecondary: #e0e0e0;
+  --colorBorder: #9e9e9e;
   --colorSuccess: #27ae60;
   --colorWarning: #e67e22;
   --colorError: #c0392b;

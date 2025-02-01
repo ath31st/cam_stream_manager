@@ -16,12 +16,11 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#6d93b0',
-
-          colorBgBase: '#2c3e50',
-          colorBgContainer: '#34495e',
-          colorTextBase: '#ecf0f1',
-          colorBorder: '#84bec2',
+          colorPrimary: '#808080',
+          colorBgBase: '#2c333a',
+          colorBgContainer: '#3a3f45',
+          colorTextBase: '#ffffff',
+          colorBorder: '#9e9e9e',
 
           borderRadius: 0,
           fontFamily: 'Vollkorn',
