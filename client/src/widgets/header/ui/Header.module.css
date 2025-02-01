@@ -49,6 +49,8 @@
   flex-direction: column;
   gap: 5px;
   animation: binaryFlow 3s linear infinite;
+  transform: translateY(0);
+  opacity: 0;
 }
 
 .binaryColumn:nth-child(2) {
