@@ -158,17 +158,16 @@ export class StreamService {
       process.env.STREAM_PING_TIMEOUT || '5000',
       10,
     );
-
-    const fetchStream = axios.get(stream.streamUrl);
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(
-        () => reject(new Error('Ping request timed out')),
-        timeoutDuration,
-      ),
+    const source = axios.CancelToken.source();
+    const timeoutId = setTimeout(
+      () => source.cancel('Ping request timed out'),
+      timeoutDuration,
     );
 
     try {
-      const response = await Promise.race([fetchStream, timeoutPromise]);
+      const response = await axios.get(stream.streamUrl, {
+        cancelToken: source.token,
+      });
 
       if (response.status === 200) {
         await this.handleActiveStream(stream);
@@ -176,18 +175,17 @@ export class StreamService {
         await this.handleBadConnection(stream, response.status);
       }
     } catch (error: unknown) {
-      if (
-        error instanceof Error &&
-        error.message === 'Ping request timed out'
-      ) {
+      if (axios.isCancel(error)) {
         Logger.error(`Ping stream ${stream.id} canceled due to timeout`);
         await this.handleBadConnection(stream, 408);
       } else if (error instanceof Error) {
         Logger.error(`Error pinging stream ${stream.id}:`, error.message);
         await this.handleNoConnection(stream);
       } else {
-        Logger.error(`Unexpected error type for stream ${stream.id}:`, error);
+        Logger.error(`Error pinging stream ${stream.id}:`, error);
       }
+    } finally {
+      clearTimeout(timeoutId);
     }
   };
 
