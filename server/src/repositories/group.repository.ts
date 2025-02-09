@@ -1,6 +1,6 @@
 import { Group, PrismaClient } from '@prisma/client';
 import { Logger } from '../utils/logger';
-import { NewGroupDto } from '@shared/types';
+import { NewGroupDto, UpdateGroupDto } from '@shared/types';
 
 export class GroupRepository {
   private prismaClient: PrismaClient;
@@ -29,7 +29,7 @@ export class GroupRepository {
     return group;
   };
 
-  updateGroup = async (id: number, dto: NewGroupDto): Promise<Group> => {
+  updateGroup = async (id: number, dto: UpdateGroupDto): Promise<Group> => {
     const group = await this.prismaClient.group.update({
       where: { id },
       data: {
