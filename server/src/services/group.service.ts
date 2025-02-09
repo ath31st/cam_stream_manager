@@ -37,11 +37,11 @@ export class GroupService {
     }
   };
 
-  updateGroup = async (id: number, dto: UpdateGroupDto): Promise<GroupDto> => {
+  updateGroup = async (dto: UpdateGroupDto): Promise<GroupDto> => {
     try {
-      return await this.groupRepository.updateGroup(id, dto).then(toGroupDto);
+      return await this.groupRepository.updateGroup(dto).then(toGroupDto);
     } catch (error) {
-      Logger.error(`Error updating group with id ${id}:`, error);
+      Logger.error(`Error updating group with id ${dto.id}:`, error);
       throw new Error('Cannot update group');
     }
   };

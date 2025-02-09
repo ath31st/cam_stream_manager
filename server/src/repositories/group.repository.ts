@@ -29,9 +29,9 @@ export class GroupRepository {
     return group;
   };
 
-  updateGroup = async (id: number, dto: UpdateGroupDto): Promise<Group> => {
+  updateGroup = async (dto: UpdateGroupDto): Promise<Group> => {
     const group = await this.prismaClient.group.update({
-      where: { id },
+      where: { id: dto.id },
       data: {
         name: dto.name,
       },
