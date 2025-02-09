@@ -15,6 +15,7 @@ model Region {
   name      String
   isVisible Boolean
   streams   Stream[]
+  groups    Group[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -44,13 +45,13 @@ model Stream {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
-  email    String? @unique
-  role     String
-  password String
-  isLocked Boolean
-  groups   Group[]
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String?  @unique
+  role      String
+  password  String
+  isLocked  Boolean
+  groups    Group[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -76,6 +77,7 @@ model Group {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   users     User[]
+  regions   Region[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
