@@ -117,6 +117,22 @@ export interface UpdateUserPasswordDto {
   newPassword: string;
 }
 
+// group interfaces
+
+export interface GroupDto {
+  id: number;
+  name: string;
+}
+
+export interface NewGroupDto {
+  name: string;
+}
+
+export interface UpdateGroupDto {
+  id: number;
+  name: string;
+}
+
 // auth interfaces
 
 export interface LoginDto {
