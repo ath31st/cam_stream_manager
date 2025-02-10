@@ -36,6 +36,11 @@ export const regionNameValidationRules = [
   getLengthRule(2, 30),
 ];
 
+export const groupNameValidationRules = [
+  { required: true, message: 'Введите название группы' },
+  getLengthRule(2, 30),
+];
+
 export const rpNameValidationRules = [
   { required: true, message: 'Введите ответственное лицо' },
   getLengthRule(2, 100),
