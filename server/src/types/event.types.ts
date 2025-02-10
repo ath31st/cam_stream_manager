@@ -9,6 +9,7 @@ export enum EventType {
   STREAM = 'STREAM',
   RP = 'RP',
   USER = 'USER',
+  GROUP = 'GROUP',
 }
 
 export interface NewEvent {

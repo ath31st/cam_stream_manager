@@ -35,7 +35,7 @@ const userService = new UserService(userRepository, eventService);
 const userController = new UserController(userService);
 
 const groupRepository = new GroupRepository(prisma.client);
-const groupService = new GroupService(groupRepository);
+const groupService = new GroupService(groupRepository, eventService);
 const groupController = new GroupController(groupService);
 
 const refreshTokenRepository = new RefreshTokenRepository(prisma.client);

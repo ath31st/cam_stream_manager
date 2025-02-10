@@ -3,12 +3,16 @@ import { GroupRepository } from '../repositories/group.repository';
 import { Logger } from '../utils/logger';
 import { GroupDto, NewGroupDto, UpdateGroupDto } from '@shared/types';
 import { toGroupDto, toGroupDtos } from '../mappers/group.mapper';
+import { EventService } from './event.service';
+import { EventLevel, EventType, NewEvent } from '../types/event.types';
 
 export class GroupService {
   private groupRepository: GroupRepository;
+  private eventService: EventService;
 
-  constructor(groupRepository: GroupRepository) {
+  constructor(groupRepository: GroupRepository, eventService: EventService) {
     this.groupRepository = groupRepository;
+    this.eventService = eventService;
   }
 
   private getGroup = async (id: number): Promise<Group> => {
@@ -30,7 +34,11 @@ export class GroupService {
 
   createGroup = async (dto: NewGroupDto): Promise<GroupDto> => {
     try {
-      return await this.groupRepository.createGroup(dto).then(toGroupDto);
+      const group = await this.groupRepository.createGroup(dto);
+
+      await this.logGroupEvent(EventLevel.INFO, `Group ${group.name} created`);
+
+      return group;
     } catch (error) {
       Logger.error('Error creating group:', error);
       throw new Error('Cannot create group');
@@ -39,7 +47,11 @@ export class GroupService {
 
   updateGroup = async (dto: UpdateGroupDto): Promise<GroupDto> => {
     try {
-      return await this.groupRepository.updateGroup(dto).then(toGroupDto);
+      const group = await this.groupRepository.updateGroup(dto);
+
+      await this.logGroupEvent(EventLevel.INFO, `Group ${group.name} updated`);
+
+      return group;
     } catch (error) {
       Logger.error(`Error updating group with id ${dto.id}:`, error);
       throw new Error('Cannot update group');
@@ -49,9 +61,16 @@ export class GroupService {
   deleteGroup = async (id: number): Promise<void> => {
     try {
       await this.groupRepository.deleteGroup(id);
+
+      await this.logGroupEvent(EventLevel.INFO, `Group with id ${id} deleted`);
     } catch (error) {
       Logger.error(`Error deleting group with id ${id}:`, error);
       throw new Error('Cannot delete group');
     }
+  };
+
+  private logGroupEvent = async (level: EventLevel, info: string) => {
+    const event: NewEvent = { type: EventType.GROUP, level, info };
+    await this.eventService.createEvent(event);
   };
 }
