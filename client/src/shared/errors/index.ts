@@ -3,12 +3,14 @@ import {
   getStreamErrorMessage,
   getRpErrorMessage,
   getRegionErrorMessage,
+  getGroupErrorMessage,
   getEventErrorMessage,
   getAuthErrorMessage,
 } from './api/error.api';
 
 export {
   getRegionErrorMessage,
+  getGroupErrorMessage,
   getRpErrorMessage,
   getStreamErrorMessage,
   getEventErrorMessage,

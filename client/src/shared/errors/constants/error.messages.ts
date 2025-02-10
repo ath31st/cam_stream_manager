@@ -17,6 +17,11 @@ export const regionErrorMessages: Record<number, string> = {
   409: 'Регион с таким именем уже существует.',
 };
 
+export const groupErrorMessages: Record<number, string> = {
+  404: 'Запрашиваемая группа не найдена.',
+  409: 'Группа с таким именем уже существует.',
+};
+
 export const responsiblePersonErrorMessages: Record<number, string> = {
   404: 'Запрашиваемое ответственное лицо не найдено.',
 };
