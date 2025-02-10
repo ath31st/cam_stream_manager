@@ -6,6 +6,7 @@ import ResponsiblePersonTab from '../../widgets/responsible.person.tab';
 import Dashboard from '../../widgets/dashboard.tab';
 import EventTab from '../../widgets/event.tab';
 import UsersTab from '../../widgets/user.tab';
+import GroupsTab from '../../widgets/group.tab';
 
 const AdminPage: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<string>('1');
@@ -46,13 +47,18 @@ const AdminPage: React.FC = () => {
             children: <ResponsiblePersonTab />,
           },
           {
-            label: 'Пользователи',
+            label: 'Группы',
             key: '5',
+            children: <GroupsTab />,
+          },
+          {
+            label: 'Пользователи',
+            key: '6',
             children: <UsersTab />,
           },
           {
             label: 'События',
-            key: '6',
+            key: '7',
             children: <EventTab />,
           },
         ]}
