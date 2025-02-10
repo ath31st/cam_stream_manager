@@ -15,6 +15,7 @@ import healthCheckRoutes from './routes/health.check.routes';
 import authRoutes from './routes/auth.routes';
 import passport from 'passport';
 import { configurePassport } from './config/passport';
+import groupRoutes from './routes/group.routes';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(eventRoutes);
 app.use(regionRoutes);
 app.use(rpRoutes);
 app.use(streamRoutes);
+app.use(groupRoutes);
 app.use(userRoutes);
 app.use(authRoutes);
 app.use(dashboardRoutes);

@@ -11,7 +11,7 @@ router.delete('/groups/:id', isAuthenticated, groupController.deleteGroup);
 router.get('/groups', groupController.getGroups);
 router.get('/groups/:id', isAuthenticated, groupController.getGroup);
 
-const regionRoutes = Router();
-regionRoutes.use(API_PREFIX, router);
+const groupRoutes = Router();
+groupRoutes.use(API_PREFIX, router);
 
-export default regionRoutes;
+export default groupRoutes;
