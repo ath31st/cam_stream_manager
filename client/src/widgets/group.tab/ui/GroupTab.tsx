@@ -89,7 +89,7 @@ const GroupsTab: React.FC = () => {
     <TabContainer>
       <>
         <WideButton onClick={() => setIsAddModalVisible(true)}>
-          Добавить регион
+          Добавить группу
         </WideButton>
 
         {loading ? (
