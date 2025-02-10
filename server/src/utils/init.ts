@@ -20,6 +20,9 @@ import { RefreshTokenRepository } from '../repositories/refresh.token.repository
 import { RefreshTokenService } from '../services/refresh.token.service';
 import { AuthService } from '../services/auth.service';
 import { AuthController } from '../controllers/auth.controller';
+import { GroupRepository } from '../repositories/group.repository';
+import { GroupService } from '../services/group.service';
+import { GroupController } from '../controllers/group.controller';
 
 const prisma = prismaService;
 
@@ -30,6 +33,10 @@ const eventController = new EventController(eventService);
 const userRepository = new UserRepository(prisma.client);
 const userService = new UserService(userRepository, eventService);
 const userController = new UserController(userService);
+
+const groupRepository = new GroupRepository(prisma.client);
+const groupService = new GroupService(groupRepository);
+const groupController = new GroupController(groupService);
 
 const refreshTokenRepository = new RefreshTokenRepository(prisma.client);
 const refreshTokenService = new RefreshTokenService(refreshTokenRepository);
@@ -59,6 +66,7 @@ export {
   rpController,
   dashboardController,
   eventController,
+  groupController,
   userService,
   userController,
   authController,
