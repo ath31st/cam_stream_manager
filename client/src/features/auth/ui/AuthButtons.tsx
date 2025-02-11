@@ -65,7 +65,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
         </>
       ) : (
         <IconButton icon={<LoginOutlined />} onClick={onLogin}>
-          Войти
+          Вход
         </IconButton>
       )}
     </div>
