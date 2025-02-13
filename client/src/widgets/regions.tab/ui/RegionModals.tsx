@@ -2,18 +2,21 @@ import React from 'react';
 import {
   AddRegionModal,
   DeleteRegionModal,
+  NewRegion,
   Region,
   UpdateRegion,
   UpdateRegionModal,
 } from '../../../entities/region';
+import { Group } from '../../../entities/group';
 
 interface RegionModalsProps {
+  groups: Group[];
   isAddModalVisible: boolean;
   isDeleteModalVisible: boolean;
   isUpdateModalVisible: boolean;
   updatingRegion: Region | null;
   deleteRegionId: number | null;
-  onAdd: (name: string) => void;
+  onAdd: (newRegion: NewRegion) => void;
   onDelete: () => void;
   onUpdate: (updatedRegion: UpdateRegion) => void;
   onCloseAdd: () => void;
@@ -22,6 +25,7 @@ interface RegionModalsProps {
 }
 
 const RegionModals: React.FC<RegionModalsProps> = ({
+  groups,
   isAddModalVisible,
   isDeleteModalVisible,
   isUpdateModalVisible,
@@ -35,6 +39,7 @@ const RegionModals: React.FC<RegionModalsProps> = ({
 }) => (
   <>
     <AddRegionModal
+      groups={groups}
       visible={isAddModalVisible}
       onConfirm={onAdd}
       onCancel={onCloseAdd}
@@ -47,6 +52,7 @@ const RegionModals: React.FC<RegionModalsProps> = ({
     />
 
     <UpdateRegionModal
+      groups={groups}
       visible={isUpdateModalVisible}
       region={updatingRegion}
       onConfirm={onUpdate}
