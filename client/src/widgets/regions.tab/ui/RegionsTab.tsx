@@ -108,6 +108,7 @@ const RegionsTab: React.FC = () => {
           <LargeLoader />
         ) : (
           <RegionsTable
+            groups={groups}
             regions={regions}
             onEdit={showUpdateModal}
             onDelete={showDeleteConfirm}

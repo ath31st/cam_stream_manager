@@ -5,14 +5,17 @@ import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 import styles from './RegionsTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
+import { Group } from '../../../entities/group';
 
 interface RegionsTableProps {
+  groups: Group[];
   regions: Region[];
   onEdit: (region: Region) => void;
   onDelete: (id: number) => void;
 }
 
 const RegionsTable: React.FC<RegionsTableProps> = ({
+  groups,
   regions,
   onEdit,
   onDelete,
@@ -21,6 +24,10 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
     key: region.id,
     name: region.name,
     isVisible: region.isVisible ? 'Виден' : 'Скрыт',
+    groups:
+      region.groupIds
+        .map((id) => groups.find((g) => g.id === id)?.name)
+        .join(', ') || '—',
   }));
 
   const columns = [
@@ -30,6 +37,11 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       key: 'name',
       sorter: (a: { name: string }, b: { name: string }) =>
         a.name.localeCompare(b.name),
+    },
+    {
+      title: 'Группы',
+      dataIndex: 'groups',
+      key: 'groups',
     },
     {
       title: 'Видимость',
