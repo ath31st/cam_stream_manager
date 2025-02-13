@@ -17,7 +17,7 @@ interface RegionState {
   error: string | null;
   fetchAllRegions: (isVisible?: boolean) => Promise<void>;
   fetchRegionById: (id: number) => Promise<void>;
-  addRegion: (region: NewRegion) => Promise<void>;
+  addRegion: (region: NewRegion) => Promise<Region | null>;
   updateRegion: (id: number, region: UpdateRegion) => Promise<void>;
   removeRegion: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
@@ -62,12 +62,14 @@ export const useRegionStore = create<RegionState>((set) => ({
     }
   },
 
-  addRegion: async (region: NewRegion) => {
+  addRegion: async (region: NewRegion): Promise<Region | null> => {
     try {
       const newRegion = await createRegion(region);
       set((state) => ({ regions: [...state.regions, newRegion] }));
+      return newRegion;
     } catch (error) {
       useRegionStore.getState().handleError(error);
+      return null;
     }
   },
 
@@ -92,7 +94,7 @@ export const useRegionStore = create<RegionState>((set) => ({
       useRegionStore.getState().handleError(error);
     }
   },
-  
+
   clearError: () => {
     set({ error: null });
   },
