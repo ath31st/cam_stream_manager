@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRegionStore } from '../../../app/stores/region.store';
-import { Region, UpdateRegion } from '../../../entities/region';
+import { NewRegion, Region, UpdateRegion } from '../../../entities/region';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   errorNotification,
@@ -11,6 +11,7 @@ import RegionModals from './RegionModals';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
+import { useGroupStore } from '../../../app/stores/group.store';
 
 const RegionsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -18,6 +19,14 @@ const RegionsTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteRegionId, setDeleteRegionId] = useState<number | null>(null);
   const [updatingRegion, setUpdatingRegion] = useState<Region | null>(null);
+
+  const { groups, fetchAllGroups } = useGroupStore();
+
+  useEffect(() => {
+    if (groups.length === 0) {
+      fetchAllGroups();
+    }
+  }, [groups, fetchAllGroups]);
 
   const {
     regions,
@@ -41,12 +50,12 @@ const RegionsTab: React.FC = () => {
     fetchAllRegions();
   }, [fetchAllRegions]);
 
-  const handleAddRegion = async (name: string) => {
-    await addRegion({ name });
+  const handleAddRegion = async (newRegion: NewRegion) => {
+    const region = await addRegion(newRegion);
     if (useRegionStore.getState().error === null) {
       successNotification(
         'Регион добавлен',
-        `Регион "${name}" успешно добавлен.`,
+        `Регион "${region?.name}" успешно добавлен.`,
       );
       setIsAddModalVisible(false);
     }
@@ -106,6 +115,7 @@ const RegionsTab: React.FC = () => {
         )}
 
         <RegionModals
+          groups={groups}
           isAddModalVisible={isAddModalVisible}
           isDeleteModalVisible={isDeleteModalVisible}
           isUpdateModalVisible={isUpdateModalVisible}
