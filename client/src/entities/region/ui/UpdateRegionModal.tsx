@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { Modal, Input, Form, Switch } from 'antd';
+import { Modal, Input, Form, Switch, Select } from 'antd';
 import { Region, UpdateRegion } from '..';
 import { regionNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
+import { Group } from '../../group';
 
 interface UpdateRegionModalProps {
+  groups: Group[];
   visible: boolean;
   region: Region | null;
   onConfirm: (updatedRegion: UpdateRegion) => void;
@@ -13,6 +15,7 @@ interface UpdateRegionModalProps {
 }
 
 const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
+  groups,
   visible,
   region,
   onConfirm,
@@ -22,12 +25,23 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
 
   useEffect(() => {
     if (region) {
-      form.setFieldsValue(region);
+      form.setFieldsValue({
+        ...region,
+        groupIds: region.groupIds || [],
+      });
     }
   }, [region, form]);
 
   const handleOk = () => {
-    onConfirm(form.getFieldsValue());
+    form.validateFields().then((values) => {
+      const updatedRegion: UpdateRegion = {
+        id: region!.id,
+        name: values.name,
+        isVisible: values.isVisible,
+        groupIds: values.groupIds || [],
+      };
+      onConfirm(updatedRegion);
+    });
   };
 
   return (
@@ -56,6 +70,15 @@ const UpdateRegionModal: React.FC<UpdateRegionModalProps> = ({
             valuePropName="checked"
           >
             <Switch checkedChildren="Виден" unCheckedChildren="Скрыт" />
+          </Form.Item>
+          <Form.Item name="groupIds" label="Группы">
+            <Select mode="multiple" placeholder="Выберите группы">
+              {groups.map((group) => (
+                <Select.Option key={group.id} value={group.id}>
+                  {group.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </div>
