@@ -1,10 +1,10 @@
-import { Region } from '@prisma/client';
 import { RegionRepository } from '../repositories/region.repository';
 import { NewRegionDto, RegionDto, UpdateRegionDto } from '@shared/types';
 import { toRegionDto, toRegionDtos } from '../mappers/region.mapper';
 import { Logger } from '../utils/logger';
 import { EventService } from './event.service';
 import { EventLevel, EventType, NewEvent } from '../types/event.types';
+import { RegionWithGroups } from '../types/extended.types';
 
 export class RegionService {
   private regionRepository: RegionRepository;
@@ -15,7 +15,7 @@ export class RegionService {
     this.eventService = eventService;
   }
 
-  getRegion = async (id: number): Promise<Region> => {
+  getRegion = async (id: number): Promise<RegionWithGroups> => {
     try {
       return await this.regionRepository.findRegion(id);
     } catch (error) {
@@ -28,7 +28,7 @@ export class RegionService {
     return this.getRegion(id).then(toRegionDto);
   };
 
-  getRegions = async (isVisible?: boolean): Promise<Region[]> => {
+  getRegions = async (isVisible?: boolean): Promise<RegionWithGroups[]> => {
     try {
       return await this.regionRepository.findRegions(isVisible);
     } catch (error) {
