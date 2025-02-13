@@ -1,16 +1,20 @@
 import React from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 import { regionNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
+import { NewRegion } from '..';
+import { Group } from '../../group';
 
 interface AddRegionModalProps {
+  groups: Group[];
   visible: boolean;
-  onConfirm: (name: string) => void;
+  onConfirm: (newRegion: NewRegion) => void;
   onCancel: () => void;
 }
 
 const AddRegionModal: React.FC<AddRegionModalProps> = ({
+  groups,
   visible,
   onConfirm,
   onCancel,
@@ -18,8 +22,19 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
   const [form] = Form.useForm();
 
   const handleOk = () => {
-    onConfirm(form.getFieldValue('name'));
-    form.resetFields();
+    form
+      .validateFields()
+      .then((values) => {
+        const newRegion: NewRegion = {
+          name: values.name,
+          groupIds: values.groupIds || [],
+        };
+        onConfirm(newRegion);
+        form.resetFields();
+      })
+      .catch((info) => {
+        console.log('Ошибка валидации:', info);
+      });
   };
 
   return (
@@ -39,6 +54,15 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
             rules={regionNameValidationRules}
           >
             <Input placeholder="Введите название региона" autoComplete="off" />
+          </Form.Item>
+          <Form.Item name="groupIds" label="Группы">
+            <Select mode="multiple" placeholder="Выберите группы">
+              {groups.map((group) => (
+                <Select.Option key={group.id} value={group.id}>
+                  {group.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </div>
