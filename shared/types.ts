@@ -32,18 +32,21 @@ export interface UpdateStreamDto {
 
 export interface NewRegionDto {
   name: string;
+  groupIds: number[];
 }
 
 export interface RegionDto {
   id: number;
   name: string;
   isVisible: boolean;
+  groupIds: number[];
 }
 
 export interface UpdateRegionDto {
   id: number;
   name: string;
   isVisible: boolean;
+  groupIds: number[];
 }
 
 // responsible person interfaces
