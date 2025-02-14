@@ -7,8 +7,10 @@ import {
   UpdateUserModal,
   User,
 } from '../../../entities/user';
+import { Group } from '../../../entities/group';
 
 interface UserTabModalsProps {
+  groups: Group[];
   isAddModalVisible: boolean;
   isUpdateModalVisible: boolean;
   isDeleteModalVisible: boolean;
@@ -23,6 +25,7 @@ interface UserTabModalsProps {
 }
 
 const UserTabModals: React.FC<UserTabModalsProps> = ({
+  groups,
   isAddModalVisible,
   isUpdateModalVisible,
   isDeleteModalVisible,
@@ -37,12 +40,14 @@ const UserTabModals: React.FC<UserTabModalsProps> = ({
   return (
     <>
       <AddUserModal
+        groups={groups}
         visible={isAddModalVisible}
         onConfirm={handleSaveUser}
         onCancel={handleCancelAdd}
       />
 
       <UpdateUserModal
+        groups={groups}
         visible={isUpdateModalVisible}
         user={updatingUser}
         onConfirm={handleSaveUpdate}
