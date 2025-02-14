@@ -10,6 +10,7 @@ export const newUserSchema = Joi.object<NewUserDto>({
   password: Joi.string().min(4).required(),
   email: Joi.string().email().optional(),
   role: Joi.string().valid('USER', 'ADMIN').required(),
+  groupIds: Joi.array().items(Joi.number().integer()).required(),
 });
 
 export const updateUserSchema = Joi.object<UpdateUserDto>({
@@ -18,6 +19,7 @@ export const updateUserSchema = Joi.object<UpdateUserDto>({
   email: Joi.string().email().allow(null).optional(),
   role: Joi.string().valid('USER', 'ADMIN').required(),
   isLocked: Joi.boolean().required(),
+  groupIds: Joi.array().items(Joi.number().integer()).required(),
 });
 
 export const updateUserPasswordSchema = Joi.object<UpdateUserPasswordDto>({
