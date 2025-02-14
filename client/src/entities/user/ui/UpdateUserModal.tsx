@@ -7,8 +7,10 @@ import {
   emailValidationRules,
   usernameValidationRules,
 } from '../../../shared/validations/lib/validation.rules';
+import { Group } from '../../group';
 
 interface UpdateUserModalProps {
+  groups: Group[];
   visible: boolean;
   user: User | null;
   onConfirm: (updatedUser: UpdateUser) => void;
@@ -16,6 +18,7 @@ interface UpdateUserModalProps {
 }
 
 const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
+  groups,
   visible,
   user,
   onConfirm,
@@ -38,6 +41,7 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
       email: fieldsValue.email,
       role: fieldsValue.role,
       isLocked: fieldsValue.isLocked,
+      groupIds: fieldsValue.groupIds || [],
     };
 
     onConfirm(updatedUser);
@@ -86,6 +90,15 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
             <Select placeholder="Выберите роль">
               <Select.Option value="ADMIN">Администратор</Select.Option>
               <Select.Option value="USER">Пользователь</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="groupIds" label="Группы">
+            <Select mode="multiple" placeholder="Выберите группы">
+              {groups.map((group) => (
+                <Select.Option key={group.id} value={group.id}>
+                  {group.name}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
         </Form>
