@@ -6,6 +6,8 @@ import {
   updateRegionSchema,
 } from '../validators/region.validator';
 import { trimObjectValues } from '../utils/trim.utils';
+import { JwtPayload } from 'jsonwebtoken';
+import { UserRoles } from '../utils/user.roles';
 
 export class RegionController {
   private regionService: RegionService;
@@ -35,11 +37,20 @@ export class RegionController {
 
   getRegions = async (req: Request, res: Response) => {
     try {
+      const user: JwtPayload | undefined = req.user;
+      const isAdmin = user?.role === UserRoles.ADMIN;
+      const groupIds: number[] = user?.groupIds || [];
+
       const isVisible =
         req.query?.isVisible !== undefined
           ? req.query.isVisible === 'true'
           : undefined;
-      const regionsDto = await this.regionService.getRegionDtos(isVisible);
+          
+      const regionsDto = await this.regionService.getRegionDtos(
+        groupIds,
+        isAdmin,
+        isVisible,
+      );
       res.status(200).json(regionsDto);
     } catch (error) {
       if (error instanceof Error) {
