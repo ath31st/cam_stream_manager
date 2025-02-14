@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import { User } from '@prisma/client';
 import { UserRepository } from '../repositories/user.repository';
 import { Logger } from '../utils/logger';
 import { EventService } from './event.service';
@@ -12,6 +11,7 @@ import {
   UserDto,
 } from '@shared/types';
 import { toUserDto, toUserDtos } from '../mappers/user.mapper';
+import { UserWithGroups } from '../types/extended.types';
 
 export class UserService {
   private userRepository: UserRepository;
@@ -23,7 +23,7 @@ export class UserService {
     this.eventService = eventService;
   }
 
-  getUser = async (id: number): Promise<User> => {
+  getUser = async (id: number): Promise<UserWithGroups> => {
     try {
       return await this.userRepository.findUser(id);
     } catch (error) {
@@ -36,7 +36,7 @@ export class UserService {
     return await this.getUser(id).then(toUserDto);
   };
 
-  getUserByUsername = async (username: string): Promise<User> => {
+  getUserByUsername = async (username: string): Promise<UserWithGroups> => {
     try {
       return await this.userRepository.findUserByUsername(username);
     } catch (error) {
@@ -45,7 +45,7 @@ export class UserService {
     }
   };
 
-  getUserByEmail = async (email: string): Promise<User> => {
+  getUserByEmail = async (email: string): Promise<UserWithGroups> => {
     try {
       return await this.userRepository.findUserByEmail(email);
     } catch (error) {
@@ -54,7 +54,7 @@ export class UserService {
     }
   };
 
-  private getAllUsers = async (): Promise<User[]> => {
+  private getAllUsers = async (): Promise<UserWithGroups[]> => {
     try {
       return await this.userRepository.findAllUsers();
     } catch (error) {
