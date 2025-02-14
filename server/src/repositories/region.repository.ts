@@ -25,7 +25,50 @@ export class RegionRepository {
     return region.length > 0;
   };
 
-  findRegions = async (isVisible?: boolean): Promise<RegionWithGroups[]> => {
+  findRegions = async (
+    groupIds: number[],
+    isVisible?: boolean,
+  ): Promise<RegionWithGroups[]> => {
+    const regionsWithGroups = await this.prismaClient.region.findMany({
+      where: {
+        ...(isVisible !== undefined && { isVisible: isVisible }),
+        ...(groupIds.length > 0 && {
+          groups: {
+            some: {
+              id: {
+                in: groupIds,
+              },
+            },
+          },
+        }),
+      },
+      include: {
+        groups: true,
+      },
+    });
+
+    const regionsWithoutGroups = await this.prismaClient.region.findMany({
+      where: {
+        ...(isVisible !== undefined && { isVisible: isVisible }),
+        groups: {
+          none: {},
+        },
+      },
+      include: {
+        groups: true,
+      },
+    });
+
+    const combinedRegions = [...regionsWithGroups, ...regionsWithoutGroups];
+
+    const uniqueRegions = Array.from(
+      new Map(combinedRegions.map((region) => [region.id, region])).values(),
+    );
+
+    return uniqueRegions;
+  };
+
+  findAllRegions = async (isVisible?: boolean): Promise<RegionWithGroups[]> => {
     return await this.prismaClient.region.findMany({
       where: {
         ...(isVisible !== undefined && { isVisible: isVisible }),
