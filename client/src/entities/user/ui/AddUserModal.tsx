@@ -9,14 +9,17 @@ import {
   passwordValidationRules,
   usernameValidationRules,
 } from '../../../shared/validations/lib/validation.rules';
+import { Group } from '../../group';
 
 interface AddUserModalProps {
+  groups: Group[];
   visible: boolean;
   onConfirm: (value: NewUser) => void;
   onCancel: () => void;
 }
 
 const AddUserModal: React.FC<AddUserModalProps> = ({
+  groups,
   visible,
   onConfirm,
   onCancel,
@@ -24,7 +27,17 @@ const AddUserModal: React.FC<AddUserModalProps> = ({
   const [form] = Form.useForm();
 
   const handleOk = () => {
-    form.submit();
+    form.validateFields().then((values) => {
+      const newUser: NewUser = {
+        username: values.username,
+        password: values.password,
+        email: values.email,
+        role: values.role,
+        groupIds: values.groupIds || [],
+      };
+      onConfirm(newUser);
+      form.resetFields();
+    });
   };
 
   const handleFormSubmit = (value: NewUser) => {
@@ -80,6 +93,15 @@ const AddUserModal: React.FC<AddUserModalProps> = ({
             <Select placeholder="Выберите роль">
               <Select.Option value="ADMIN">Администратор</Select.Option>
               <Select.Option value="USER">Пользователь</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="groupIds" label="Группы">
+            <Select mode="multiple" placeholder="Выберите группы">
+              {groups.map((group) => (
+                <Select.Option key={group.id} value={group.id}>
+                  {group.name}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
         </Form>
