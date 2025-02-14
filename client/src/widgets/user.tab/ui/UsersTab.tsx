@@ -10,6 +10,7 @@ import { NewUser, UpdateUser, User } from '../../../entities/user';
 import { useUserStore } from '../../../app/stores/user.store';
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
+import { useGroupStore } from '../../../app/stores/group.store';
 
 const UsersTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -17,6 +18,14 @@ const UsersTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState<number | null>(null);
   const [updatingUser, setUpdatingUser] = useState<User | null>(null);
+
+  const { groups, fetchAllGroups } = useGroupStore();
+
+  useEffect(() => {
+    if (groups.length === 0) {
+      fetchAllGroups();
+    }
+  }, [groups, fetchAllGroups]);
 
   const {
     error,
@@ -101,12 +110,14 @@ const UsersTab: React.FC = () => {
         ) : (
           <UsersTable
             users={users}
+            groups={groups}
             onEdit={showUpdateModal}
             onDelete={showDeleteConfirm}
           />
         )}
 
         <UserTabModals
+          groups={groups}
           isAddModalVisible={isAddModalVisible}
           isDeleteModalVisible={isDeleteModalVisible}
           isUpdateModalVisible={isUpdateModalVisible}
