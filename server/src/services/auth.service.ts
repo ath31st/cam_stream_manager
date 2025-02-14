@@ -3,8 +3,8 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { UserService } from './user.service';
 import { Logger } from '../utils/logger';
 import { LoginDto, TokensDto } from '@shared/types';
-import { User } from '@prisma/client';
 import { RefreshTokenService } from './refresh.token.service';
+import { UserWithGroups } from '../types/extended.types';
 
 export class AuthService {
   private userService: UserService;
@@ -52,12 +52,13 @@ export class AuthService {
     }
   };
 
-  private generateAccessToken = (user: User): string => {
+  private generateAccessToken = (user: UserWithGroups): string => {
     return jwt.sign(
       {
         userId: user.id,
         role: user.role,
         username: user.username,
+        groupIds: user.groups.map((group) => group.id),
       },
       this.jwtSecret,
       {
@@ -66,7 +67,7 @@ export class AuthService {
     );
   };
 
-  private generateRefreshToken = (user: User): string => {
+  private generateRefreshToken = (user: UserWithGroups): string => {
     return jwt.sign(
       {
         userId: user.id,
