@@ -1,7 +1,7 @@
-import { User } from '@prisma/client';
 import { UserDto } from '@shared/types';
+import { UserWithGroups } from '../types/extended.types';
 
-export const toUserDto = (user: User): UserDto => {
+export const toUserDto = (user: UserWithGroups): UserDto => {
   return {
     id: user.id,
     username: user.username,
@@ -10,9 +10,10 @@ export const toUserDto = (user: User): UserDto => {
     isLocked: user.isLocked,
     registeredAt: user.createdAt,
     updatedAt: user.updatedAt,
+    groupIds: user.groups.map((group) => group.id),
   };
 };
 
-export const toUserDtos = (users: User[]): UserDto[] => {
+export const toUserDtos = (users: UserWithGroups[]): UserDto[] => {
   return users.map((user) => toUserDto(user));
 };
