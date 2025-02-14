@@ -5,14 +5,21 @@ import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 import styles from './UsersTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
 import { User } from '../../../entities/user';
+import { Group } from '../../../entities/group';
 
 interface UsersTableProps {
   users: User[];
+  groups: Group[];
   onEdit: (user: User) => void;
   onDelete: (id: number) => void;
 }
 
-const UsersTable: React.FC<UsersTableProps> = ({ users, onEdit, onDelete }) => {
+const UsersTable: React.FC<UsersTableProps> = ({
+  users,
+  groups,
+  onEdit,
+  onDelete,
+}) => {
   const dataSource = users.map((user) => ({
     key: user.id,
     username: user.username,
@@ -24,6 +31,10 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onEdit, onDelete }) => {
       day: '2-digit',
     }).format(new Date(user.registeredAt)),
     isLocked: user.isLocked ? 'Заблок.' : 'Активен',
+    groups:
+      user.groupIds
+        .map((id) => groups.find((g) => g.id === id)?.name)
+        .join(', ') || '—',
   }));
 
   const columns = [
@@ -53,6 +64,11 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onEdit, onDelete }) => {
       title: 'Роль',
       dataIndex: 'role',
       key: 'role',
+    },
+    {
+      title: 'Группы',
+      dataIndex: 'groups',
+      key: 'groups',
     },
     {
       title: 'Дата регистрации',
