@@ -2,14 +2,14 @@ import { unknownError } from './constants/error.messages';
 import {
   getStreamErrorMessage,
   getRpErrorMessage,
-  getRegionErrorMessage,
+  getPlaylistErrorMessage,
   getGroupErrorMessage,
   getEventErrorMessage,
   getAuthErrorMessage,
 } from './api/error.api';
 
 export {
-  getRegionErrorMessage,
+  getPlaylistErrorMessage,
   getGroupErrorMessage,
   getRpErrorMessage,
   getStreamErrorMessage,

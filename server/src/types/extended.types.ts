@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 
-export type RegionWithGroups = Prisma.RegionGetPayload<{
+export type PlaylistWithGroups = Prisma.PlaylistGetPayload<{
   include: { groups: true };
 }>;
 

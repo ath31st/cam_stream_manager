@@ -64,10 +64,10 @@ export class StreamController {
     }
   };
 
-  getStreamsByRegion = async (req: Request, res: Response) => {
+  getStreamsByPlaylist = async (req: Request, res: Response) => {
     try {
-      const regionId = Number(req.params.id);
-      const streamDtos = await this.streamService.getStreamsByRegion(regionId);
+      const playlistId = Number(req.params.id);
+      const streamDtos = await this.streamService.getStreamsByPlaylist(playlistId);
       res.status(200).json(streamDtos);
     } catch (error) {
       if (error instanceof Error) {

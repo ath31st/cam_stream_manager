@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Modal, Form, Input, Select, Switch } from 'antd';
 import { Stream, UpdateStream } from '../../../entities/stream';
-import { Region } from '../../../entities/region';
+import { Playlist } from '../../../entities/playlist';
 import {
   streamCommentValidationRules,
   streamLocationValidationRules,
@@ -13,7 +13,7 @@ import FooterModal from '../../../shared/ui/buttons/FooterModal';
 interface UpdateStreamModalProps {
   visible: boolean;
   stream: Stream | null;
-  regions: Region[];
+  playlists: Playlist[];
   onConfirm: (values: UpdateStream) => void;
   onCancel: () => void;
 }
@@ -21,7 +21,7 @@ interface UpdateStreamModalProps {
 const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
   visible,
   stream,
-  regions,
+  playlists,
   onConfirm,
   onCancel,
 }) => {
@@ -55,14 +55,14 @@ const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
       <div className={styles['modal-body']}>
         <Form form={form} onFinish={handleFormSubmit}>
           <Form.Item
-            name="regionId"
-            label="Регион"
-            rules={[{ required: true, message: 'Выберите регион' }]}
+            name="playlistId"
+            label="Плейлист"
+            rules={[{ required: true, message: 'Выберите плейлист' }]}
           >
-            <Select placeholder="Выберите регион">
-              {regions.map((region) => (
-                <Select.Option key={region.id} value={region.id}>
-                  {region.name}
+            <Select placeholder="Выберите плейлист">
+              {playlists.map((playlist) => (
+                <Select.Option key={playlist.id} value={playlist.id}>
+                  {playlist.name}
                 </Select.Option>
               ))}
             </Select>

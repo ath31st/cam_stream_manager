@@ -6,7 +6,7 @@ import {
   createStream,
   updateStream,
   deleteStream,
-  fetchStreamsByRegion,
+  fetchStreamsByPlaylist,
 } from '../../entities/stream';
 import { AxiosError } from 'axios';
 import { getStreamErrorMessage, unknownError } from '../../shared/errors';
@@ -17,7 +17,7 @@ interface StreamState {
   loading: boolean;
   error: string | null;
   fetchAllStreams: () => Promise<void>;
-  fetchStreamsByRegion: (regionId: number) => Promise<void>;
+  fetchStreamsByPlaylist: (playlistId: number) => Promise<void>;
   fetchStreamById: (id: number) => Promise<void>;
   addStream: (stream: NewStream) => Promise<void>;
   updateStream: (id: number, stream: UpdateStream) => Promise<void>;
@@ -54,10 +54,10 @@ export const useStreamStore = create<StreamState>((set) => ({
     }
   },
 
-  fetchStreamsByRegion: async (regionId: number) => {
+  fetchStreamsByPlaylist: async (playlistId: number) => {
     set({ loading: true });
     try {
-      const streams = await fetchStreamsByRegion(regionId);
+      const streams = await fetchStreamsByPlaylist(playlistId);
       set({ streams, loading: false });
     } catch (error: unknown) {
       set({ loading: false });

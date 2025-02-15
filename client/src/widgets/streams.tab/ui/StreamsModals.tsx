@@ -7,7 +7,7 @@ import {
   Stream,
   UpdateStream,
 } from '../../../entities/stream';
-import { Region } from '../../../entities/region';
+import { Playlist } from '../../../entities/playlist';
 
 interface StreamModalsProps {
   isAddModalVisible: boolean;
@@ -15,7 +15,7 @@ interface StreamModalsProps {
   isDeleteModalVisible: boolean;
   updatingStream: Stream | null;
   deleteStreamId: number | null;
-  regions: Region[];
+  playlists: Playlist[];
   handleSaveStream: (value: NewStream) => void;
   handleSaveUpdate: (value: UpdateStream) => void;
   handleCancelAdd: () => void;
@@ -29,7 +29,7 @@ const StreamModals: React.FC<StreamModalsProps> = ({
   isUpdateModalVisible,
   isDeleteModalVisible,
   updatingStream,
-  regions,
+  playlists,
   handleSaveStream,
   handleSaveUpdate,
   handleCancelAdd,
@@ -41,7 +41,7 @@ const StreamModals: React.FC<StreamModalsProps> = ({
     <>
       <AddStreamModal
         visible={isAddModalVisible}
-        regions={regions}
+        playlists={playlists}
         onConfirm={handleSaveStream}
         onCancel={handleCancelAdd}
       />
@@ -49,7 +49,7 @@ const StreamModals: React.FC<StreamModalsProps> = ({
       <UpdateStreamModal
         visible={isUpdateModalVisible}
         stream={updatingStream}
-        regions={regions}
+        playlists={playlists}
         onConfirm={handleSaveUpdate}
         onCancel={handleCancelUpdate}
       />

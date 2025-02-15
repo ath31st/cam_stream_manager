@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
-import { Region } from '../../../entities/region';
+import { Playlist } from '../../../entities/playlist';
 import { NewStream } from '..';
 import {
   optionalPhoneValidationRules,
@@ -11,18 +11,18 @@ import {
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
-import RegionSelect from '../../../shared/ui/selects/RegionSelect';
+import PlaylistSelect from '../../../shared/ui/selects/PlaylistSelect';
 
 interface AddStreamModalProps {
   visible: boolean;
-  regions: Region[];
+  playlists: Playlist[];
   onConfirm: (value: NewStream) => void;
   onCancel: () => void;
 }
 
 const AddStreamModal: React.FC<AddStreamModalProps> = ({
   visible,
-  regions,
+  playlists,
   onConfirm,
   onCancel,
 }) => {
@@ -63,11 +63,11 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
       <div className={styles['modal-body']}>
         <Form form={form} onFinish={handleFormSubmit}>
           <Form.Item
-            name="regionId"
-            label="Регион"
-            rules={[{ required: true, message: 'Выберите регион' }]}
+            name="playlistId"
+            label="Плейлист"
+            rules={[{ required: true, message: 'Выберите плейлист' }]}
           >
-            <RegionSelect regions={regions} id="regionId" />
+            <PlaylistSelect playlists={playlists} id="playlistId" />
           </Form.Item>
           <Form.Item
             name="location"

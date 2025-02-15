@@ -6,7 +6,7 @@
   min-width: 200px;
 }
 
-.ellipsis-region-column {
+.ellipsis-playlist-column {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

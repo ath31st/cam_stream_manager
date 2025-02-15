@@ -1,35 +1,35 @@
 import { PrismaClient } from '@prisma/client';
-import { NewRegionDto, UpdateRegionDto } from '@shared/types';
+import { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
 import { Logger } from '../utils/logger';
-import { RegionWithGroups } from '../types/extended.types';
+import { PlaylistWithGroups } from '../types/extended.types';
 
-export class RegionRepository {
+export class PlaylistRepository {
   private prismaClient: PrismaClient;
 
   constructor(prismaClient: PrismaClient) {
     this.prismaClient = prismaClient;
   }
 
-  findRegion = async (id: number): Promise<RegionWithGroups> => {
-    return await this.prismaClient.region.findUniqueOrThrow({
+  findPlaylist = async (id: number): Promise<PlaylistWithGroups> => {
+    return await this.prismaClient.playlist.findUniqueOrThrow({
       where: { id: id },
       include: { groups: true },
     });
   };
 
-  existsRegionByName = async (name: string): Promise<boolean> => {
-    const region = await this.prismaClient.$queryRaw<
+  existsPlaylistByName = async (name: string): Promise<boolean> => {
+    const playlist = await this.prismaClient.$queryRaw<
       { id: number }[]
-    >`SELECT * FROM "Region" WHERE UPPER("name") = UPPER(${name}) LIMIT 1`;
+    >`SELECT * FROM "Playlist" WHERE UPPER("name") = UPPER(${name}) LIMIT 1`;
 
-    return region.length > 0;
+    return playlist.length > 0;
   };
 
-  findRegions = async (
+  findPlaylists = async (
     groupIds: number[],
     isVisible?: boolean,
-  ): Promise<RegionWithGroups[]> => {
-    const regionsWithGroups = await this.prismaClient.region.findMany({
+  ): Promise<PlaylistWithGroups[]> => {
+    const playlistsWithGroups = await this.prismaClient.playlist.findMany({
       where: {
         ...(isVisible !== undefined && { isVisible: isVisible }),
         ...(groupIds.length > 0 && {
@@ -47,7 +47,7 @@ export class RegionRepository {
       },
     });
 
-    const regionsWithoutGroups = await this.prismaClient.region.findMany({
+    const playlistsWithoutGroups = await this.prismaClient.playlist.findMany({
       where: {
         ...(isVisible !== undefined && { isVisible: isVisible }),
         groups: {
@@ -59,17 +59,17 @@ export class RegionRepository {
       },
     });
 
-    const combinedRegions = [...regionsWithGroups, ...regionsWithoutGroups];
+    const combinedPlaylists = [...playlistsWithGroups, ...playlistsWithoutGroups];
 
-    const uniqueRegions = Array.from(
-      new Map(combinedRegions.map((region) => [region.id, region])).values(),
+    const uniquePlaylists = Array.from(
+      new Map(combinedPlaylists.map((playlist) => [playlist.id, playlist])).values(),
     );
 
-    return uniqueRegions;
+    return uniquePlaylists;
   };
 
-  findAllRegions = async (isVisible?: boolean): Promise<RegionWithGroups[]> => {
-    return await this.prismaClient.region.findMany({
+  findAllPlaylists = async (isVisible?: boolean): Promise<PlaylistWithGroups[]> => {
+    return await this.prismaClient.playlist.findMany({
       where: {
         ...(isVisible !== undefined && { isVisible: isVisible }),
       },
@@ -77,8 +77,8 @@ export class RegionRepository {
     });
   };
 
-  createRegion = async (dto: NewRegionDto): Promise<RegionWithGroups> => {
-    const region = await this.prismaClient.region.create({
+  createPlaylist = async (dto: NewPlaylistDto): Promise<PlaylistWithGroups> => {
+    const playlist = await this.prismaClient.playlist.create({
       data: {
         name: dto.name,
         isVisible: true,
@@ -92,12 +92,12 @@ export class RegionRepository {
         groups: true,
       },
     });
-    Logger.log(region);
-    return region;
+    Logger.log(playlist);
+    return playlist;
   };
 
-  updateRegion = async (dto: UpdateRegionDto): Promise<RegionWithGroups> => {
-    const region = await this.prismaClient.region.update({
+  updatePlaylist = async (dto: UpdatePlaylistDto): Promise<PlaylistWithGroups> => {
+    const playlist = await this.prismaClient.playlist.update({
       where: { id: dto.id },
       data: {
         name: dto.name,
@@ -112,14 +112,14 @@ export class RegionRepository {
       include: { groups: true },
     });
 
-    Logger.log(region);
-    return region;
+    Logger.log(playlist);
+    return playlist;
   };
 
-  deleteRegion = async (id: number) => {
-    await this.prismaClient.region.delete({
+  deletePlaylist = async (id: number) => {
+    await this.prismaClient.playlist.delete({
       where: { id: id },
     });
-    Logger.log(`Region with id ${id} has been deleted.`);
+    Logger.log(`Playlist with id ${id} has been deleted.`);
   };
 }

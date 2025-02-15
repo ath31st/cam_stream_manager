@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
-import RegionsTab from '../../widgets/regions.tab';
+import PlaylistsTab from '../../widgets/playlists.tab';
 import StreamsTab from '../../widgets/streams.tab';
 import ResponsiblePersonTab from '../../widgets/responsible.person.tab';
 import Dashboard from '../../widgets/dashboard.tab';
@@ -32,9 +32,9 @@ const AdminPage: React.FC = () => {
             children: <Dashboard isActiveTab={activeTabKey === '1'} />,
           },
           {
-            label: 'Регионы',
+            label: 'Плейлисты',
             key: '2',
-            children: <RegionsTab />,
+            children: <PlaylistsTab />,
           },
           {
             label: 'Потоки',

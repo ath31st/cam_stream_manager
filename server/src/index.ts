@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import streamRoutes from './routes/stream.routes';
 import { Logger } from './utils/logger';
 import { startStreamCronJob } from './cron/stream.cron';
-import regionRoutes from './routes/region.routes';
+import playlistRoutes from './routes/playlist.routes';
 import rpRoutes from './routes/responsible.person.routes';
 import dashboardRoutes from './routes/dashboard.routes';
 import userRoutes from './routes/user.routes';
@@ -30,7 +30,7 @@ app.use(passport.initialize());
 configurePassport(passport);
 
 app.use(eventRoutes);
-app.use(regionRoutes);
+app.use(playlistRoutes);
 app.use(rpRoutes);
 app.use(streamRoutes);
 app.use(groupRoutes);

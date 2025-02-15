@@ -1,21 +1,21 @@
 import React from 'react';
 import { Select } from 'antd';
-import { Region } from '../../../entities/region';
-import styles from './RegionSelect.module.css';
+import { Playlist } from '../../../entities/playlist';
+import styles from './PlaylistSelect.module.css';
 
-interface RegionSelectProps {
-  regions: Region[];
+interface PlaylistSelectProps {
+  playlists: Playlist[];
   value?: number;
   onChange?: (value: number | null) => void;
   placeholder?: string;
   id?: string;
 }
 
-const RegionSelect: React.FC<RegionSelectProps> = ({
-  regions,
+const PlaylistSelect: React.FC<PlaylistSelectProps> = ({
+  playlists,
   value,
   onChange,
-  placeholder = 'Выберите регион',
+  placeholder = 'Выберите плейлист',
   id,
 }) => {
   return (
@@ -34,13 +34,13 @@ const RegionSelect: React.FC<RegionSelectProps> = ({
           .includes(input.toLowerCase())
       }
     >
-      {regions.map((region) => (
-        <Select.Option key={region.id} value={region.id}>
-          {region.name}
+      {playlists.map((playlist) => (
+        <Select.Option key={playlist.id} value={playlist.id}>
+          {playlist.name}
         </Select.Option>
       ))}
     </Select>
   );
 };
 
-export default RegionSelect;
+export default PlaylistSelect;

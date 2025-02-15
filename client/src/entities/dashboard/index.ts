@@ -1,6 +1,6 @@
-import { RegionInfoDto, StreamDashboardDto } from '@shared/types';
+import { PlaylistInfoDto, StreamDashboardDto } from '@shared/types';
 
-export type RegionInfo = RegionInfoDto;
+export type PlaylistInfo = PlaylistInfoDto;
 export type StreamDashboard = StreamDashboardDto;
 
 export { fetchDashboardData } from './api/dashboard.api';

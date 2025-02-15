@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
-import RegionCard from './RegionCard';
+import PlaylistCard from './PlaylistCard';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
-import { RegionInfo, fetchDashboardData } from '../../../entities/dashboard';
+import { PlaylistInfo, fetchDashboardData } from '../../../entities/dashboard';
 import { EventSidebar } from '../../event.sidebar';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
@@ -11,8 +11,8 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
-  const [dashboardData, setDashboardData] = useState<RegionInfo[]>([]);
-  const [openRegion, setOpenRegion] = useState<string | null>(null);
+  const [dashboardData, setDashboardData] = useState<PlaylistInfo[]>([]);
+  const [openPlaylist, setOpenPlaylist] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,8 +40,8 @@ const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
     }
   }, [isActiveTab, dashboardData]);
 
-  const toggleRegion = (regionName: string) => {
-    setOpenRegion((prev) => (prev === regionName ? null : regionName));
+  const togglePlaylist = (playlistName: string) => {
+    setOpenPlaylist((prev) => (prev === playlistName ? null : playlistName));
   };
 
   return (
@@ -51,12 +51,12 @@ const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
           <LargeLoader />
         ) : (
           <Row gutter={[16, 22]}>
-            {dashboardData.map((region) => (
-              <Col key={region.regionName} xs={24} sm={12} lg={8}>
-                <RegionCard
-                  {...region}
-                  isOpen={openRegion === region.regionName}
-                  onToggle={toggleRegion}
+            {dashboardData.map((playlist) => (
+              <Col key={playlist.playlistName} xs={24} sm={12} lg={8}>
+                <PlaylistCard
+                  {...playlist}
+                  isOpen={openPlaylist === playlist.playlistName}
+                  onToggle={togglePlaylist}
                 />
               </Col>
             ))}

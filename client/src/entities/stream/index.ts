@@ -8,7 +8,7 @@ import {
   createStream,
   updateStream,
   deleteStream,
-  fetchStreamsByRegion,
+  fetchStreamsByPlaylist,
 } from './api/stream.api';
 
 export type Stream = StreamDto;
@@ -21,6 +21,6 @@ export {
   createStream,
   updateStream,
   deleteStream,
-  fetchStreamsByRegion,
+  fetchStreamsByPlaylist,
 };
 export { DeleteStreamModal, AddStreamModal, UpdateStreamModal };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Space } from 'antd';
 import { useStreamStore } from '../../../app/stores/stream.store';
-import { useRegionStore } from '../../../app/stores/region.store';
+import { usePlaylistStore } from '../../../app/stores/playlist.store';
 import {
   errorNotification,
   successNotification,
@@ -11,7 +11,7 @@ import StreamModals from './StreamsModals';
 import { Stream, NewStream, UpdateStream } from '../../../entities/stream';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import WideButton from '../../../shared/ui/buttons/WideButton';
-import RegionSelect from '../../../shared/ui/selects/RegionSelect';
+import PlaylistSelect from '../../../shared/ui/selects/PlaylistSelect';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const StreamsTab: React.FC = () => {
@@ -20,7 +20,7 @@ const StreamsTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteStreamId, setDeleteStreamId] = useState<number | null>(null);
   const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
-  const [selectedRegionId, setSelectedRegionId] = useState<number | null>(null);
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<number | null>(null);
 
   const {
     streams,
@@ -32,7 +32,7 @@ const StreamsTab: React.FC = () => {
     loading,
     clearError,
   } = useStreamStore();
-  const { regions, fetchAllRegions } = useRegionStore();
+  const { playlists, fetchAllPlaylists } = usePlaylistStore();
 
   useEffect(() => {
     if (error) {
@@ -42,8 +42,8 @@ const StreamsTab: React.FC = () => {
 
   useEffect(() => {
     fetchAllStreams();
-    fetchAllRegions();
-  }, [fetchAllStreams, fetchAllRegions]);
+    fetchAllPlaylists();
+  }, [fetchAllStreams, fetchAllPlaylists]);
 
   const handleAddStream = () => {
     setIsAddModalVisible(true);
@@ -109,15 +109,15 @@ const StreamsTab: React.FC = () => {
     setDeleteStreamId(null);
   };
 
-  const filteredStreams = selectedRegionId
-    ? streams.filter((stream) => stream.regionId === selectedRegionId)
+  const filteredStreams = selectedPlaylistId
+    ? streams.filter((stream) => stream.playlistId === selectedPlaylistId)
     : streams;
 
   return (
     <TabContainer>
       <Space>
         <WideButton onClick={handleAddStream}>Добавить поток</WideButton>
-        <RegionSelect regions={regions} onChange={setSelectedRegionId} />
+        <PlaylistSelect playlists={playlists} onChange={setSelectedPlaylistId} />
       </Space>
 
       {loading ? (
@@ -125,7 +125,7 @@ const StreamsTab: React.FC = () => {
       ) : (
         <StreamsTable
           streams={filteredStreams}
-          regions={regions}
+          playlists={playlists}
           onEdit={handleUpdate}
           onDelete={showDeleteConfirm}
         />
@@ -137,7 +137,7 @@ const StreamsTab: React.FC = () => {
         isDeleteModalVisible={isDeleteModalVisible}
         updatingStream={updatingStream}
         deleteStreamId={deleteStreamId}
-        regions={regions}
+        playlists={playlists}
         handleSaveStream={handleSaveStream}
         handleSaveUpdate={handleSaveUpdate}
         handleCancelAdd={handleCancelAdd}

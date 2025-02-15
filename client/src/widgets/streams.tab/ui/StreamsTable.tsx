@@ -12,11 +12,11 @@ import { paginationConfig } from '../../../shared/pagination';
 import styles from './StreamsTable.module.css';
 import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
-import { Region } from '../../../entities/region';
+import { Playlist } from '../../../entities/playlist';
 
 interface StreamsTableProps {
   streams: Stream[];
-  regions: Region[];
+  playlists: Playlist[];
   onEdit: (stream: Stream) => void;
   onDelete: (id: number) => void;
 }
@@ -31,7 +31,7 @@ const statusIcons: Record<string, JSX.Element> = {
 
 const StreamsTable: React.FC<StreamsTableProps> = ({
   streams,
-  regions,
+  playlists,
   onEdit,
   onDelete,
 }) => {
@@ -48,15 +48,15 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       ),
     },
     {
-      title: 'Регион',
-      dataIndex: 'regionId',
-      key: 'region',
-      render: (regionId: number) => {
-        const region = regions.find((r) => r.id === regionId);
-        const regionName = region ? region.name : 'Неизвестно';
+      title: 'Плейлист',
+      dataIndex: 'playlistId',
+      key: 'playlist',
+      render: (playlistId: number) => {
+        const playlist = playlists.find((r) => r.id === playlistId);
+        const playlistName = playlist ? playlist.name : 'Неизвестно';
         return (
-          <div className={styles['ellipsis-region-column']} title={regionName}>
-            {regionName}
+          <div className={styles['ellipsis-playlist-column']} title={playlistName}>
+            {playlistName}
           </div>
         );
       },

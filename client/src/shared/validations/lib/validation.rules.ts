@@ -31,8 +31,8 @@ export const streamCommentValidationRules = [
   getLengthRule(0, 500),
 ];
 
-export const regionNameValidationRules = [
-  { required: true, message: 'Введите название региона' },
+export const playlistNameValidationRules = [
+  { required: true, message: 'Введите название плейлиста' },
   getLengthRule(2, 30),
 ];
 

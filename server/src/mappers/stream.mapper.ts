@@ -4,7 +4,7 @@ import { StreamDto } from '@shared/types';
 export const toStreamDto = (stream: Stream): StreamDto => {
   return {
     id: stream.id,
-    regionId: stream.regionId,
+    playlistId: stream.playlistId,
     location: stream.location,
     isVisible: stream.isVisible,
     streamUrl: stream.streamUrl,

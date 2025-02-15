@@ -12,9 +12,9 @@ export const streamErrorMessages: Record<number, string> = {
   409: 'Поток с таким URL уже существует.',
 };
 
-export const regionErrorMessages: Record<number, string> = {
-  404: 'Запрашиваемый регион не найден.',
-  409: 'Регион с таким именем уже существует.',
+export const playlistErrorMessages: Record<number, string> = {
+  404: 'Запрашиваемый плейлист не найден.',
+  409: 'Плейлист с таким именем уже существует.',
 };
 
 export const groupErrorMessages: Record<number, string> = {

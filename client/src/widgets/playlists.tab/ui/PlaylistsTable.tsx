@@ -1,31 +1,31 @@
 import React from 'react';
 import { Table } from 'antd';
-import { Region } from '../../../entities/region';
+import { Playlist } from '../../../entities/playlist';
 import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
-import styles from './RegionsTable.module.css';
+import styles from './PlaylistsTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
 import { Group } from '../../../entities/group';
 
-interface RegionsTableProps {
+interface PlaylistsTableProps {
   groups: Group[];
-  regions: Region[];
-  onEdit: (region: Region) => void;
+  playlists: Playlist[];
+  onEdit: (playlist: Playlist) => void;
   onDelete: (id: number) => void;
 }
 
-const RegionsTable: React.FC<RegionsTableProps> = ({
+const PlaylistsTable: React.FC<PlaylistsTableProps> = ({
   groups,
-  regions,
+  playlists,
   onEdit,
   onDelete,
 }) => {
-  const dataSource = regions.map((region) => ({
-    key: region.id,
-    name: region.name,
-    isVisible: region.isVisible ? 'Виден' : 'Скрыт',
+  const dataSource = playlists.map((playlist) => ({
+    key: playlist.id,
+    name: playlist.name,
+    isVisible: playlist.isVisible ? 'Виден' : 'Скрыт',
     groups:
-      region.groupIds
+      playlist.groupIds
         .map((id) => groups.find((g) => g.id === id)?.name)
         .join(', ') || '—',
   }));
@@ -54,7 +54,7 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
       render: (_: unknown, record: { key: number }) => (
         <div className={styles['actions-column']}>
           <ActionButtons
-            onEdit={() => onEdit(regions.find((r) => r.id === record.key)!)}
+            onEdit={() => onEdit(playlists.find((r) => r.id === record.key)!)}
             onDelete={() => onDelete(record.key)}
           />
         </div>
@@ -73,4 +73,4 @@ const RegionsTable: React.FC<RegionsTableProps> = ({
   );
 };
 
-export default RegionsTable;
+export default PlaylistsTable;

@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Region {
+model Playlist {
   id        Int      @id @default(autoincrement())
   name      String
   isVisible Boolean
@@ -37,8 +37,8 @@ model Stream {
   streamUrl          String
   status             String
   comment            String?
-  region             Region              @relation(fields: [regionId], references: [id], onDelete: Cascade)
-  regionId           Int
+  playlist           Playlist            @relation(fields: [playlistId], references: [id], onDelete: Cascade)
+  playlistId         Int
   responsiblePersons ResponsiblePerson[]
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
@@ -74,10 +74,10 @@ model Event {
 }
 
 model Group {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
   users     User[]
-  regions   Region[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  playlists Playlist[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }

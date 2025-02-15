@@ -10,7 +10,7 @@ router.put('/streams/:id', isAuthenticated, streamController.updateStream);
 router.delete('/streams/:id', isAuthenticated, streamController.deleteStream);
 router.get('/streams', isAuthenticated, streamController.getStreams);
 router.get('/streams/:id', isAuthenticated, streamController.getStream);
-router.get('/streams/region/:id', streamController.getStreamsByRegion);
+router.get('/streams/playlist/:id', streamController.getStreamsByPlaylist);
 
 const streamRoutes = Router();
 streamRoutes.use(API_PREFIX, router);

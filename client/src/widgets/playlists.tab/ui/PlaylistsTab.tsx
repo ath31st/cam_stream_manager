@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useRegionStore } from '../../../app/stores/region.store';
-import { NewRegion, Region, UpdateRegion } from '../../../entities/region';
+import { usePlaylistStore } from '../../../app/stores/playlist.store';
+import { NewPlaylist, Playlist, UpdatePlaylist } from '../../../entities/playlist';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import RegionsTable from './RegionsTable';
-import RegionModals from './RegionModals';
+import PlaylistsTable from './PlaylistsTable';
+import PlaylistModals from './PlaylistModals';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 import { useGroupStore } from '../../../app/stores/group.store';
 
-const RegionsTab: React.FC = () => {
+const PlaylistsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
-  const [deleteRegionId, setDeleteRegionId] = useState<number | null>(null);
-  const [updatingRegion, setUpdatingRegion] = useState<Region | null>(null);
+  const [deletePlaylistId, setDeletePlaylistId] = useState<number | null>(null);
+  const [updatingPlaylist, setUpdatingPlaylist] = useState<Playlist | null>(null);
 
   const { groups, fetchAllGroups } = useGroupStore();
 
@@ -29,69 +29,69 @@ const RegionsTab: React.FC = () => {
   }, [groups, fetchAllGroups]);
 
   const {
-    regions,
-    fetchAllRegions,
+    playlists,
+    fetchAllPlaylists,
     loading,
     error,
-    addRegion,
-    updateRegion,
-    removeRegion,
+    addPlaylist,
+    updatePlaylist,
+    removePlaylist,
     clearError,
-  } = useRegionStore();
+  } = usePlaylistStore();
   const { fetchAllStreams } = useStreamStore();
 
   useEffect(() => {
     if (error) {
-      errorNotification('Ошибка в работе с регионами', clearError, error);
+      errorNotification('Ошибка в работе с плейлистами', clearError, error);
     }
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchAllRegions();
-  }, [fetchAllRegions]);
+    fetchAllPlaylists();
+  }, [fetchAllPlaylists]);
 
-  const handleAddRegion = async (newRegion: NewRegion) => {
-    const region = await addRegion(newRegion);
-    if (useRegionStore.getState().error === null) {
+  const handleAddPlaylist = async (newPlaylist: NewPlaylist) => {
+    const playlist = await addPlaylist(newPlaylist);
+    if (usePlaylistStore.getState().error === null) {
       successNotification(
-        'Регион добавлен',
-        `Регион "${region?.name}" успешно добавлен.`,
+        'Плейлист добавлен',
+        `Плейлист "${playlist?.name}" успешно добавлен.`,
       );
       setIsAddModalVisible(false);
     }
   };
 
   const showDeleteConfirm = (id: number) => {
-    setDeleteRegionId(id);
+    setDeletePlaylistId(id);
     setIsDeleteModalVisible(true);
   };
 
   const handleDelete = async () => {
-    if (deleteRegionId !== null) {
-      await removeRegion(deleteRegionId);
+    if (deletePlaylistId !== null) {
+      await removePlaylist(deletePlaylistId);
       await fetchAllStreams();
-      if (useRegionStore.getState().error === null) {
-        successNotification('Регион удален', 'Регион успешно удален.');
+      if (usePlaylistStore.getState().error === null) {
+        successNotification('Плейлист удален', 'Плейлист успешно удален.');
       }
-      setDeleteRegionId(null);
+      setDeletePlaylistId(null);
       setIsDeleteModalVisible(false);
     }
   };
 
-  const showUpdateModal = (region: Region) => {
-    setUpdatingRegion(region);
+  const showUpdateModal = (playlist: Playlist) => {
+    setUpdatingPlaylist(playlist);
     setIsUpdateModalVisible(true);
   };
 
-  const handleUpdateRegion = async (updatedRegion: UpdateRegion) => {
-    if (updatingRegion) {
-      await updateRegion(updatingRegion.id, updatedRegion);
-      if (useRegionStore.getState().error === null) {
+  const handleUpdatePlaylist = async (updatedPlaylist: UpdatePlaylist) => {
+    if (updatingPlaylist) {
+      await updatePlaylist(updatingPlaylist.id, updatedPlaylist);
+      if (usePlaylistStore.getState().error === null) {
         successNotification(
-          'Регион обновлен',
-          `Регион "${updatedRegion.name}" успешно обновлен.`,
+          'Плейлист обновлен',
+          `Плейлист "${updatedPlaylist.name}" успешно обновлен.`,
         );
-        setUpdatingRegion(null);
+        setUpdatingPlaylist(null);
         setIsUpdateModalVisible(false);
       }
     }
@@ -101,37 +101,37 @@ const RegionsTab: React.FC = () => {
     <TabContainer>
       <>
         <WideButton onClick={() => setIsAddModalVisible(true)}>
-          Добавить регион
+          Добавить плейлист
         </WideButton>
 
         {loading ? (
           <LargeLoader />
         ) : (
-          <RegionsTable
+          <PlaylistsTable
             groups={groups}
-            regions={regions}
+            playlists={playlists}
             onEdit={showUpdateModal}
             onDelete={showDeleteConfirm}
           />
         )}
 
-        <RegionModals
+        <PlaylistModals
           groups={groups}
           isAddModalVisible={isAddModalVisible}
           isDeleteModalVisible={isDeleteModalVisible}
           isUpdateModalVisible={isUpdateModalVisible}
-          updatingRegion={updatingRegion}
-          deleteRegionId={deleteRegionId}
-          onAdd={handleAddRegion}
+          updatingPlaylist={updatingPlaylist}
+          deletePlaylistId={deletePlaylistId}
+          onAdd={handleAddPlaylist}
           onDelete={handleDelete}
-          onUpdate={handleUpdateRegion}
+          onUpdate={handleUpdatePlaylist}
           onCloseAdd={() => setIsAddModalVisible(false)}
           onCloseDelete={() => {
-            setDeleteRegionId(null);
+            setDeletePlaylistId(null);
             setIsDeleteModalVisible(false);
           }}
           onCloseUpdate={() => {
-            setUpdatingRegion(null);
+            setUpdatingPlaylist(null);
             setIsUpdateModalVisible(false);
           }}
         />
@@ -140,4 +140,4 @@ const RegionsTab: React.FC = () => {
   );
 };
 
-export default RegionsTab;
+export default PlaylistsTab;
