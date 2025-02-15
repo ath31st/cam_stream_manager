@@ -1,5 +1,5 @@
 import {
-  regionErrorMessages,
+  playlistErrorMessages,
   responsiblePersonErrorMessages,
   streamErrorMessages,
   eventErrorMessages,
@@ -16,9 +16,9 @@ export const getStreamErrorMessage = (statusCode: number) => {
   return commonErrorMessages[statusCode] || unknownError;
 };
 
-export const getRegionErrorMessage = (statusCode: number) => {
-  if (regionErrorMessages[statusCode]) {
-    return regionErrorMessages[statusCode];
+export const getPlaylistErrorMessage = (statusCode: number) => {
+  if (playlistErrorMessages[statusCode]) {
+    return playlistErrorMessages[statusCode];
   }
   return commonErrorMessages[statusCode] || unknownError;
 };

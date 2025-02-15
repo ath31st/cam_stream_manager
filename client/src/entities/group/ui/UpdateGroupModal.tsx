@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Modal, Input, Form } from 'antd';
 import { Group, UpdateGroup } from '..';
-import { regionNameValidationRules } from '../../../shared/validations';
+import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
@@ -46,7 +46,7 @@ const UpdateGroupModal: React.FC<UpdateGroupModalProps> = ({
           <Form.Item
             name="name"
             label="Название группы"
-            rules={regionNameValidationRules}
+            rules={playlistNameValidationRules}
           >
             <Input placeholder="Введите новое название группы" />
           </Form.Item>

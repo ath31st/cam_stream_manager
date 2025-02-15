@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, Menu, MenuProps } from 'antd';
-import { useRegionStore } from '../../../app/stores/region.store';
+import { usePlaylistStore } from '../../../app/stores/playlist.store';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import styles from './Sider.module.css';
 
@@ -30,27 +30,27 @@ const getLevelKeys = (items: LevelKeysProps[]) => {
 };
 
 export const AppSider: React.FC = () => {
-  const { regions, fetchAllRegions } = useRegionStore();
-  const { streams, fetchStreamsByRegion, setSelectedStream } = useStreamStore();
+  const { playlists, fetchAllPlaylists } = usePlaylistStore();
+  const { streams, fetchStreamsByPlaylist, setSelectedStream } = useStreamStore();
   const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(['0']);
   const onlyVisible = true;
 
   useEffect(() => {
-    fetchAllRegions(onlyVisible);
-  }, [fetchAllRegions, onlyVisible]);
+    fetchAllPlaylists(onlyVisible);
+  }, [fetchAllPlaylists, onlyVisible]);
 
-  const handleRegionClick = (regionId: number) => {
-    fetchStreamsByRegion(regionId);
+  const handlePlaylistClick = (playlistId: number) => {
+    fetchStreamsByPlaylist(playlistId);
   };
 
-  const items: MenuItem[] = regions.map((region) => ({
-    key: String(region.id),
-    label: region.name,
-    onTitleClick: () => handleRegionClick(region.id),
+  const items: MenuItem[] = playlists.map((playlist) => ({
+    key: String(playlist.id),
+    label: playlist.name,
+    onTitleClick: () => handlePlaylistClick(playlist.id),
     children: streams
-      .filter((stream) => stream.regionId === region.id)
+      .filter((stream) => stream.playlistId === playlist.id)
       .map((stream) => ({
-        key: `${region.id}-${stream.id}`,
+        key: `${playlist.id}-${stream.id}`,
         label: stream.location,
         onClick: () =>
           setSelectedStream(streams.find((s) => s.id === stream.id)!),

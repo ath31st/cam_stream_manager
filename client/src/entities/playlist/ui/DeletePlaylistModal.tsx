@@ -3,13 +3,13 @@ import { Modal } from 'antd';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
 
-interface DeleteRegionModalProps {
+interface DeletePlaylistModalProps {
   visible: boolean;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-const DeleteRegionModal: React.FC<DeleteRegionModalProps> = ({
+const DeletePlaylistModal: React.FC<DeletePlaylistModalProps> = ({
   visible,
   onConfirm,
   onCancel,
@@ -26,11 +26,11 @@ const DeleteRegionModal: React.FC<DeleteRegionModalProps> = ({
       }
     >
       <div className={styles['modal-body']}>
-        <p>Вы уверены, что хотите удалить этот регион?</p>
-        <p>Вместе с регионом будут удалены все потоки, относящиеся к нему.</p>
+        <p>Вы уверены, что хотите удалить этот плейлист?</p>
+        <p>Вместе с плейлистом будут удалены все потоки, относящиеся к нему.</p>
       </div>
     </Modal>
   );
 };
 
-export default DeleteRegionModal;
+export default DeletePlaylistModal;

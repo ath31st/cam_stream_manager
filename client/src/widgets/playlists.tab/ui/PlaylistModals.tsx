@@ -1,35 +1,35 @@
 import React from 'react';
 import {
-  AddRegionModal,
-  DeleteRegionModal,
-  NewRegion,
-  Region,
-  UpdateRegion,
-  UpdateRegionModal,
-} from '../../../entities/region';
+  AddPlaylistModal,
+  DeletePlaylistModal,
+  NewPlaylist,
+  Playlist,
+  UpdatePlaylist,
+  UpdatePlaylistModal,
+} from '../../../entities/playlist';
 import { Group } from '../../../entities/group';
 
-interface RegionModalsProps {
+interface PlaylistModalsProps {
   groups: Group[];
   isAddModalVisible: boolean;
   isDeleteModalVisible: boolean;
   isUpdateModalVisible: boolean;
-  updatingRegion: Region | null;
-  deleteRegionId: number | null;
-  onAdd: (newRegion: NewRegion) => void;
+  updatingPlaylist: Playlist | null;
+  deletePlaylistId: number | null;
+  onAdd: (newPlaylist: NewPlaylist) => void;
   onDelete: () => void;
-  onUpdate: (updatedRegion: UpdateRegion) => void;
+  onUpdate: (updatedPlaylist: UpdatePlaylist) => void;
   onCloseAdd: () => void;
   onCloseDelete: () => void;
   onCloseUpdate: () => void;
 }
 
-const RegionModals: React.FC<RegionModalsProps> = ({
+const PlaylistModals: React.FC<PlaylistModalsProps> = ({
   groups,
   isAddModalVisible,
   isDeleteModalVisible,
   isUpdateModalVisible,
-  updatingRegion,
+  updatingPlaylist,
   onAdd,
   onDelete,
   onUpdate,
@@ -38,27 +38,27 @@ const RegionModals: React.FC<RegionModalsProps> = ({
   onCloseUpdate,
 }) => (
   <>
-    <AddRegionModal
+    <AddPlaylistModal
       groups={groups}
       visible={isAddModalVisible}
       onConfirm={onAdd}
       onCancel={onCloseAdd}
     />
 
-    <DeleteRegionModal
+    <DeletePlaylistModal
       visible={isDeleteModalVisible}
       onConfirm={onDelete}
       onCancel={onCloseDelete}
     />
 
-    <UpdateRegionModal
+    <UpdatePlaylistModal
       groups={groups}
       visible={isUpdateModalVisible}
-      region={updatingRegion}
+      playlist={updatingPlaylist}
       onConfirm={onUpdate}
       onCancel={onCloseUpdate}
     />
   </>
 );
 
-export default RegionModals;
+export default PlaylistModals;

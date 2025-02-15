@@ -1,19 +1,19 @@
 import React from 'react';
 import { Modal, Form, Input, Select } from 'antd';
-import { regionNameValidationRules } from '../../../shared/validations';
+import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
-import { NewRegion } from '..';
+import { NewPlaylist } from '..';
 import { Group } from '../../group';
 
-interface AddRegionModalProps {
+interface AddPlaylistModalProps {
   groups: Group[];
   visible: boolean;
-  onConfirm: (newRegion: NewRegion) => void;
+  onConfirm: (newPlaylist: NewPlaylist) => void;
   onCancel: () => void;
 }
 
-const AddRegionModal: React.FC<AddRegionModalProps> = ({
+const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({
   groups,
   visible,
   onConfirm,
@@ -25,11 +25,11 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
     form
       .validateFields()
       .then((values) => {
-        const newRegion: NewRegion = {
+        const newPlaylist: NewPlaylist = {
           name: values.name,
           groupIds: values.groupIds || [],
         };
-        onConfirm(newRegion);
+        onConfirm(newPlaylist);
         form.resetFields();
       })
       .catch((info) => {
@@ -40,7 +40,7 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
   return (
     <Modal
       className={styles.modal}
-      title={<p className={styles['modal-title']}>Создание нового региона</p>}
+      title={<p className={styles['modal-title']}>Создание нового плейлиста</p>}
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
@@ -50,10 +50,10 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
         <Form form={form} layout="vertical">
           <Form.Item
             name="name"
-            label="Название региона"
-            rules={regionNameValidationRules}
+            label="Название плейлиста"
+            rules={playlistNameValidationRules}
           >
-            <Input placeholder="Введите название региона" autoComplete="off" />
+            <Input placeholder="Введите название плейлиста" autoComplete="off" />
           </Form.Item>
           <Form.Item name="groupIds" label="Группы">
             <Select mode="multiple" placeholder="Выберите группы">
@@ -70,4 +70,4 @@ const AddRegionModal: React.FC<AddRegionModalProps> = ({
   );
 };
 
-export default AddRegionModal;
+export default AddPlaylistModal;

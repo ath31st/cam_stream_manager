@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { RegionInfo } from '../../../entities/dashboard';
+import { PlaylistInfo } from '../../../entities/dashboard';
 import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
 import { ResponsiblePersonModal } from '../../../entities/responsible.person';
 import { Card } from 'antd';
 import StatusCounts from './StatusCounts';
 import { StreamStatus, StreamStatusType } from '../lib/stream.status';
-import styles from './RegionCard.module.css';
+import styles from './PlaylistCard.module.css';
 import StreamItemList from './StreamItemList';
 
-interface RegionCardProps extends RegionInfo {
+interface PlaylistCardProps extends PlaylistInfo {
   isOpen: boolean;
-  onToggle: (regionName: string) => void;
+  onToggle: (playlistName: string) => void;
 }
 
-const RegionCard: React.FC<RegionCardProps> = ({
-  regionName,
+const PlaylistCard: React.FC<PlaylistCardProps> = ({
+  playlistName,
   streams,
   activeCount,
   noConnectionCount,
@@ -46,8 +46,8 @@ const RegionCard: React.FC<RegionCardProps> = ({
 
   return (
     <Card
-      title={<span className={styles['card-title']}>{regionName}</span>}
-      onClick={() => onToggle(regionName)}
+      title={<span className={styles['card-title']}>{playlistName}</span>}
+      onClick={() => onToggle(playlistName)}
       className={styles.card}
     >
       <StatusCounts statusCounts={statusCounts} />
@@ -64,4 +64,4 @@ const RegionCard: React.FC<RegionCardProps> = ({
   );
 };
 
-export default RegionCard;
+export default PlaylistCard;
