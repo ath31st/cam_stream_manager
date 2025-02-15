@@ -6,7 +6,7 @@ import {
   optionalPhoneValidationRules,
   optionalRpNameValidationRules,
   streamCommentValidationRules,
-  streamLocationValidationRules,
+  streamNameValidationRules,
   streamUrlValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
@@ -70,11 +70,11 @@ const AddStreamModal: React.FC<AddStreamModalProps> = ({
             <PlaylistSelect playlists={playlists} id="playlistId" />
           </Form.Item>
           <Form.Item
-            name="location"
-            label="Местоположение"
-            rules={streamLocationValidationRules}
+            name="name"
+            label="Название"
+            rules={streamNameValidationRules}
           >
-            <Input placeholder="Введите местоположение" />
+            <Input placeholder="Введите название" />
           </Form.Item>
           <Form.Item
             name="streamUrl"

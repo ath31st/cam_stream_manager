@@ -12,8 +12,8 @@ const getLengthRule = (min: number, max: number) => ({
   message: `Длина должна быть от ${min} до ${max} символов`,
 });
 
-export const streamLocationValidationRules = [
-  { required: true, message: 'Введите местоположение потока' },
+export const streamNameValidationRules = [
+  { required: true, message: 'Введите название потока' },
   getLengthRule(3, 100),
 ];
 

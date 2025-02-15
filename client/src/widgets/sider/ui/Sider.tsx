@@ -51,7 +51,7 @@ export const AppSider: React.FC = () => {
       .filter((stream) => stream.playlistId === playlist.id)
       .map((stream) => ({
         key: `${playlist.id}-${stream.id}`,
-        label: stream.location,
+        label: stream.name,
         onClick: () =>
           setSelectedStream(streams.find((s) => s.id === stream.id)!),
       })),

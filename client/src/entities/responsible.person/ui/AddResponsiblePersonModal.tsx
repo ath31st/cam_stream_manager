@@ -52,8 +52,8 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
           </Form.Item>
           <Form.Item
             name="streamId"
-            label="Местоположение"
-            rules={[{ required: true, message: 'Выберите местоположение' }]}
+            label="Название"
+            rules={[{ required: true, message: 'Выберите название' }]}
           >
             <StreamSelect streams={streams} id="streamId" />
           </Form.Item>

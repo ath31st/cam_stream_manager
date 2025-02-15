@@ -37,12 +37,12 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
 }) => {
   const columns = [
     {
-      title: 'Местоположение',
-      dataIndex: 'location',
-      key: 'location',
-      sorter: (a: Stream, b: Stream) => a.location.localeCompare(b.location),
+      title: 'Название',
+      dataIndex: 'name',
+      key: 'name',
+      sorter: (a: Stream, b: Stream) => a.name.localeCompare(b.name),
       render: (text: string) => (
-        <div className={styles['ellipsis-location-column']} title={text}>
+        <div className={styles['ellipsis-name-column']} title={text}>
           {text}
         </div>
       ),

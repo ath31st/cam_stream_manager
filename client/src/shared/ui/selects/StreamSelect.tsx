@@ -15,7 +15,7 @@ const StreamSelect: React.FC<StreamSelectProps> = ({
   streams,
   value,
   onChange,
-  placeholder = 'Выберите местоположение',
+  placeholder = 'Выберите название',
   id,
 }) => {
   return (
@@ -36,7 +36,7 @@ const StreamSelect: React.FC<StreamSelectProps> = ({
     >
       {streams.map((stream) => (
         <Select.Option key={stream.id} value={stream.id}>
-          {stream.location}
+          {stream.name}
         </Select.Option>
       ))}
     </Select>

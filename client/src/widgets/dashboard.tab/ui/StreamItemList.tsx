@@ -17,7 +17,7 @@ const StreamItemList: React.FC<StreamItemListProps> = ({
       {streams.map((stream) => (
         <StreamItem
           key={stream.id}
-          location={stream.location}
+          name={stream.name}
           status={stream.status}
           onClick={() => onItemClick(stream.id)}
         />

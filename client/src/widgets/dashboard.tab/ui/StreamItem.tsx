@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './StreamItem.module.css';
 
 interface StreamItemProps {
-  location: string;
+  name: string;
   status: string;
   onClick: () => void;
 }
 
 const StreamItem: React.FC<StreamItemProps> = ({
-  location,
+  name,
   status,
   onClick,
 }) => {
@@ -32,7 +32,7 @@ const StreamItem: React.FC<StreamItemProps> = ({
 
   return (
     <div className={styles.streamItem} onClick={handleClick}>
-      <span className={getStatusColor()}>{location}</span>
+      <span className={getStatusColor()}>{name}</span>
     </div>
   );
 };

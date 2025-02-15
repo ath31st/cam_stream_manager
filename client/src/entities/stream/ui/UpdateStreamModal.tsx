@@ -4,7 +4,7 @@ import { Stream, UpdateStream } from '../../../entities/stream';
 import { Playlist } from '../../../entities/playlist';
 import {
   streamCommentValidationRules,
-  streamLocationValidationRules,
+  streamNameValidationRules,
   streamUrlValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
@@ -68,11 +68,11 @@ const UpdateStreamModal: React.FC<UpdateStreamModalProps> = ({
             </Select>
           </Form.Item>
           <Form.Item
-            name="location"
-            label="Местоположение"
-            rules={streamLocationValidationRules}
+            name="name"
+            label="Название"
+            rules={streamNameValidationRules}
           >
-            <Input placeholder="Введите местоположение" />
+            <Input placeholder="Введите название" />
           </Form.Item>
           <Form.Item
             name="streamUrl"

@@ -43,34 +43,34 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
       ),
     },
     {
-      title: 'Местоположение',
+      title: 'Название',
       dataIndex: 'streamId',
       key: 'streamId',
       filters: streams.map((stream) => ({
-        text: stream.location,
+        text: stream.name,
         value: stream.id,
       })),
       onFilter: (value: unknown, record: ResponsiblePerson) =>
         record.streamId === value,
       render: (streamId: number) => {
         const stream = streams.find((s) => s.id === streamId);
-        const locationText = stream ? stream.location : 'Неизвестный поток';
+        const nameText = stream ? stream.name : 'Неизвестный поток';
 
         return (
           <div
-            className={styles['ellipsis-location-cell']}
-            title={locationText}
+            className={styles['ellipsis-name-cell']}
+            title={nameText}
           >
-            {locationText}
+            {nameText}
           </div>
         );
       },
       sorter: (a: ResponsiblePerson, b: ResponsiblePerson) => {
-        const locationA =
-          streams.find((s) => s.id === a.streamId)?.location || '';
-        const locationB =
-          streams.find((s) => s.id === b.streamId)?.location || '';
-        return locationA.localeCompare(locationB);
+        const nameA =
+          streams.find((s) => s.id === a.streamId)?.name || '';
+        const nameB =
+          streams.find((s) => s.id === b.streamId)?.name || '';
+        return nameA.localeCompare(nameB);
       },
     },
     {

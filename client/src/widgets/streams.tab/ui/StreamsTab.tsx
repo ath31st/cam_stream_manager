@@ -54,7 +54,7 @@ const StreamsTab: React.FC = () => {
     if (useStreamStore.getState().error === null) {
       successNotification(
         'Поток добавлен',
-        `Поток "${value.location}" успешно добавлен.`,
+        `Поток "${value.name}" успешно добавлен.`,
       );
       setIsAddModalVisible(false);
     }
@@ -75,7 +75,7 @@ const StreamsTab: React.FC = () => {
       if (useStreamStore.getState().error === null) {
         successNotification(
           'Поток обновлен',
-          `Поток "${value.location}" успешно обновлен.`,
+          `Поток "${value.name}" успешно обновлен.`,
         );
         setIsUpdateModalVisible(false);
         setUpdatingStream(null);
