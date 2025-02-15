@@ -1,7 +1,7 @@
 // stream interfaces
 
 export interface NewStreamDto {
-  regionId: number;
+  playlistId: number;
   location: string;
   streamUrl: string;
   comment: string | null;
@@ -11,7 +11,7 @@ export interface NewStreamDto {
 
 export interface StreamDto {
   id: number;
-  regionId: number;
+  playlistId: number;
   location: string;
   isVisible: boolean;
   streamUrl: string;
@@ -21,28 +21,28 @@ export interface StreamDto {
 
 export interface UpdateStreamDto {
   id: number;
-  regionId: number;
+  playlistId: number;
   location: string;
   isVisible: boolean;
   streamUrl: string;
   comment: string | null;
 }
 
-// region interfaces
+// playlist interfaces
 
-export interface NewRegionDto {
+export interface NewPlaylistDto {
   name: string;
   groupIds: number[];
 }
 
-export interface RegionDto {
+export interface PlaylistDto {
   id: number;
   name: string;
   isVisible: boolean;
   groupIds: number[];
 }
 
-export interface UpdateRegionDto {
+export interface UpdatePlaylistDto {
   id: number;
   name: string;
   isVisible: boolean;
@@ -72,8 +72,8 @@ export interface UpdateResponsiblePersonDto {
 
 // dashboard interfaces
 
-export interface RegionInfoDto {
-  regionName: string;
+export interface PlaylistInfoDto {
+  playlistName: string;
   streams: StreamDashboardDto[];
   activeCount: number;
   noConnectionCount: number;
@@ -82,7 +82,7 @@ export interface RegionInfoDto {
 
 export interface StreamDashboardDto {
   id: number;
-  regionId: number;
+  playlistId: number;
   location: string;
   status: string;
 }
