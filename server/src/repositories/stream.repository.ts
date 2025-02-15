@@ -43,7 +43,7 @@ export class StreamRepository {
     const stream = await this.prismaClient.stream.create({
       data: {
         playlistId: dto.playlistId,
-        location: dto.location,
+        name: dto.name,
         isVisible: true,
         streamUrl: dto.streamUrl,
         status: status,
@@ -59,7 +59,7 @@ export class StreamRepository {
       where: { id: dto.id },
       data: {
         playlistId: dto.playlistId,
-        location: dto.location,
+        name: dto.name,
         isVisible: dto.isVisible,
         streamUrl: dto.streamUrl,
         status: StreamStatus.Updated,

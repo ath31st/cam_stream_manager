@@ -71,7 +71,7 @@ export class StreamService {
 
       await this.logStreamEvent(
         EventLevel.INFO,
-        `Created stream with loacation: ${stream.location}`,
+        `Created stream with loacation: ${stream.name}`,
       );
 
       return stream;
@@ -98,7 +98,7 @@ export class StreamService {
 
       await this.logStreamEvent(
         EventLevel.INFO,
-        `Updated stream with loacation: ${updatedStream.location}`,
+        `Updated stream with loacation: ${updatedStream.name}`,
       );
 
       return updatedStream;
@@ -195,7 +195,7 @@ export class StreamService {
       await this.updateStreamStatus(stream.id, StreamStatus.Active);
       await this.logStreamEvent(
         EventLevel.INFO,
-        `Stream ${stream.location} is reachable`,
+        `Stream ${stream.name} is reachable`,
       );
     }
   };
@@ -209,7 +209,7 @@ export class StreamService {
       await this.updateStreamStatus(stream.id, StreamStatus.BadConnection);
       await this.logStreamEvent(
         EventLevel.WARNING,
-        `Stream ${stream.location} returned status ${status}`,
+        `Stream ${stream.name} returned status ${status}`,
       );
     }
   };
@@ -220,7 +220,7 @@ export class StreamService {
       await this.updateStreamStatus(stream.id, StreamStatus.NoConnection);
       await this.logStreamEvent(
         EventLevel.ERROR,
-        `Stream ${stream.location} is not reachable`,
+        `Stream ${stream.name} is not reachable`,
       );
     }
   };

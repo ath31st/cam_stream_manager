@@ -31,7 +31,7 @@ export class DashboardService {
         const streamDashboard: StreamDashboardDto = {
           id: stream.id,
           playlistId: stream.playlistId,
-          location: stream.location,
+          name: stream.name,
           status: stream.status,
         };
 
