@@ -2,7 +2,7 @@
 
 export interface NewStreamDto {
   playlistId: number;
-  location: string;
+  name: string;
   streamUrl: string;
   comment: string | null;
   responsiblePerson: string | null;
@@ -12,7 +12,7 @@ export interface NewStreamDto {
 export interface StreamDto {
   id: number;
   playlistId: number;
-  location: string;
+  name: string;
   isVisible: boolean;
   streamUrl: string;
   status: string;
@@ -22,7 +22,7 @@ export interface StreamDto {
 export interface UpdateStreamDto {
   id: number;
   playlistId: number;
-  location: string;
+  name: string;
   isVisible: boolean;
   streamUrl: string;
   comment: string | null;
@@ -83,7 +83,7 @@ export interface PlaylistInfoDto {
 export interface StreamDashboardDto {
   id: number;
   playlistId: number;
-  location: string;
+  name: string;
   status: string;
 }
 
