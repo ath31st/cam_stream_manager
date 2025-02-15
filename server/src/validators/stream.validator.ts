@@ -3,7 +3,7 @@ import { NewStreamDto, UpdateStreamDto } from '@shared/types';
 import { PHONE_NUMBER_PATTERN } from '../utils/constants/string.constants';
 
 export const newStreamSchema = Joi.object<NewStreamDto>({
-  regionId: Joi.number().integer().required(),
+  playlistId: Joi.number().integer().required(),
   location: Joi.string().min(3).max(100).required(),
   streamUrl: Joi.string().uri().required(),
   comment: Joi.string().max(500).allow(null),
@@ -33,7 +33,7 @@ export const newStreamSchema = Joi.object<NewStreamDto>({
 
 export const updateStreamSchema = Joi.object<UpdateStreamDto>({
   id: Joi.number().integer().required(),
-  regionId: Joi.number().integer().required(),
+  playlistId: Joi.number().integer().required(),
   location: Joi.string().min(3).max(100).required(),
   isVisible: Joi.boolean().required(),
   streamUrl: Joi.string().uri().required(),

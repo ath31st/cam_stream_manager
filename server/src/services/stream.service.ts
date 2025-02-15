@@ -43,14 +43,14 @@ export class StreamService {
     return this.getStreams(isVisible).then(toStreamDtos);
   };
 
-  getStreamsByRegion = async (regionId: number): Promise<StreamDto[]> => {
+  getStreamsByPlaylist = async (playlistId: number): Promise<StreamDto[]> => {
     try {
       return await this.streamRepository
-        .findStreamsByRegion(regionId)
+        .findStreamsByPlaylist(playlistId)
         .then(toStreamDtos);
     } catch (error) {
-      Logger.error('Error getting streams by region:', error);
-      throw new Error('Cannot get streams by region');
+      Logger.error('Error getting streams by playlist:', error);
+      throw new Error('Cannot get streams by playlist');
     }
   };
 

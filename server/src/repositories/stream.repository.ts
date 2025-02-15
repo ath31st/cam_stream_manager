@@ -24,9 +24,9 @@ export class StreamRepository {
     });
   };
 
-  findStreamsByRegion = async (regionId: number): Promise<Stream[]> => {
+  findStreamsByPlaylist = async (playlistId: number): Promise<Stream[]> => {
     return await this.prismaClient.stream.findMany({
-      where: { regionId: regionId, isVisible: true },
+      where: { playlistId: playlistId, isVisible: true },
     });
   };
 
@@ -42,7 +42,7 @@ export class StreamRepository {
     const status = StreamStatus.Created;
     const stream = await this.prismaClient.stream.create({
       data: {
-        regionId: dto.regionId,
+        playlistId: dto.playlistId,
         location: dto.location,
         isVisible: true,
         streamUrl: dto.streamUrl,
@@ -58,7 +58,7 @@ export class StreamRepository {
     const stream = await this.prismaClient.stream.update({
       where: { id: dto.id },
       data: {
-        regionId: dto.regionId,
+        playlistId: dto.playlistId,
         location: dto.location,
         isVisible: dto.isVisible,
         streamUrl: dto.streamUrl,

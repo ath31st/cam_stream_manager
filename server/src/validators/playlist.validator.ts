@@ -1,12 +1,12 @@
 import Joi from 'joi';
-import { NewRegionDto, UpdateRegionDto } from '@shared/types';
+import { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
 
-export const newRegionSchema = Joi.object<NewRegionDto>({
+export const newPlaylistSchema = Joi.object<NewPlaylistDto>({
   name: Joi.string().min(2).max(30).required(),
   groupIds: Joi.array().items(Joi.number().integer()).required(),
 });
 
-export const updateRegionSchema = Joi.object<UpdateRegionDto>({
+export const updatePlaylistSchema = Joi.object<UpdatePlaylistDto>({
   id: Joi.number().integer().required(),
   name: Joi.string().min(2).max(30).required(),
   isVisible: Joi.boolean().required(),

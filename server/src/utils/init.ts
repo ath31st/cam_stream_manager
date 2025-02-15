@@ -4,9 +4,9 @@ import { StreamController } from '../controllers/stream.controller';
 import { prismaService } from '../database/prisma.service';
 import { ResponsiblePersonRepository } from '../repositories/responsible.person.repository';
 import { ResponsiblePersonService } from '../services/responsible.person.service';
-import { RegionRepository } from '../repositories/region.repository';
-import { RegionService } from '../services/region.service';
-import { RegionController } from '../controllers/region.controller';
+import { PlaylistRepository } from '../repositories/playlist.repository';
+import { PlaylistService } from '../services/playlist.service';
+import { PlaylistController } from '../controllers/playlist.controller';
 import { ResponsiblePersonController } from '../controllers/responsible.person.controller';
 import { DashboardService } from '../services/dashboard.service';
 import { DashboardController } from '../controllers/dashboard.controller';
@@ -48,21 +48,21 @@ const rpRepository = new ResponsiblePersonRepository(prisma.client);
 const rpService = new ResponsiblePersonService(rpRepository, eventService);
 const rpController = new ResponsiblePersonController(rpService);
 
-const regionRepository = new RegionRepository(prisma.client);
-const regionService = new RegionService(regionRepository, eventService);
-const regionController = new RegionController(regionService);
+const playlistRepository = new PlaylistRepository(prisma.client);
+const playlistService = new PlaylistService(playlistRepository, eventService);
+const playlistController = new PlaylistController(playlistService);
 
 const streamRepository = new StreamRepository(prisma.client);
 const streamService = new StreamService(streamRepository, eventService);
 const streamController = new StreamController(streamService, rpService);
 
-const dashboardService = new DashboardService(regionService, streamService);
+const dashboardService = new DashboardService(playlistService, streamService);
 const dashboardController = new DashboardController(dashboardService);
 
 export {
   streamController,
   streamService,
-  regionController,
+  playlistController,
   rpController,
   dashboardController,
   eventController,

@@ -1,52 +1,52 @@
-import { RegionService } from './region.service';
+import { PlaylistService } from './playlist.service';
 import { StreamService } from './stream.service';
-import { RegionInfoDto, StreamDashboardDto } from '@shared/types';
+import { PlaylistInfoDto, StreamDashboardDto } from '@shared/types';
 
 export class DashboardService {
-  private regionService: RegionService;
+  private playlistService: PlaylistService;
   private streamService: StreamService;
 
-  constructor(regionService: RegionService, streamService: StreamService) {
-    this.regionService = regionService;
+  constructor(playlistService: PlaylistService, streamService: StreamService) {
+    this.playlistService = playlistService;
     this.streamService = streamService;
   }
 
-  async getDashboardData(): Promise<RegionInfoDto[]> {
+  async getDashboardData(): Promise<PlaylistInfoDto[]> {
     const isVisible = true;
-    const regions = await this.regionService.getAllRegions(isVisible);
-    const dashboardData: RegionInfoDto[] = [];
+    const playlists = await this.playlistService.getAllPlaylists(isVisible);
+    const dashboardData: PlaylistInfoDto[] = [];
 
-    for (const region of regions) {
-      const regionInfo: RegionInfoDto = {
-        regionName: region.name,
+    for (const playlist of playlists) {
+      const playlistInfo: PlaylistInfoDto = {
+        playlistName: playlist.name,
         streams: [],
         activeCount: 0,
         noConnectionCount: 0,
         badConnectionCount: 0,
       };
 
-      const streams = await this.streamService.getStreamsByRegion(region.id);
+      const streams = await this.streamService.getStreamsByPlaylist(playlist.id);
 
       streams.forEach((stream) => {
         const streamDashboard: StreamDashboardDto = {
           id: stream.id,
-          regionId: stream.regionId,
+          playlistId: stream.playlistId,
           location: stream.location,
           status: stream.status,
         };
 
-        regionInfo.streams.push(streamDashboard);
+        playlistInfo.streams.push(streamDashboard);
 
         if (stream.status === 'Active') {
-          regionInfo.activeCount++;
+          playlistInfo.activeCount++;
         } else if (stream.status === 'No connection') {
-          regionInfo.noConnectionCount++;
+          playlistInfo.noConnectionCount++;
         } else if (stream.status === 'Bad connection') {
-          regionInfo.badConnectionCount++;
+          playlistInfo.badConnectionCount++;
         }
       });
 
-      dashboardData.push(regionInfo);
+      dashboardData.push(playlistInfo);
     }
 
     return dashboardData;
