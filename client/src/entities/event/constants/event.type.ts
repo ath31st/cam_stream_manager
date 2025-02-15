@@ -1,5 +1,5 @@
 export enum EventType {
-  REGION = 'REGION',
+  PLAYLIST = 'PLAYLIST',
   STREAM = 'STREAM',
   RP = 'RP',
   USER = 'USER',
