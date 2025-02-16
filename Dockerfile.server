@@ -1,33 +1,32 @@
-FROM node:22-alpine3.21 AS build
+FROM node:22-alpine3.21 AS base
 
+FROM base AS deps
+RUN apk add --no-cache python3 py3-pip make g++
 WORKDIR /app
 
 COPY ./server/package.json ./server/yarn.lock* ./server/
+RUN yarn install --cwd ./server --frozen-lockfile --production=false
 
-RUN yarn install --cwd ./server --frozen-lockfile
+FROM base AS builder
+WORKDIR /app
 
+COPY --from=deps /app/server/node_modules ./server/node_modules
 COPY ./server ./server
 COPY ./shared ./shared
+
+RUN yarn --cwd ./server prisma generate
+RUN yarn --cwd ./server deploy
+
+FROM base AS runner
+WORKDIR /app
+
+COPY --from=builder /app/server/dist ./dist
+COPY --from=builder /app/server/node_modules ./node_modules
 
 ARG API_PORT
 ENV PORT=${API_PORT}
 RUN echo "API_PORT is set to: ${API_PORT}"
 
-RUN yarn --cwd ./server dbr:prod
-RUN yarn --cwd ./server deploy
+RUN mkdir -p /app/data
 
-
-FROM node:22-alpine3.21
-
-RUN apk add --no-cache libc6-compat
-
-WORKDIR /app
-
-COPY --from=build /app/server/dist ./dist
-COPY ./server/yarn.lock* ./dist/server/
-
-WORKDIR ./dist/server
-
-RUN yarn install --production --frozen-lockfile
-
-CMD ["sh", "-c", "yarn dbr:prod && yarn start:prod"]
+CMD ["sh", "-c", "yarn --cwd ./dist/server dbr:prod && yarn --cwd ./dist/server start:prod"]

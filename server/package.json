@@ -6,14 +6,14 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "clean": "rimraf dist/*",
-    "start:prod": "dotenv -e .env.prod -- node src/index.js",
-    "dev": "dotenv -e .env.dev -- ts-node-dev --respawn src/index.ts",
-    "dev:debug": "dotenv -e .env.dev -- ts-node-dev --inspect=0.0.0.0:9229 src/index.ts",
+    "start:prod": "npx dotenv -e .env.prod -- node src/index.js",
+    "dev": "npx dotenv -e .env.dev -- ts-node-dev --respawn src/index.ts",
+    "dev:debug": "npx dotenv -e .env.dev -- ts-node-dev --inspect=0.0.0.0:9229 src/index.ts",
     "build": "tsc",
     "postbuild": "mkdir -p dist/server/prisma && cp package.json dist/server/ && cp .env.prod dist/server/ && cp prisma/schema.prisma dist/server/prisma/ && cp -r prisma/migrations dist/server/prisma/",
     "deploy": "npm run clean && npm run build && npm run postbuild",
     "dbr:dev": "dotenv -e .env.dev -- npx prisma migrate dev --name init && ts-node src/database/seed.ts",
-    "dbr:prod": "dotenv -e .env.prod -- npx prisma migrate deploy && npx prisma generate"
+    "dbr:prod": "npx dotenv -e .env.prod -- npx prisma migrate deploy && npx prisma generate"
   },
   "keywords": [
     "node",
