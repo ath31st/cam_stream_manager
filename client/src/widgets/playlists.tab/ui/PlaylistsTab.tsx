@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { usePlaylistStore } from '../../../app/stores/playlist.store';
-import { NewPlaylist, Playlist, UpdatePlaylist } from '../../../entities/playlist';
+import {
+  NewPlaylist,
+  Playlist,
+  UpdatePlaylist,
+} from '../../../entities/playlist';
 import { useStreamStore } from '../../../app/stores/stream.store';
 import {
   errorNotification,
@@ -18,15 +22,15 @@ const PlaylistsTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deletePlaylistId, setDeletePlaylistId] = useState<number | null>(null);
-  const [updatingPlaylist, setUpdatingPlaylist] = useState<Playlist | null>(null);
+  const [updatingPlaylist, setUpdatingPlaylist] = useState<Playlist | null>(
+    null,
+  );
 
   const { groups, fetchAllGroups } = useGroupStore();
 
   useEffect(() => {
-    if (groups.length === 0) {
-      fetchAllGroups();
-    }
-  }, [groups, fetchAllGroups]);
+    fetchAllGroups();
+  }, []);
 
   const {
     playlists,
