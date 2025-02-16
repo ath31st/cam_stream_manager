@@ -30,7 +30,7 @@ const PlaylistsTab: React.FC = () => {
 
   useEffect(() => {
     fetchAllGroups();
-  }, []);
+  }, [fetchAllGroups]);
 
   const {
     playlists,
