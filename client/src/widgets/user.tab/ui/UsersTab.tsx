@@ -22,10 +22,8 @@ const UsersTab: React.FC = () => {
   const { groups, fetchAllGroups } = useGroupStore();
 
   useEffect(() => {
-    if (groups.length === 0) {
-      fetchAllGroups();
-    }
-  }, [groups, fetchAllGroups]);
+    fetchAllGroups();
+  }, [fetchAllGroups]);
 
   const {
     error,
