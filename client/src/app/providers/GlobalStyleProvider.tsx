@@ -29,7 +29,7 @@ const GlobalStyleProvider: React.FC<GlobalStyleProviderProps> = ({
         components: {
           Layout: {
             siderBg: 'transparent',
-            //colorBgLayout: '#2c333a',
+            colorBgLayout: '#2c333a',
           },
           Modal: {
             contentBg: '#3a3f45',
