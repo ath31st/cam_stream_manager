@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Modal, Input, Form, Select, Switch } from 'antd';
-import { UpdateUser, User } from '..';
+import { UpdateUser, User } from '../../../entities/user';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
 import {
   emailValidationRules,
   usernameValidationRules,
 } from '../../../shared/validations/lib/validation.rules';
-import { Group } from '../../group';
+import { Group } from '../../../entities/group';
 
 interface UpdateUserModalProps {
   groups: Group[];
