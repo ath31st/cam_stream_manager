@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useEventStore } from '../../../entities/event/model/event.store';
+import { useEventStore } from '../../../entities/event';
 import {
   errorNotification,
   successNotification,
