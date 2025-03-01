@@ -7,9 +7,9 @@ import {
   Page,
   EventType,
   EventLevel,
-} from '../../entities/event';
+} from '../';
 import { AxiosError } from 'axios';
-import { getEventErrorMessage, unknownError } from '../../shared/errors';
+import { getEventErrorMessage, unknownError } from '../../../shared/errors';
 
 interface EventState {
   events: EventDto[];
