@@ -4,7 +4,7 @@ import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { DeleteEventModal } from '../../../entities/event';
+import { DeleteEventModal } from '../../../features/event.management';
 import EventTable from './EventTable';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import { Pagination } from 'antd';
