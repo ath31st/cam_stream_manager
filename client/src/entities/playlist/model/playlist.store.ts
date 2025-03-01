@@ -1,14 +1,14 @@
 import { create } from 'zustand';
-import { Playlist, NewPlaylist, UpdatePlaylist } from '../../entities/playlist';
+import { Playlist, NewPlaylist, UpdatePlaylist } from '..';
 import {
   fetchPlaylists,
   fetchPlaylist,
   createPlaylist,
   updatePlaylist,
   deletePlaylist,
-} from '../../entities/playlist';
+} from '../api/playlist.api';
 import { AxiosError } from 'axios';
-import { getPlaylistErrorMessage, unknownError } from '../../shared/errors';
+import { getPlaylistErrorMessage, unknownError } from '../../../shared/errors';
 
 interface PlaylistState {
   playlists: Playlist[];
@@ -77,7 +77,9 @@ export const usePlaylistStore = create<PlaylistState>((set) => ({
     try {
       const updatedPlaylist = await updatePlaylist(id, playlist);
       set((state) => ({
-        playlists: state.playlists.map((r) => (r.id === id ? updatedPlaylist : r)),
+        playlists: state.playlists.map((r) =>
+          r.id === id ? updatedPlaylist : r,
+        ),
       }));
     } catch (error) {
       usePlaylistStore.getState().handleError(error);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Space } from 'antd';
 import { useStreamStore } from '../../../entities/stream';
-import { usePlaylistStore } from '../../../app/stores/playlist.store';
+import { usePlaylistStore } from '../../../entities/playlist';
 import {
   errorNotification,
   successNotification,
