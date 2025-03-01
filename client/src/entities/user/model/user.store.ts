@@ -1,20 +1,15 @@
 import { create } from 'zustand';
 import { AxiosError } from 'axios';
-import { getStreamErrorMessage, unknownError } from '../../shared/errors';
+import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
+import { NewUser, UpdateUser, UpdateUserPassword, User } from '..';
 import {
   createUser,
+  deleteUser,
   fetchUser,
   fetchUsers,
-  NewUser,
   updateUser,
-  UpdateUser,
-  UpdateUserPassword,
-  User,
-} from '../../entities/user';
-import {
-  deleteUser,
   updateUserPassword,
-} from '../../entities/user/api/user.api';
+} from '../api/user.api';
 
 interface UserState {
   users: User[];

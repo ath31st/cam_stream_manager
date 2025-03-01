@@ -7,7 +7,7 @@ import WideButton from '../../../shared/ui/buttons/WideButton';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 import { NewUser, UpdateUser, User } from '../../../entities/user';
-import { useUserStore } from '../../../app/stores/user.store';
+import { useUserStore } from '../../../entities/user';
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
 import { useGroupStore } from '../../../entities/group';
