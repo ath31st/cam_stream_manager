@@ -4,7 +4,7 @@ import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { useGroupStore } from '../../../app/stores/group.store';
+import { useGroupStore } from '../../../entities/group';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';

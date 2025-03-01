@@ -1,16 +1,14 @@
+import { Group, NewGroup, UpdateGroup } from '../';
+import { AxiosError } from 'axios';
+import { getGroupErrorMessage, unknownError } from '../../../shared/errors';
+import { create } from 'zustand';
 import {
-  fetchGroup,
-  fetchGroups,
-  Group,
-  NewGroup,
   createGroup,
   deleteGroup,
-  UpdateGroup,
+  fetchGroup,
+  fetchGroups,
   updateGroup,
-} from '../../entities/group';
-import { AxiosError } from 'axios';
-import { getGroupErrorMessage, unknownError } from '../../shared/errors';
-import { create } from 'zustand';
+} from '../api/group.api';
 
 interface GroupState {
   groups: Group[];

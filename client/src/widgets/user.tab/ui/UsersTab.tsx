@@ -10,7 +10,7 @@ import { NewUser, UpdateUser, User } from '../../../entities/user';
 import { useUserStore } from '../../../app/stores/user.store';
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
-import { useGroupStore } from '../../../app/stores/group.store';
+import { useGroupStore } from '../../../entities/group';
 
 const UsersTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
