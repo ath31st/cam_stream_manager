@@ -6,7 +6,7 @@ import {
   NewResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../entities/responsible.person';
-import { useStreamStore } from '../../../app/stores/stream.store';
+import { useStreamStore } from '../../../entities/stream';
 import StreamSelect from '../../../shared/ui/selects/StreamSelect';
 import {
   errorNotification,

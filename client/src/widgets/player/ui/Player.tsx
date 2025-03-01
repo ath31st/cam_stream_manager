@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useStreamStore } from '../../../app/stores/stream.store';
+import { useStreamStore } from '../../../entities/stream';
 import { VideoPlayer } from '../../../shared/video.player';
 import styles from './Player.module.css';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';

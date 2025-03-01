@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Stream, NewStream, UpdateStream } from '../../entities/stream';
+import { Stream, NewStream, UpdateStream } from '..';
 import {
   fetchStreams,
   fetchStream,
@@ -7,9 +7,9 @@ import {
   updateStream,
   deleteStream,
   fetchStreamsByPlaylist,
-} from '../../entities/stream';
+} from '../api/stream.api';
 import { AxiosError } from 'axios';
-import { getStreamErrorMessage, unknownError } from '../../shared/errors';
+import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
 
 interface StreamState {
   streams: Stream[];

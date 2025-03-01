@@ -5,7 +5,7 @@ import {
   Playlist,
   UpdatePlaylist,
 } from '../../../entities/playlist';
-import { useStreamStore } from '../../../app/stores/stream.store';
+import { useStreamStore } from '../../../entities/stream';
 import {
   errorNotification,
   successNotification,
