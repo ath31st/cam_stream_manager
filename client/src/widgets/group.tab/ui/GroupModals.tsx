@@ -1,11 +1,10 @@
 import React from 'react';
+import { Group, UpdateGroup } from '../../../entities/group';
 import {
   AddGroupModal,
   DeleteGroupModal,
-  Group,
-  UpdateGroup,
   UpdateGroupModal,
-} from '../../../entities/group';
+} from '../../../features/group.management';
 
 interface GroupModalsProps {
   isAddModalVisible: boolean;
