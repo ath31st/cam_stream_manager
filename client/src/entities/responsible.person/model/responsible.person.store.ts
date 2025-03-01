@@ -3,7 +3,9 @@ import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../entities/responsible.person';
+} from '..';
+import { AxiosError } from 'axios';
+import { getRpErrorMessage, unknownError } from '../../../shared/errors';
 import {
   fetchResponsiblePerson,
   fetchResponsiblePersons,
@@ -11,9 +13,7 @@ import {
   createResponsiblePerson,
   updateResponsiblePerson,
   deleteResponsiblePerson,
-} from '../../entities/responsible.person';
-import { AxiosError } from 'axios';
-import { getRpErrorMessage, unknownError } from '../../shared/errors';
+} from '../api/rp.api';
 
 interface ResponsiblePersonState {
   responsiblePersons: ResponsiblePerson[];

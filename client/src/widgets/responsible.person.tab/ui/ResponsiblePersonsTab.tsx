@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Space } from 'antd';
-import { useResponsiblePersonStore } from '../../../app/stores/responsible.person.store';
+import { useResponsiblePersonStore } from '../../../entities/responsible.person';
 import {
   ResponsiblePerson,
   NewResponsiblePerson,
