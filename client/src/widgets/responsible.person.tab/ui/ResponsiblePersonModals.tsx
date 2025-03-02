@@ -3,11 +3,13 @@ import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
-  AddResponsiblePersonModal,
-  UpdateResponsiblePersonModal,
-  DeleteResponsiblePersonModal,
 } from '../../../entities/responsible.person';
 import { Stream } from '../../../entities/stream';
+import {
+  AddResponsiblePersonModal,
+  DeleteResponsiblePersonModal,
+  UpdateResponsiblePersonModal,
+} from '../../../features/responsible.person.management';
 
 const ResponsiblePersonModals: React.FC<{
   isAddVisible: boolean;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
-import { ResponsiblePerson } from '../index';
+import { ResponsiblePerson } from '../../../entities/responsible.person/index';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import ResponsiblePersonList from './ResponsiblePersonList ';
 

@@ -2,10 +2,8 @@ import React from 'react';
 import { Card } from 'antd';
 import { WarningOutlined } from '@ant-design/icons';
 import styles from './UnavailableStreamCard.module.css';
-import {
-  ResponsiblePerson,
-  ResponsiblePersonList,
-} from '../../../entities/responsible.person';
+import { ResponsiblePerson } from '../../../entities/responsible.person';
+import { ResponsiblePersonList } from '../../responsible.person.card';
 
 interface UnavailableStreamCardProps {
   responsiblePersons: ResponsiblePerson[];

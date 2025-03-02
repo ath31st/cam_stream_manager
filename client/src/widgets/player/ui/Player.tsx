@@ -4,7 +4,7 @@ import { VideoPlayer } from '../../../shared/video.player';
 import styles from './Player.module.css';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';
 import UnavailableStreamCard from './UnavailableStreamCard';
-import { ResponsiblePersonModal } from '../../../entities/responsible.person';
+import { ResponsiblePersonModal } from '../../../widgets/responsible.person.card';
 import WelcomeCard from './WelcomeCard';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 
