@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Modal, Input, Form } from 'antd';
-import { Group, UpdateGroup } from '../../../entities/group';
+import { Group, UpdateGroup } from '../../../shared/api.types';
 import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
