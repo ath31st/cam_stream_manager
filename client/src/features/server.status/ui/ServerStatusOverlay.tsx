@@ -1,5 +1,5 @@
 import React from 'react';
-import useServerStatusStore from '../../../app/stores/server.status.store';
+import { useServerStatusStore } from '..';
 import styles from './ServerStatusOverlay.module.css';
 import CommonAlert from '../../../shared/ui/alerts/CommonAlert';
 
