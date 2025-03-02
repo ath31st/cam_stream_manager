@@ -1,3 +1,3 @@
-import VideoPlayer from './ui/VideoPlayer';
+import VideoPlayer from './component/VideoPlayer';
 
 export { VideoPlayer };

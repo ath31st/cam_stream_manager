@@ -1,5 +1,5 @@
 import React from 'react';
-import useStreamPlayer from '../api/use.stream.player';
+import useStreamPlayer from '../lib/use.stream.player';
 import styles from './VideoPlayer.module.css';
 
 interface VideoPlayerProps {
