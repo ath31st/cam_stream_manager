@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Player from '../../widgets/player';
+import Player from '../../../widgets/player';
 
 const MainPage: React.FC = () => {
   useEffect(() => {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
-import PlaylistsTab from '../../widgets/playlists.tab';
-import StreamsTab from '../../widgets/streams.tab';
-import ResponsiblePersonTab from '../../widgets/responsible.person.tab';
-import Dashboard from '../../widgets/dashboard.tab';
-import EventTab from '../../widgets/event.tab';
-import UsersTab from '../../widgets/user.tab';
-import GroupsTab from '../../widgets/group.tab';
+import PlaylistsTab from '../../../widgets/playlists.tab';
+import StreamsTab from '../../../widgets/streams.tab';
+import ResponsiblePersonTab from '../../../widgets/responsible.person.tab';
+import Dashboard from '../../../widgets/dashboard.tab';
+import EventTab from '../../../widgets/event.tab';
+import UsersTab from '../../../widgets/user.tab';
+import GroupsTab from '../../../widgets/group.tab';
 
 const AdminPage: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<string>('1');

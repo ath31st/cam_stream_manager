@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import WideButton from '../../shared/ui/buttons/WideButton';
+import WideButton from '../../../shared/ui/buttons/WideButton';
 import styles from './AccessDeniedPage.module.css';
 
 const AccessDeniedPage: React.FC = () => {

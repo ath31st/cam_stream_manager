@@ -1,3 +1,3 @@
-import UnauthorizedPage from './UnauthorizedPage';
+import UnauthorizedPage from './ui/UnauthorizedPage';
 
 export default UnauthorizedPage;

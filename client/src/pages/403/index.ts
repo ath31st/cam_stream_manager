@@ -1,3 +1,3 @@
-import AccessDeniedPage from './AccessDeniedPage';
+import AccessDeniedPage from './ui/AccessDeniedPage';
 
 export default AccessDeniedPage;
