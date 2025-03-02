@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ONE_SECOND, ONE_SECOND_IN_MILLIS } from '../constants/event.pulse';
+import { ONE_SECOND, ONE_SECOND_IN_MILLIS } from '../metadata/event.pulse';
 
 const usePulsing = (createdAt: Date) => {
   const [isPulsing, setIsPulsing] = useState(false);
