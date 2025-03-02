@@ -1,13 +1,15 @@
 import React from 'react';
 import {
-  AddPlaylistModal,
-  DeletePlaylistModal,
   NewPlaylist,
   Playlist,
   UpdatePlaylist,
-  UpdatePlaylistModal,
 } from '../../../entities/playlist';
 import { Group } from '../../../entities/group';
+import {
+  AddPlaylistModal,
+  DeletePlaylistModal,
+  UpdatePlaylistModal,
+} from '../../../features/playlist.management';
 
 interface PlaylistModalsProps {
   groups: Group[];

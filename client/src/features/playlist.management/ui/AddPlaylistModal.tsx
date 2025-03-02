@@ -3,8 +3,8 @@ import { Modal, Form, Input, Select } from 'antd';
 import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
-import { NewPlaylist } from '..';
-import { Group } from '../../group';
+import { NewPlaylist } from '../../../entities/playlist';
+import { Group } from '../../../entities/group';
 
 interface AddPlaylistModalProps {
   groups: Group[];
@@ -53,7 +53,10 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({
             label="Название плейлиста"
             rules={playlistNameValidationRules}
           >
-            <Input placeholder="Введите название плейлиста" autoComplete="off" />
+            <Input
+              placeholder="Введите название плейлиста"
+              autoComplete="off"
+            />
           </Form.Item>
           <Form.Item name="groupIds" label="Группы">
             <Select mode="multiple" placeholder="Выберите группы">
