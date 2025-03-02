@@ -1,5 +1,5 @@
 import React from 'react';
-import { EventDto } from '../../../entities/event/index';
+import { EventDto } from '../../../shared/types';
 import { Card } from 'antd';
 import LevelBadge from './LevelBadge';
 import styles from './EventCard.module.css';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Group, UpdateGroup } from '../../../entities/group';
+import { Group, UpdateGroup } from '../../../shared/types';
 import {
   errorNotification,
   successNotification,

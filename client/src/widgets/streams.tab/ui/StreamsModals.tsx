@@ -1,6 +1,10 @@
 import React from 'react';
-import { NewStream, Stream, UpdateStream } from '../../../entities/stream';
-import { Playlist } from '../../../entities/playlist';
+import {
+  NewStream,
+  Stream,
+  UpdateStream,
+  Playlist,
+} from '../../../shared/types';
 import {
   AddStreamModal,
   DeleteStreamModal,

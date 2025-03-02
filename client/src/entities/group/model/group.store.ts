@@ -1,4 +1,4 @@
-import { Group, NewGroup, UpdateGroup } from '../';
+import { Group, NewGroup, UpdateGroup } from '../../../shared/types';
 import { AxiosError } from 'axios';
 import { getGroupErrorMessage, unknownError } from '../../../shared/errors';
 import { create } from 'zustand';

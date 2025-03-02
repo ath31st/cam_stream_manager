@@ -5,7 +5,7 @@ import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../../entities/responsible.person';
+} from '../../../shared/types';
 import { useStreamStore } from '../../../entities/stream';
 import StreamSelect from '../../../shared/ui/selects/StreamSelect';
 import {

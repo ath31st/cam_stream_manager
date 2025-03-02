@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NewStream, UpdateStream, Stream } from '../index';
+import { NewStream, UpdateStream, Stream } from '../../../shared/types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/streams';
 
@@ -9,7 +9,9 @@ export const fetchStreams = async (): Promise<Stream[]> => {
 };
 
 export const fetchStreamsByPlaylist = async (playlistId: number) => {
-  const response = await axios.get<Stream[]>(`${API_URL}/playlist/${playlistId}`);
+  const response = await axios.get<Stream[]>(
+    `${API_URL}/playlist/${playlistId}`,
+  );
   return response.data;
 };
 

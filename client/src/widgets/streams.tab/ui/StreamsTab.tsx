@@ -8,7 +8,7 @@ import {
 } from '../../../shared/notifications';
 import StreamsTable from './StreamsTable';
 import StreamModals from './StreamsModals';
-import { Stream, NewStream, UpdateStream } from '../../../entities/stream';
+import { Stream, NewStream, UpdateStream } from '../../../shared/types';
 import TabContainer from '../../../shared/ui/containers/TabContainer';
 import WideButton from '../../../shared/ui/buttons/WideButton';
 import PlaylistSelect from '../../../shared/ui/selects/PlaylistSelect';

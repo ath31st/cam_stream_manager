@@ -3,8 +3,8 @@ import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../../entities/responsible.person';
-import { Stream } from '../../../entities/stream';
+  Stream,
+} from '../../../shared/types';
 import {
   AddResponsiblePersonModal,
   DeleteResponsiblePersonModal,

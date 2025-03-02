@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { WarningOutlined } from '@ant-design/icons';
 import styles from './UnavailableStreamCard.module.css';
-import { ResponsiblePerson } from '../../../entities/responsible.person';
+import { ResponsiblePerson } from '../../../shared/types';
 import { ResponsiblePersonList } from '../../responsible.person';
 
 interface UnavailableStreamCardProps {

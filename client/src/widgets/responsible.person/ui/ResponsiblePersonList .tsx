@@ -1,6 +1,6 @@
 import React from 'react';
 import listStyles from './ResponsiblePersonList.module.css';
-import { ResponsiblePerson } from '../../../entities/responsible.person/index';
+import { ResponsiblePerson } from '../../../shared/types';
 
 interface ResponsiblePersonListProps {
   responsiblePersons: ResponsiblePerson[];

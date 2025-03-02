@@ -7,12 +7,11 @@ import {
   SyncOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons';
-import { Stream } from '../../../entities/stream';
+import { Stream, Playlist } from '../../../shared/types';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './StreamsTable.module.css';
 import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
-import { Playlist } from '../../../entities/playlist';
 
 interface StreamsTableProps {
   streams: Stream[];
@@ -55,7 +54,10 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
         const playlist = playlists.find((r) => r.id === playlistId);
         const playlistName = playlist ? playlist.name : 'Неизвестно';
         return (
-          <div className={styles['ellipsis-playlist-column']} title={playlistName}>
+          <div
+            className={styles['ellipsis-playlist-column']}
+            title={playlistName}
+          >
             {playlistName}
           </div>
         );

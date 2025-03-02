@@ -1,7 +1,12 @@
 import { create } from 'zustand';
 import { AxiosError } from 'axios';
 import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
-import { NewUser, UpdateUser, UpdateUserPassword, User } from '..';
+import {
+  NewUser,
+  UpdateUser,
+  UpdateUserPassword,
+  User,
+} from '../../../shared/types';
 import {
   createUser,
   deleteUser,

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Stream, NewStream, UpdateStream } from '..';
+import { Stream, NewStream, UpdateStream } from '../../../shared/types';
 import {
   fetchStreams,
   fetchStream,

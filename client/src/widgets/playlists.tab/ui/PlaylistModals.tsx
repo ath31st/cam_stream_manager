@@ -3,8 +3,8 @@ import {
   NewPlaylist,
   Playlist,
   UpdatePlaylist,
-} from '../../../entities/playlist';
-import { Group } from '../../../entities/group';
+  Group,
+} from '../../../shared/types';
 import {
   AddPlaylistModal,
   DeletePlaylistModal,

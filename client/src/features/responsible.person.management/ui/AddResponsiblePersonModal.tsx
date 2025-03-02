@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
-import { NewResponsiblePerson } from '../../../entities/responsible.person';
-import { Stream } from '../../../entities/stream';
+import { NewResponsiblePerson, Stream } from '../../../shared/types';
 import StreamSelect from '../../../shared/ui/selects/StreamSelect';
 import {
   phoneValidationRules,
@@ -48,7 +47,7 @@ const AddResponsiblePersonModal: React.FC<AddResponsiblePersonModalProps> = ({
             <Input placeholder="Введите имя" autoComplete="name" />
           </Form.Item>
           <Form.Item name="phone" label="Телефон" rules={phoneValidationRules}>
-            <Input placeholder="Введите телефон" autoComplete="phone"/>
+            <Input placeholder="Введите телефон" autoComplete="phone" />
           </Form.Item>
           <Form.Item
             name="streamId"

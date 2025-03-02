@@ -4,7 +4,7 @@ import {
   NewPlaylist,
   Playlist,
   UpdatePlaylist,
-} from '../../../entities/playlist';
+} from '../../../shared/types';
 import { useStreamStore } from '../../../entities/stream';
 import {
   errorNotification,

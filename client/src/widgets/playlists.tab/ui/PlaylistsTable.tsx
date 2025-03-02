@@ -1,11 +1,10 @@
 import React from 'react';
 import { Table } from 'antd';
-import { Playlist } from '../../../entities/playlist';
+import { Playlist, Group } from '../../../shared/types';
 import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 import styles from './PlaylistsTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
-import { Group } from '../../../entities/group';
 
 interface PlaylistsTableProps {
   groups: Group[];

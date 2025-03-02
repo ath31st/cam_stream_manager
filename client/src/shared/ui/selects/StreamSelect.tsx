@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
-import { Stream } from '../../../entities/stream';
+import { Stream } from '../../../shared/types';
 import styles from './StreamSelect.module.css';
 
 interface StreamSelectProps {

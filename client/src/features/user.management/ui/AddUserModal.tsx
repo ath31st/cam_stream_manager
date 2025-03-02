@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, Select } from 'antd';
-import { NewUser } from '../../../entities/user';
+import { NewUser, Group } from '../../../shared/types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
 import {
@@ -9,7 +9,6 @@ import {
   passwordValidationRules,
   usernameValidationRules,
 } from '../../../shared/validations/lib/validation.rules';
-import { Group } from '../../../entities/group';
 
 interface AddUserModalProps {
   groups: Group[];

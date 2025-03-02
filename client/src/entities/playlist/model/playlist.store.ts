@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Playlist, NewPlaylist, UpdatePlaylist } from '..';
+import { Playlist, NewPlaylist, UpdatePlaylist } from '../../../shared/types';
 import {
   fetchPlaylists,
   fetchPlaylist,

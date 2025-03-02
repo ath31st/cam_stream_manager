@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { NewUser, UpdateUser, UpdateUserPassword, User } from '../index';
+import {
+  NewUser,
+  UpdateUser,
+  UpdateUserPassword,
+  User,
+} from '../../../shared/types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/users';
 

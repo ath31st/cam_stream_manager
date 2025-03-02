@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { Playlist, NewPlaylist, UpdatePlaylist } from '../index';
+import { Playlist, NewPlaylist, UpdatePlaylist } from '../../../shared/types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/playlists';
 
-export const fetchPlaylists = async (isVisible?: boolean): Promise<Playlist[]> => {
+export const fetchPlaylists = async (
+  isVisible?: boolean,
+): Promise<Playlist[]> => {
   const response = await axios.get<Playlist[]>(API_URL, {
     params: { isVisible },
   });
@@ -15,7 +17,9 @@ export const fetchPlaylist = async (id: number): Promise<Playlist> => {
   return response.data;
 };
 
-export const createPlaylist = async (playlist: NewPlaylist): Promise<Playlist> => {
+export const createPlaylist = async (
+  playlist: NewPlaylist,
+): Promise<Playlist> => {
   const response = await axios.post<Playlist>(API_URL, playlist);
   return response.data;
 };

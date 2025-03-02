@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PlaylistInfo } from '../index';
+import { PlaylistInfo } from '../../../shared/types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/dashboard';
 

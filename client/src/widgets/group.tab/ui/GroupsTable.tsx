@@ -4,7 +4,7 @@ import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 import styles from './GroupsTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
-import { Group } from '../../../entities/group';
+import { Group } from '../../../shared/types';
 
 interface GroupsTableProps {
   groups: Group[];

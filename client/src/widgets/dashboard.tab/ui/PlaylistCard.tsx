@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlaylistInfo } from '../../../entities/dashboard';
+import { PlaylistInfo } from '../../../shared/types';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';
 import { ResponsiblePersonModal } from '../../responsible.person';
 import { Card } from 'antd';

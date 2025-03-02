@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table } from 'antd';
-import { ResponsiblePerson } from '../../../entities/responsible.person';
-import { Stream } from '../../../entities/stream';
+import { ResponsiblePerson, Stream } from '../../../shared/types';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './ResponsiblePersonsTable.module.css';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
@@ -57,19 +56,14 @@ const ResponsiblePersonsTable: React.FC<ResponsiblePersonsTableProps> = ({
         const nameText = stream ? stream.name : 'Неизвестный поток';
 
         return (
-          <div
-            className={styles['ellipsis-name-cell']}
-            title={nameText}
-          >
+          <div className={styles['ellipsis-name-cell']} title={nameText}>
             {nameText}
           </div>
         );
       },
       sorter: (a: ResponsiblePerson, b: ResponsiblePerson) => {
-        const nameA =
-          streams.find((s) => s.id === a.streamId)?.name || '';
-        const nameB =
-          streams.find((s) => s.id === b.streamId)?.name || '';
+        const nameA = streams.find((s) => s.id === a.streamId)?.name || '';
+        const nameB = streams.find((s) => s.id === b.streamId)?.name || '';
         return nameA.localeCompare(nameB);
       },
     },
