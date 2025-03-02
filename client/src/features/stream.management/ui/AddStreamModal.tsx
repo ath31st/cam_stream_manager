@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
 import { Playlist } from '../../../entities/playlist';
-import { NewStream } from '..';
+import { NewStream } from '../../../entities/stream';
 import {
   optionalPhoneValidationRules,
   optionalRpNameValidationRules,

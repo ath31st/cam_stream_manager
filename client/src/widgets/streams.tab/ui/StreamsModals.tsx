@@ -1,13 +1,11 @@
 import React from 'react';
+import { NewStream, Stream, UpdateStream } from '../../../entities/stream';
+import { Playlist } from '../../../entities/playlist';
 import {
   AddStreamModal,
-  UpdateStreamModal,
   DeleteStreamModal,
-  NewStream,
-  Stream,
-  UpdateStream,
-} from '../../../entities/stream';
-import { Playlist } from '../../../entities/playlist';
+  UpdateStreamModal,
+} from '../../../features/stream.management';
 
 interface StreamModalsProps {
   isAddModalVisible: boolean;
