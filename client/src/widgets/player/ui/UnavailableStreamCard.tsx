@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import { WarningOutlined } from '@ant-design/icons';
 import styles from './UnavailableStreamCard.module.css';
 import { ResponsiblePerson } from '../../../entities/responsible.person';
-import { ResponsiblePersonList } from '../../responsible.person.card';
+import { ResponsiblePersonList } from '../../responsible.person';
 
 interface UnavailableStreamCardProps {
   responsiblePersons: ResponsiblePerson[];

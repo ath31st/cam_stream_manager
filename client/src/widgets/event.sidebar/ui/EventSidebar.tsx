@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useEventStore } from '../../../entities/event';
 import { errorNotification } from '../../../shared/notifications';
-import { EventCardList } from '../../event.card';
+import { EventCardList } from '../../event';
 import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
 import styles from './EventSidebar.module.css';
 import MediumLoader from '../../../shared/ui/loaders/MediumLoader';
