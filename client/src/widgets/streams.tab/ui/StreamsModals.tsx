@@ -4,7 +4,7 @@ import {
   Stream,
   UpdateStream,
   Playlist,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 import {
   AddStreamModal,
   DeleteStreamModal,

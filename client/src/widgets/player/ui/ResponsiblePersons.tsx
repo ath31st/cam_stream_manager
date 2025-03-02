@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiblePerson } from '../../../shared/types';
+import { ResponsiblePerson } from '../../../shared/api.types';
 
 interface ResponsiblePersonsProps {
   responsiblePersons: ResponsiblePerson[];

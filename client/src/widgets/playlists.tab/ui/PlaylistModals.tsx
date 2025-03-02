@@ -4,7 +4,7 @@ import {
   Playlist,
   UpdatePlaylist,
   Group,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 import {
   AddPlaylistModal,
   DeletePlaylistModal,

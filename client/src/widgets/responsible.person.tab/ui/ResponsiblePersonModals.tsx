@@ -4,7 +4,7 @@ import {
   NewResponsiblePerson,
   UpdateResponsiblePerson,
   Stream,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 import {
   AddResponsiblePersonModal,
   DeleteResponsiblePersonModal,

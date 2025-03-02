@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, Select } from 'antd';
-import { NewUser, Group } from '../../../shared/types';
+import { NewUser, Group } from '../../../shared/api.types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
 import {

@@ -3,8 +3,8 @@ import { Modal, Form, Input, Select } from 'antd';
 import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
-import { NewPlaylist } from '../../../shared/types';
-import { Group } from '../../../shared/types';
+import { NewPlaylist } from '../../../shared/api.types';
+import { Group } from '../../../shared/api.types';
 
 interface AddPlaylistModalProps {
   groups: Group[];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group, UpdateGroup } from '../../../shared/types';
+import { Group, UpdateGroup } from '../../../shared/api.types';
 import {
   AddGroupModal,
   DeleteGroupModal,

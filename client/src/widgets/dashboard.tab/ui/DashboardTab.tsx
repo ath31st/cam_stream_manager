@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import PlaylistCard from './PlaylistCard';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
-import { PlaylistInfo } from '../../../shared/types';
+import { PlaylistInfo } from '../../../shared/api.types';
 import { EventSidebar } from '../../event.sidebar';
 import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 import { fetchDashboardData } from '../../../entities/dashboard';

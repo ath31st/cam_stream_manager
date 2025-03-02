@@ -3,7 +3,7 @@ import { Modal, Form, Input } from 'antd';
 import {
   ResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 import {
   phoneValidationRules,
   rpNameValidationRules,

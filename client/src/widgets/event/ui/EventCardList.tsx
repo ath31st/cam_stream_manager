@@ -1,5 +1,5 @@
 import React from 'react';
-import { EventDto } from '../../../shared/types';
+import { EventDto } from '../../../shared/api.types';
 import EventCard from './EventCard';
 import { Space } from 'antd';
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Group, NewGroup, UpdateGroup } from '../../../shared/types';
+import { Group, NewGroup, UpdateGroup } from '../../../shared/api.types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/groups';
 

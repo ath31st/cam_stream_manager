@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
-import { NewResponsiblePerson, Stream } from '../../../shared/types';
+import { NewResponsiblePerson, Stream } from '../../../shared/api.types';
 import StreamSelect from '../../../shared/ui/selects/StreamSelect';
 import {
   phoneValidationRules,

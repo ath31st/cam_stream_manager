@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Modal, Input, Form, Select, Switch } from 'antd';
-import { UpdateUser, User, Group } from '../../../shared/types';
+import { UpdateUser, User, Group } from '../../../shared/api.types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
 import {

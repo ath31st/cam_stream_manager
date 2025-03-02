@@ -7,7 +7,7 @@ import {
   SyncOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons';
-import { Stream, Playlist } from '../../../shared/types';
+import { Stream, Playlist } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './StreamsTable.module.css';
 import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';

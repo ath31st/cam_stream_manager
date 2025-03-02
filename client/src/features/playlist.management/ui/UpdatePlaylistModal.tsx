@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Modal, Input, Form, Switch, Select } from 'antd';
-import { Playlist, UpdatePlaylist } from '../../../shared/types';
+import { Playlist, UpdatePlaylist } from '../../../shared/api.types';
 import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import FooterModal from '../../../shared/ui/buttons/FooterModal';
-import { Group } from '../../../shared/types';
+import { Group } from '../../../shared/api.types';
 
 interface UpdatePlaylistModalProps {
   groups: Group[];

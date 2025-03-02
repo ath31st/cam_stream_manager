@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { EventType, EventLevel } from '../index';
-import { EventDto, Page } from '../../../shared/types';
+import { EventDto, Page } from '../../../shared/api.types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/events';
 

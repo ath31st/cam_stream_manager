@@ -4,7 +4,7 @@ import { EventType, EventLevel } from '../';
 import { AxiosError } from 'axios';
 import { getEventErrorMessage, unknownError } from '../../../shared/errors';
 import { fetchEvents, deleteEvent } from '../api/event.api';
-import { EventDto, Page } from '../../../shared/types';
+import { EventDto, Page } from '../../../shared/api.types';
 
 interface EventState {
   events: EventDto[];

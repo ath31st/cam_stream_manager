@@ -6,7 +6,7 @@ import {
   UpdateUser,
   UpdateUserPassword,
   User,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 import {
   createUser,
   deleteUser,

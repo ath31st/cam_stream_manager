@@ -3,7 +3,7 @@ import {
   ResponsiblePerson,
   NewResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 import { AxiosError } from 'axios';
 import { getRpErrorMessage, unknownError } from '../../../shared/errors';
 import {

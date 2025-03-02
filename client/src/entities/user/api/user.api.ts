@@ -4,7 +4,7 @@ import {
   UpdateUser,
   UpdateUserPassword,
   User,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/users';
 

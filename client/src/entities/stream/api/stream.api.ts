@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NewStream, UpdateStream, Stream } from '../../../shared/types';
+import { NewStream, UpdateStream, Stream } from '../../../shared/api.types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/streams';
 

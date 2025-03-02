@@ -3,7 +3,7 @@ import {
   NewResponsiblePerson,
   UpdateResponsiblePerson,
   ResponsiblePerson,
-} from '../../../shared/types';
+} from '../../../shared/api.types';
 
 const API_URL = process.env.REACT_APP_API_URL + '/responsible-persons';
 

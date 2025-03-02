@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
-import { Playlist, NewStream } from '../../../shared/types';
+import { Playlist, NewStream } from '../../../shared/api.types';
 import {
   optionalPhoneValidationRules,
   optionalRpNameValidationRules,

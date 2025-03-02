@@ -4,7 +4,7 @@ import { paginationConfig } from '../../../shared/pagination';
 import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
 import styles from './UsersTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
-import { User, Group } from '../../../shared/types';
+import { User, Group } from '../../../shared/api.types';
 
 interface UsersTableProps {
   users: User[];

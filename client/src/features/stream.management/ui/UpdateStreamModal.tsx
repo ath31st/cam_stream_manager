@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Modal, Form, Input, Select, Switch } from 'antd';
-import { Stream, UpdateStream, Playlist } from '../../../shared/types';
+import { Stream, UpdateStream, Playlist } from '../../../shared/api.types';
 import {
   streamCommentValidationRules,
   streamNameValidationRules,
