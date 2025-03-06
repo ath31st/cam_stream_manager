@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import LevelBadge from './LevelBadge';
 import styles from './EventCard.module.css';
 import { CommonTooltip } from '../../../shared/ui';
-import usePulsing from '../../../entities/event/lib/usePulsing';
+import { usePulsing } from '../../../entities/event';
 
 const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
   const isPulsing = usePulsing(createdAt);

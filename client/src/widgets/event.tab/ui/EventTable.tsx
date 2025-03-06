@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import { EventDto } from '../../../shared/api.types';
 import React from 'react';
-import LevelBadge from '../../event/ui/LevelBadge';
+import { LevelBadge } from '../../event';
 import styles from './EventTable.module.css';
 import { ActionButtons } from '../../../shared/ui';
 
