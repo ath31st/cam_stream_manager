@@ -3,7 +3,7 @@ import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { WideButton, TabContainer, LargeLoader } from '../../../shared';
+import { WideButton, TabContainer, LargeLoader } from '../../../shared/ui';
 import { NewUser, UpdateUser, User } from '../../../shared/api.types';
 import { useUserStore } from '../../../entities/user';
 import UserTabModals from './UserTabModals';

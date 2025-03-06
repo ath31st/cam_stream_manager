@@ -3,7 +3,7 @@ import { Modal, Input, Form, Switch, Select } from 'antd';
 import { Playlist, UpdatePlaylist, Group } from '../../../shared/api.types';
 import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared';
+import { FooterModal } from '../../../shared/ui';
 
 interface UpdatePlaylistModalProps {
   groups: Group[];

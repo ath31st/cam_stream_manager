@@ -1,7 +1,7 @@
 import React from 'react';
 import { useServerStatusStore } from '..';
 import styles from './ServerStatusOverlay.module.css';
-import { CommonAlert } from '../../../shared';
+import { CommonAlert } from '../../../shared/ui';
 
 const ServerStatusOverlay: React.FC = () => {
   const { isServerUp } = useServerStatusStore();

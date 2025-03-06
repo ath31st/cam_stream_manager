@@ -7,7 +7,7 @@ import {
   streamUrlValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared';
+import { FooterModal } from '../../../shared/ui';
 
 interface UpdateStreamModalProps {
   visible: boolean;

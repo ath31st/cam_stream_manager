@@ -12,7 +12,7 @@ import {
   WideButton,
   TabContainer,
   LargeLoader,
-} from '../../../shared';
+} from '../../../shared/ui';
 import {
   errorNotification,
   successNotification,

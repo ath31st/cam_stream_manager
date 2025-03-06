@@ -6,7 +6,7 @@ import {
 } from '../../../shared/notifications';
 import { DeleteEventModal } from '../../../features/event.management';
 import EventTable from './EventTable';
-import { TabContainer, LargeLoader } from '../../../shared';
+import { TabContainer, LargeLoader } from '../../../shared/ui';
 import { Pagination } from 'antd';
 import styles from './EventTab.module.css';
 

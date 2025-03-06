@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import styles from './AuthButtons.module.css';
 import routes from '../../../shared/routes/routes';
-import { IconButton } from '../../../shared';
+import { IconButton } from '../../../shared/ui';
 import UserRoles from '../lib/user.roles';
 
 interface AuthButtonsProps {

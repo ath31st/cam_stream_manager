@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import { paginationConfig } from '../../../shared/pagination';
-import { ActionButtons } from '../../../shared';
+import { ActionButtons } from '../../../shared/ui';
 import styles from './GroupsTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
 import { Group } from '../../../shared/api.types';

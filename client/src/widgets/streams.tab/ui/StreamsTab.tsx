@@ -14,7 +14,7 @@ import {
   WideButton,
   PlaylistSelect,
   LargeLoader,
-} from '../../../shared';
+} from '../../../shared/ui';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Form, Input, Select } from 'antd';
 import { playlistNameValidationRules } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared';
+import { FooterModal } from '../../../shared/ui';
 import { NewPlaylist, Group } from '../../../shared/api.types';
 
 interface AddPlaylistModalProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
 import { NewResponsiblePerson, Stream } from '../../../shared/api.types';
-import { StreamSelect, FooterModal } from '../../../shared';
+import { StreamSelect, FooterModal } from '../../../shared/ui';
 import {
   phoneValidationRules,
   rpNameValidationRules,

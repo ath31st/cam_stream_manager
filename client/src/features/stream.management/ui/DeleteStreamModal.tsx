@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared';
+import { FooterModal } from '../../../shared/ui';
 
 interface DeleteStreamModalProps {
   visible: boolean;

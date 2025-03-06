@@ -6,7 +6,7 @@ import { useResponsiblePersonStore } from '../../../entities/responsible.person'
 import UnavailableStreamCard from './UnavailableStreamCard';
 import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
 import WelcomeCard from './WelcomeCard';
-import { WideButton } from '../../../shared';
+import { WideButton } from '../../../shared/ui';
 
 export const Player: React.FC = () => {
   const { selectedStream } = useStreamStore();
