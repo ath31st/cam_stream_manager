@@ -6,10 +6,9 @@ import {
 } from '../../../shared/notifications';
 import { DeleteEventModal } from '../../../features/event.management';
 import EventTable from './EventTable';
-import TabContainer from '../../../shared/ui/containers/TabContainer';
+import { TabContainer, LargeLoader } from '../../../shared';
 import { Pagination } from 'antd';
 import styles from './EventTab.module.css';
-import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
