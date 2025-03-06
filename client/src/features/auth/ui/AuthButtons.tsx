@@ -7,7 +7,7 @@ import {
   PlayCircleOutlined,
 } from '@ant-design/icons';
 import styles from './AuthButtons.module.css';
-import routes from '../../../shared/routes/routes';
+import routes from '../../../shared/routes';
 import { IconButton } from '../../../shared/ui';
 import UserRoles from '../lib/user.roles';
 

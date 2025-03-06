@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { LOCAL_STORAGE_KEY } from '../../features/auth/lib/auth.constants';
-import { useAuthStore } from '../../features/auth/model/auth.store';
-import { isTokenExpired } from '../../features/auth/lib/jwt';
+import {
+  LOCAL_STORAGE_KEY,
+  isTokenExpired,
+  useAuthStore,
+} from '../../features/auth';
 
 const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
   axios.interceptors.response.use(

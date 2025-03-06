@@ -6,7 +6,7 @@ import {
   successNotification,
 } from '../../../shared/notifications';
 import AuthModals from './AuthModals';
-import routes from '../../../shared/routes/routes';
+import routes from '../../../shared/routes';
 import AuthButtons from './AuthButtons';
 
 const AuthModule: React.FC = () => {

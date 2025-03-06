@@ -6,7 +6,7 @@ import AdminPage from '../../pages/admin';
 import AdminLayout from '../layouts/AdminLayout';
 import UnauthorizedPage from '../../pages/401';
 import PrivateRoute from './PrivateRoute';
-import routes from '../../shared/routes/routes';
+import routes from '../../shared/routes';
 import AccessDeniedPage from '../../pages/403';
 
 const AppRoutes: React.FC = () => {

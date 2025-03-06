@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStore } from '../../features/auth/model/auth.store';
-import routes from '../../shared/routes/routes';
+import { useAuthStore } from '../../features/auth';
+import routes from '../../shared/routes';
 
 interface PrivateRouteProps {
   requiredRole?: string;
