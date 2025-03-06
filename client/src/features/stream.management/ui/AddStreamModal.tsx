@@ -9,8 +9,7 @@ import {
   streamUrlValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import FooterModal from '../../../shared/ui/buttons/FooterModal';
-import PlaylistSelect from '../../../shared/ui/selects/PlaylistSelect';
+import { PlaylistSelect, FooterModal } from '../../../shared';
 
 interface AddStreamModalProps {
   visible: boolean;

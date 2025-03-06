@@ -3,7 +3,7 @@ import { EventDto } from '../../../shared/api.types';
 import React from 'react';
 import LevelBadge from '../../event/ui/LevelBadge';
 import styles from './EventTable.module.css';
-import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
+import { ActionButtons } from '../../../shared';
 
 interface EventsTableProps {
   events: EventDto[];

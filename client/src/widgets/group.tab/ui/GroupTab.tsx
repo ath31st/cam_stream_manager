@@ -5,9 +5,7 @@ import {
   successNotification,
 } from '../../../shared/notifications';
 import { useGroupStore } from '../../../entities/group';
-import TabContainer from '../../../shared/ui/containers/TabContainer';
-import WideButton from '../../../shared/ui/buttons/WideButton';
-import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
+import { WideButton, LargeLoader, TabContainer } from '../../../shared';
 import GroupsTable from './GroupsTable';
 import GroupModals from './GroupModals';
 
