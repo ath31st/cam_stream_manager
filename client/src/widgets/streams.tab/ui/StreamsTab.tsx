@@ -9,10 +9,12 @@ import {
 import StreamsTable from './StreamsTable';
 import StreamModals from './StreamsModals';
 import { Stream, NewStream, UpdateStream } from '../../../shared/api.types';
-import TabContainer from '../../../shared/ui/containers/TabContainer';
-import WideButton from '../../../shared/ui/buttons/WideButton';
-import PlaylistSelect from '../../../shared/ui/selects/PlaylistSelect';
-import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
+import {
+  TabContainer,
+  WideButton,
+  PlaylistSelect,
+  LargeLoader,
+} from '../../../shared';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -20,7 +22,9 @@ const StreamsTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteStreamId, setDeleteStreamId] = useState<number | null>(null);
   const [updatingStream, setUpdatingStream] = useState<Stream | null>(null);
-  const [selectedPlaylistId, setSelectedPlaylistId] = useState<number | null>(null);
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<number | null>(
+    null,
+  );
 
   const {
     streams,
@@ -117,7 +121,10 @@ const StreamsTab: React.FC = () => {
     <TabContainer>
       <Space>
         <WideButton onClick={handleAddStream}>Добавить поток</WideButton>
-        <PlaylistSelect playlists={playlists} onChange={setSelectedPlaylistId} />
+        <PlaylistSelect
+          playlists={playlists}
+          onChange={setSelectedPlaylistId}
+        />
       </Space>
 
       {loading ? (

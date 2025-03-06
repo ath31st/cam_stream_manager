@@ -9,7 +9,7 @@ import {
   rpNameValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import FooterModal from '../../../shared/ui/buttons/FooterModal';
+import { FooterModal } from '../../../shared';
 
 interface UpdateResponsiblePersonModalProps {
   visible: boolean;

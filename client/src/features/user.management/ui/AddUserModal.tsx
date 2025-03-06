@@ -8,7 +8,7 @@ import {
   emailValidationRules,
   passwordValidationRules,
   usernameValidationRules,
-} from '../../../shared/validations/lib/validation.rules';
+} from '../../../shared/validations';
 
 interface AddUserModalProps {
   groups: Group[];

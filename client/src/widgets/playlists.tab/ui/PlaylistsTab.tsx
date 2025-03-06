@@ -12,9 +12,7 @@ import {
 } from '../../../shared/notifications';
 import PlaylistsTable from './PlaylistsTable';
 import PlaylistModals from './PlaylistModals';
-import WideButton from '../../../shared/ui/buttons/WideButton';
-import TabContainer from '../../../shared/ui/containers/TabContainer';
-import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
+import { WideButton, TabContainer, LargeLoader } from '../../../shared';
 import { useGroupStore } from '../../../entities/group';
 
 const PlaylistsTab: React.FC = () => {

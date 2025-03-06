@@ -8,6 +8,10 @@ import {
   groupNameValidationRules,
   optionalPhoneValidationRules,
   optionalRpNameValidationRules,
+  emailValidationRules,
+  usernameValidationRules,
+  confirmPasswordValidationRules,
+  passwordValidationRules,
 } from './lib/validation.rules';
 
 export {
@@ -20,4 +24,8 @@ export {
   groupNameValidationRules,
   optionalPhoneValidationRules,
   optionalRpNameValidationRules,
+  emailValidationRules,
+  usernameValidationRules,
+  confirmPasswordValidationRules,
+  passwordValidationRules,
 };

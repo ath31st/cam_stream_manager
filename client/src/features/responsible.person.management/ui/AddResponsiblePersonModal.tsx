@@ -1,13 +1,12 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
 import { NewResponsiblePerson, Stream } from '../../../shared/api.types';
-import StreamSelect from '../../../shared/ui/selects/StreamSelect';
+import { StreamSelect, FooterModal } from '../../../shared';
 import {
   phoneValidationRules,
   rpNameValidationRules,
 } from '../../../shared/validations';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared';
 
 interface AddResponsiblePersonModalProps {
   visible: boolean;

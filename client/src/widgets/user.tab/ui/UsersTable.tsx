@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import { paginationConfig } from '../../../shared/pagination';
-import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
+import { ActionButtons } from '../../../shared';
 import styles from './UsersTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
 import { User, Group } from '../../../shared/api.types';

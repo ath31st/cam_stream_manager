@@ -6,7 +6,7 @@ import { FooterModal } from '../../../shared';
 import {
   emailValidationRules,
   usernameValidationRules,
-} from '../../../shared/validations/lib/validation.rules';
+} from '../../../shared/validations';
 
 interface UpdateUserModalProps {
   groups: Group[];

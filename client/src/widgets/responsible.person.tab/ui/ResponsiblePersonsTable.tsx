@@ -3,7 +3,7 @@ import { Table } from 'antd';
 import { ResponsiblePerson, Stream } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './ResponsiblePersonsTable.module.css';
-import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
+import { ActionButtons } from '../../../shared';
 
 interface ResponsiblePersonsTableProps {
   persons: ResponsiblePerson[];

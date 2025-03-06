@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Form, Input } from 'antd';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import FooterModal from '../../../shared/ui/buttons/FooterModal';
+import { FooterModal } from '../../../shared';
 
 interface LoginModalProps {
   visible: boolean;

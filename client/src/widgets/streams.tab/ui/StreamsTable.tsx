@@ -10,8 +10,7 @@ import {
 import { Stream, Playlist } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
 import styles from './StreamsTable.module.css';
-import CommonTooltip from '../../../shared/ui/tooltips/CommonTooltip';
-import ActionButtons from '../../../shared/ui/buttons/ActionButtons';
+import { CommonTooltip, ActionButtons } from '../../../shared';
 
 interface StreamsTableProps {
   streams: Stream[];

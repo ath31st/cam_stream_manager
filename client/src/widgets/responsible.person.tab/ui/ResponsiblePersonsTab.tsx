@@ -7,7 +7,12 @@ import {
   UpdateResponsiblePerson,
 } from '../../../shared/api.types';
 import { useStreamStore } from '../../../entities/stream';
-import StreamSelect from '../../../shared/ui/selects/StreamSelect';
+import {
+  StreamSelect,
+  WideButton,
+  TabContainer,
+  LargeLoader,
+} from '../../../shared';
 import {
   errorNotification,
   successNotification,
@@ -15,9 +20,6 @@ import {
 import ResponsiblePersonModals from './ResponsiblePersonModals';
 import ResponsiblePersonsTable from './ResponsiblePersonsTable';
 import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
-import WideButton from '../../../shared/ui/buttons/WideButton';
-import TabContainer from '../../../shared/ui/containers/TabContainer';
-import LargeLoader from '../../../shared/ui/loaders/LargeLoader';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
