@@ -12,7 +12,7 @@ import {
   usernameValidationRules,
   confirmPasswordValidationRules,
   passwordValidationRules,
-} from './lib/validation.rules';
+} from './rules/validation.rules';
 
 export {
   phoneValidationRules,

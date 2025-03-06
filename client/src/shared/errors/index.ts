@@ -6,7 +6,7 @@ import {
   getGroupErrorMessage,
   getEventErrorMessage,
   getAuthErrorMessage,
-} from './api/error.api';
+} from './error.api/error.api';
 
 export {
   getPlaylistErrorMessage,
