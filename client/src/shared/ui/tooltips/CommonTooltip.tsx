@@ -15,10 +15,12 @@ const CommonTooltip: React.FC<CommonTooltipProps> = ({
 }) => {
   return (
     <Tooltip
-      overlayInnerStyle={{
-        background: 'none',
-        border: 'none',
-        boxShadow: 'none',
+      styles={{
+        body: {
+          background: 'none',
+          border: 'none',
+          boxShadow: 'none',
+        },
       }}
       title={<div className={styles.tooltip}>{title}</div>}
       placement={placement}
