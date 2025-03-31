@@ -1,13 +1,16 @@
-FROM node:18-alpine AS build
+FROM node:22-alpine3.21 AS build
 
-WORKDIR /app
+WORKDIR /app/client
 
-COPY ./client/package.json ./client/
+RUN apk add --no-cache yarn
 
-RUN npm install --force --prefix ./client
+COPY ./client/package.json ./
+COPY ./client/yarn.lock ./
 
-COPY ./client ./client
-COPY ./shared ./shared
+RUN yarn install --frozen-lockfile
+
+COPY ./client ./
+COPY ./shared ../shared/
 
 ARG REACT_APP_API_URL
 ENV REACT_APP_API_URL=${REACT_APP_API_URL}
@@ -17,9 +20,9 @@ ARG REACT_APP_HEALTH_CHECK_INTERVAL
 ENV REACT_APP_HEALTH_CHECK_INTERVAL=${REACT_APP_HEALTH_CHECK_INTERVAL}
 RUN echo "REACT_APP_HEALTH_CHECK_INTERVAL is set to: ${REACT_APP_HEALTH_CHECK_INTERVAL}"
 
-RUN npm run build --prefix ./client
+RUN yarn build
 
-FROM nginx:alpine
+FROM nginx:1.24.0-alpine
 
 COPY --from=build /app/client/build /usr/share/nginx/html
 
