@@ -31,3 +31,7 @@ yarn-error.log*
 .env.dev
 .env.prod
 *.db
+
+# ide
+.vscode
+.idea
