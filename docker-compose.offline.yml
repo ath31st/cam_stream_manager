@@ -1,4 +1,3 @@
-version: "3"
 services:
   server:
     image: cam_stream_manager-server:latest
