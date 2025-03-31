@@ -32,7 +32,7 @@ export class PlaylistRepository {
     const playlistsWithGroups = await this.prismaClient.playlist.findMany({
       where: {
         ...(isVisible !== undefined && { isVisible: isVisible }),
-        ...(groupIds.length > 0 && {
+        ...(groupIds && {
           groups: {
             some: {
               id: {
