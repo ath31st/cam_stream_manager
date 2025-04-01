@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute';
 
 const AppRoutes: React.FC = () => {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true }}>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path={routes.HOME} element={<MainPage />} />
