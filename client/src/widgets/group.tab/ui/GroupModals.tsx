@@ -1,10 +1,10 @@
-import React from 'react';
-import { Group, UpdateGroup } from '../../../shared/api.types';
+import type React from 'react';
 import {
   AddGroupModal,
   DeleteGroupModal,
   UpdateGroupModal,
 } from '../../../features/group.management';
+import type { Group, UpdateGroup } from '../../../shared/api.types';
 
 interface GroupModalsProps {
   isAddModalVisible: boolean;

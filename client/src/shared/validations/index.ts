@@ -1,17 +1,17 @@
 import {
+  confirmPasswordValidationRules,
+  emailValidationRules,
+  groupNameValidationRules,
+  optionalPhoneValidationRules,
+  optionalRpNameValidationRules,
+  passwordValidationRules,
   phoneValidationRules,
+  playlistNameValidationRules,
   rpNameValidationRules,
   streamCommentValidationRules,
   streamNameValidationRules,
   streamUrlValidationRules,
-  playlistNameValidationRules,
-  groupNameValidationRules,
-  optionalPhoneValidationRules,
-  optionalRpNameValidationRules,
-  emailValidationRules,
   usernameValidationRules,
-  confirmPasswordValidationRules,
-  passwordValidationRules,
 } from './rules/validation.rules';
 
 export {

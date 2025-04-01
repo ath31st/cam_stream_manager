@@ -1,15 +1,15 @@
-import React from 'react';
 import {
-  UserOutlined,
   LoginOutlined,
   LogoutOutlined,
-  ToolOutlined,
   PlayCircleOutlined,
+  ToolOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
-import styles from './AuthButtons.module.css';
+import type React from 'react';
 import routes from '../../../shared/routes';
 import { IconButton } from '../../../shared/ui';
 import UserRoles from '../lib/user.roles';
+import styles from './AuthButtons.module.css';
 
 interface AuthButtonsProps {
   isAuthenticated: boolean;

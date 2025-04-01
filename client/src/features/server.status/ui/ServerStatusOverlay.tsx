@@ -1,7 +1,7 @@
-import React from 'react';
+import type React from 'react';
 import { useServerStatusStore } from '..';
-import styles from './ServerStatusOverlay.module.css';
 import { CommonAlert } from '../../../shared/ui';
+import styles from './ServerStatusOverlay.module.css';
 
 const ServerStatusOverlay: React.FC = () => {
   const { isServerUp } = useServerStatusStore();
@@ -12,7 +12,7 @@ const ServerStatusOverlay: React.FC = () => {
         <CommonAlert
           message="Сервер недоступен"
           description="Пожалуйста, проверьте соединение и повторите попытку позже."
-        ></CommonAlert>
+        />
       </div>
     );
   }

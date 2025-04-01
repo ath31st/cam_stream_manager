@@ -1,15 +1,15 @@
-import React from 'react';
-import {
-  NewPlaylist,
-  Playlist,
-  UpdatePlaylist,
-  Group,
-} from '../../../shared/api.types';
+import type React from 'react';
 import {
   AddPlaylistModal,
   DeletePlaylistModal,
   UpdatePlaylistModal,
 } from '../../../features/playlist.management';
+import type {
+  Group,
+  NewPlaylist,
+  Playlist,
+  UpdatePlaylist,
+} from '../../../shared/api.types';
 
 interface PlaylistModalsProps {
   groups: Group[];

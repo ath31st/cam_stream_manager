@@ -1,4 +1,4 @@
-import { FormInstance, Rule, RuleObject } from 'antd/es/form';
+import type { FormInstance, Rule, RuleObject } from 'antd/es/form';
 import {
   phoneErrorMessage,
   phonePattern,

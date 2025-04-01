@@ -1,18 +1,18 @@
+import { AxiosError } from 'axios';
 import { create } from 'zustand';
-import {
-  ResponsiblePerson,
+import type {
   NewResponsiblePerson,
+  ResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../shared/api.types';
-import { AxiosError } from 'axios';
 import { getRpErrorMessage, unknownError } from '../../../shared/errors';
 import {
+  createResponsiblePerson,
+  deleteResponsiblePerson,
   fetchResponsiblePerson,
   fetchResponsiblePersons,
   fetchResponsiblePersonsByStream,
-  createResponsiblePerson,
   updateResponsiblePerson,
-  deleteResponsiblePerson,
 } from '../api/rp.api';
 
 interface ResponsiblePersonState {

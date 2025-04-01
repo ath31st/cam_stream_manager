@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Login, Tokens } from '../index';
+import type { Login, Tokens } from '../index';
 
 const API_URL = process.env.REACT_APP_API_URL;
 

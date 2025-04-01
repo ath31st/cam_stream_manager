@@ -1,7 +1,7 @@
-import React from 'react';
-import { EventDto } from '../../../shared/api.types';
-import EventCard from './EventCard';
 import { Space } from 'antd';
+import type React from 'react';
+import type { EventDto } from '../../../shared/api.types';
+import EventCard from './EventCard';
 
 interface EventCardListProps {
   events: EventDto[];

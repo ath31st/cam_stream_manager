@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
-import { Modal, Input, Form, Switch, Select } from 'antd';
-import { Playlist, UpdatePlaylist, Group } from '../../../shared/api.types';
-import { playlistNameValidationRules } from '../../../shared/validations';
+import { Form, Input, Modal, Select, Switch } from 'antd';
+import type React from 'react';
+import { useEffect } from 'react';
+import type {
+  Group,
+  Playlist,
+  UpdatePlaylist,
+} from '../../../shared/api.types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import { FooterModal } from '../../../shared/ui';
+import { playlistNameValidationRules } from '../../../shared/validations';
 
 interface UpdatePlaylistModalProps {
   groups: Group[];
@@ -33,8 +38,10 @@ const UpdatePlaylistModal: React.FC<UpdatePlaylistModalProps> = ({
 
   const handleOk = () => {
     form.validateFields().then((values) => {
+      if (!playlist) return;
+
       const updatedPlaylist: UpdatePlaylist = {
-        id: playlist!.id,
+        id: playlist.id,
         name: values.name,
         isVisible: values.isVisible,
         groupIds: values.groupIds || [],

@@ -1,10 +1,10 @@
-import { create } from 'zustand';
-import { login, logout, refreshAccessToken } from '../api/auth.api';
-import { decodeToken, isTokenExpired } from '../lib/jwt';
-import { JwtUser } from '../model/auth.model';
 import { AxiosError } from 'axios';
+import { create } from 'zustand';
 import { getAuthErrorMessage, unknownError } from '../../../shared/errors';
+import { login, logout, refreshAccessToken } from '../api/auth.api';
 import { LOCAL_STORAGE_KEY } from '../lib/auth.constants';
+import { decodeToken, isTokenExpired } from '../lib/jwt';
+import type { JwtUser } from '../model/auth.model';
 
 interface AuthState {
   user: JwtUser | null;
@@ -112,8 +112,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   refreshAccessToken: async () => {
     const { refreshToken } = get();
+
+    if (!refreshToken) {
+      console.error('Refresh token is missing');
+      return;
+    }
+
     try {
-      const newAccessToken = await refreshAccessToken(refreshToken!);
+      const newAccessToken = await refreshAccessToken(refreshToken);
       const user = decodeToken(newAccessToken);
 
       set({
@@ -127,7 +133,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         LOCAL_STORAGE_KEY,
         JSON.stringify({ accessToken: newAccessToken, refreshToken, user }),
       );
-    } catch (error: AxiosError | unknown) {
+    } catch (error: unknown) {
       if (error instanceof AxiosError && error.status === 401) {
         await get().logout();
       } else {

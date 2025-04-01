@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'antd';
-import PlaylistCard from './PlaylistCard';
-import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
-import { PlaylistInfo } from '../../../shared/api.types';
-import { EventSidebar } from '../../event.sidebar';
-import { LargeLoader } from '../../../shared/ui';
+import { Col, Row } from 'antd';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { fetchDashboardData } from '../../../entities/dashboard';
+import type { PlaylistInfo } from '../../../shared/api.types';
+import { LargeLoader } from '../../../shared/ui';
+import { EventSidebar } from '../../event.sidebar';
+import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
+import PlaylistCard from './PlaylistCard';
 
 interface DashboardProps {
   isActiveTab: boolean;

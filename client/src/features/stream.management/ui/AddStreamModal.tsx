@@ -1,6 +1,8 @@
-import React from 'react';
-import { Modal, Form, Input } from 'antd';
-import { Playlist, NewStream } from '../../../shared/api.types';
+import { Form, Input, Modal } from 'antd';
+import type React from 'react';
+import type { NewStream, Playlist } from '../../../shared/api.types';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import { FooterModal, PlaylistSelect } from '../../../shared/ui';
 import {
   optionalPhoneValidationRules,
   optionalRpNameValidationRules,
@@ -8,8 +10,6 @@ import {
   streamNameValidationRules,
   streamUrlValidationRules,
 } from '../../../shared/validations';
-import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { PlaylistSelect, FooterModal } from '../../../shared/ui';
 
 interface AddStreamModalProps {
   visible: boolean;

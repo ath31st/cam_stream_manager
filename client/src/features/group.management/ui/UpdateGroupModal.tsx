@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { Modal, Input, Form } from 'antd';
-import { Group, UpdateGroup } from '../../../shared/api.types';
-import { playlistNameValidationRules } from '../../../shared/validations';
+import { Form, Input, Modal } from 'antd';
+import type React from 'react';
+import { useEffect } from 'react';
+import type { Group, UpdateGroup } from '../../../shared/api.types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import { FooterModal } from '../../../shared/ui';
+import { playlistNameValidationRules } from '../../../shared/validations';
 
 interface UpdateGroupModalProps {
   visible: boolean;

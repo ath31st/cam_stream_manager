@@ -1,6 +1,6 @@
-import React from 'react';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/lib/locale/ru_RU';
+import type React from 'react';
 
 interface LocaleProviderProps {
   children: React.ReactNode;

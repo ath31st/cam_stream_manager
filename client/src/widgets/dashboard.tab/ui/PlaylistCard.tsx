@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { PlaylistInfo } from '../../../shared/api.types';
-import { useResponsiblePersonStore } from '../../../entities/responsible.person';
-import { ResponsiblePersonModal } from '../../responsible.person';
 import { Card } from 'antd';
-import StatusCounts from './StatusCounts';
-import { StreamStatus, StreamStatusType } from '../lib/stream.status';
+import type React from 'react';
+import { useState } from 'react';
+import { useResponsiblePersonStore } from '../../../entities/responsible.person';
+import type { PlaylistInfo } from '../../../shared/api.types';
+import { ResponsiblePersonModal } from '../../responsible.person';
+import { StreamStatus, type StreamStatusType } from '../lib/stream.status';
 import styles from './PlaylistCard.module.css';
+import StatusCounts from './StatusCounts';
 import StreamItemList from './StreamItemList';
 
 interface PlaylistCardProps extends PlaylistInfo {

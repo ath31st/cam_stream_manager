@@ -1,5 +1,5 @@
-import React from 'react';
 import { Tooltip } from 'antd';
+import type React from 'react';
 import styles from './CommonTooltip.module.css';
 
 interface CommonTooltipProps {

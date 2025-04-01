@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { useAuthStore } from '../model/auth.store';
-import { useNavigate, useLocation } from 'react-router-dom';
+import type React from 'react';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import AuthModals from './AuthModals';
 import routes from '../../../shared/routes';
+import { useAuthStore } from '../model/auth.store';
 import AuthButtons from './AuthButtons';
+import AuthModals from './AuthModals';
 
 const AuthModule: React.FC = () => {
   const { isAuthenticated, login, user, logout, clearError } = useAuthStore();

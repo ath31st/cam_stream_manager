@@ -1,5 +1,5 @@
-import React from 'react';
 import { Alert } from 'antd';
+import type React from 'react';
 import styles from './CommonAlert.module.css';
 
 interface CommonAlertProps {

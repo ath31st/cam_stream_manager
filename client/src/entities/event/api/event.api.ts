@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { EventType, EventLevel } from '../index';
-import { EventDto, Page } from '../../../shared/api.types';
+import type { EventDto, Page } from '../../../shared/api.types';
+import type { EventLevel, EventType } from '../index';
 
-const API_URL = process.env.REACT_APP_API_URL + '/events';
+const API_URL = `${process.env.REACT_APP_API_URL}/events`;
 
 export const fetchEvents = async (
   page?: number,

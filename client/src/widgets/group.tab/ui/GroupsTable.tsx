@@ -1,10 +1,10 @@
-import React from 'react';
 import { Table } from 'antd';
+import type React from 'react';
 import { paginationConfig } from '../../../shared/pagination';
 import { ActionButtons } from '../../../shared/ui';
 import styles from './GroupsTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
-import { Group } from '../../../shared/api.types';
+import type { Group } from '../../../shared/api.types';
 
 interface GroupsTableProps {
   groups: Group[];
@@ -36,7 +36,14 @@ const GroupsTable: React.FC<GroupsTableProps> = ({
       render: (_: unknown, record: { key: number }) => (
         <div className={styles['actions-column']}>
           <ActionButtons
-            onEdit={() => onEdit(groups.find((g) => g.id === record.key)!)}
+            onEdit={() => {
+              const groupToEdit = groups.find((g) => g.id === record.key);
+              if (groupToEdit) {
+                onEdit(groupToEdit);
+              } else {
+                console.error('Group not found for editing');
+              }
+            }}
             onDelete={() => onDelete(record.key)}
           />
         </div>

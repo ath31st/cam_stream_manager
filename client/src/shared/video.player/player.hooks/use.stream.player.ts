@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
-import flvjs from 'flv.js';
 import dashjs from 'dashjs';
+import flvjs from 'flv.js';
+import Hls from 'hls.js';
+import { useEffect, useRef, useState } from 'react';
 import { determineStreamFormat } from './stream.format.detector';
 
 const useStreamPlayer = (url: string) => {
@@ -32,9 +32,8 @@ const useStreamPlayer = (url: string) => {
               });
 
               return () => hls.destroy();
-            } else if (
-              videoRef.current.canPlayType('application/vnd.apple.mpegurl')
-            ) {
+            }
+            if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
               videoRef.current.src = url;
               videoRef.current.play();
             } else {
@@ -50,9 +49,8 @@ const useStreamPlayer = (url: string) => {
               flvPlayer.play();
 
               return () => flvPlayer.destroy();
-            } else {
-              handleError('FLV не поддерживается');
             }
+            handleError('FLV не поддерживается');
             break;
 
           case 'dash':
@@ -60,9 +58,8 @@ const useStreamPlayer = (url: string) => {
               const player = dashjs.MediaPlayer().create();
               player.initialize(videoRef.current, url, true);
               return () => player.reset();
-            } else {
-              handleError('DASH не поддерживается');
             }
+            handleError('DASH не поддерживается');
             break;
 
           case 'native':
@@ -74,7 +71,7 @@ const useStreamPlayer = (url: string) => {
             handleError('Формат потока не поддерживается');
         }
       } catch (error: unknown) {
-        handleError('Ошибка при определении формата потока: ' + error);
+        handleError(`Ошибка при определении формата потока: ${error}`);
       }
     };
 

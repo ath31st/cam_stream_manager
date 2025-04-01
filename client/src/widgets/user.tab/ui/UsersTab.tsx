@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import { useGroupStore } from '../../../entities/group';
+import { useUserStore } from '../../../entities/user';
+import type { NewUser, UpdateUser, User } from '../../../shared/api.types';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { WideButton, TabContainer, LargeLoader } from '../../../shared/ui';
-import { NewUser, UpdateUser, User } from '../../../shared/api.types';
-import { useUserStore } from '../../../entities/user';
+import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
-import { useGroupStore } from '../../../entities/group';
 
 const UsersTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);

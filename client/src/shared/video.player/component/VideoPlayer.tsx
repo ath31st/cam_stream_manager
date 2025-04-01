@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import useStreamPlayer from '../player.hooks/use.stream.player';
 import styles from './VideoPlayer.module.css';
 

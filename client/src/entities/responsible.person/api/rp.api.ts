@@ -1,11 +1,11 @@
 import axios from 'axios';
-import {
+import type {
   NewResponsiblePerson,
-  UpdateResponsiblePerson,
   ResponsiblePerson,
+  UpdateResponsiblePerson,
 } from '../../../shared/api.types';
 
-const API_URL = process.env.REACT_APP_API_URL + '/responsible-persons';
+const API_URL = `${process.env.REACT_APP_API_URL}/responsible-persons`;
 
 export const fetchResponsiblePerson = async (
   id: number,

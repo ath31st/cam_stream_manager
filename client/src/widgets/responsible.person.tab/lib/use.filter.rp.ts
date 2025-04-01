@@ -1,4 +1,4 @@
-import { ResponsiblePerson } from '../../../entities/responsible.person';
+import type { ResponsiblePerson } from '../../../shared/api.types';
 
 export const useFilterResponsiblePersons = (
   selectedStreamId: number | null,

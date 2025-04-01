@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react';
 import { Space } from 'antd';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';
-import {
-  ResponsiblePerson,
+import { useStreamStore } from '../../../entities/stream';
+import type {
   NewResponsiblePerson,
+  ResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../shared/api.types';
-import { useStreamStore } from '../../../entities/stream';
-import {
-  StreamSelect,
-  WideButton,
-  TabContainer,
-  LargeLoader,
-} from '../../../shared/ui';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
+import {
+  LargeLoader,
+  StreamSelect,
+  TabContainer,
+  WideButton,
+} from '../../../shared/ui';
+import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
 import ResponsiblePersonModals from './ResponsiblePersonModals';
 import ResponsiblePersonsTable from './ResponsiblePersonsTable';
-import { useFilterResponsiblePersons } from '../lib/use.filter.rp';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -90,7 +91,7 @@ const ResponsiblePersonsTab: React.FC = () => {
       if (useResponsiblePersonStore.getState().error === null) {
         successNotification(
           'Ответсвенное лицо удалено',
-          `Ответсвенное лицо успешно удалено.`,
+          'Ответсвенное лицо успешно удалено.',
         );
       }
       setIsDeleteModalVisible(false);

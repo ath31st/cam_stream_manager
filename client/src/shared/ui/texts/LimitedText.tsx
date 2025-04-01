@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CommonTooltip from '../tooltips/CommonTooltip';
 
 interface LimitedTextProps {
@@ -16,7 +17,7 @@ const LimitedText: React.FC<LimitedTextProps> = ({ text, maxLines = 1 }) => {
         textRef.current.scrollHeight > textRef.current.clientHeight;
       setIsTextOverflow(isOverflow);
     }
-  }, [text]);
+  });
 
   const content = (
     <p

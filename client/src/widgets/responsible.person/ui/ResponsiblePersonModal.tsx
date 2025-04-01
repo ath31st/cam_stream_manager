@@ -1,6 +1,6 @@
-import React from 'react';
 import { Modal } from 'antd';
-import { ResponsiblePerson } from '../../../shared/api.types';
+import type React from 'react';
+import type { ResponsiblePerson } from '../../../shared/api.types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import ResponsiblePersonList from './ResponsiblePersonList ';
 

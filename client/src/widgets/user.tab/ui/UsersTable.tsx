@@ -1,10 +1,10 @@
-import React from 'react';
 import { Table } from 'antd';
+import type React from 'react';
 import { paginationConfig } from '../../../shared/pagination';
 import { ActionButtons } from '../../../shared/ui';
 import styles from './UsersTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
-import { User, Group } from '../../../shared/api.types';
+import type { Group, User } from '../../../shared/api.types';
 
 interface UsersTableProps {
   users: User[];
@@ -90,7 +90,14 @@ const UsersTable: React.FC<UsersTableProps> = ({
       render: (_: unknown, record: { key: number }) => (
         <div className={styles['actions-column']}>
           <ActionButtons
-            onEdit={() => onEdit(users.find((u) => u.id === record.key)!)}
+            onEdit={() => {
+              const userToEdit = users.find((u) => u.id === record.key);
+              if (userToEdit) {
+                onEdit(userToEdit);
+              } else {
+                console.error('User not found for editing');
+              }
+            }}
             onDelete={() => onDelete(record.key)}
           />
         </div>

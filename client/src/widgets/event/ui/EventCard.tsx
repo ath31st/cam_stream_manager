@@ -1,10 +1,10 @@
-import React from 'react';
-import { EventDto } from '../../../shared/api.types';
 import { Card } from 'antd';
-import LevelBadge from './LevelBadge';
-import styles from './EventCard.module.css';
-import { CommonTooltip } from '../../../shared/ui';
+import type React from 'react';
 import { usePulsing } from '../../../entities/event';
+import type { EventDto } from '../../../shared/api.types';
+import { CommonTooltip } from '../../../shared/ui';
+import styles from './EventCard.module.css';
+import LevelBadge from './LevelBadge';
 
 const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
   const isPulsing = usePulsing(createdAt);

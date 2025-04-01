@@ -1,7 +1,7 @@
-import React from 'react';
+import type React from 'react';
+import type { StreamDashboard } from '../../../shared/api.types';
 import StreamItem from './StreamItem';
 import styles from './StreamItemList.module.css';
-import { StreamDashboard } from '../../../shared/api.types';
 
 interface StreamItemListProps {
   streams: StreamDashboard[];

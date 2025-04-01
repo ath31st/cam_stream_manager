@@ -1,9 +1,9 @@
 import { Table } from 'antd';
-import { EventDto } from '../../../shared/api.types';
-import React from 'react';
+import type React from 'react';
+import type { EventDto } from '../../../shared/api.types';
+import { ActionButtons } from '../../../shared/ui';
 import { LevelBadge } from '../../event';
 import styles from './EventTable.module.css';
-import { ActionButtons } from '../../../shared/ui';
 
 interface EventsTableProps {
   events: EventDto[];

@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import { useGroupStore } from '../../../entities/group';
 import { usePlaylistStore } from '../../../entities/playlist';
-import {
+import { useStreamStore } from '../../../entities/stream';
+import type {
   NewPlaylist,
   Playlist,
   UpdatePlaylist,
 } from '../../../shared/api.types';
-import { useStreamStore } from '../../../entities/stream';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import PlaylistsTable from './PlaylistsTable';
+import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
 import PlaylistModals from './PlaylistModals';
-import { WideButton, TabContainer, LargeLoader } from '../../../shared/ui';
-import { useGroupStore } from '../../../entities/group';
+import PlaylistsTable from './PlaylistsTable';
 
 const PlaylistsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);

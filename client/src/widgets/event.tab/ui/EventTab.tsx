@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { Pagination } from 'antd';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { useEventStore } from '../../../entities/event';
+import { DeleteEventModal } from '../../../features/event.management';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { DeleteEventModal } from '../../../features/event.management';
-import EventTable from './EventTable';
-import { TabContainer, LargeLoader } from '../../../shared/ui';
-import { Pagination } from 'antd';
+import { LargeLoader, TabContainer } from '../../../shared/ui';
 import styles from './EventTab.module.css';
+import EventTable from './EventTable';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);

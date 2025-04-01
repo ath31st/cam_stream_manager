@@ -1,6 +1,6 @@
-import React from 'react';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import type React from 'react';
 
 interface ActionButtonsProps {
   onEdit?: () => void;

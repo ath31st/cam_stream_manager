@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button } from 'antd';
+import type React from 'react';
 import commonStyles from './CommonButton.module.css';
 import styles from './WideButton.module.css';
 

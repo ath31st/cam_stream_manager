@@ -1,15 +1,15 @@
-import React from 'react';
-import {
-  NewStream,
-  Stream,
-  UpdateStream,
-  Playlist,
-} from '../../../shared/api.types';
+import type React from 'react';
 import {
   AddStreamModal,
   DeleteStreamModal,
   UpdateStreamModal,
 } from '../../../features/stream.management';
+import type {
+  NewStream,
+  Playlist,
+  Stream,
+  UpdateStream,
+} from '../../../shared/api.types';
 
 interface StreamModalsProps {
   isAddModalVisible: boolean;

@@ -1,12 +1,12 @@
-import { create } from 'zustand';
 import { AxiosError } from 'axios';
-import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
-import {
+import { create } from 'zustand';
+import type {
   NewUser,
   UpdateUser,
   UpdateUserPassword,
   User,
 } from '../../../shared/api.types';
+import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
 import {
   createUser,
   deleteUser,

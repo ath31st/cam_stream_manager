@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import setupAxiosInterceptor from '../providers/axios.interceptor';
+import type React from 'react';
+import { useEffect } from 'react';
 import { useServerStatusStore } from '../../features/server.status';
+import setupAxiosInterceptor from '../providers/axios.interceptor';
 
 interface AxiosInterceptorProviderProps {
   children: React.ReactNode;

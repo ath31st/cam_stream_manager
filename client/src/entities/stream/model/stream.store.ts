@@ -1,15 +1,19 @@
-import { create } from 'zustand';
-import { Stream, NewStream, UpdateStream } from '../../../shared/api.types';
-import {
-  fetchStreams,
-  fetchStream,
-  createStream,
-  updateStream,
-  deleteStream,
-  fetchStreamsByPlaylist,
-} from '../api/stream.api';
 import { AxiosError } from 'axios';
+import { create } from 'zustand';
+import type {
+  NewStream,
+  Stream,
+  UpdateStream,
+} from '../../../shared/api.types';
 import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
+import {
+  createStream,
+  deleteStream,
+  fetchStream,
+  fetchStreams,
+  fetchStreamsByPlaylist,
+  updateStream,
+} from '../api/stream.api';
 
 interface StreamState {
   streams: Stream[];

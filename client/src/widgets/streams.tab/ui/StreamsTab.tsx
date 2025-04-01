@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from 'react';
 import { Space } from 'antd';
-import { useStreamStore } from '../../../entities/stream';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { usePlaylistStore } from '../../../entities/playlist';
+import { useStreamStore } from '../../../entities/stream';
+import type {
+  NewStream,
+  Stream,
+  UpdateStream,
+} from '../../../shared/api.types';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import StreamsTable from './StreamsTable';
-import StreamModals from './StreamsModals';
-import { Stream, NewStream, UpdateStream } from '../../../shared/api.types';
 import {
+  LargeLoader,
+  PlaylistSelect,
   TabContainer,
   WideButton,
-  PlaylistSelect,
-  LargeLoader,
 } from '../../../shared/ui';
+import StreamModals from './StreamsModals';
+import StreamsTable from './StreamsTable';
 
 const StreamsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -101,7 +106,7 @@ const StreamsTab: React.FC = () => {
     if (deleteStreamId !== null) {
       await removeStream(deleteStreamId);
       if (useStreamStore.getState().error === null) {
-        successNotification('Поток удален', `Поток успешно удален.`);
+        successNotification('Поток удален', 'Поток успешно удален.');
       }
       setDeleteStreamId(null);
       setIsDeleteModalVisible(false);

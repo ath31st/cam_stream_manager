@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { Modal, Form, Input, Select, Switch } from 'antd';
-import { Stream, UpdateStream, Playlist } from '../../../shared/api.types';
+import { Form, Input, Modal, Select, Switch } from 'antd';
+import type React from 'react';
+import { useEffect } from 'react';
+import type { Playlist, Stream, UpdateStream } from '../../../shared/api.types';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import { FooterModal } from '../../../shared/ui';
 import {
   streamCommentValidationRules,
   streamNameValidationRules,
   streamUrlValidationRules,
 } from '../../../shared/validations';
-import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared/ui';
 
 interface UpdateStreamModalProps {
   visible: boolean;

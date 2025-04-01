@@ -1,16 +1,16 @@
-import React from 'react';
-import { Table } from 'antd';
 import {
   CheckCircleOutlined,
-  ExclamationCircleOutlined,
   CloseCircleOutlined,
-  SyncOutlined,
+  ExclamationCircleOutlined,
   PlusCircleOutlined,
+  SyncOutlined,
 } from '@ant-design/icons';
-import { Stream, Playlist } from '../../../shared/api.types';
+import { Table } from 'antd';
+import type React from 'react';
+import type { Playlist, Stream } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
+import { ActionButtons, CommonTooltip } from '../../../shared/ui';
 import styles from './StreamsTable.module.css';
-import { CommonTooltip, ActionButtons } from '../../../shared/ui';
 
 interface StreamsTableProps {
   streams: Stream[];

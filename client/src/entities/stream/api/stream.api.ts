@@ -1,7 +1,11 @@
 import axios from 'axios';
-import { NewStream, UpdateStream, Stream } from '../../../shared/api.types';
+import type {
+  NewStream,
+  Stream,
+  UpdateStream,
+} from '../../../shared/api.types';
 
-const API_URL = process.env.REACT_APP_API_URL + '/streams';
+const API_URL = `${process.env.REACT_APP_API_URL}/streams`;
 
 export const fetchStreams = async (): Promise<Stream[]> => {
   const response = await axios.get<Stream[]>(API_URL);

@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainPage from '../../pages/main';
-import MainLayout from '../layouts/MainLayout';
-import AdminPage from '../../pages/admin';
-import AdminLayout from '../layouts/AdminLayout';
+import type React from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import UnauthorizedPage from '../../pages/401';
-import PrivateRoute from './PrivateRoute';
-import routes from '../../shared/routes';
 import AccessDeniedPage from '../../pages/403';
+import AdminPage from '../../pages/admin';
+import MainPage from '../../pages/main';
+import routes from '../../shared/routes';
+import AdminLayout from '../layouts/AdminLayout';
+import MainLayout from '../layouts/MainLayout';
+import PrivateRoute from './PrivateRoute';
 
 const AppRoutes: React.FC = () => {
   return (

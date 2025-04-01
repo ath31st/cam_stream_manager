@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {
+import type {
   NewUser,
   UpdateUser,
   UpdateUserPassword,
   User,
 } from '../../../shared/api.types';
 
-const API_URL = process.env.REACT_APP_API_URL + '/users';
+const API_URL = `${process.env.REACT_APP_API_URL}/users`;
 
 export const fetchUsers = async (): Promise<User[]> => {
   const response = await axios.get<User[]>(API_URL);

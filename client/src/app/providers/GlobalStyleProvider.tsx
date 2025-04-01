@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
 import { ConfigProvider } from 'antd';
+import type React from 'react';
+import type { ReactNode } from 'react';
 import 'antd/dist/reset.css';
 import '../styles/fonts.css';
 import '../styles/global.css';

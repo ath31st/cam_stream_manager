@@ -1,6 +1,5 @@
 html,
-
-div[class*='box'] {
+div[class*="box"] {
   height: 33.33%;
   width: 100%;
   display: flex;
@@ -26,12 +25,12 @@ div[class*='box'] {
   position: relative;
 }
 .btn-one span {
-  transition: all 0.3s;  
+  transition: all 0.3s;
   display: inline-flex !important;
   align-self: center !important;
 }
 .btn-one::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -56,7 +55,7 @@ div[class*='box'] {
   transform: scale(1, 1);
 }
 .btn-one::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -88,7 +87,7 @@ div[class*='box'] {
   height: 100%;
 }
 .btn-two::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -100,7 +99,7 @@ div[class*='box'] {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .btn-two::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -130,7 +129,7 @@ div[class*='box'] {
   position: relative;
 }
 .btn-three::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -145,7 +144,7 @@ div[class*='box'] {
   transform: scale(0.5, 0.5);
 }
 .btn-three::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

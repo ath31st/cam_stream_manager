@@ -1,5 +1,5 @@
-import React from 'react';
-import { JwtUser } from '../model/auth.model';
+import type React from 'react';
+import type { JwtUser } from '../model/auth.model';
 import LoginModal from './LoginModal';
 import LogoutConfirmModal from './LogoutConfirmModal';
 import UserCardModal from './UserCardModal';

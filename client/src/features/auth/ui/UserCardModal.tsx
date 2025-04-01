@@ -1,7 +1,7 @@
-import React from 'react';
 import { Modal } from 'antd';
-import { JwtUser } from '../model/auth.model';
+import type React from 'react';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import type { JwtUser } from '../model/auth.model';
 
 interface UserCardModalProps {
   visible: boolean;

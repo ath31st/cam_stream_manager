@@ -27,7 +27,7 @@
 .player::-webkit-media-controls-play-button,
 /* .player::-webkit-media-controls-volume-slider,
 .player::-webkit-media-controls-mute-button, */
-.player::-webkit-media-controls-pause-button {
+  .player::-webkit-media-controls-pause-button {
   display: none;
 }
 

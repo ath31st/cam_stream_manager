@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-import { EventType, EventLevel } from '../';
 import { AxiosError } from 'axios';
+import type { EventLevel, EventType } from '../';
+import type { EventDto, Page } from '../../../shared/api.types';
 import { getEventErrorMessage, unknownError } from '../../../shared/errors';
-import { fetchEvents, deleteEvent } from '../api/event.api';
-import { EventDto, Page } from '../../../shared/api.types';
+import { deleteEvent, fetchEvents } from '../api/event.api';
 
 interface EventState {
   events: EventDto[];

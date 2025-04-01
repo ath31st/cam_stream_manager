@@ -1,6 +1,6 @@
-import React from 'react';
 import { Table } from 'antd';
-import { Playlist, Group } from '../../../shared/api.types';
+import type React from 'react';
+import type { Group, Playlist } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
 import { ActionButtons } from '../../../shared/ui';
 import styles from './PlaylistsTable.module.css';
@@ -53,7 +53,14 @@ const PlaylistsTable: React.FC<PlaylistsTableProps> = ({
       render: (_: unknown, record: { key: number }) => (
         <div className={styles['actions-column']}>
           <ActionButtons
-            onEdit={() => onEdit(playlists.find((r) => r.id === record.key)!)}
+            onEdit={() => {
+              const playlistToEdit = playlists.find((p) => p.id === record.key);
+              if (playlistToEdit) {
+                onEdit(playlistToEdit);
+              } else {
+                console.error('Playlist not found for editing');
+              }
+            }}
             onDelete={() => onDelete(record.key)}
           />
         </div>

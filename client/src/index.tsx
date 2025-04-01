@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app/App';
-import reportWebVitals from './reportWebVitals';
-import LocaleProvider from './app/providers/LocaleProvider';
-import AxiosInterceptorProvider from './app/providers/AxiosInterceptorProvider';
-import { ServerStatusOverlay } from './features/server.status';
 import AuthProvider from './app/providers/AuthProvider';
+import AxiosInterceptorProvider from './app/providers/AxiosInterceptorProvider';
 import GlobalStyleProvider from './app/providers/GlobalStyleProvider';
+import LocaleProvider from './app/providers/LocaleProvider';
+import { ServerStatusOverlay } from './features/server.status';
+import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

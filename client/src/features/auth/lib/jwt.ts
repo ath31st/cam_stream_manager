@@ -1,5 +1,5 @@
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-import { JwtUser } from '../model/auth.model';
+import { type JwtPayload, jwtDecode } from 'jwt-decode';
+import type { JwtUser } from '../model/auth.model';
 
 export const decodeToken = (token: string): JwtUser | null => {
   try {

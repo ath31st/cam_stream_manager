@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Menu, MenuProps } from 'antd';
+import { Layout, Menu, type MenuProps } from 'antd';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { usePlaylistStore } from '../../../entities/playlist';
 import { useStreamStore } from '../../../entities/stream';
 import styles from './Sider.module.css';
@@ -16,14 +17,14 @@ interface LevelKeysProps {
 const getLevelKeys = (items: LevelKeysProps[]) => {
   const key: Record<string, number> = {};
   const func = (items: LevelKeysProps[], level = 1) => {
-    items.forEach((item) => {
+    for (const item of items) {
       if (item.key) {
         key[item.key] = level;
       }
       if (item.children) {
         func(item.children, level + 1);
       }
-    });
+    }
   };
   func(items);
   return key;
@@ -31,13 +32,14 @@ const getLevelKeys = (items: LevelKeysProps[]) => {
 
 export const AppSider: React.FC = () => {
   const { playlists, fetchAllPlaylists } = usePlaylistStore();
-  const { streams, fetchStreamsByPlaylist, setSelectedStream } = useStreamStore();
+  const { streams, fetchStreamsByPlaylist, setSelectedStream } =
+    useStreamStore();
   const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(['0']);
   const onlyVisible = true;
 
   useEffect(() => {
     fetchAllPlaylists(onlyVisible);
-  }, [fetchAllPlaylists, onlyVisible]);
+  }, [fetchAllPlaylists]);
 
   const handlePlaylistClick = (playlistId: number) => {
     fetchStreamsByPlaylist(playlistId);
@@ -49,12 +51,20 @@ export const AppSider: React.FC = () => {
     onTitleClick: () => handlePlaylistClick(playlist.id),
     children: streams
       .filter((stream) => stream.playlistId === playlist.id)
-      .map((stream) => ({
-        key: `${playlist.id}-${stream.id}`,
-        label: stream.name,
-        onClick: () =>
-          setSelectedStream(streams.find((s) => s.id === stream.id)!),
-      })),
+      .map((stream) => {
+        const streamToSelect = streams.find((s) => s.id === stream.id);
+        return {
+          key: `${playlist.id}-${stream.id}`,
+          label: stream.name,
+          onClick: () => {
+            if (streamToSelect) {
+              setSelectedStream(streamToSelect);
+            } else {
+              console.error(`Stream with id ${stream.id} not found`);
+            }
+          },
+        };
+      }),
   }));
 
   const levelKeys = getLevelKeys(items as LevelKeysProps[]);

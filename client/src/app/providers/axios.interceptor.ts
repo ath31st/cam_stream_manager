@@ -23,8 +23,7 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
           try {
             await useAuthStore.getState().refreshAccessToken();
             const newAccessToken = useAuthStore.getState().accessToken;
-            originalRequest.headers['Authorization'] =
-              `Bearer ${newAccessToken}`;
+            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
             return await axios(originalRequest);
           } catch (refreshError) {
             console.error('Error refreshing access token:', refreshError);
@@ -48,7 +47,7 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
       if (storedData) {
         const { accessToken } = JSON.parse(storedData);
         if (accessToken) {
-          config.headers['Authorization'] = `Bearer ${accessToken}`;
+          config.headers.Authorization = `Bearer ${accessToken}`;
         }
       }
       return config;

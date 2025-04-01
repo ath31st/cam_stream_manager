@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Group, UpdateGroup } from '../../../shared/api.types';
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import { useGroupStore } from '../../../entities/group';
+import type { Group, UpdateGroup } from '../../../shared/api.types';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { useGroupStore } from '../../../entities/group';
-import { WideButton, LargeLoader, TabContainer } from '../../../shared/ui';
-import GroupsTable from './GroupsTable';
+import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
 import GroupModals from './GroupModals';
+import GroupsTable from './GroupsTable';
 
 const GroupsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);

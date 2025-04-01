@@ -1,15 +1,15 @@
-import React from 'react';
-import {
-  ResponsiblePerson,
-  NewResponsiblePerson,
-  UpdateResponsiblePerson,
-  Stream,
-} from '../../../shared/api.types';
+import type React from 'react';
 import {
   AddResponsiblePersonModal,
   DeleteResponsiblePersonModal,
   UpdateResponsiblePersonModal,
 } from '../../../features/responsible.person.management';
+import type {
+  NewResponsiblePerson,
+  ResponsiblePerson,
+  Stream,
+  UpdateResponsiblePerson,
+} from '../../../shared/api.types';
 
 const ResponsiblePersonModals: React.FC<{
   isAddVisible: boolean;

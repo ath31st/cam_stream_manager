@@ -1,9 +1,9 @@
-import React from 'react';
 import { Layout } from 'antd';
-import Header from '../../widgets/header';
-import Footer from '../../widgets/footer';
-import Sider from '../../widgets/sider';
+import type React from 'react';
 import { Outlet } from 'react-router-dom';
+import Footer from '../../widgets/footer';
+import Header from '../../widgets/header';
+import Sider from '../../widgets/sider';
 import styles from './MainLayout.module.css';
 
 const { Content } = Layout;

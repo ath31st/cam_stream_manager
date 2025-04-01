@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import styles from './StreamItem.module.css';
 
 interface StreamItemProps {
@@ -7,14 +7,17 @@ interface StreamItemProps {
   onClick: () => void;
 }
 
-const StreamItem: React.FC<StreamItemProps> = ({
-  name,
-  status,
-  onClick,
-}) => {
+const StreamItem: React.FC<StreamItemProps> = ({ name, status, onClick }) => {
   const handleClick = (event: React.MouseEvent) => {
     event.stopPropagation();
     onClick();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.stopPropagation();
+      onClick();
+    }
   };
 
   const getStatusColor = () => {
@@ -31,7 +34,11 @@ const StreamItem: React.FC<StreamItemProps> = ({
   };
 
   return (
-    <div className={styles.streamItem} onClick={handleClick}>
+    <div
+      className={styles.streamItem}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+    >
       <span className={getStatusColor()}>{name}</span>
     </div>
   );

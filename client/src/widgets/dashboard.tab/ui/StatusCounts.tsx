@@ -1,6 +1,6 @@
 import React from 'react';
+import { StreamStatus, type StreamStatusType } from '../lib/stream.status';
 import styles from './StatusCounts.module.css';
-import { StreamStatus, StreamStatusType } from '../lib/stream.status';
 
 interface StatusCount {
   count: number;
@@ -28,7 +28,7 @@ const StatusCounts: React.FC<StatusCountsProps> = ({ statusCounts }) => {
   return (
     <div className={styles.statusCounts}>
       {statusCounts.map((status, index) => (
-        <React.Fragment key={index}>
+        <React.Fragment key={status.type}>
           <span
             className={`${styles.statusCount} ${status.type === 'noConnection' && status.count > 0 ? styles.pulsating : ''}`}
             style={{ color: getColor(status.type) }}

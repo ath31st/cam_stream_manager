@@ -3,4 +3,4 @@ const UserRoles = {
   USER: 'USER',
 } as const;
 
-export default UserRoles
+export default UserRoles;

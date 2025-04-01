@@ -1,9 +1,9 @@
-import React from 'react';
 import { Table } from 'antd';
-import { ResponsiblePerson, Stream } from '../../../shared/api.types';
+import type React from 'react';
+import type { ResponsiblePerson, Stream } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
-import styles from './ResponsiblePersonsTable.module.css';
 import { ActionButtons } from '../../../shared/ui';
+import styles from './ResponsiblePersonsTable.module.css';
 
 interface ResponsiblePersonsTableProps {
   persons: ResponsiblePerson[];

@@ -1,7 +1,7 @@
-import React from 'react';
 import { Layout } from 'antd';
-import styles from './Header.module.css';
+import type React from 'react';
 import { AuthModule } from '../../../features/auth';
+import styles from './Header.module.css';
 
 const { Header } = Layout;
 

@@ -1,7 +1,7 @@
-import { Group, NewGroup, UpdateGroup } from '../../../shared/api.types';
 import { AxiosError } from 'axios';
-import { getGroupErrorMessage, unknownError } from '../../../shared/errors';
 import { create } from 'zustand';
+import type { Group, NewGroup, UpdateGroup } from '../../../shared/api.types';
+import { getGroupErrorMessage, unknownError } from '../../../shared/errors';
 import {
   createGroup,
   deleteGroup,

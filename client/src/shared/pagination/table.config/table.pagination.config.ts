@@ -1,4 +1,4 @@
-import { TablePaginationConfig } from 'antd';
+import type { TablePaginationConfig } from 'antd';
 
 export const paginationConfig: TablePaginationConfig = {
   defaultCurrent: 1,

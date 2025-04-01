@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useStreamStore } from '../../../entities/stream';
-import { VideoPlayer } from '../../../shared/video.player';
-import styles from './Player.module.css';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';
-import UnavailableStreamCard from './UnavailableStreamCard';
-import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
-import WelcomeCard from './WelcomeCard';
+import { useStreamStore } from '../../../entities/stream';
 import { WideButton } from '../../../shared/ui';
+import { VideoPlayer } from '../../../shared/video.player';
+import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
+import styles from './Player.module.css';
+import UnavailableStreamCard from './UnavailableStreamCard';
+import WelcomeCard from './WelcomeCard';
 
 export const Player: React.FC = () => {
   const { selectedStream } = useStreamStore();

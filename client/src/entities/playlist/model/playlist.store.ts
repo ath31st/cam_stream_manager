@@ -1,14 +1,18 @@
-import { create } from 'zustand';
-import { Playlist, NewPlaylist, UpdatePlaylist } from '../../../shared/api.types';
-import {
-  fetchPlaylists,
-  fetchPlaylist,
-  createPlaylist,
-  updatePlaylist,
-  deletePlaylist,
-} from '../api/playlist.api';
 import { AxiosError } from 'axios';
+import { create } from 'zustand';
+import type {
+  NewPlaylist,
+  Playlist,
+  UpdatePlaylist,
+} from '../../../shared/api.types';
 import { getPlaylistErrorMessage, unknownError } from '../../../shared/errors';
+import {
+  createPlaylist,
+  deletePlaylist,
+  fetchPlaylist,
+  fetchPlaylists,
+  updatePlaylist,
+} from '../api/playlist.api';
 
 interface PlaylistState {
   playlists: Playlist[];

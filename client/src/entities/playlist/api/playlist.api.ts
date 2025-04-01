@@ -1,7 +1,11 @@
 import axios from 'axios';
-import { Playlist, NewPlaylist, UpdatePlaylist } from '../../../shared/api.types';
+import type {
+  NewPlaylist,
+  Playlist,
+  UpdatePlaylist,
+} from '../../../shared/api.types';
 
-const API_URL = process.env.REACT_APP_API_URL + '/playlists';
+const API_URL = `${process.env.REACT_APP_API_URL}/playlists`;
 
 export const fetchPlaylists = async (
   isVisible?: boolean,

@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
-import { Modal, Form, Input } from 'antd';
-import {
+import { Form, Input, Modal } from 'antd';
+import type React from 'react';
+import { useEffect } from 'react';
+import type {
   ResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../shared/api.types';
+import styles from '../../../shared/styles/CommonModalStyle.module.css';
+import { FooterModal } from '../../../shared/ui';
 import {
   phoneValidationRules,
   rpNameValidationRules,
 } from '../../../shared/validations';
-import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared/ui';
 
 interface UpdateResponsiblePersonModalProps {
   visible: boolean;

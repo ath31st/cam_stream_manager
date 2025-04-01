@@ -23,23 +23,17 @@
   0% {
     transform: scale(1);
     color: var(--colorError);
-    text-shadow:
-      0 0 10px var(--colorError),
-      0 0 20px var(--colorError);
+    text-shadow: 0 0 10px var(--colorError), 0 0 20px var(--colorError);
   }
   50% {
     transform: scale(1.5);
     color: var(--colorError);
-    text-shadow:
-      0 0 20px var(--colorError),
-      0 0 30px var(--colorError);
+    text-shadow: 0 0 20px var(--colorError), 0 0 30px var(--colorError);
   }
   100% {
     transform: scale(1);
     color: var(--colorError);
-    text-shadow:
-      0 0 10px var(--colorError),
-      0 0 20px var(--colorError);
+    text-shadow: 0 0 10px var(--colorError), 0 0 20px var(--colorError);
   }
 }
 
