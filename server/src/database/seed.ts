@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.region.createMany({
+  await prisma.playlist.createMany({
     data: [
       {
         name: 'SOUTH',

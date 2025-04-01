@@ -1,14 +1,14 @@
-import { Request, Response } from 'express';
-import {
+import type {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
-import { ResponsiblePersonService } from '../services/responsible.person.service';
+import type { Request, Response } from 'express';
+import type { ResponsiblePersonService } from '../services/responsible.person.service';
+import { trimObjectValues } from '../utils/trim.utils';
 import {
   newResponsiblePersonSchema,
   updateResponsiblePersonSchema,
 } from '../validators/responsible.person.validator';
-import { trimObjectValues } from '../utils/trim.utils';
 
 export class ResponsiblePersonController {
   private responsiblePersonService: ResponsiblePersonService;

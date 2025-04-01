@@ -2,10 +2,12 @@ export const trimObjectValues = (
   obj: Record<string, unknown>,
 ): Record<string, unknown> => {
   const trimmedObj = { ...obj };
-  Object.keys(trimmedObj).forEach((key) => {
+
+  for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {
-      trimmedObj[key] = trimmedObj[key].trim();
+      trimmedObj[key] = (trimmedObj[key] as string).trim();
     }
-  });
+  }
+
   return trimmedObj;
 };

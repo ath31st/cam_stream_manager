@@ -1,7 +1,7 @@
-import { PrismaClient, Event } from '@prisma/client';
-import { Logger } from '../utils/logger';
-import { EventLevel, EventType } from '../types/event.types';
-import { Page } from '@shared/types';
+import type { Event, PrismaClient } from '@prisma/client';
+import type { Page } from '@shared/types';
+import type { EventLevel, EventType } from '../types/event.types';
+import Logger from '../utils/logger';
 
 export class EventRepository {
   private prismaClient: PrismaClient;
@@ -17,8 +17,8 @@ export class EventRepository {
   };
 
   async findEvents(
-    page: number = 1,
-    pageSize: number = 10,
+    page = 1,
+    pageSize = 10,
     type?: EventType,
     level?: EventLevel,
   ): Promise<Page<Event>> {

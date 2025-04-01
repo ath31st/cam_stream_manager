@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { authController } from '../utils/init';
 import { API_PREFIX } from '../utils/constants/routes.constants';
+import { authController } from '../utils/init';
 
 const router = Router();
 

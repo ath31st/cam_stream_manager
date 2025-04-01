@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
-import { PlaylistService } from '../services/playlist.service';
-import { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
+import type { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
+import type { Request, Response } from 'express';
+import type { JwtPayload } from 'jsonwebtoken';
+import type { PlaylistService } from '../services/playlist.service';
+import { trimObjectValues } from '../utils/trim.utils';
+import { UserRoles } from '../utils/user.roles';
 import {
   newPlaylistSchema,
   updatePlaylistSchema,
 } from '../validators/playlist.validator';
-import { trimObjectValues } from '../utils/trim.utils';
-import { JwtPayload } from 'jsonwebtoken';
-import { UserRoles } from '../utils/user.roles';
 
 export class PlaylistController {
   private playlistService: PlaylistService;
@@ -45,7 +45,7 @@ export class PlaylistController {
         req.query?.isVisible !== undefined
           ? req.query.isVisible === 'true'
           : undefined;
-          
+
       const playlistsDto = await this.playlistService.getPlaylistDtos(
         groupIds,
         isAdmin,

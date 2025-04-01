@@ -1,6 +1,6 @@
-import { EventService } from '../services/event.service';
-import { Request, Response } from 'express';
-import { EventLevel, EventType } from '../types/event.types';
+import type { Request, Response } from 'express';
+import type { EventService } from '../services/event.service';
+import type { EventLevel, EventType } from '../types/event.types';
 
 export class EventController {
   private eventService: EventService;

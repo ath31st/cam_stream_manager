@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 import { streamService } from '../utils/init';
-import { Logger } from '../utils/logger';
+import Logger from '../utils/logger';
 
 export const startStreamCronJob = () => {
   const cronSchedule = process.env.CRON_SCHEDULE;

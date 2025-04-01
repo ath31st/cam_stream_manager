@@ -1,5 +1,5 @@
-import { Event } from '@prisma/client';
-import { EventDto } from '@shared/types';
+import type { Event } from '@prisma/client';
+import type { EventDto } from '@shared/types';
 
 export const toEventDto = (event: Event): EventDto => {
   return {

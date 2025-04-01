@@ -1,5 +1,5 @@
+import type { NewStreamDto, UpdateStreamDto } from '@shared/types';
 import Joi from 'joi';
-import { NewStreamDto, UpdateStreamDto } from '@shared/types';
 import { PHONE_NUMBER_PATTERN } from '../utils/constants/string.constants';
 
 export const newStreamSchema = Joi.object<NewStreamDto>({

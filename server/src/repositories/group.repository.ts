@@ -1,6 +1,6 @@
-import { Group, PrismaClient } from '@prisma/client';
-import { Logger } from '../utils/logger';
-import { NewGroupDto, UpdateGroupDto } from '@shared/types';
+import type { Group, PrismaClient } from '@prisma/client';
+import type { NewGroupDto, UpdateGroupDto } from '@shared/types';
+import Logger from '../utils/logger';
 
 export class GroupRepository {
   private prismaClient: PrismaClient;

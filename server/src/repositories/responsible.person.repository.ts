@@ -1,9 +1,9 @@
-import { PrismaClient, ResponsiblePerson } from '@prisma/client';
-import {
+import type { PrismaClient, ResponsiblePerson } from '@prisma/client';
+import type {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
-import { Logger } from '../utils/logger';
+import Logger from '../utils/logger';
 
 export class ResponsiblePersonRepository {
   private prismaClient: PrismaClient;

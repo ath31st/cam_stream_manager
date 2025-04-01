@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
+import type { NextFunction, Request, Response } from 'express';
+import type { JwtPayload } from 'jsonwebtoken';
 import passport from 'passport';
 
 export const isAuthenticated = (

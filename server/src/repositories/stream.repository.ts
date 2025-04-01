@@ -1,7 +1,7 @@
-import { NewStreamDto, UpdateStreamDto } from '@shared/types';
+import type { PrismaClient, Stream } from '@prisma/client';
+import type { NewStreamDto, UpdateStreamDto } from '@shared/types';
+import Logger from '../utils/logger';
 import { StreamStatus } from '../utils/stream.status';
-import { PrismaClient, Stream } from '@prisma/client';
-import { Logger } from '../utils/logger';
 
 export class StreamRepository {
   private prismaClient: PrismaClient;

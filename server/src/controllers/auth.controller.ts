@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import { AuthService } from '../services/auth.service';
-import { LoginDto } from '@shared/types';
-import { loginSchema } from '../validators/auth.validator';
+import type { LoginDto } from '@shared/types';
+import type { Request, Response } from 'express';
+import type { AuthService } from '../services/auth.service';
 import { trimObjectValues } from '../utils/trim.utils';
+import { loginSchema } from '../validators/auth.validator';
 
 export class AuthController {
   private authService: AuthService;

@@ -1,16 +1,16 @@
-import { Request, Response } from 'express';
-import { UserService } from '../services/user.service';
-import {
+import type {
   NewUserDto,
   UpdateUserDto,
   UpdateUserPasswordDto,
 } from '@shared/types';
-import { Logger } from '../utils/logger';
+import type { Request, Response } from 'express';
+import type { UserService } from '../services/user.service';
+import Logger from '../utils/logger';
 import { trimObjectValues } from '../utils/trim.utils';
 import {
   newUserSchema,
-  updateUserSchema,
   updateUserPasswordSchema,
+  updateUserSchema,
 } from '../validators/user.validator';
 
 export class UserController {

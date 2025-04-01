@@ -1,4 +1,4 @@
-import { LoginDto } from '@shared/types';
+import type { LoginDto } from '@shared/types';
 import Joi from 'joi';
 
 export const loginSchema = Joi.object<LoginDto>({

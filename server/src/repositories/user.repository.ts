@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { Logger } from '../utils/logger';
-import { NewUserDto, UpdateUserDto } from '@shared/types';
-import { UserWithGroups } from '../types/extended.types';
+import type { PrismaClient } from '@prisma/client';
+import type { NewUserDto, UpdateUserDto } from '@shared/types';
+import type { UserWithGroups } from '../types/extended.types';
+import Logger from '../utils/logger';
 
 export class UserRepository {
   private prismaClient: PrismaClient;

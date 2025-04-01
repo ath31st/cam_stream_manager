@@ -1,14 +1,14 @@
-import { ResponsiblePerson } from '@prisma/client';
-import { ResponsiblePersonRepository } from '../repositories/responsible.person.repository';
-import {
+import type { ResponsiblePerson } from '@prisma/client';
+import type {
   NewResponsiblePersonDto,
   ResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
 import { toRpDto, toRpDtos } from '../mappers/responsible.person.mapper';
-import { Logger } from '../utils/logger';
-import { EventLevel, EventType, NewEvent } from '../types/event.types';
-import { EventService } from './event.service';
+import type { ResponsiblePersonRepository } from '../repositories/responsible.person.repository';
+import { EventLevel, EventType, type NewEvent } from '../types/event.types';
+import Logger from '../utils/logger';
+import type { EventService } from './event.service';
 
 export class ResponsiblePersonService {
   private responsiblePersonRepository: ResponsiblePersonRepository;

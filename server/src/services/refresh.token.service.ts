@@ -1,4 +1,4 @@
-import { RefreshTokenRepository } from '../repositories/refresh.token.repository';
+import type { RefreshTokenRepository } from '../repositories/refresh.token.repository';
 
 export class RefreshTokenService {
   private refreshTokenRepository: RefreshTokenRepository;

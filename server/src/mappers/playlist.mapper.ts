@@ -1,5 +1,5 @@
-import { PlaylistDto } from '@shared/types';
-import { PlaylistWithGroups } from '../types/extended.types';
+import type { PlaylistDto } from '@shared/types';
+import type { PlaylistWithGroups } from '../types/extended.types';
 
 export const toPlaylistDto = (playlist: PlaylistWithGroups): PlaylistDto => {
   return {
@@ -10,6 +10,8 @@ export const toPlaylistDto = (playlist: PlaylistWithGroups): PlaylistDto => {
   };
 };
 
-export const toPlaylistDtos = (playlists: PlaylistWithGroups[]): PlaylistDto[] => {
+export const toPlaylistDtos = (
+  playlists: PlaylistWithGroups[],
+): PlaylistDto[] => {
   return playlists.map(toPlaylistDto);
 };

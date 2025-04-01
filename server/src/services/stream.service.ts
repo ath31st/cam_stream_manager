@@ -1,12 +1,12 @@
-import { Stream } from '@prisma/client';
-import { StreamRepository } from '../repositories/stream.repository';
-import { NewStreamDto, StreamDto, UpdateStreamDto } from '@shared/types';
+import type { Stream } from '@prisma/client';
+import type { NewStreamDto, StreamDto, UpdateStreamDto } from '@shared/types';
 import axios from 'axios';
-import { StreamStatus } from '../utils/stream.status';
 import { toStreamDto, toStreamDtos } from '../mappers/stream.mapper';
-import { Logger } from '../utils/logger';
-import { EventService } from './event.service';
-import { EventLevel, EventType, NewEvent } from '../types/event.types';
+import type { StreamRepository } from '../repositories/stream.repository';
+import { EventLevel, EventType, type NewEvent } from '../types/event.types';
+import Logger from '../utils/logger';
+import { StreamStatus } from '../utils/stream.status';
+import type { EventService } from './event.service';
 
 export class StreamService {
   private streamRepository: StreamRepository;
@@ -154,7 +154,7 @@ export class StreamService {
   };
 
   private pingStream = async (stream: Stream): Promise<void> => {
-    const timeoutDuration = parseInt(
+    const timeoutDuration = Number.parseInt(
       process.env.STREAM_PING_TIMEOUT || '5000',
       10,
     );

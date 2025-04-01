@@ -1,5 +1,5 @@
-import { Group } from '@prisma/client';
-import { GroupDto } from '@shared/types';
+import type { Group } from '@prisma/client';
+import type { GroupDto } from '@shared/types';
 
 export const toGroupDtos = (groups: Group[]): GroupDto[] => {
   return groups.map((group) => toGroupDto(group));

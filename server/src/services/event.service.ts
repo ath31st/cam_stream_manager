@@ -1,9 +1,9 @@
-import { Event } from '@prisma/client';
-import { EventRepository } from '../repositories/event.repository';
-import { EventDto, Page } from '@shared/types';
+import type { Event } from '@prisma/client';
+import type { EventDto, Page } from '@shared/types';
 import { toEventDto, toEventDtos } from '../mappers/event.mapper';
-import { Logger } from '../utils/logger';
-import { EventLevel, EventType, NewEvent } from '../types/event.types';
+import type { EventRepository } from '../repositories/event.repository';
+import type { EventLevel, EventType, NewEvent } from '../types/event.types';
+import Logger from '../utils/logger';
 
 export class EventService {
   private eventRepository: EventRepository;

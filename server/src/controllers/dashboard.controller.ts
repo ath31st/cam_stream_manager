@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { DashboardService } from '../services/dashboard.service';
+import type { Request, Response } from 'express';
+import type { DashboardService } from '../services/dashboard.service';
 
 export class DashboardController {
   private dashboardService: DashboardService;

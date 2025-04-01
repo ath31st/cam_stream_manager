@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { rpController } from '../utils/init';
-import { API_PREFIX } from '../utils/constants/routes.constants';
 import { isAuthenticated } from '../middleware/auth.middleware';
+import { API_PREFIX } from '../utils/constants/routes.constants';
+import { rpController } from '../utils/init';
 
 const router = Router();
 

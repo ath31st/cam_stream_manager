@@ -1,16 +1,16 @@
-import { Request, Response } from 'express';
-import { StreamService } from '../services/stream.service';
-import {
+import type {
   NewResponsiblePersonDto,
   NewStreamDto,
   UpdateStreamDto,
 } from '@shared/types';
-import { ResponsiblePersonService } from '../services/responsible.person.service';
+import type { Request, Response } from 'express';
+import type { ResponsiblePersonService } from '../services/responsible.person.service';
+import type { StreamService } from '../services/stream.service';
+import { trimObjectValues } from '../utils/trim.utils';
 import {
   newStreamSchema,
   updateStreamSchema,
 } from '../validators/stream.validator';
-import { trimObjectValues } from '../utils/trim.utils';
 
 export class StreamController {
   private streamService: StreamService;
@@ -44,9 +44,9 @@ export class StreamController {
   getStreams = async (req: Request, res: Response) => {
     try {
       const isVisible =
-      req.query?.isVisible !== undefined
-        ? req.query.isVisible === 'true'
-        : undefined;
+        req.query?.isVisible !== undefined
+          ? req.query.isVisible === 'true'
+          : undefined;
       const streamDtos = await this.streamService.getStreamDtos(isVisible);
       res.status(200).json(streamDtos);
     } catch (error) {
@@ -67,7 +67,8 @@ export class StreamController {
   getStreamsByPlaylist = async (req: Request, res: Response) => {
     try {
       const playlistId = Number(req.params.id);
-      const streamDtos = await this.streamService.getStreamsByPlaylist(playlistId);
+      const streamDtos =
+        await this.streamService.getStreamsByPlaylist(playlistId);
       res.status(200).json(streamDtos);
     } catch (error) {
       if (error instanceof Error) {

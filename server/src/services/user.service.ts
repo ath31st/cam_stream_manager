@@ -1,17 +1,17 @@
-import bcrypt from 'bcrypt';
-import { UserRepository } from '../repositories/user.repository';
-import { Logger } from '../utils/logger';
-import { EventService } from './event.service';
-import { EventLevel, EventType, NewEvent } from '../types/event.types';
-import { UserRoles } from '../utils/user.roles';
-import {
+import type {
   NewUserDto,
   UpdateUserDto,
   UpdateUserPasswordDto,
   UserDto,
 } from '@shared/types';
+import bcrypt from 'bcrypt';
 import { toUserDto, toUserDtos } from '../mappers/user.mapper';
-import { UserWithGroups } from '../types/extended.types';
+import type { UserRepository } from '../repositories/user.repository';
+import { EventLevel, EventType, type NewEvent } from '../types/event.types';
+import type { UserWithGroups } from '../types/extended.types';
+import Logger from '../utils/logger';
+import { UserRoles } from '../utils/user.roles';
+import type { EventService } from './event.service';
 
 export class UserService {
   private userRepository: UserRepository;

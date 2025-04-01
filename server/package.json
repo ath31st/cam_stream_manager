@@ -19,13 +19,7 @@
     "dbr:dev": "dotenv -e .env.dev -- npx prisma migrate dev --name init && ts-node src/database/seed.ts",
     "dbr:prod": "npx dotenv -e .env.prod -- npx prisma migrate deploy && npx prisma generate"
   },
-  "keywords": [
-    "node",
-    "express",
-    "prisma",
-    "typescript",
-    "backend"
-  ],
+  "keywords": ["node", "express", "prisma", "typescript", "backend"],
   "author": "Olennikov Vladimir <ath31st@yandex.ru>",
   "license": "MIT",
   "description": "A Node.js server with Express and TypeScript for handling backend operations.",

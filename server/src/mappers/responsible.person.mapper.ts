@@ -1,5 +1,5 @@
-import { ResponsiblePerson } from '@prisma/client';
-import { ResponsiblePersonDto } from '@shared/types';
+import type { ResponsiblePerson } from '@prisma/client';
+import type { ResponsiblePersonDto } from '@shared/types';
 
 export const toRpDto = (rp: ResponsiblePerson): ResponsiblePersonDto => {
   return {

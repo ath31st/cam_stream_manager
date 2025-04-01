@@ -1,5 +1,5 @@
+import type { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
 import Joi from 'joi';
-import { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
 
 export const newPlaylistSchema = Joi.object<NewPlaylistDto>({
   name: Joi.string().min(2).max(30).required(),

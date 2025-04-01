@@ -1,8 +1,8 @@
-import Joi from 'joi';
-import {
+import type {
   NewResponsiblePersonDto,
   UpdateResponsiblePersonDto,
 } from '@shared/types';
+import Joi from 'joi';
 import { PHONE_NUMBER_PATTERN } from '../utils/constants/string.constants';
 
 export const newResponsiblePersonSchema = Joi.object<NewResponsiblePersonDto>({

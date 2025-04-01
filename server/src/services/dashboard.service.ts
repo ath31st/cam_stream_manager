@@ -1,6 +1,6 @@
-import { PlaylistService } from './playlist.service';
-import { StreamService } from './stream.service';
-import { PlaylistInfoDto, StreamDashboardDto } from '@shared/types';
+import type { PlaylistInfoDto, StreamDashboardDto } from '@shared/types';
+import type { PlaylistService } from './playlist.service';
+import type { StreamService } from './stream.service';
 
 export class DashboardService {
   private playlistService: PlaylistService;
@@ -25,9 +25,11 @@ export class DashboardService {
         badConnectionCount: 0,
       };
 
-      const streams = await this.streamService.getStreamsByPlaylist(playlist.id);
+      const streams = await this.streamService.getStreamsByPlaylist(
+        playlist.id,
+      );
 
-      streams.forEach((stream) => {
+      for (const stream of streams) {
         const streamDashboard: StreamDashboardDto = {
           id: stream.id,
           playlistId: stream.playlistId,
@@ -44,7 +46,7 @@ export class DashboardService {
         } else if (stream.status === 'Bad connection') {
           playlistInfo.badConnectionCount++;
         }
-      });
+      }
 
       dashboardData.push(playlistInfo);
     }

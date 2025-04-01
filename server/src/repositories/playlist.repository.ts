@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
-import { Logger } from '../utils/logger';
-import { PlaylistWithGroups } from '../types/extended.types';
+import type { PrismaClient } from '@prisma/client';
+import type { NewPlaylistDto, UpdatePlaylistDto } from '@shared/types';
+import type { PlaylistWithGroups } from '../types/extended.types';
+import Logger from '../utils/logger';
 
 export class PlaylistRepository {
   private prismaClient: PrismaClient;
@@ -59,16 +59,23 @@ export class PlaylistRepository {
       },
     });
 
-    const combinedPlaylists = [...playlistsWithGroups, ...playlistsWithoutGroups];
+    const combinedPlaylists = [
+      ...playlistsWithGroups,
+      ...playlistsWithoutGroups,
+    ];
 
     const uniquePlaylists = Array.from(
-      new Map(combinedPlaylists.map((playlist) => [playlist.id, playlist])).values(),
+      new Map(
+        combinedPlaylists.map((playlist) => [playlist.id, playlist]),
+      ).values(),
     );
 
     return uniquePlaylists;
   };
 
-  findAllPlaylists = async (isVisible?: boolean): Promise<PlaylistWithGroups[]> => {
+  findAllPlaylists = async (
+    isVisible?: boolean,
+  ): Promise<PlaylistWithGroups[]> => {
     return await this.prismaClient.playlist.findMany({
       where: {
         ...(isVisible !== undefined && { isVisible: isVisible }),
@@ -96,7 +103,9 @@ export class PlaylistRepository {
     return playlist;
   };
 
-  updatePlaylist = async (dto: UpdatePlaylistDto): Promise<PlaylistWithGroups> => {
+  updatePlaylist = async (
+    dto: UpdatePlaylistDto,
+  ): Promise<PlaylistWithGroups> => {
     const playlist = await this.prismaClient.playlist.update({
       where: { id: dto.id },
       data: {

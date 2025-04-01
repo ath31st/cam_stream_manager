@@ -1,5 +1,5 @@
-import { UserDto } from '@shared/types';
-import { UserWithGroups } from '../types/extended.types';
+import type { UserDto } from '@shared/types';
+import type { UserWithGroups } from '../types/extended.types';
 
 export const toUserDto = (user: UserWithGroups): UserDto => {
   return {

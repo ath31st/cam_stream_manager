@@ -1,10 +1,10 @@
-import { Group } from '@prisma/client';
-import { GroupRepository } from '../repositories/group.repository';
-import { Logger } from '../utils/logger';
-import { GroupDto, NewGroupDto, UpdateGroupDto } from '@shared/types';
+import type { Group } from '@prisma/client';
+import type { GroupDto, NewGroupDto, UpdateGroupDto } from '@shared/types';
 import { toGroupDto, toGroupDtos } from '../mappers/group.mapper';
-import { EventService } from './event.service';
-import { EventLevel, EventType, NewEvent } from '../types/event.types';
+import type { GroupRepository } from '../repositories/group.repository';
+import { EventLevel, EventType, type NewEvent } from '../types/event.types';
+import Logger from '../utils/logger';
+import type { EventService } from './event.service';
 
 export class GroupService {
   private groupRepository: GroupRepository;

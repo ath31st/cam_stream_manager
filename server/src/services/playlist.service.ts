@@ -1,16 +1,23 @@
-import { PlaylistRepository } from '../repositories/playlist.repository';
-import { NewPlaylistDto, PlaylistDto, UpdatePlaylistDto } from '@shared/types';
+import type {
+  NewPlaylistDto,
+  PlaylistDto,
+  UpdatePlaylistDto,
+} from '@shared/types';
 import { toPlaylistDto, toPlaylistDtos } from '../mappers/playlist.mapper';
-import { Logger } from '../utils/logger';
-import { EventService } from './event.service';
-import { EventLevel, EventType, NewEvent } from '../types/event.types';
-import { PlaylistWithGroups } from '../types/extended.types';
+import type { PlaylistRepository } from '../repositories/playlist.repository';
+import { EventLevel, EventType, type NewEvent } from '../types/event.types';
+import type { PlaylistWithGroups } from '../types/extended.types';
+import Logger from '../utils/logger';
+import type { EventService } from './event.service';
 
 export class PlaylistService {
   private playlistRepository: PlaylistRepository;
   private eventService: EventService;
 
-  constructor(playlistRepository: PlaylistRepository, eventService: EventService) {
+  constructor(
+    playlistRepository: PlaylistRepository,
+    eventService: EventService,
+  ) {
     this.playlistRepository = playlistRepository;
     this.eventService = eventService;
   }
@@ -58,13 +65,13 @@ export class PlaylistService {
   ): Promise<PlaylistDto[]> => {
     if (isAdmin) {
       return await this.getAllPlaylists(isVisible).then(toPlaylistDtos);
-    } else {
-      return await this.getPlaylists(groupIds, isVisible).then(toPlaylistDtos);
     }
+    return await this.getPlaylists(groupIds, isVisible).then(toPlaylistDtos);
   };
 
   existsPlaylistByName = async (name: string): Promise<void> => {
-    const playlistExists = await this.playlistRepository.existsPlaylistByName(name);
+    const playlistExists =
+      await this.playlistRepository.existsPlaylistByName(name);
     if (playlistExists) {
       throw new Error('Playlist already exists');
     }
@@ -77,7 +84,10 @@ export class PlaylistService {
         .createPlaylist(dto)
         .then(toPlaylistDto);
 
-      await this.logPlaylistEvent(EventLevel.INFO, `Playlist ${dto.name} created`);
+      await this.logPlaylistEvent(
+        EventLevel.INFO,
+        `Playlist ${dto.name} created`,
+      );
 
       return playlist;
     } catch (error) {
@@ -104,7 +114,10 @@ export class PlaylistService {
         .updatePlaylist(dto)
         .then(toPlaylistDto);
 
-      await this.logPlaylistEvent(EventLevel.INFO, `Playlist ${dto.name} updated`);
+      await this.logPlaylistEvent(
+        EventLevel.INFO,
+        `Playlist ${dto.name} updated`,
+      );
 
       return updatedPlaylist;
     } catch (error) {

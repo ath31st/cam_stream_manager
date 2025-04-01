@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { streamController } from '../utils/init';
-import { API_PREFIX } from '../utils/constants/routes.constants';
 import { isAuthenticated } from '../middleware/auth.middleware';
+import { API_PREFIX } from '../utils/constants/routes.constants';
+import { streamController } from '../utils/init';
 
 const router = Router();
 

@@ -1,5 +1,5 @@
-import { Stream } from '@prisma/client';
-import { StreamDto } from '@shared/types';
+import type { Stream } from '@prisma/client';
+import type { StreamDto } from '@shared/types';
 
 export const toStreamDto = (stream: Stream): StreamDto => {
   return {

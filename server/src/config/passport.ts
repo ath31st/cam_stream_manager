@@ -1,5 +1,5 @@
+import type { PassportStatic } from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
-import { PassportStatic } from 'passport';
 
 const jwtSecret = process.env.JWT_SECRET || 'secret';
 

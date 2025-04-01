@@ -1,9 +1,9 @@
-import Joi from 'joi';
-import {
+import type {
   NewUserDto,
   UpdateUserDto,
   UpdateUserPasswordDto,
 } from '@shared/types';
+import Joi from 'joi';
 
 export const newUserSchema = Joi.object<NewUserDto>({
   username: Joi.string().min(3).max(30).required(),

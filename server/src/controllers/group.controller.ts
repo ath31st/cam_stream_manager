@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import { GroupService } from '../services/group.service';
-import { NewGroupDto } from '@shared/types';
+import type { NewGroupDto } from '@shared/types';
+import type { Request, Response } from 'express';
+import type { GroupService } from '../services/group.service';
 import { trimObjectValues } from '../utils/trim.utils';
 import {
   newGroupSchema,

@@ -1,10 +1,10 @@
+import type { LoginDto, TokensDto } from '@shared/types';
 import bcrypt from 'bcrypt';
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { UserService } from './user.service';
-import { Logger } from '../utils/logger';
-import { LoginDto, TokensDto } from '@shared/types';
-import { RefreshTokenService } from './refresh.token.service';
-import { UserWithGroups } from '../types/extended.types';
+import jwt, { type JwtPayload } from 'jsonwebtoken';
+import type { UserWithGroups } from '../types/extended.types';
+import Logger from '../utils/logger';
+import type { RefreshTokenService } from './refresh.token.service';
+import type { UserService } from './user.service';
 
 export class AuthService {
   private userService: UserService;
@@ -63,7 +63,7 @@ export class AuthService {
       this.jwtSecret,
       {
         expiresIn: this.tokenExpiration,
-      },
+      } as jwt.SignOptions,
     );
   };
 
@@ -75,7 +75,7 @@ export class AuthService {
       this.refreshSecret,
       {
         expiresIn: this.refreshTokenExpiration,
-      },
+      } as jwt.SignOptions,
     );
   };
 
