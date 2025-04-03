@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { resetStores } from '../';
 import {
   LOCAL_STORAGE_KEY,
   isTokenExpired,
@@ -30,6 +31,7 @@ const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
           }
         }
         await useAuthStore.getState().logout();
+        resetStores();
         return Promise.reject(error);
       }
 

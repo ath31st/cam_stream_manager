@@ -1,6 +1,8 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { resetStores } from '../../../app';
+import { usePlaylistStore } from '../../../entities/playlist';
 import {
   errorNotification,
   successNotification,
@@ -19,6 +21,7 @@ const AuthModule: React.FC = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const playlistStore = usePlaylistStore();
 
   const handleLogin = async (username: string, password: string) => {
     clearError();
@@ -30,12 +33,14 @@ const AuthModule: React.FC = () => {
     } else {
       successNotification('Успешный вход', 'Вы вошли в систему');
     }
-
+    await playlistStore.fetchAllPlaylists(true);
     setLoginModalVisible(false);
   };
 
   const handleLogout = async () => {
     await logout();
+    resetStores();
+    await playlistStore.fetchAllPlaylists(true);
     successNotification('Успешный выход', 'Вы вышли из системы');
     setLogoutConfirmModalVisible(false);
   };
