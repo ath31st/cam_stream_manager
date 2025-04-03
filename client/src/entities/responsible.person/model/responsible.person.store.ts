@@ -32,6 +32,7 @@ interface ResponsiblePersonState {
   removeResponsiblePerson: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
   clearError: () => void;
+  resetStore: () => void;
 }
 
 export const useResponsiblePersonStore = create<ResponsiblePersonState>(
@@ -125,6 +126,16 @@ export const useResponsiblePersonStore = create<ResponsiblePersonState>(
 
     clearError: () => {
       set({ error: null });
+    },
+
+    resetStore: () => {
+      set({
+        responsiblePersons: [],
+        responsiblePersonsByStream: [],
+        selectedPerson: null,
+        loading: false,
+        error: null,
+      });
     },
   }),
 );

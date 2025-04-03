@@ -29,6 +29,7 @@ interface StreamState {
   setSelectedStream: (stream: Stream) => void;
   handleError: (error: unknown) => void;
   clearError: () => void;
+  resetStore: () => void;
 }
 
 export const useStreamStore = create<StreamState>((set) => ({
@@ -114,4 +115,6 @@ export const useStreamStore = create<StreamState>((set) => ({
   setSelectedStream: (stream) => set({ selectedStream: stream }),
 
   clearError: () => set({ error: null }),
+
+  resetStore: () => set({ streams: [], selectedStream: null, error: null }),
 }));

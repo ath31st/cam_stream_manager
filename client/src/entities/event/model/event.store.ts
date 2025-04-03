@@ -26,6 +26,7 @@ interface EventState {
   removeEvent: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
   clearError: () => void;
+  resetStore: () => void;
 }
 
 export const useEventStore = create<EventState>((set) => ({
@@ -114,5 +115,19 @@ export const useEventStore = create<EventState>((set) => ({
 
   clearError: () => {
     set({ error: null });
+  },
+
+  resetStore: () => {
+    set({
+      events: [],
+      sidebarEvents: [],
+      selectedEvent: null,
+      loading: false,
+      error: null,
+      currentPage: 1,
+      pageSize: 7,
+      totalItems: 0,
+      totalPages: 0,
+    });
   },
 }));

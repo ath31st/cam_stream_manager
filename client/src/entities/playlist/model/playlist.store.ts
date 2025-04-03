@@ -26,6 +26,7 @@ interface PlaylistState {
   removePlaylist: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
   clearError: () => void;
+  resetStore: () => void;
 }
 
 export const usePlaylistStore = create<PlaylistState>((set) => ({
@@ -103,5 +104,14 @@ export const usePlaylistStore = create<PlaylistState>((set) => ({
 
   clearError: () => {
     set({ error: null });
+  },
+
+  resetStore: () => {
+    set({
+      playlists: [],
+      selectedPlaylist: null,
+      loading: false,
+      error: null,
+    });
   },
 }));

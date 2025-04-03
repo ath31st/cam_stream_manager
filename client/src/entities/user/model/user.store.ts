@@ -29,6 +29,7 @@ interface UserState {
   removeUser: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
   clearError: () => void;
+  resetStore: () => void;
 }
 
 export const useUserStore = create<UserState>((set) => ({
@@ -108,5 +109,14 @@ export const useUserStore = create<UserState>((set) => ({
     } catch (error: unknown) {
       useUserStore.getState().handleError(error);
     }
+  },
+
+  resetStore: () => {
+    set({
+      users: [],
+      selectedUser: null,
+      loading: false,
+      error: null,
+    });
   },
 }));

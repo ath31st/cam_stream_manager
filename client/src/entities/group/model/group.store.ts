@@ -22,6 +22,7 @@ interface GroupState {
   removeGroup: (id: number) => Promise<void>;
   handleError: (error: unknown) => void;
   clearError: () => void;
+  resetStore: () => void;
 }
 
 export const useGroupStore = create<GroupState>((set) => ({
@@ -106,5 +107,14 @@ export const useGroupStore = create<GroupState>((set) => ({
       set({ loading: false });
       useGroupStore.getState().handleError(error);
     }
+  },
+
+  resetStore: () => {
+    set({
+      groups: [],
+      selectedGroup: null,
+      loading: false,
+      error: null,
+    });
   },
 }));
