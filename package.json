@@ -8,6 +8,7 @@
         "@biomejs/biome": "^1.9.4"
     },
     "resolutions": {
-        "nth-check": "^2.1.1"
+        "nth-check": "^2.1.1",
+        "http-proxy-middleware": "^3.0.5"
     }
 }
