@@ -1,0 +1,17 @@
+.pageLayout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+  
+.innerLayout {
+    flex: 1;
+    display: flex;
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    flex: 1;
+}
