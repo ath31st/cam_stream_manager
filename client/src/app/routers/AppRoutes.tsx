@@ -8,6 +8,7 @@ import routes from '../../shared/routes';
 import AdminLayout from '../layouts/AdminLayout';
 import MainLayout from '../layouts/MainLayout';
 import PrivateRoute from './PrivateRoute';
+import ErrorPageLayout from '../layouts/ErrorPageLayout';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -22,12 +23,16 @@ const AppRoutes: React.FC = () => {
             <Route path={routes.ADMIN} element={<AdminPage />} />
           </Route>
         </Route>
-
-        <Route path={routes.UNAUTHORIZED_PAGE} element={<UnauthorizedPage />} />
-        <Route
-          path={routes.ACCESS_DENIED_PAGE}
-          element={<AccessDeniedPage />}
-        />
+        <Route element={<ErrorPageLayout />}>
+          <Route
+            path={routes.UNAUTHORIZED_PAGE}
+            element={<UnauthorizedPage />}
+          />
+          <Route
+            path={routes.ACCESS_DENIED_PAGE}
+            element={<AccessDeniedPage />}
+          />
+        </Route>
       </Routes>
     </Router>
   );
