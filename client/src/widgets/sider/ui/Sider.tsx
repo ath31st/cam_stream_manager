@@ -35,9 +35,9 @@ export const AppSider: React.FC = () => {
   const { streams, fetchStreamsByPlaylist, setSelectedStream } =
     useStreamStore();
   const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(['0']);
-  const onlyVisible = true;
 
   useEffect(() => {
+    const onlyVisible = true;
     fetchAllPlaylists(onlyVisible);
   }, [fetchAllPlaylists]);
 
@@ -45,27 +45,30 @@ export const AppSider: React.FC = () => {
     fetchStreamsByPlaylist(playlistId);
   };
 
-  const items: MenuItem[] = playlists.map((playlist) => ({
-    key: String(playlist.id),
-    label: playlist.name,
-    onTitleClick: () => handlePlaylistClick(playlist.id),
-    children: streams
-      .filter((stream) => stream.playlistId === playlist.id)
-      .map((stream) => {
-        const streamToSelect = streams.find((s) => s.id === stream.id);
-        return {
-          key: `${playlist.id}-${stream.id}`,
-          label: stream.name,
-          onClick: () => {
-            if (streamToSelect) {
-              setSelectedStream(streamToSelect);
-            } else {
-              console.error(`Stream with id ${stream.id} not found`);
-            }
-          },
-        };
-      }),
-  }));
+  const items: MenuItem[] = playlists
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((playlist) => ({
+      key: String(playlist.id),
+      label: playlist.name,
+      onTitleClick: () => handlePlaylistClick(playlist.id),
+      children: streams
+        .filter((stream) => stream.playlistId === playlist.id)
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((stream) => {
+          const streamToSelect = streams.find((s) => s.id === stream.id);
+          return {
+            key: `${playlist.id}-${stream.id}`,
+            label: stream.name,
+            onClick: () => {
+              if (streamToSelect) {
+                setSelectedStream(streamToSelect);
+              } else {
+                console.error(`Stream with id ${stream.id} not found`);
+              }
+            },
+          };
+        }),
+    }));
 
   const levelKeys = getLevelKeys(items as LevelKeysProps[]);
 
