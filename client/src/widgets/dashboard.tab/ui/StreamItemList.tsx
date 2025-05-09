@@ -14,14 +14,16 @@ const StreamItemList: React.FC<StreamItemListProps> = ({
 }) => {
   return (
     <ul className={styles['stream-item-list']}>
-      {streams.map((stream) => (
-        <StreamItem
-          key={stream.id}
-          name={stream.name}
-          status={stream.status}
-          onClick={() => onItemClick(stream.id)}
-        />
-      ))}
+      {streams
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((stream) => (
+          <StreamItem
+            key={stream.id}
+            name={stream.name}
+            status={stream.status}
+            onClick={() => onItemClick(stream.id)}
+          />
+        ))}
     </ul>
   );
 };

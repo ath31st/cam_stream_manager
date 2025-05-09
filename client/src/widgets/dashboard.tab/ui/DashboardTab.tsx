@@ -53,15 +53,17 @@ const Dashboard: React.FC<DashboardProps> = ({ isActiveTab }) => {
           <LargeLoader />
         ) : (
           <Row gutter={[16, 22]}>
-            {dashboardData.map((playlist) => (
-              <Col key={playlist.playlistName} xs={24} sm={12} lg={8}>
-                <PlaylistCard
-                  {...playlist}
-                  isOpen={openPlaylist === playlist.playlistName}
-                  onToggle={togglePlaylist}
-                />
-              </Col>
-            ))}
+            {dashboardData
+              .sort((a, b) => a.playlistName.localeCompare(b.playlistName))
+              .map((playlist) => (
+                <Col key={playlist.playlistName} xs={24} sm={12} lg={8}>
+                  <PlaylistCard
+                    {...playlist}
+                    isOpen={openPlaylist === playlist.playlistName}
+                    onToggle={togglePlaylist}
+                  />
+                </Col>
+              ))}
           </Row>
         )}
       </Col>
