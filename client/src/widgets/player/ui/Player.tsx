@@ -37,9 +37,7 @@ export const Player: React.FC = () => {
           {selectedStream.status === 'Active' ? (
             <>
               <VideoPlayer url={selectedStream.streamUrl} />
-              <WideButton onClick={openModal}>
-                Показать ответственных лиц
-              </WideButton>
+              <WideButton onClick={openModal}>Ответственные лица</WideButton>
             </>
           ) : (
             <UnavailableStreamCard
