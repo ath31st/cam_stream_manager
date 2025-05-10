@@ -47,6 +47,7 @@ const useStreamPlayer = (url: string) => {
 
         switch (format) {
           case 'hls':
+          case 'ts':
             if (Hls.isSupported()) {
               const hls = new Hls();
               playerRef.current.hls = hls;

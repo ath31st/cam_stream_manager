@@ -1,9 +1,10 @@
-export type StreamFormat = 'hls' | 'flv' | 'dash' | 'native' | 'unknown';
+export type StreamFormat = 'hls' | 'flv' | 'dash' | 'native' | 'ts' | 'unknown';
 
 export const detectFormatByExtension = (url: string): StreamFormat => {
   if (url.endsWith('.m3u8')) return 'hls';
   if (url.endsWith('.flv')) return 'flv';
   if (url.endsWith('.mpd')) return 'dash';
+  if (url.endsWith('.ts')) return 'ts';
   if (['.mp4', '.webm', '.ogg'].some((ext) => url.endsWith(ext)))
     return 'native';
   return 'unknown';
@@ -19,6 +20,7 @@ export const detectFormatByMimeType = (
     return 'hls';
   if (mimeType === 'video/x-flv') return 'flv';
   if (mimeType === 'application/dash+xml') return 'dash';
+  if (mimeType === 'video/mp2t') return 'ts';
   if (['video/mp4', 'video/webm', 'video/ogg'].includes(mimeType || ''))
     return 'native';
   return 'unknown';
