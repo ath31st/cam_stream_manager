@@ -12,7 +12,7 @@ import ErrorPageLayout from '../layouts/ErrorPageLayout';
 
 const AppRoutes: React.FC = () => {
   return (
-    <Router future={{ v7_startTransition: true }}>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path={routes.HOME} element={<MainPage />} />
