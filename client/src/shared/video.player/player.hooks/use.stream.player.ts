@@ -44,6 +44,7 @@ const useStreamPlayer = (url: string) => {
 
       try {
         const format = await determineStreamFormat(url);
+        console.log('format determined: ', format);
 
         switch (format) {
           case 'hls':
