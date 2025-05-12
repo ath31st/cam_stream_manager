@@ -5,6 +5,7 @@ import type { EventDto } from '../../../shared/api.types';
 import { CommonTooltip } from '../../../shared/ui';
 import styles from './EventCard.module.css';
 import LevelBadge from './LevelBadge';
+import { formatDate } from '../../../shared';
 
 const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
   const isPulsing = usePulsing(createdAt);
@@ -28,7 +29,7 @@ const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
       <CommonTooltip title={info} placement="left">
         <p className={styles.info}>{info}</p>
       </CommonTooltip>
-      <p className={styles.timestamp}>{new Date(createdAt).toLocaleString()}</p>
+      <p className={styles.timestamp}>{formatDate(createdAt)}</p>
     </Card>
   );
 };

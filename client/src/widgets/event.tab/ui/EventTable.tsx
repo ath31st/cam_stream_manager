@@ -4,6 +4,7 @@ import type { EventDto } from '../../../shared/api.types';
 import { ActionButtons } from '../../../shared/ui';
 import { LevelBadge } from '../../event';
 import styles from './EventTable.module.css';
+import { formatDate } from '../../../shared';
 
 interface EventsTableProps {
   events: EventDto[];
@@ -56,7 +57,7 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       key: 'date',
       render: (date: string) => (
         <div className={styles['date-column']} title={date}>
-          {date}
+          {formatDate(date)}
         </div>
       ),
     },
