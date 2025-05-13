@@ -17,7 +17,7 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
     type: event.type,
     level: event.level,
     message: event.info,
-    date: new Date(event.createdAt).toLocaleString(),
+    date: formatDate(event.createdAt),
   }));
 
   const columns = [
@@ -57,7 +57,7 @@ const EventTable: React.FC<EventsTableProps> = ({ events, onDelete }) => {
       key: 'date',
       render: (date: string) => (
         <div className={styles['date-column']} title={date}>
-          {formatDate(date)}
+          {date}
         </div>
       ),
     },
