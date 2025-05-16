@@ -15,7 +15,7 @@ const StreamSelect: React.FC<StreamSelectProps> = ({
   streams,
   value,
   onChange,
-  placeholder = 'Выберите название',
+  placeholder = 'Фильтр по потоку',
   id,
 }) => {
   return (

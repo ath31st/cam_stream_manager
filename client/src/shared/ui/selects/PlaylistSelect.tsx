@@ -15,7 +15,7 @@ const PlaylistSelect: React.FC<PlaylistSelectProps> = ({
   playlists,
   value,
   onChange,
-  placeholder = 'Выберите плейлист',
+  placeholder = 'Фильтр по плейлисту',
   id,
 }) => {
   return (
