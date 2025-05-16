@@ -1,13 +1,18 @@
 import { Pagination, Space } from 'antd';
 import type React from 'react';
 import { useEffect, useState } from 'react';
-import { EventType, useEventStore } from '../../../entities/event';
+import { EventLevel, EventType, useEventStore } from '../../../entities/event';
 import { DeleteEventModal } from '../../../features/event.management';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { EventTypeSelect, LargeLoader, TabContainer } from '../../../shared/ui';
+import {
+  EventLevelSelect,
+  EventTypeSelect,
+  LargeLoader,
+  TabContainer,
+} from '../../../shared/ui';
 import styles from './EventTab.module.css';
 import EventTable from './EventTable';
 
@@ -15,6 +20,9 @@ const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [deleteEventId, setDeleteEventId] = useState<number | null>(null);
   const [eventType, setEventType] = useState<EventType | undefined>(undefined);
+  const [eventLevel, setEventLevel] = useState<EventLevel | undefined>(
+    undefined,
+  );
 
   const {
     events,
@@ -34,8 +42,8 @@ const EventTab: React.FC = () => {
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchEvents(currentPage, pageSize, eventType);
-  }, [fetchEvents, currentPage, pageSize, eventType]);
+    fetchEvents(currentPage, pageSize, eventType, eventLevel);
+  }, [fetchEvents, currentPage, pageSize, eventType, eventLevel]);
 
   const showDeleteConfirm = (id: number) => {
     setDeleteEventId(id);
@@ -68,6 +76,11 @@ const EventTab: React.FC = () => {
               eventTypes={Object.values(EventType)}
               value={eventType}
               onChange={setEventType}
+            />
+            <EventLevelSelect
+              eventLevels={Object.values(EventLevel)}
+              value={eventLevel}
+              onChange={setEventLevel}
             />
           </Space>
 
