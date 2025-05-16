@@ -10,6 +10,7 @@ import MediumLoader from './loaders/MediumLoader';
 import PlaylistSelect from './selects/PlaylistSelect';
 import StreamSelect from './selects/StreamSelect';
 import EventTypeSelect from './selects/EventTypeSelect';
+import EventLevelSelect from './selects/EventLevelSelect';
 import LimitedText from './texts/LimitedText';
 import CommonTooltip from './tooltips/CommonTooltip';
 
@@ -26,6 +27,7 @@ export {
   CommonAlert,
   StreamSelect,
   EventTypeSelect,
+  EventLevelSelect,
   LimitedText,
   CommonTooltip,
 };
