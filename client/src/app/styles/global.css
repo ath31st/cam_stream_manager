@@ -5,3 +5,11 @@ html {
 .ant-btn {
   box-shadow: none !important;
 }
+
+.ant-select-dropdown {
+  background-color: var(--colorBgBase) !important;
+}
+
+.ant-select-item-option-active {
+  background-color: var(--colorPrimary) !important;
+}
