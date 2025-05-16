@@ -16,7 +16,11 @@ import {
 import styles from './EventTab.module.css';
 import EventTable from './EventTable';
 
-const EventTab: React.FC = () => {
+interface EventTabProps {
+  isActiveTab: boolean;
+}
+
+const EventTab: React.FC<EventTabProps> = ({ isActiveTab }) => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [deleteEventId, setDeleteEventId] = useState<number | null>(null);
   const [eventType, setEventType] = useState<EventType | undefined>(undefined);
@@ -24,16 +28,10 @@ const EventTab: React.FC = () => {
     undefined,
   );
 
-  const {
-    events,
-    removeEvent,
-    error,
-    clearError,
-    fetchEvents,
-    currentPage,
-    pageSize,
-    loading,
-  } = useEventStore();
+  const { events, error, currentPage, pageSize, loading } = useEventStore();
+  const fetchEvents = useEventStore((s) => s.fetchEvents);
+  const clearError = useEventStore((s) => s.clearError);
+  const totalItems = useEventStore((s) => s.totalItems);
 
   useEffect(() => {
     if (error) {
@@ -42,8 +40,10 @@ const EventTab: React.FC = () => {
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchEvents(currentPage, pageSize, eventType, eventLevel);
-  }, [fetchEvents, currentPage, pageSize, eventType, eventLevel]);
+    if (isActiveTab) {
+      fetchEvents(currentPage, pageSize, eventType, eventLevel);
+    }
+  }, [isActiveTab, fetchEvents, currentPage, pageSize, eventType, eventLevel]);
 
   const showDeleteConfirm = (id: number) => {
     setDeleteEventId(id);
@@ -52,7 +52,7 @@ const EventTab: React.FC = () => {
 
   const handleDelete = async () => {
     if (deleteEventId !== null) {
-      await removeEvent(deleteEventId);
+      await useEventStore.getState().removeEvent(deleteEventId);
       if (useEventStore.getState().error === null) {
         successNotification('Событие удалено', 'Событие успешно удалено.');
       }
@@ -62,7 +62,7 @@ const EventTab: React.FC = () => {
   };
 
   const handlePageChange = (page: number) => {
-    useEventStore.getState().fetchEvents(page, pageSize);
+    fetchEvents(page, pageSize);
   };
 
   return (
@@ -90,7 +90,7 @@ const EventTab: React.FC = () => {
               defaultCurrent={1}
               current={currentPage}
               pageSize={pageSize}
-              total={useEventStore.getState().totalItems}
+              total={totalItems}
               onChange={handlePageChange}
               showSizeChanger={false}
             />

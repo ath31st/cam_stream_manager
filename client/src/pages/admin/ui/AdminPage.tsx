@@ -60,7 +60,7 @@ const AdminPage: React.FC = () => {
           {
             label: 'События',
             key: '7',
-            children: <EventTab />,
+            children: <EventTab isActiveTab={activeTabKey === '7'} />,
           },
         ]}
       />
