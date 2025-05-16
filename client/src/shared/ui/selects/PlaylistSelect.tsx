@@ -1,7 +1,7 @@
 import { Select } from 'antd';
 import type React from 'react';
 import type { Playlist } from '../../api.types';
-import styles from './PlaylistSelect.module.css';
+import styles from './CommonSelect.module.css';
 
 interface PlaylistSelectProps {
   playlists: Playlist[];

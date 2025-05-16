@@ -1,6 +1,6 @@
 import { Select } from 'antd';
 import type React from 'react';
-import styles from './EventLevelSelect.module.css';
+import styles from './CommonSelect.module.css';
 import type { EventLevel } from '../../../entities/event';
 
 interface EventLevelSelectProps {

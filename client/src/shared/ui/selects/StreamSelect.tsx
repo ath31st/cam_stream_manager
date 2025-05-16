@@ -1,7 +1,7 @@
 import { Select } from 'antd';
 import type React from 'react';
 import type { Stream } from '../../api.types';
-import styles from './StreamSelect.module.css';
+import styles from './CommonSelect.module.css';
 
 interface StreamSelectProps {
   streams: Stream[];
