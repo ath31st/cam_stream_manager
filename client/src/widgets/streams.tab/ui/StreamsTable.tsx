@@ -11,6 +11,7 @@ import type { Playlist, Stream } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
 import { ActionButtons, CommonTooltip } from '../../../shared/ui';
 import styles from './StreamsTable.module.css';
+import type { JSX } from 'react';
 
 interface StreamsTableProps {
   streams: Stream[];
@@ -69,7 +70,9 @@ const StreamsTable: React.FC<StreamsTableProps> = ({
       sorter: (a: Stream, b: Stream) => a.status.localeCompare(b.status),
       render: (status: string) => (
         <CommonTooltip title={status} placement="top">
-          {statusIcons[status] || status}
+          <div className={styles['status-column']}>
+            {statusIcons[status] || status}
+          </div>
         </CommonTooltip>
       ),
     },
