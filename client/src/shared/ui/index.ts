@@ -9,6 +9,7 @@ import LargeLoader from './loaders/LargeLoader';
 import MediumLoader from './loaders/MediumLoader';
 import PlaylistSelect from './selects/PlaylistSelect';
 import StreamSelect from './selects/StreamSelect';
+import EventTypeSelect from './selects/EventTypeSelect';
 import LimitedText from './texts/LimitedText';
 import CommonTooltip from './tooltips/CommonTooltip';
 
@@ -24,6 +25,7 @@ export {
   TabContainer,
   CommonAlert,
   StreamSelect,
+  EventTypeSelect,
   LimitedText,
   CommonTooltip,
 };

@@ -1,19 +1,20 @@
-import { Pagination } from 'antd';
+import { Pagination, Space } from 'antd';
 import type React from 'react';
 import { useEffect, useState } from 'react';
-import { useEventStore } from '../../../entities/event';
+import { EventType, useEventStore } from '../../../entities/event';
 import { DeleteEventModal } from '../../../features/event.management';
 import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { LargeLoader, TabContainer } from '../../../shared/ui';
+import { EventTypeSelect, LargeLoader, TabContainer } from '../../../shared/ui';
 import styles from './EventTab.module.css';
 import EventTable from './EventTable';
 
 const EventTab: React.FC = () => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [deleteEventId, setDeleteEventId] = useState<number | null>(null);
+  const [eventType, setEventType] = useState<EventType | undefined>(undefined);
 
   const {
     events,
@@ -33,8 +34,8 @@ const EventTab: React.FC = () => {
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchEvents(currentPage, pageSize);
-  }, [fetchEvents, currentPage, pageSize]);
+    fetchEvents(currentPage, pageSize, eventType);
+  }, [fetchEvents, currentPage, pageSize, eventType]);
 
   const showDeleteConfirm = (id: number) => {
     setDeleteEventId(id);
@@ -62,6 +63,14 @@ const EventTab: React.FC = () => {
         <LargeLoader />
       ) : (
         <>
+          <Space>
+            <EventTypeSelect
+              eventTypes={Object.values(EventType)}
+              value={eventType}
+              onChange={setEventType}
+            />
+          </Space>
+
           <EventTable events={events} onDelete={showDeleteConfirm} />
           <div className={styles['pagination-container']}>
             <Pagination
