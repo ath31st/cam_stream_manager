@@ -1,5 +1,6 @@
 import type {
   NewUserDto,
+  Page,
   UpdateUserDto,
   UpdateUserPasswordDto,
   UserDto,
@@ -54,17 +55,49 @@ export class UserService {
     }
   };
 
-  private getAllUsers = async (): Promise<UserWithGroups[]> => {
+  private getAllUsers = async (
+    pageNumber: number,
+    pageSize: number,
+    sortOrder: 'asc' | 'desc',
+    searchTerm?: string,
+  ): Promise<UserWithGroups[]> => {
     try {
-      return await this.userRepository.findAllUsers();
+      return await this.userRepository.findPageableUsers(
+        pageNumber,
+        pageSize,
+        sortOrder,
+        searchTerm,
+      );
     } catch (error) {
       Logger.error('Error getting users:', error);
       throw new Error('Cannot get all users');
     }
   };
 
-  getAllUsersDto = async (): Promise<UserDto[]> => {
-    return await this.getAllUsers().then(toUserDtos);
+  getPageUserDtos = async (
+    pageNumber: number,
+    pageSize: number,
+    sortOrder: 'asc' | 'desc',
+    searchTerm?: string,
+  ): Promise<Page<UserDto>> => {
+    const totalCount = await this.userRepository.countUsers(searchTerm);
+    const totalPages =
+      Math.floor(totalCount / pageSize) + (totalCount % pageSize !== 0 ? 1 : 0);
+
+    const usersDto = await this.getAllUsers(
+      pageNumber,
+      pageSize,
+      sortOrder,
+      searchTerm,
+    ).then(toUserDtos);
+
+    return {
+      items: usersDto,
+      totalItems: totalCount,
+      totalPages: totalPages,
+      currentPage: pageNumber,
+      pageSize: pageSize,
+    };
   };
 
   private existsUserByUsername = async (username: string): Promise<void> => {

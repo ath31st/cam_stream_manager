@@ -31,10 +31,29 @@ export class UserRepository {
     });
   };
 
-  findAllUsers = async (): Promise<UserWithGroups[]> => {
-    return await this.prismaClient.user.findMany({
+  findPageableUsers = async (
+    pageNumber: number,
+    pageSize: number,
+    sortOrder: 'asc' | 'desc',
+    searchTerm?: string,
+  ): Promise<UserWithGroups[]> => {
+    const skip = (pageNumber - 1) * pageSize;
+
+    const users = await this.prismaClient.user.findMany({
+      take: pageSize,
+      skip,
+      orderBy: { username: sortOrder },
+      where: searchTerm ? { username: { contains: searchTerm } } : undefined,
       include: { groups: true },
     });
+    return users;
+  };
+
+  countUsers = async (searchTerm?: string): Promise<number> => {
+    const count = await this.prismaClient.user.count({
+      where: searchTerm ? { username: { contains: searchTerm } } : undefined,
+    });
+    return count;
   };
 
   existsUserByUsername = async (username: string): Promise<boolean> => {

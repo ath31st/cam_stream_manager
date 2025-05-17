@@ -36,8 +36,18 @@ export class UserController {
 
   getAllUsers = async (req: Request, res: Response) => {
     try {
-      const usersDto = await this.userService.getAllUsersDto();
-      res.status(200).json(usersDto);
+      const pageNumber = Number(req.query.pageNumber) || 1;
+      const pageSize = Number(req.query.pageSize) || 10;
+      const sortOrder = (req.query.sortOrder as 'asc' | 'desc') || 'asc';
+      const searchTerm = req.query.searchTerm as string;
+
+      const pageUserDtos = await this.userService.getPageUserDtos(
+        pageNumber,
+        pageSize,
+        sortOrder,
+        searchTerm,
+      );
+      res.status(200).json(pageUserDtos);
     } catch (error) {
       Logger.error('Error getting all users:', error);
       res.status(500).json({
