@@ -1,6 +1,5 @@
 import { Table } from 'antd';
 import type React from 'react';
-import { paginationConfig } from '../../../shared/pagination';
 import { ActionButtons } from '../../../shared/ui';
 import styles from './UsersTable.module.css';
 import '../../../shared/styles/CommonTabTableStyle.css';
@@ -110,7 +109,7 @@ const UsersTable: React.FC<UsersTableProps> = ({
       className={styles.table}
       dataSource={dataSource}
       columns={columns}
-      pagination={paginationConfig}
+      pagination={false}
       showSorterTooltip={false}
     />
   );

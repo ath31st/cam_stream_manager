@@ -13,8 +13,10 @@ import EventTypeSelect from './selects/EventTypeSelect';
 import EventLevelSelect from './selects/EventLevelSelect';
 import LimitedText from './texts/LimitedText';
 import CommonTooltip from './tooltips/CommonTooltip';
+import CommonPaginationBar from './paginations/CommonPaginationBar';
 
 export {
+  CommonPaginationBar,
   FooterModal,
   NarrowButton,
   WideButton,

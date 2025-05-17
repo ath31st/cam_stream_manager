@@ -7,7 +7,12 @@ import {
   errorNotification,
   successNotification,
 } from '../../../shared/notifications';
-import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
+import {
+  CommonPaginationBar,
+  LargeLoader,
+  TabContainer,
+  WideButton,
+} from '../../../shared/ui';
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
 
@@ -27,12 +32,15 @@ const UsersTab: React.FC = () => {
   const {
     error,
     loading,
-    fetchAllUsers,
+    fetchPageUsers,
     addUser,
     updateUser,
     removeUser,
     clearError,
     users,
+    currentPage,
+    pageSize,
+    totalItems,
   } = useUserStore();
 
   useEffect(() => {
@@ -42,8 +50,8 @@ const UsersTab: React.FC = () => {
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchAllUsers();
-  }, [fetchAllUsers]);
+    fetchPageUsers(currentPage, pageSize);
+  }, [fetchPageUsers, currentPage, pageSize]);
 
   const handleAddUser = async (user: NewUser) => {
     await addUser(user);
@@ -64,7 +72,6 @@ const UsersTab: React.FC = () => {
   const handleDelete = async () => {
     if (deleteUserId !== null) {
       await removeUser(deleteUserId);
-      await fetchAllUsers();
       if (useUserStore.getState().error === null) {
         successNotification(
           'Пользователь удален',
@@ -105,12 +112,20 @@ const UsersTab: React.FC = () => {
         {loading ? (
           <LargeLoader />
         ) : (
-          <UsersTable
-            users={users}
-            groups={groups}
-            onEdit={showUpdateModal}
-            onDelete={showDeleteConfirm}
-          />
+          <>
+            <UsersTable
+              users={users}
+              groups={groups}
+              onEdit={showUpdateModal}
+              onDelete={showDeleteConfirm}
+            />
+            <CommonPaginationBar
+              currentPage={currentPage}
+              pageSize={pageSize}
+              totalItems={totalItems}
+              handlePageChange={fetchPageUsers}
+            />
+          </>
         )}
 
         <UserTabModals
