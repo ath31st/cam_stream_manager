@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type {
   NewUser,
+  Page,
   UpdateUser,
   UpdateUserPassword,
   User,
@@ -8,8 +9,17 @@ import type {
 
 const API_URL = `${process.env.REACT_APP_API_URL}/users`;
 
-export const fetchUsers = async (): Promise<User[]> => {
-  const response = await axios.get<User[]>(API_URL);
+export const fetchUsers = async (
+  pageNumber?: number,
+  pageSize?: number,
+  searchTerm?: string,
+): Promise<Page<User>> => {
+  const params = {
+    pageNumber,
+    pageSize,
+    searchTerm,
+  };
+  const response = await axios.get<Page<User>>(API_URL, { params });
   return response.data;
 };
 

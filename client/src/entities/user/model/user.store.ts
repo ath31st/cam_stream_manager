@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import { create } from 'zustand';
 import type {
   NewUser,
+  Page,
   UpdateUser,
   UpdateUserPassword,
   User,
@@ -21,7 +22,15 @@ interface UserState {
   loading: boolean;
   error: string | null;
   selectedUser: User | null;
-  fetchAllUsers: () => Promise<void>;
+  currentPage: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
+  fetchPageUsers: (
+    pageNumber?: number,
+    pageSize?: number,
+    searchTerm?: string,
+  ) => Promise<void>;
   fetchUserById: (id: number) => Promise<void>;
   addUser: (user: NewUser) => Promise<void>;
   updateUser: (id: number, user: UpdateUser) => Promise<void>;
@@ -37,6 +46,10 @@ export const useUserStore = create<UserState>((set) => ({
   selectedUser: null,
   loading: false,
   error: null,
+  currentPage: 1,
+  pageSize: 5,
+  totalItems: 0,
+  totalPages: 0,
 
   handleError: (error: unknown) => {
     if (error instanceof AxiosError) {
@@ -50,11 +63,23 @@ export const useUserStore = create<UserState>((set) => ({
 
   clearError: () => set({ error: null }),
 
-  fetchAllUsers: async () => {
+  fetchPageUsers: async (
+    pageNumber?: number,
+    pageSize?: number,
+    searchTerm?: string,
+  ) => {
     set({ loading: true });
     try {
-      const users = await fetchUsers();
-      set({ users, loading: false });
+      const pageUsers: Page<User> = await fetchUsers(pageNumber, pageSize);
+
+      set({
+        users: pageUsers.items,
+        totalItems: pageUsers.totalItems,
+        totalPages: pageUsers.totalPages,
+        currentPage: pageUsers.currentPage,
+        pageSize: pageUsers.pageSize,
+        loading: false,
+      });
     } catch (error: unknown) {
       set({ loading: false });
       useUserStore.getState().handleError(error);
@@ -103,9 +128,8 @@ export const useUserStore = create<UserState>((set) => ({
   removeUser: async (id: number) => {
     try {
       await deleteUser(id);
-      set((state) => ({
-        users: state.users.filter((u) => u.id !== id),
-      }));
+      const { currentPage, pageSize } = useUserStore.getState();
+      useUserStore.getState().fetchPageUsers(currentPage, pageSize);
     } catch (error: unknown) {
       useUserStore.getState().handleError(error);
     }
@@ -117,6 +141,10 @@ export const useUserStore = create<UserState>((set) => ({
       selectedUser: null,
       loading: false,
       error: null,
+      currentPage: 1,
+      pageSize: 5,
+      totalItems: 0,
+      totalPages: 0,
     });
   },
 }));
