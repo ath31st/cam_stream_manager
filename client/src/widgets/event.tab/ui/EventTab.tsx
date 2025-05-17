@@ -1,4 +1,4 @@
-import { Pagination, Space } from 'antd';
+import { Space } from 'antd';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import { EventLevel, EventType, useEventStore } from '../../../entities/event';
@@ -8,12 +8,12 @@ import {
   successNotification,
 } from '../../../shared/notifications';
 import {
+  CommonPaginationBar,
   EventLevelSelect,
   EventTypeSelect,
   LargeLoader,
   TabContainer,
 } from '../../../shared/ui';
-import styles from './EventTab.module.css';
 import EventTable from './EventTable';
 
 interface EventTabProps {
@@ -85,16 +85,12 @@ const EventTab: React.FC<EventTabProps> = ({ isActiveTab }) => {
           </Space>
 
           <EventTable events={events} onDelete={showDeleteConfirm} />
-          <div className={styles['pagination-container']}>
-            <Pagination
-              defaultCurrent={1}
-              current={currentPage}
-              pageSize={pageSize}
-              total={totalItems}
-              onChange={handlePageChange}
-              showSizeChanger={false}
-            />
-          </div>
+          <CommonPaginationBar
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            handlePageChange={handlePageChange}
+          />
         </>
       )}
       <DeleteEventModal
