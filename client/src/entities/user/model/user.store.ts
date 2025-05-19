@@ -70,7 +70,11 @@ export const useUserStore = create<UserState>((set) => ({
   ) => {
     set({ loading: true });
     try {
-      const pageUsers: Page<User> = await fetchUsers(pageNumber, pageSize);
+      const pageUsers: Page<User> = await fetchUsers(
+        pageNumber,
+        pageSize,
+        searchTerm,
+      );
 
       set({
         users: pageUsers.items,
