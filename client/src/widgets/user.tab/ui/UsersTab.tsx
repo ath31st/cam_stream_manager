@@ -9,12 +9,14 @@ import {
 } from '../../../shared/notifications';
 import {
   CommonPaginationBar,
+  CommonSearchField,
   LargeLoader,
   TabContainer,
   WideButton,
 } from '../../../shared/ui';
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
+import { Space } from 'antd';
 
 const UsersTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
@@ -22,6 +24,7 @@ const UsersTab: React.FC = () => {
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState<number | null>(null);
   const [updatingUser, setUpdatingUser] = useState<User | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
 
   const { groups, fetchAllGroups } = useGroupStore();
 
@@ -50,8 +53,8 @@ const UsersTab: React.FC = () => {
   }, [error, clearError]);
 
   useEffect(() => {
-    fetchPageUsers(currentPage, pageSize);
-  }, [fetchPageUsers, currentPage, pageSize]);
+    fetchPageUsers(currentPage, pageSize, searchTerm);
+  }, [fetchPageUsers, currentPage, pageSize, searchTerm]);
 
   const handleAddUser = async (user: NewUser) => {
     await addUser(user);
@@ -102,12 +105,28 @@ const UsersTab: React.FC = () => {
     }
   };
 
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    fetchPageUsers(1, pageSize, value);
+  };
+
+  const handlePageChange = (page: number, size: number) => {
+    fetchPageUsers(page, size, searchTerm);
+  };
+
   return (
     <TabContainer>
       <>
-        <WideButton onClick={() => setIsAddModalVisible(true)}>
-          Добавить пользователя
-        </WideButton>
+        <Space>
+          <WideButton onClick={() => setIsAddModalVisible(true)}>
+            Добавить пользователя
+          </WideButton>
+          <CommonSearchField
+            placeholder="Поиск по логину"
+            searchTerm={searchTerm ?? ''}
+            onSearchChange={handleSearchChange}
+          />
+        </Space>
 
         {loading ? (
           <LargeLoader />
@@ -123,7 +142,7 @@ const UsersTab: React.FC = () => {
               currentPage={currentPage}
               pageSize={pageSize}
               totalItems={totalItems}
-              handlePageChange={fetchPageUsers}
+              handlePageChange={handlePageChange}
             />
           </>
         )}
