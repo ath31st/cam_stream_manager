@@ -14,6 +14,7 @@ import EventLevelSelect from './selects/EventLevelSelect';
 import LimitedText from './texts/LimitedText';
 import CommonTooltip from './tooltips/CommonTooltip';
 import CommonPaginationBar from './paginations/CommonPaginationBar';
+import CommonSearchField from './search.fields/CommonSearchField';
 
 export {
   CommonPaginationBar,
@@ -32,4 +33,5 @@ export {
   EventLevelSelect,
   LimitedText,
   CommonTooltip,
+  CommonSearchField,
 };
