@@ -105,13 +105,13 @@ const UsersTab: React.FC = () => {
     }
   };
 
-  const handleSearchChange = (value: string) => {
+  const handleSearchChange = async (value: string) => {
     setSearchTerm(value);
-    fetchPageUsers(1, pageSize, value);
+    await fetchPageUsers(1, pageSize, value);
   };
 
-  const handlePageChange = (page: number, size: number) => {
-    fetchPageUsers(page, size, searchTerm);
+  const handlePageChange = async (page: number, size: number) => {
+    await fetchPageUsers(page, size, searchTerm);
   };
 
   return (
