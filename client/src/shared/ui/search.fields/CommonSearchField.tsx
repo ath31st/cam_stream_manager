@@ -1,3 +1,4 @@
+import { Input } from 'antd';
 import styles from './CommonSearchField.module.css';
 
 interface CommonSearchFieldProps {
@@ -12,11 +13,12 @@ const CommonSearchField: React.FC<CommonSearchFieldProps> = ({
   onSearchChange,
 }) => {
   return (
-    <input
+    <Input
       className={styles['search-field']}
       value={searchTerm}
       onChange={(e) => onSearchChange(e.target.value)}
       placeholder={placeholder || 'Поиск...'}
+      allowClear
     />
   );
 };

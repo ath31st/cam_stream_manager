@@ -1,18 +1,6 @@
 .search-field {
-  background-color: var(--colorBgBase);
   color: var(--colorTextBase);
-  line-height: 50px;
   height: 40px;
   width: 300px;
-  border: 1px solid var(--colorBorder);
   padding-left: 10px;
-}
-
-.search-field::placeholder {
-  color: var(--colorTextSecondary);
-}
-
-.search-field:focus {
-  outline: none;
-  border-color: var(--colorTextSecondary);
 }
