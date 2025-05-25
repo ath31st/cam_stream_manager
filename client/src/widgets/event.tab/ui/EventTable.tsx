@@ -4,7 +4,7 @@ import type { EventDto } from '../../../shared/api.types';
 import { ActionButtons } from '../../../shared/ui';
 import { LevelBadge } from '../../event';
 import styles from './EventTable.module.css';
-import { formatDate } from '../../../shared';
+import { formatDate } from '../../../shared/common.utils';
 
 interface EventsTableProps {
   events: EventDto[];
