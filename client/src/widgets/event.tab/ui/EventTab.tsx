@@ -1,12 +1,7 @@
 import { Space } from 'antd';
 import type React from 'react';
-import { useEffect, useState } from 'react';
-import { EventLevel, EventType, useEventStore } from '../../../entities/event';
+import { EventLevel, EventType } from '../../../entities/event';
 import { DeleteEventModal } from '../../../features/event.management';
-import {
-  errorNotification,
-  successNotification,
-} from '../../../shared/notifications';
 import {
   CommonPaginationBar,
   EventLevelSelect,
@@ -15,88 +10,50 @@ import {
   TabContainer,
 } from '../../../shared/ui';
 import EventTable from './EventTable';
+import useEventTabHandlers from '../model/useEventTabHandlers';
 
 interface EventTabProps {
   isActiveTab: boolean;
 }
 
 const EventTab: React.FC<EventTabProps> = ({ isActiveTab }) => {
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const [deleteEventId, setDeleteEventId] = useState<number | null>(null);
-  const [eventType, setEventType] = useState<EventType | undefined>(undefined);
-  const [eventLevel, setEventLevel] = useState<EventLevel | undefined>(
-    undefined,
-  );
-
-  const { events, error, currentPage, pageSize, loading } = useEventStore();
-  const fetchEvents = useEventStore((s) => s.fetchEvents);
-  const clearError = useEventStore((s) => s.clearError);
-  const totalItems = useEventStore((s) => s.totalItems);
-
-  useEffect(() => {
-    if (error) {
-      errorNotification('Ошибка в работе с событиями', clearError, error);
-    }
-  }, [error, clearError]);
-
-  useEffect(() => {
-    if (isActiveTab) {
-      fetchEvents(currentPage, pageSize, eventType, eventLevel);
-    }
-  }, [isActiveTab, fetchEvents, currentPage, pageSize, eventType, eventLevel]);
-
-  const showDeleteConfirm = (id: number) => {
-    setDeleteEventId(id);
-    setIsDeleteModalVisible(true);
-  };
-
-  const handleDelete = async () => {
-    if (deleteEventId !== null) {
-      await useEventStore.getState().removeEvent(deleteEventId);
-      if (useEventStore.getState().error === null) {
-        successNotification('Событие удалено', 'Событие успешно удалено.');
-      }
-      setDeleteEventId(null);
-      setIsDeleteModalVisible(false);
-    }
-  };
-
-  const handlePageChange = (page: number) => {
-    fetchEvents(page, pageSize);
-  };
+  const { state, modals, actions } = useEventTabHandlers(isActiveTab);
 
   return (
     <TabContainer>
-      {loading ? (
+      {state.loading ? (
         <LargeLoader />
       ) : (
         <>
           <Space>
             <EventTypeSelect
               eventTypes={Object.values(EventType)}
-              value={eventType}
-              onChange={setEventType}
+              value={state.eventType}
+              onChange={actions.handleTypeChange}
             />
             <EventLevelSelect
               eventLevels={Object.values(EventLevel)}
-              value={eventLevel}
-              onChange={setEventLevel}
+              value={state.eventLevel}
+              onChange={actions.handleLevelChange}
             />
           </Space>
 
-          <EventTable events={events} onDelete={showDeleteConfirm} />
+          <EventTable
+            events={state.events}
+            onDelete={modals.showDeleteConfirm}
+          />
           <CommonPaginationBar
-            currentPage={currentPage}
-            pageSize={pageSize}
-            totalItems={totalItems}
-            handlePageChange={handlePageChange}
+            currentPage={state.currentPage}
+            pageSize={state.pageSize}
+            totalItems={state.totalItems}
+            handlePageChange={actions.handlePageChange}
           />
         </>
       )}
       <DeleteEventModal
-        visible={isDeleteModalVisible}
-        onConfirm={handleDelete}
-        onCancel={() => setIsDeleteModalVisible(false)}
+        visible={modals.isDeleteModalVisible}
+        onConfirm={actions.handleDelete}
+        onCancel={actions.handleCancelDelete}
       />
     </TabContainer>
   );
