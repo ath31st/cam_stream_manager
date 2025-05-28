@@ -1,15 +1,13 @@
 import type React from 'react';
-import {
-  AddUserModal,
-  DeleteUserModal,
-  UpdateUserModal,
-} from '../../../features/user.management';
 import type {
   Group,
   NewUser,
   UpdateUser,
   User,
 } from '../../../shared/api.types';
+import AddUserModal from './AddUserModal';
+import UpdateUserModal from './UpdateUserModal';
+import DeleteUserModal from './DeleteUserModal';
 
 interface UserTabModalsProps {
   groups: Group[];
