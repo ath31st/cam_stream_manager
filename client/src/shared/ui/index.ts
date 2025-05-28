@@ -15,6 +15,7 @@ import LimitedText from './texts/LimitedText';
 import CommonTooltip from './tooltips/CommonTooltip';
 import CommonPaginationBar from './paginations/CommonPaginationBar';
 import CommonSearchField from './search.fields/CommonSearchField';
+import LevelBadge from './badges/LevelBadge';
 
 export {
   CommonPaginationBar,
@@ -34,4 +35,5 @@ export {
   LimitedText,
   CommonTooltip,
   CommonSearchField,
+  LevelBadge,
 };
