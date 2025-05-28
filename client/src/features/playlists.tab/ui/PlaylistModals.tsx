@@ -3,7 +3,7 @@ import {
   AddPlaylistModal,
   DeletePlaylistModal,
   UpdatePlaylistModal,
-} from '../../../features/playlist.management';
+} from '../../playlist.management';
 import type {
   Group,
   NewPlaylist,

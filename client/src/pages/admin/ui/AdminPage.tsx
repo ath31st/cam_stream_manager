@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Dashboard from '../../../widgets/dashboard.tab';
 import EventTab from '../../../widgets/event.tab';
 import GroupsTab from '../../../widgets/group.tab';
-import PlaylistsTab from '../../../widgets/playlists.tab';
+import PlaylistsTab from '../../../features/playlists.tab';
 import UsersTab from '../../../features/user.tab';
 import StreamsTab from '../../../features/streams.tab';
 import ResponsiblePersonTab from '../../../features/responsible.person.tab';
