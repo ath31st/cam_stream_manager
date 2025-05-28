@@ -9,7 +9,7 @@ import {
 import UserTabModals from './UserTabModals';
 import UsersTable from './UsersTable';
 import { Space } from 'antd';
-import { useUsersTabHandlers } from '../model/useUsersTabHandlers';
+import { useUsersTabHandlers } from '../model/use.users.tab.handlers';
 
 const UsersTab: React.FC = () => {
   const { modals, selected, search, actions, state } = useUsersTabHandlers();

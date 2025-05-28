@@ -9,7 +9,7 @@ import {
   TabContainer,
 } from '../../../shared/ui';
 import EventTable from './EventTable';
-import useEventTabHandlers from '../model/useEventTabHandlers';
+import useEventTabHandlers from '../model/use.event.tab.handlers';
 import DeleteEventModal from './DeleteEventModal';
 
 interface EventTabProps {
