@@ -7,7 +7,7 @@ import GroupsTab from '../../../widgets/group.tab';
 import PlaylistsTab from '../../../widgets/playlists.tab';
 import ResponsiblePersonTab from '../../../widgets/responsible.person.tab';
 import StreamsTab from '../../../widgets/streams.tab';
-import UsersTab from '../../../widgets/user.tab';
+import UsersTab from '../../../features/user.tab';
 
 const AdminPage: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<string>('1');
