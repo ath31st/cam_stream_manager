@@ -13,8 +13,8 @@ import {
   successNotification,
 } from '../../../shared/notifications';
 import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
-import PlaylistModals from './PlaylistModals';
 import PlaylistsTable from './PlaylistsTable';
+import PlaylistModals from './PlaylistModals';
 
 const PlaylistsTab: React.FC = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
