@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { fetchDashboardData } from '../../../entities/dashboard';
 import type { PlaylistInfo } from '../../../shared/api.types';
 import { LargeLoader } from '../../../shared/ui';
-import { EventSidebar } from '../../event.sidebar';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import PlaylistCard from './PlaylistCard';
+import { EventSidebar } from '../../../widgets/event.sidebar';
 
 interface DashboardProps {
   isActiveTab: boolean;

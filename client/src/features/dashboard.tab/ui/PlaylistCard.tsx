@@ -3,11 +3,11 @@ import type React from 'react';
 import { useState } from 'react';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';
 import type { PlaylistInfo } from '../../../shared/api.types';
-import { ResponsiblePersonModal } from '../../responsible.person';
 import { StreamStatus, type StreamStatusType } from '../lib/stream.status';
 import styles from './PlaylistCard.module.css';
 import StatusCounts from './StatusCounts';
 import StreamItemList from './StreamItemList';
+import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
 
 interface PlaylistCardProps extends PlaylistInfo {
   isOpen: boolean;
