@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { useEventStore } from '../../../entities/event';
 import { errorNotification } from '../../../shared/notifications';
 import { MediumLoader } from '../../../shared/ui';
-import { EventCardList } from '../../event';
-import { POLLING_INTERVAL, fetchProps } from '../lib/event.sidebar.constants';
 import styles from './EventSidebar.module.css';
+import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
+import { EventCardList } from '../../../widgets/event';
 
 interface EventSidebarProps {
   isActiveTab: boolean;

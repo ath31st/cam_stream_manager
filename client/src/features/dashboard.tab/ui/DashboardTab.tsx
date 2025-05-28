@@ -6,7 +6,7 @@ import type { PlaylistInfo } from '../../../shared/api.types';
 import { LargeLoader } from '../../../shared/ui';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 import PlaylistCard from './PlaylistCard';
-import { EventSidebar } from '../../../widgets/event.sidebar';
+import EventSidebar from './EventSidebar';
 
 interface DashboardProps {
   isActiveTab: boolean;
