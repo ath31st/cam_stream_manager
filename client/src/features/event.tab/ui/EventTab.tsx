@@ -1,7 +1,6 @@
 import { Space } from 'antd';
 import type React from 'react';
 import { EventLevel, EventType } from '../../../entities/event';
-import { DeleteEventModal } from '../../event.management';
 import {
   CommonPaginationBar,
   EventLevelSelect,
@@ -11,6 +10,7 @@ import {
 } from '../../../shared/ui';
 import EventTable from './EventTable';
 import useEventTabHandlers from '../model/useEventTabHandlers';
+import DeleteEventModal from './DeleteEventModal';
 
 interface EventTabProps {
   isActiveTab: boolean;
