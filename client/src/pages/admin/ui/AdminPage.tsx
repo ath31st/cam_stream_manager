@@ -5,9 +5,9 @@ import Dashboard from '../../../widgets/dashboard.tab';
 import EventTab from '../../../widgets/event.tab';
 import GroupsTab from '../../../widgets/group.tab';
 import PlaylistsTab from '../../../widgets/playlists.tab';
-import ResponsiblePersonTab from '../../../widgets/responsible.person.tab';
 import UsersTab from '../../../features/user.tab';
 import StreamsTab from '../../../features/streams.tab';
+import ResponsiblePersonTab from '../../../features/responsible.person.tab';
 
 const AdminPage: React.FC = () => {
   const [activeTabKey, setActiveTabKey] = useState<string>('1');
