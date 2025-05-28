@@ -1,7 +1,7 @@
 import { Space } from 'antd';
 import type React from 'react';
 import { EventLevel, EventType } from '../../../entities/event';
-import { DeleteEventModal } from '../../../features/event.management';
+import { DeleteEventModal } from '../../event.management';
 import {
   CommonPaginationBar,
   EventLevelSelect,
