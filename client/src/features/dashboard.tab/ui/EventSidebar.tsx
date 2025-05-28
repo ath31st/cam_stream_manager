@@ -5,7 +5,7 @@ import { errorNotification } from '../../../shared/notifications';
 import { MediumLoader } from '../../../shared/ui';
 import styles from './EventSidebar.module.css';
 import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
-import { EventCardList } from '../../../widgets/event';
+import EventCardList from './EventCardList';
 
 interface EventSidebarProps {
   isActiveTab: boolean;
