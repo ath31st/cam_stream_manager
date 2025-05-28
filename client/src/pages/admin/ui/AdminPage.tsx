@@ -3,7 +3,7 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 import Dashboard from '../../../widgets/dashboard.tab';
 import EventTab from '../../../features/event.tab';
-import GroupsTab from '../../../widgets/group.tab';
+import GroupsTab from '../../../features/group.tab';
 import PlaylistsTab from '../../../features/playlists.tab';
 import UsersTab from '../../../features/user.tab';
 import StreamsTab from '../../../features/streams.tab';

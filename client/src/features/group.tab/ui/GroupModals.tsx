@@ -3,7 +3,7 @@ import {
   AddGroupModal,
   DeleteGroupModal,
   UpdateGroupModal,
-} from '../../../features/group.management';
+} from '../../group.management';
 import type { Group, UpdateGroup } from '../../../shared/api.types';
 
 interface GroupModalsProps {
