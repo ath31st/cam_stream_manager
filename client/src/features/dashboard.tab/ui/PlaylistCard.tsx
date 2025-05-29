@@ -1,13 +1,11 @@
 import { Card } from 'antd';
 import type React from 'react';
-import { useState } from 'react';
-import { useResponsiblePersonStore } from '../../../entities/responsible.person';
 import type { PlaylistInfo } from '../../../shared/api.types';
-import { StreamStatus, type StreamStatusType } from '../lib/stream.status';
 import styles from './PlaylistCard.module.css';
 import StatusCounts from './StatusCounts';
 import StreamItemList from './StreamItemList';
 import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
+import usePlaylistCardHandlers from '../model/use.playlist.card.handlers';
 
 interface PlaylistCardProps extends PlaylistInfo {
   isOpen: boolean;
@@ -23,27 +21,11 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
   isOpen,
   onToggle,
 }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const { fetchResponsiblePersonsByStream, responsiblePersonsByStream } =
-    useResponsiblePersonStore();
-
-  const openModal = async (streamId: number) => {
-    fetchResponsiblePersonsByStream(streamId);
-    setIsModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const statusCounts: {
-    count: number;
-    type: StreamStatusType;
-  }[] = [
-    { count: activeCount, type: StreamStatus.Active },
-    { count: noConnectionCount, type: StreamStatus.NoConnection },
-    { count: badConnectionCount, type: StreamStatus.BadConnection },
-  ];
+  const { state, modals, types } = usePlaylistCardHandlers(
+    activeCount,
+    noConnectionCount,
+    badConnectionCount,
+  );
 
   return (
     <Card
@@ -51,15 +33,15 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
       onClick={() => onToggle(playlistName)}
       className={styles.card}
     >
-      <StatusCounts statusCounts={statusCounts} />
+      <StatusCounts statusCounts={types.statusCounts} />
       {isOpen && streams.length > 0 && (
-        <StreamItemList streams={streams} onItemClick={openModal} />
+        <StreamItemList streams={streams} onItemClick={modals.openModal} />
       )}
 
       <ResponsiblePersonModal
-        onClose={closeModal}
-        isOpen={isModalVisible}
-        responsiblePersons={responsiblePersonsByStream}
+        onClose={modals.closeModal}
+        isOpen={modals.isModalVisible}
+        responsiblePersons={state.responsiblePersonsByStream}
       />
     </Card>
   );
