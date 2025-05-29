@@ -1,5 +1,6 @@
 import type React from 'react';
 import styles from './StreamItem.module.css';
+import useStreamItemHandlers from '../model/use.stream.item.handlers';
 
 interface StreamItemProps {
   name: string;
@@ -8,38 +9,15 @@ interface StreamItemProps {
 }
 
 const StreamItem: React.FC<StreamItemProps> = ({ name, status, onClick }) => {
-  const handleClick = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    onClick();
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.stopPropagation();
-      onClick();
-    }
-  };
-
-  const getStatusColor = () => {
-    switch (status) {
-      case 'Active':
-        return styles.active;
-      case 'No connection':
-        return styles.noConnection;
-      case 'Bad connection':
-        return styles.badConnection;
-      default:
-        return '';
-    }
-  };
+  const { actions } = useStreamItemHandlers(status, onClick);
 
   return (
     <div
       className={styles.streamItem}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onClick={actions.handleClick}
+      onKeyDown={actions.handleKeyDown}
     >
-      <span className={getStatusColor()}>{name}</span>
+      <span className={actions.handleStatusColor()}>{name}</span>
     </div>
   );
 };
