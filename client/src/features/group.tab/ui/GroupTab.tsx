@@ -1,124 +1,39 @@
 import type React from 'react';
-import { useEffect, useState } from 'react';
-import { useGroupStore } from '../../../entities/group';
-import type { Group, UpdateGroup } from '../../../shared/api.types';
-import {
-  errorNotification,
-  successNotification,
-} from '../../../shared/notifications';
 import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
 import GroupModals from './GroupModals';
 import GroupsTable from './GroupsTable';
+import useGroupTabHandlers from '../model/use.group.tab.handlers';
 
 const GroupsTab: React.FC = () => {
-  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
-  const [deleteGroupId, setDeleteGroupId] = useState<number | null>(null);
-  const [updatingGroup, setUpdatingGroup] = useState<Group | null>(null);
-
-  const {
-    groups,
-    error,
-    clearError,
-    fetchAllGroups,
-    loading,
-    addGroup,
-    updateGroup,
-    removeGroup,
-  } = useGroupStore();
-
-  useEffect(() => {
-    if (error) {
-      errorNotification('Ошибка в работе с группами', clearError, error);
-    }
-  }, [error, clearError]);
-
-  useEffect(() => {
-    fetchAllGroups();
-  }, [fetchAllGroups]);
-
-  const handleAddGroup = async (name: string) => {
-    await addGroup({ name });
-    if (useGroupStore.getState().error === null) {
-      successNotification(
-        'Группа добавлена',
-        `Группа "${name}" успешно добавлена.`,
-      );
-      setIsAddModalVisible(false);
-    }
-  };
-
-  const showDeleteConfirm = (id: number) => {
-    setDeleteGroupId(id);
-    setIsDeleteModalVisible(true);
-  };
-
-  const handleDelete = async () => {
-    if (deleteGroupId !== null) {
-      await removeGroup(deleteGroupId);
-      if (useGroupStore.getState().error === null) {
-        successNotification('Группа удалена', 'Группа успешно удалена.');
-      }
-      setDeleteGroupId(null);
-      setIsDeleteModalVisible(false);
-    }
-  };
-
-  const showUpdateModal = (group: Group) => {
-    setUpdatingGroup(group);
-    setIsUpdateModalVisible(true);
-  };
-
-  const handleUpdateGroup = async (updatedGroup: UpdateGroup) => {
-    if (updatingGroup) {
-      await updateGroup(updatingGroup.id, updatedGroup);
-      if (useGroupStore.getState().error === null) {
-        successNotification(
-          'Группа обновлена',
-          `Группа "${updatedGroup.name}" успешно обновлена.`,
-        );
-        setUpdatingGroup(null);
-        setIsUpdateModalVisible(false);
-      }
-    }
-  };
+  const { state, actions, modals } = useGroupTabHandlers();
 
   return (
     <TabContainer>
       <>
-        <WideButton onClick={() => setIsAddModalVisible(true)}>
-          Добавить группу
-        </WideButton>
+        <WideButton onClick={modals.showAddModal}>Добавить группу</WideButton>
 
-        {loading ? (
+        {state.loading ? (
           <LargeLoader />
         ) : (
           <GroupsTable
-            groups={groups}
-            onEdit={showUpdateModal}
-            onDelete={showDeleteConfirm}
+            groups={state.groups}
+            onEdit={modals.showUpdateModal}
+            onDelete={modals.showDeleteConfirmModal}
           />
         )}
 
         <GroupModals
-          isAddModalVisible={isAddModalVisible}
-          isDeleteModalVisible={isDeleteModalVisible}
-          isUpdateModalVisible={isUpdateModalVisible}
-          updatingGroup={updatingGroup}
-          deleteGroupId={deleteGroupId}
-          onAdd={handleAddGroup}
-          onDelete={handleDelete}
-          onUpdate={handleUpdateGroup}
-          onCloseAdd={() => setIsAddModalVisible(false)}
-          onCloseDelete={() => {
-            setDeleteGroupId(null);
-            setIsDeleteModalVisible(false);
-          }}
-          onCloseUpdate={() => {
-            setUpdatingGroup(null);
-            setIsUpdateModalVisible(false);
-          }}
+          isAddModalVisible={modals.isAddModalVisible}
+          isDeleteModalVisible={modals.isDeleteModalVisible}
+          isUpdateModalVisible={modals.isUpdateModalVisible}
+          updatingGroup={state.updatingGroup}
+          deleteGroupId={state.deleteGroupId}
+          onAdd={actions.handleAddGroup}
+          onDelete={actions.handleDelete}
+          onUpdate={actions.handleUpdateGroup}
+          onCloseAdd={modals.closeAddModal}
+          onCloseDelete={modals.closeDeleteModal}
+          onCloseUpdate={modals.closeUpdateModal}
         />
       </>
     </TabContainer>
