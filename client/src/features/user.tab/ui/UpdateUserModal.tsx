@@ -1,6 +1,5 @@
 import { Form, Input, Modal, Select, Switch } from 'antd';
 import type React from 'react';
-import { useEffect } from 'react';
 import type { Group, UpdateUser, User } from '../../../shared/api.types';
 import styles from '../../../shared/styles/CommonModalStyle.module.css';
 import { FooterModal } from '../../../shared/ui';
@@ -8,6 +7,7 @@ import {
   emailValidationRules,
   usernameValidationRules,
 } from '../../../shared/validations';
+import useUpdateUserModalHandlers from '../model/use.update.user.modal.handlers';
 
 interface UpdateUserModalProps {
   groups: Group[];
@@ -24,28 +24,10 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
   onConfirm,
   onCancel,
 }) => {
-  const [form] = Form.useForm();
-
-  useEffect(() => {
-    if (user) {
-      form.setFieldsValue(user);
-    }
-  }, [user, form]);
-
-  const handleOk = () => {
-    const fieldsValue = form.getFieldsValue();
-
-    const updatedUser: UpdateUser = {
-      id: user?.id || 0,
-      username: fieldsValue.username,
-      email: fieldsValue.email,
-      role: fieldsValue.role,
-      isLocked: fieldsValue.isLocked,
-      groupIds: fieldsValue.groupIds || [],
-    };
-
-    onConfirm(updatedUser);
-  };
+  const { form, handleUpdateUser } = useUpdateUserModalHandlers(
+    user,
+    onConfirm,
+  );
 
   return (
     <Modal
@@ -54,10 +36,14 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
         <p className={styles['modal-title']}>Редактирование пользователя</p>
       }
       open={visible}
-      onOk={handleOk}
+      onOk={handleUpdateUser}
       onCancel={onCancel}
       footer={
-        <FooterModal onCancel={onCancel} onOk={handleOk} okText="Сохранить" />
+        <FooterModal
+          onCancel={onCancel}
+          onOk={handleUpdateUser}
+          okText="Сохранить"
+        />
       }
     >
       <div className={styles['modal-body']}>
