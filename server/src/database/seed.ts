@@ -3,18 +3,18 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.playlist.createMany({
-    data: [
-      {
-        name: 'SOUTH',
-        isVisible: true,
-      },
-      {
-        name: 'NOTRH',
-        isVisible: true,
-      },
-    ],
-  });
+  // await prisma.playlist.createMany({
+  //   data: [
+  //     {
+  //       name: 'SOUTH',
+  //       isVisible: true,
+  //     },
+  //     {
+  //       name: 'NOTRH',
+  //       isVisible: true,
+  //     },
+  //   ],
+  // });
 }
 
 main()
