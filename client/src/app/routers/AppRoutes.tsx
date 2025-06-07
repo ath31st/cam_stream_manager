@@ -9,6 +9,7 @@ import AdminLayout from '../layouts/AdminLayout';
 import MainLayout from '../layouts/MainLayout';
 import PrivateRoute from './PrivateRoute';
 import ErrorPageLayout from '../layouts/ErrorPageLayout';
+import NotFoundPage from '../../pages/404';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const AppRoutes: React.FC = () => {
             path={routes.ACCESS_DENIED_PAGE}
             element={<AccessDeniedPage />}
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Router>
