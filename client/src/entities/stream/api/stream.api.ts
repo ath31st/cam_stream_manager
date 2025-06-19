@@ -5,7 +5,7 @@ import type {
   UpdateStream,
 } from '../../../shared/api.types';
 
-const API_URL = `${process.env.REACT_APP_API_URL}/streams`;
+const API_URL = `${import.meta.env.VITE_API_URL}/streams`;
 
 export const fetchStreams = async (): Promise<Stream[]> => {
   const response = await axios.get<Stream[]>(API_URL);
