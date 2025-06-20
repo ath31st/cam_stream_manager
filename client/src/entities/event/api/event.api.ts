@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { EventDto, Page } from '../../../shared/api.types';
 import type { EventLevel, EventType } from '../index';
 
-const API_URL = `${process.env.REACT_APP_API_URL}/events`;
+const API_URL = `${import.meta.env.VITE_API_URL}/events`;
 
 export const fetchEvents = async (
   page?: number,

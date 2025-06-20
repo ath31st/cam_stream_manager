@@ -7,7 +7,7 @@ import type {
   User,
 } from '../../../shared/api.types';
 
-const API_URL = `${process.env.REACT_APP_API_URL}/users`;
+const API_URL = `${import.meta.env.VITE_API_URL}/users`;
 
 export const fetchUsers = async (
   pageNumber?: number,
