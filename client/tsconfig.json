@@ -17,7 +17,8 @@
     "jsx": "react-jsx",
     "rootDirs": ["src", "shared"],
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src","env.d.ts"],
