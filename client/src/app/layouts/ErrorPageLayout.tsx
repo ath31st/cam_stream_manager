@@ -1,5 +1,4 @@
 import { Layout } from 'antd';
-import { Header, Footer } from 'antd/es/layout/layout';
 import { Outlet } from 'react-router-dom';
 import styles from './ErrorPageLayout.module.css';
 
