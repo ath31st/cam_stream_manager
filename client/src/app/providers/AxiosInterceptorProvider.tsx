@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useEffect } from 'react';
-import { useServerStatusStore } from '../../features/server.status';
+import { useServerStatusStore } from '@/features/server.status';
 import setupAxiosInterceptor from '../providers/axios.interceptor';
 
 interface AxiosInterceptorProviderProps {
