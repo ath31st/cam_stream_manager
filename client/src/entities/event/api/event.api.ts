@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { EventDto, Page } from '../../../shared/api.types';
+import type { EventDto, Page } from '@/shared/api.types';
 import type { EventLevel, EventType } from '../index';
 
 const API_URL = `${import.meta.env.VITE_API_URL}/events`;
