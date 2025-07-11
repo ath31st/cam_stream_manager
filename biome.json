@@ -20,7 +20,7 @@
     "bracketSpacing": true,
     "includes": [
       "client/**",
-      "server/src/**",
+      "server/**",
       "shared/**"
     ]
   },
