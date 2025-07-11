@@ -1,13 +1,12 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "vcs": {
     "enabled": false,
     "clientKind": "git",
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": false,
-    "ignore": []
+    "ignoreUnknown": false
   },
   "formatter": {
     "enabled": true,
@@ -19,28 +18,11 @@
     "lineWidth": 80,
     "attributePosition": "auto",
     "bracketSpacing": true,
-    "ignore": [
-      "**/.nuxt/",
-      "**/dist/",
-      "**/node_modules/",
-      "**/*.config.js",
-      "**/.env",
-      "**/.env.*",
-      "**/yarn.lock",
-      "**/package-lock.json",
-      "**/*.log",
-      "**/*.min.js",
-      "**/*.min.css",
-      "**/*.png",
-      "**/*.jpg",
-      "**/*.jpeg",
-      "**/*.gif",
-      "**/*.svg",
-      "**/coverage/"
+    "includes": [
+      "client/**",
+      "server/src/**",
+      "shared/**"
     ]
-  },
-  "organizeImports": {
-    "enabled": true
   },
   "linter": {
     "enabled": true,
