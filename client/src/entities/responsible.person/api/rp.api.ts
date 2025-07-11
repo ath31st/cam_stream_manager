@@ -3,7 +3,7 @@ import type {
   NewResponsiblePerson,
   ResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../../shared/api.types';
+} from '@/shared/api.types';
 
 const API_URL = `${import.meta.env.VITE_API_URL}/responsible-persons`;
 

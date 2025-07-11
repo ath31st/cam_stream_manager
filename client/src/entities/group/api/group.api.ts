@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Group, NewGroup, UpdateGroup } from '../../../shared/api.types';
+import type { Group, NewGroup, UpdateGroup } from '@/shared/api.types';
 
 const API_URL = `${import.meta.env.VITE_API_URL}/groups`;
 

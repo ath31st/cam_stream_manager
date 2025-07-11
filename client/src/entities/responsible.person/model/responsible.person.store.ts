@@ -4,8 +4,8 @@ import type {
   NewResponsiblePerson,
   ResponsiblePerson,
   UpdateResponsiblePerson,
-} from '../../../shared/api.types';
-import { getRpErrorMessage, unknownError } from '../../../shared/errors';
+} from '@/shared/api.types';
+import { getRpErrorMessage, unknownError } from '@/shared/errors';
 import {
   createResponsiblePerson,
   deleteResponsiblePerson,

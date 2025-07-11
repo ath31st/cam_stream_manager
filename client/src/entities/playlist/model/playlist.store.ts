@@ -1,11 +1,7 @@
 import { AxiosError } from 'axios';
 import { create } from 'zustand';
-import type {
-  NewPlaylist,
-  Playlist,
-  UpdatePlaylist,
-} from '../../../shared/api.types';
-import { getPlaylistErrorMessage, unknownError } from '../../../shared/errors';
+import type { NewPlaylist, Playlist, UpdatePlaylist } from '@/shared/api.types';
+import { getPlaylistErrorMessage, unknownError } from '@/shared/errors';
 import {
   createPlaylist,
   deletePlaylist,

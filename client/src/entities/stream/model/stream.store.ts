@@ -1,11 +1,7 @@
 import { AxiosError } from 'axios';
 import { create } from 'zustand';
-import type {
-  NewStream,
-  Stream,
-  UpdateStream,
-} from '../../../shared/api.types';
-import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
+import type { NewStream, Stream, UpdateStream } from '@/shared/api.types';
+import { getStreamErrorMessage, unknownError } from '@/shared/errors';
 import {
   createStream,
   deleteStream,

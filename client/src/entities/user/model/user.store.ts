@@ -6,8 +6,8 @@ import type {
   UpdateUser,
   UpdateUserPassword,
   User,
-} from '../../../shared/api.types';
-import { getStreamErrorMessage, unknownError } from '../../../shared/errors';
+} from '@/shared/api.types';
+import { getStreamErrorMessage, unknownError } from '@/shared/errors';
 import {
   createUser,
   deleteUser,

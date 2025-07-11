@@ -1,9 +1,5 @@
 import axios from 'axios';
-import type {
-  NewStream,
-  Stream,
-  UpdateStream,
-} from '../../../shared/api.types';
+import type { NewStream, Stream, UpdateStream } from '@/shared/api.types';
 
 const API_URL = `${import.meta.env.VITE_API_URL}/streams`;
 
