@@ -3,11 +3,8 @@ import {
   useEventStore,
   type EventLevel,
   type EventType,
-} from '../../../entities/event';
-import {
-  errorNotification,
-  successNotification,
-} from '../../../shared/notifications';
+} from '@/entities/event';
+import { errorNotification, successNotification } from '@/shared/notifications';
 
 const useEventTabHandlers = (isActiveTab: boolean) => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);

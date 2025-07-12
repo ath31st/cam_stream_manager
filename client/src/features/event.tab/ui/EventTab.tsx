@@ -1,13 +1,13 @@
 import { Space } from 'antd';
 import type React from 'react';
-import { EventLevel, EventType } from '../../../entities/event';
+import { EventLevel, EventType } from '@/entities/event';
 import {
   CommonPaginationBar,
   EventLevelSelect,
   EventTypeSelect,
   LargeLoader,
   TabContainer,
-} from '../../../shared/ui';
+} from '@/shared/ui';
 import EventTable from './EventTable';
 import useEventTabHandlers from '../model/use.event.tab.handlers';
 import DeleteEventModal from './DeleteEventModal';
