@@ -6,8 +6,8 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import type React from 'react';
-import routes from '../../../shared/routes';
-import { IconButton } from '../../../shared/ui';
+import routes from '@/shared/routes';
+import { IconButton } from '@/shared/ui';
 import UserRoles from '../lib/user.roles';
 import styles from './AuthButtons.module.css';
 

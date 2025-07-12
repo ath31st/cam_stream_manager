@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { useAuthStore } from './auth.store';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { resetStores } from '../../../app';
-import { usePlaylistStore } from '../../../entities/playlist';
-import {
-  errorNotification,
-  successNotification,
-} from '../../../shared/notifications';
-import routes from '../../../shared/routes';
+import { resetStores } from '@/app';
+import { usePlaylistStore } from '@/entities/playlist';
+import { errorNotification, successNotification } from '@/shared/notifications';
+import routes from '@/shared/routes';
 
 const useAuthModuleHandlers = () => {
   const { isAuthenticated, login, user, logout, clearError } = useAuthStore();

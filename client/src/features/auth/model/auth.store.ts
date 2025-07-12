@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { create } from 'zustand';
-import { getAuthErrorMessage, unknownError } from '../../../shared/errors';
+import { getAuthErrorMessage, unknownError } from '@/shared/errors';
 import { login, logout, refreshAccessToken } from '../api/auth.api';
 import { LOCAL_STORAGE_KEY } from '../lib/auth.constants';
 import { decodeToken, isTokenExpired } from '../lib/jwt';
