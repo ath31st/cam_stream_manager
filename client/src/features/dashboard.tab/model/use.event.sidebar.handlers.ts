@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useEventStore } from '../../../entities/event';
+import { useEventStore } from '@/entities/event';
 import { fetchProps, POLLING_INTERVAL } from '../lib/event.sidebar.constants';
-import { errorNotification } from '../../../shared/notifications';
+import { errorNotification } from '@/shared/notifications';
 
 const useEventSidebarHandlers = (isActiveTab: boolean) => {
   const { error, clearError, fetchSidebarEvents, sidebarEvents } =

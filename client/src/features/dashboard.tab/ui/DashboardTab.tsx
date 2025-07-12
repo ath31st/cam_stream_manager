@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import type React from 'react';
-import { LargeLoader } from '../../../shared/ui';
+import { LargeLoader } from '@/shared/ui';
 import PlaylistCard from './PlaylistCard';
 import EventSidebar from './EventSidebar';
 import useDashboardTabHandlers from '../model/use.dahsboard.tab.handlers';

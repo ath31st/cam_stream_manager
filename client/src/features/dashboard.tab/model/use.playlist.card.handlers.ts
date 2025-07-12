@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useResponsiblePersonStore } from '../../../entities/responsible.person';
+import { useResponsiblePersonStore } from '@/entities/responsible.person';
 import { StreamStatus, type StreamStatusType } from '../lib/stream.status';
 
 const usePlaylistCardHandlers = (
