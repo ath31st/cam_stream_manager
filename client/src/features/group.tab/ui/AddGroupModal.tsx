@@ -1,8 +1,8 @@
 import { Form, Input, Modal } from 'antd';
 import type React from 'react';
-import styles from '../../../shared/styles/CommonModalStyle.module.css';
-import { FooterModal } from '../../../shared/ui';
-import { groupNameValidationRules } from '../../../shared/validations';
+import styles from '@/shared/styles/CommonModalStyle.module.css';
+import { FooterModal } from '@/shared/ui';
+import { groupNameValidationRules } from '@/shared/validations';
 
 interface AddGroupModalProps {
   visible: boolean;

@@ -1,5 +1,5 @@
 import type React from 'react';
-import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
+import { LargeLoader, TabContainer, WideButton } from '@/shared/ui';
 import GroupModals from './GroupModals';
 import GroupsTable from './GroupsTable';
 import useGroupTabHandlers from '../model/use.group.tab.handlers';

@@ -1,5 +1,5 @@
 import type React from 'react';
-import type { Group, UpdateGroup } from '../../../shared/api.types';
+import type { Group, UpdateGroup } from '@/shared/api.types';
 import AddGroupModal from './AddGroupModal';
 import DeleteGroupModal from './DeleteGroupModal';
 import UpdateGroupModal from './UpdateGroupModal';

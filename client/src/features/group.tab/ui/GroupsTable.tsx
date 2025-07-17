@@ -1,10 +1,10 @@
 import { Table } from 'antd';
 import type React from 'react';
-import { paginationConfig } from '../../../shared/pagination';
-import { ActionButtons } from '../../../shared/ui';
+import { paginationConfig } from '@/shared/pagination';
+import { ActionButtons } from '@/shared/ui';
 import styles from './GroupsTable.module.css';
-import '../../../shared/styles/CommonTabTableStyle.css';
-import type { Group } from '../../../shared/api.types';
+import '@/shared/styles/CommonTabTableStyle.css';
+import type { Group } from '@/shared/api.types';
 
 interface GroupsTableProps {
   groups: Group[];

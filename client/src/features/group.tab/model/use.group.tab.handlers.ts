@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useGroupStore } from '../../../entities/group';
-import type { Group, UpdateGroup } from '../../../shared/api.types';
-import {
-  errorNotification,
-  successNotification,
-} from '../../../shared/notifications';
+import { useGroupStore } from '@/entities/group';
+import type { Group, UpdateGroup } from '@/shared/api.types';
+import { errorNotification, successNotification } from '@/shared/notifications';
 
 const useGroupTabHandlers = () => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
