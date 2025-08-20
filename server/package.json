@@ -31,7 +31,7 @@
   "description": "A Node.js server with Express and TypeScript for handling backend operations.",
   "dependencies": {
     "@prisma/client": "^6.2.1",
-    "axios": "^1.8.4",
+    "axios": "^1.11.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",

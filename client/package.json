@@ -20,7 +20,7 @@
   "description": "A React frontend application using TypeScript and styled-components.",
   "dependencies": {
     "antd": "^5.20.6",
-    "axios": "^1.8.4",
+    "axios": "^1.11.0",
     "dashjs": "^4.7.4",
     "flv.js": "^1.6.2",
     "hls.js": "^1.5.15",
