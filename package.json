@@ -7,7 +7,7 @@
     "devDependencies": {
         "@biomejs/biome": "^2.1.1",
         "@vitejs/plugin-react": "^4.5.2",
-        "vite": "^7.1.7"
+        "vite": "^7.2.4"
     },
     "resolutions": {
         "nth-check": "^2.1.1",
