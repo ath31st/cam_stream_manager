@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePlaylistStore } from '../../../entities/playlist';
 import { useStreamStore } from '../../../entities/stream';
 import type {

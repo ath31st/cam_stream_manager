@@ -7,11 +7,11 @@ import {
 } from '@ant-design/icons';
 import { Table } from 'antd';
 import type React from 'react';
+import type { JSX } from 'react';
 import type { Playlist, Stream } from '../../../shared/api.types';
 import { paginationConfig } from '../../../shared/pagination';
 import { ActionButtons, CommonTooltip } from '../../../shared/ui';
 import styles from './StreamsTable.module.css';
-import type { JSX } from 'react';
 
 interface StreamsTableProps {
   streams: Stream[];

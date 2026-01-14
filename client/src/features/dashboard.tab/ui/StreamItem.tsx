@@ -1,6 +1,6 @@
 import type React from 'react';
-import styles from './StreamItem.module.css';
 import useStreamItemHandlers from '../model/use.stream.item.handlers';
+import styles from './StreamItem.module.css';
 
 interface StreamItemProps {
   name: string;

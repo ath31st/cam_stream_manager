@@ -1,8 +1,8 @@
 import type React from 'react';
 import { LargeLoader, TabContainer, WideButton } from '@/shared/ui';
+import useGroupTabHandlers from '../model/use.group.tab.handlers';
 import GroupModals from './GroupModals';
 import GroupsTable from './GroupsTable';
-import useGroupTabHandlers from '../model/use.group.tab.handlers';
 
 const GroupsTab: React.FC = () => {
   const { state, actions, modals } = useGroupTabHandlers();

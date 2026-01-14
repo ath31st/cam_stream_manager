@@ -6,8 +6,8 @@ import type {
   UpdateStream,
 } from '../../../shared/api.types';
 import AddStreamModal from './AddStreamModal';
-import UpdateStreamModal from './UpdateStreamModal';
 import DeleteStreamModal from './DeleteStreamModal';
+import UpdateStreamModal from './UpdateStreamModal';
 
 interface StreamModalsProps {
   isAddModalVisible: boolean;

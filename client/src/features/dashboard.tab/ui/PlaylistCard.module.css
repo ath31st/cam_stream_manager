@@ -11,7 +11,9 @@
   height: 140px;
   width: 250px;
   cursor: pointer;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   border: 2px solid var(--colorBorder);
 }
 

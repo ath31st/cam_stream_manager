@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { resetStores } from '../';
 import {
-  LOCAL_STORAGE_KEY,
   isTokenExpired,
+  LOCAL_STORAGE_KEY,
   useAuthStore,
 } from '../../features/auth';
+import { resetStores } from '../';
 
 const setupAxiosInterceptor = (setServerStatus: (status: boolean) => void) => {
   axios.interceptors.response.use(

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGroupStore } from '@/entities/group';
 import type { Group, UpdateGroup } from '@/shared/api.types';
 import { errorNotification, successNotification } from '@/shared/notifications';

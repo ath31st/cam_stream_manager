@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useUserStore } from '../../../entities/user';
+import { useEffect, useState } from 'react';
 import { useGroupStore } from '../../../entities/group';
+import { useUserStore } from '../../../entities/user';
 import type { NewUser, UpdateUser, User } from '../../../shared/api.types';
 import {
   errorNotification,

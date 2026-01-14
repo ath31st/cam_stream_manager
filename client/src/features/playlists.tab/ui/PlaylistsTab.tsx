@@ -1,8 +1,8 @@
 import type React from 'react';
 import { LargeLoader, TabContainer, WideButton } from '../../../shared/ui';
-import PlaylistsTable from './PlaylistsTable';
-import PlaylistModals from './PlaylistModals';
 import usePlaylistTabHandlers from '../model/use.playlist.tab.handlers';
+import PlaylistModals from './PlaylistModals';
+import PlaylistsTable from './PlaylistsTable';
 
 const PlaylistsTab: React.FC = () => {
   const { state, actions, modals } = usePlaylistTabHandlers();

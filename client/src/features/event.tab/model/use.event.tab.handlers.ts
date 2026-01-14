@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import {
-  useEventStore,
   type EventLevel,
   type EventType,
+  useEventStore,
 } from '@/entities/event';
 import { errorNotification, successNotification } from '@/shared/notifications';
 

@@ -1,8 +1,8 @@
 import type React from 'react';
 import { MediumLoader } from '../../../shared/ui';
-import styles from './EventSidebar.module.css';
-import EventCardList from './EventCardList';
 import useEventSidebarHandlers from '../model/use.event.sidebar.handlers';
+import EventCardList from './EventCardList';
+import styles from './EventSidebar.module.css';
 
 interface EventSidebarProps {
   isActiveTab: boolean;

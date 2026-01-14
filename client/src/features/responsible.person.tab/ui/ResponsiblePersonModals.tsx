@@ -7,8 +7,8 @@ import type {
   UpdateResponsiblePerson,
 } from '../../../shared/api.types';
 import AddResponsiblePersonModal from './AddResponsiblePersonModal';
-import UpdateResponsiblePersonModal from './UpdateResponsiblePersonModal';
 import DeleteResponsiblePersonModal from './DeleteResponsiblePersonModal';
+import UpdateResponsiblePersonModal from './UpdateResponsiblePersonModal';
 
 const ResponsiblePersonModals: React.FC<{
   isAddVisible: boolean;

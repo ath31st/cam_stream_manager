@@ -6,9 +6,9 @@ import {
   TabContainer,
   WideButton,
 } from '../../../shared/ui';
+import useRpTabHandlers from '../model/use.rp.tab.handlers';
 import ResponsiblePersonModals from './ResponsiblePersonModals';
 import ResponsiblePersonsTable from './ResponsiblePersonsTable';
-import useRpTabHandlers from '../model/use.rp.tab.handlers';
 
 const ResponsiblePersonsTab: React.FC = () => {
   const { actions, state, modals, setters } = useRpTabHandlers();

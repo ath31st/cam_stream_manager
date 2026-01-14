@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { INTERVAL, checkServerStatus } from '..';
+import { checkServerStatus, INTERVAL } from '..';
 
 interface ServerStatusState {
   isServerUp: boolean;

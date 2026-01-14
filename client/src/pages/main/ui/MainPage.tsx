@@ -7,11 +7,7 @@ const MainPage: React.FC = () => {
     document.title = 'Stream player';
   }, []);
 
-  return (
-    <>
-      <Player />
-    </>
-  );
+  return <Player />;
 };
 
 export default MainPage;

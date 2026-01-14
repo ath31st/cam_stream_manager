@@ -12,7 +12,6 @@
   background: var(--colorBgContainer);
   border: 2px solid var(--colorBorder);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  background: var(--colorBgContainer);
   flex-direction: column;
   justify-content: center;
 }

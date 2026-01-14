@@ -6,8 +6,8 @@ import type {
   User,
 } from '../../../shared/api.types';
 import AddUserModal from './AddUserModal';
-import UpdateUserModal from './UpdateUserModal';
 import DeleteUserModal from './DeleteUserModal';
+import UpdateUserModal from './UpdateUserModal';
 
 interface UserTabModalsProps {
   groups: Group[];

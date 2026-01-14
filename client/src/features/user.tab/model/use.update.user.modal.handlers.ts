@@ -1,6 +1,6 @@
+import { Form } from 'antd';
 import { useEffect } from 'react';
 import type { UpdateUser, User } from '../../../shared/api.types';
-import { Form } from 'antd';
 
 const useUpdateUserModalHandlers = (
   user: User | null,

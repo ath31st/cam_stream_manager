@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useResponsiblePersonStore } from '../../../entities/responsible.person';
 import { useStreamStore } from '../../../entities/stream';
 import type {
-  ResponsiblePerson,
   NewResponsiblePerson,
+  ResponsiblePerson,
   UpdateResponsiblePerson,
 } from '../../../shared/api.types';
 import {

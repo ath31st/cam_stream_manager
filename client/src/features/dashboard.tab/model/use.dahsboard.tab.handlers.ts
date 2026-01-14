@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { PlaylistInfo } from '@/shared/api.types';
 import { fetchDashboardData } from '@/entities/dashboard';
+import type { PlaylistInfo } from '@/shared/api.types';
 import { STREAMS_UPDATE_INTERVAL } from '../lib/dashboard.constants';
 
 const useDashboardTabHandlers = (isActiveTab: boolean) => {

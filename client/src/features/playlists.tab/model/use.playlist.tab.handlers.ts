@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGroupStore } from '../../../entities/group';
 import { usePlaylistStore } from '../../../entities/playlist';
 import { useStreamStore } from '../../../entities/stream';
 import type {
-  Playlist,
   NewPlaylist,
+  Playlist,
   UpdatePlaylist,
 } from '../../../shared/api.types';
 import {

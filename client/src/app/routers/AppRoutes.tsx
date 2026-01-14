@@ -2,14 +2,14 @@ import type React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import UnauthorizedPage from '@/pages/401';
 import AccessDeniedPage from '@/pages/403';
+import NotFoundPage from '@/pages/404';
 import AdminPage from '@/pages/admin';
 import MainPage from '@/pages/main';
 import routes from '@/shared/routes';
 import AdminLayout from '../layouts/AdminLayout';
+import ErrorPageLayout from '../layouts/ErrorPageLayout';
 import MainLayout from '../layouts/MainLayout';
 import PrivateRoute from './PrivateRoute';
-import ErrorPageLayout from '../layouts/ErrorPageLayout';
-import NotFoundPage from '@/pages/404';
 
 const AppRoutes: React.FC = () => {
   return (

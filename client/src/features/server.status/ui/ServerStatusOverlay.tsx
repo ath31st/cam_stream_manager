@@ -1,6 +1,6 @@
 import type React from 'react';
-import { useServerStatusStore } from '..';
 import { CommonAlert } from '../../../shared/ui';
+import { useServerStatusStore } from '..';
 import styles from './ServerStatusOverlay.module.css';
 
 const ServerStatusOverlay: React.FC = () => {

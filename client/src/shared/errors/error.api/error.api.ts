@@ -1,5 +1,6 @@
 import {
   authErrorMessages,
+  commonErrorMessages,
   eventErrorMessages,
   groupErrorMessages,
   playlistErrorMessages,
@@ -7,7 +8,6 @@ import {
   streamErrorMessages,
   unknownError,
 } from '../constants/error.messages';
-import { commonErrorMessages } from '../constants/error.messages';
 
 export const getStreamErrorMessage = (statusCode: number) => {
   if (streamErrorMessages[statusCode]) {

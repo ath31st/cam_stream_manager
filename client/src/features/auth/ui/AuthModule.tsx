@@ -1,7 +1,7 @@
 import type React from 'react';
+import useAuthModuleHandlers from '../model/use.auth.module.handlers';
 import AuthButtons from './AuthButtons';
 import AuthModals from './AuthModals';
-import useAuthModuleHandlers from '../model/use.auth.module.handlers';
 
 const AuthModule: React.FC = () => {
   const { actions, state, modals } = useAuthModuleHandlers();

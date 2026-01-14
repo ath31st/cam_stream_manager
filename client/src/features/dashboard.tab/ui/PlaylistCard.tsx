@@ -1,11 +1,11 @@
 import { Card } from 'antd';
 import type React from 'react';
 import type { PlaylistInfo } from '../../../shared/api.types';
+import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
+import usePlaylistCardHandlers from '../model/use.playlist.card.handlers';
 import styles from './PlaylistCard.module.css';
 import StatusCounts from './StatusCounts';
 import StreamItemList from './StreamItemList';
-import { ResponsiblePersonModal } from '../../../widgets/responsible.person';
-import usePlaylistCardHandlers from '../model/use.playlist.card.handlers';
 
 interface PlaylistCardProps extends PlaylistInfo {
   isOpen: boolean;

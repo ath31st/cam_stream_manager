@@ -6,9 +6,9 @@ import {
   TabContainer,
   WideButton,
 } from '../../../shared/ui';
+import useStreamTabHandlers from '../model/use.stream.tab.handlers';
 import StreamModals from './StreamsModals';
 import StreamsTable from './StreamsTable';
-import useStreamTabHandlers from '../model/use.stream.tab.handlers';
 
 const StreamsTab: React.FC = () => {
   const { state, actions, modals, setters } = useStreamTabHandlers();

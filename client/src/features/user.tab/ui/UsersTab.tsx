@@ -1,3 +1,4 @@
+import { Space } from 'antd';
 import type React from 'react';
 import {
   CommonPaginationBar,
@@ -6,10 +7,9 @@ import {
   TabContainer,
   WideButton,
 } from '../../../shared/ui';
-import UserTabModals from './UserTabModals';
-import UsersTable from './UsersTable';
-import { Space } from 'antd';
 import { useUsersTabHandlers } from '../model/use.users.tab.handlers';
+import UsersTable from './UsersTable';
+import UserTabModals from './UserTabModals';
 
 const UsersTab: React.FC = () => {
   const { modals, selected, search, actions, state } = useUsersTabHandlers();

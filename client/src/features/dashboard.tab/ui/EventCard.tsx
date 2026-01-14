@@ -2,9 +2,9 @@ import { Card } from 'antd';
 import type React from 'react';
 import { usePulsing } from '@/entities/event';
 import type { EventDto } from '@/shared/api.types';
+import { formatDate } from '@/shared/common.utils';
 import { CommonTooltip, LevelBadge } from '@/shared/ui';
 import styles from './EventCard.module.css';
-import { formatDate } from '@/shared/common.utils';
 
 const EventCard: React.FC<EventDto> = ({ type, level, info, createdAt }) => {
   const isPulsing = usePulsing(createdAt);
