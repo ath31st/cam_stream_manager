@@ -9,33 +9,31 @@ const GroupsTab: React.FC = () => {
 
   return (
     <TabContainer>
-      <>
-        <WideButton onClick={modals.showAddModal}>Добавить группу</WideButton>
+      <WideButton onClick={modals.showAddModal}>Добавить группу</WideButton>
 
-        {state.loading ? (
-          <LargeLoader />
-        ) : (
-          <GroupsTable
-            groups={state.groups}
-            onEdit={modals.showUpdateModal}
-            onDelete={modals.showDeleteConfirmModal}
-          />
-        )}
-
-        <GroupModals
-          isAddModalVisible={modals.isAddModalVisible}
-          isDeleteModalVisible={modals.isDeleteModalVisible}
-          isUpdateModalVisible={modals.isUpdateModalVisible}
-          updatingGroup={state.updatingGroup}
-          deleteGroupId={state.deleteGroupId}
-          onAdd={actions.handleAddGroup}
-          onDelete={actions.handleDelete}
-          onUpdate={actions.handleUpdateGroup}
-          onCloseAdd={modals.closeAddModal}
-          onCloseDelete={modals.closeDeleteModal}
-          onCloseUpdate={modals.closeUpdateModal}
+      {state.loading ? (
+        <LargeLoader />
+      ) : (
+        <GroupsTable
+          groups={state.groups}
+          onEdit={modals.showUpdateModal}
+          onDelete={modals.showDeleteConfirmModal}
         />
-      </>
+      )}
+
+      <GroupModals
+        isAddModalVisible={modals.isAddModalVisible}
+        isDeleteModalVisible={modals.isDeleteModalVisible}
+        isUpdateModalVisible={modals.isUpdateModalVisible}
+        updatingGroup={state.updatingGroup}
+        deleteGroupId={state.deleteGroupId}
+        onAdd={actions.handleAddGroup}
+        onDelete={actions.handleDelete}
+        onUpdate={actions.handleUpdateGroup}
+        onCloseAdd={modals.closeAddModal}
+        onCloseDelete={modals.closeDeleteModal}
+        onCloseUpdate={modals.closeUpdateModal}
+      />
     </TabContainer>
   );
 };

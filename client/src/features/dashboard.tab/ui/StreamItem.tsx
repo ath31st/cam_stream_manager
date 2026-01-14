@@ -12,13 +12,14 @@ const StreamItem: React.FC<StreamItemProps> = ({ name, status, onClick }) => {
   const { actions } = useStreamItemHandlers(status, onClick);
 
   return (
-    <div
+    <button
+      type="button"
       className={styles.streamItem}
       onClick={actions.handleClick}
       onKeyDown={actions.handleKeyDown}
     >
       <span className={actions.handleStatusColor()}>{name}</span>
-    </div>
+    </button>
   );
 };
 

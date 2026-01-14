@@ -17,54 +17,52 @@ const AdminPage: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <Tabs
-        defaultActiveKey="1"
-        centered
-        onChange={setActiveTabKey}
-        tabBarStyle={{
-          padding: '10px 20px',
-          borderBottom: '2px solid var(--colorPrimary)',
-        }}
-        items={[
-          {
-            label: 'Дашборд',
-            key: '1',
-            children: <Dashboard isActiveTab={activeTabKey === '1'} />,
-          },
-          {
-            label: 'Плейлисты',
-            key: '2',
-            children: <PlaylistsTab />,
-          },
-          {
-            label: 'Потоки',
-            key: '3',
-            children: <StreamsTab />,
-          },
-          {
-            label: 'Ответственные лица',
-            key: '4',
-            children: <ResponsiblePersonTab />,
-          },
-          {
-            label: 'Группы',
-            key: '5',
-            children: <GroupsTab />,
-          },
-          {
-            label: 'Пользователи',
-            key: '6',
-            children: <UsersTab />,
-          },
-          {
-            label: 'События',
-            key: '7',
-            children: <EventTab isActiveTab={activeTabKey === '7'} />,
-          },
-        ]}
-      />
-    </>
+    <Tabs
+      defaultActiveKey="1"
+      centered
+      onChange={setActiveTabKey}
+      tabBarStyle={{
+        padding: '10px 20px',
+        borderBottom: '2px solid var(--colorPrimary)',
+      }}
+      items={[
+        {
+          label: 'Дашборд',
+          key: '1',
+          children: <Dashboard isActiveTab={activeTabKey === '1'} />,
+        },
+        {
+          label: 'Плейлисты',
+          key: '2',
+          children: <PlaylistsTab />,
+        },
+        {
+          label: 'Потоки',
+          key: '3',
+          children: <StreamsTab />,
+        },
+        {
+          label: 'Ответственные лица',
+          key: '4',
+          children: <ResponsiblePersonTab />,
+        },
+        {
+          label: 'Группы',
+          key: '5',
+          children: <GroupsTab />,
+        },
+        {
+          label: 'Пользователи',
+          key: '6',
+          children: <UsersTab />,
+        },
+        {
+          label: 'События',
+          key: '7',
+          children: <EventTab isActiveTab={activeTabKey === '7'} />,
+        },
+      ]}
+    />
   );
 };
 

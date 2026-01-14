@@ -9,35 +9,33 @@ const PlaylistsTab: React.FC = () => {
 
   return (
     <TabContainer>
-      <>
-        <WideButton onClick={modals.showAddModal}>Добавить плейлист</WideButton>
+      <WideButton onClick={modals.showAddModal}>Добавить плейлист</WideButton>
 
-        {state.loading ? (
-          <LargeLoader />
-        ) : (
-          <PlaylistsTable
-            groups={state.groups}
-            playlists={state.playlists}
-            onEdit={modals.showUpdateModal}
-            onDelete={modals.showDeleteConfirm}
-          />
-        )}
-
-        <PlaylistModals
+      {state.loading ? (
+        <LargeLoader />
+      ) : (
+        <PlaylistsTable
           groups={state.groups}
-          isAddModalVisible={modals.isAddModalVisible}
-          isDeleteModalVisible={modals.isDeleteModalVisible}
-          isUpdateModalVisible={modals.isUpdateModalVisible}
-          updatingPlaylist={state.updatingPlaylist}
-          deletePlaylistId={state.deletePlaylistId}
-          onAdd={actions.handleAddPlaylist}
-          onDelete={actions.handleDelete}
-          onUpdate={actions.handleUpdatePlaylist}
-          onCloseAdd={modals.closeAddModal}
-          onCloseDelete={modals.closeDeleteModal}
-          onCloseUpdate={modals.closeUpdateModal}
+          playlists={state.playlists}
+          onEdit={modals.showUpdateModal}
+          onDelete={modals.showDeleteConfirm}
         />
-      </>
+      )}
+
+      <PlaylistModals
+        groups={state.groups}
+        isAddModalVisible={modals.isAddModalVisible}
+        isDeleteModalVisible={modals.isDeleteModalVisible}
+        isUpdateModalVisible={modals.isUpdateModalVisible}
+        updatingPlaylist={state.updatingPlaylist}
+        deletePlaylistId={state.deletePlaylistId}
+        onAdd={actions.handleAddPlaylist}
+        onDelete={actions.handleDelete}
+        onUpdate={actions.handleUpdatePlaylist}
+        onCloseAdd={modals.closeAddModal}
+        onCloseDelete={modals.closeDeleteModal}
+        onCloseUpdate={modals.closeUpdateModal}
+      />
     </TabContainer>
   );
 };
