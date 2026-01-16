@@ -705,19 +705,19 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.25.5.tgz#7fc114af5f6563f19f73324b5d5ff36ece0803d1"
   integrity sha512-TXv6YnJ8ZMVdX+SXWVBo/0p8LTcrUYngpWjvm91TMjjBQii7Oz11Lw5lbDV5Y0TzuhSJHwiH4hEtC1I42mMS0g==
 
-"@feature-sliced/filesystem@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@feature-sliced/filesystem/-/filesystem-3.0.0.tgz#4ba725d64e59821391215da5557bec473a8d8e44"
-  integrity sha512-gg+wkH9GOj9qLS2U2eFoamVc1wSf2Zdc5QtO4ZDlnH4CW2Dus0THP4xwoDtxnOspavZpYJc1DHMkI+pcoNoNgQ==
+"@feature-sliced/filesystem@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@feature-sliced/filesystem/-/filesystem-3.0.1.tgz#4b9dad9a3dd7867c9df9b1105b57fe0e43ab4116"
+  integrity sha512-RlrfjhaX81o6E5OBc2A0tOLG/cZSOvcM+FpPlzEhTraIzBz8JmhxgwrYQbafMqiC+TOrqhd2pTLkU7PFQG1QdQ==
   dependencies:
-    typescript "^5.8.2"
+    typescript "^5.8.3"
 
-"@feature-sliced/steiger-plugin@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@feature-sliced/steiger-plugin/-/steiger-plugin-0.5.5.tgz#ad8e8d73dfac3cdbc5d145bc16a39c31df4533ab"
-  integrity sha512-Lk8TPMhsoxGwRluFccWcrunyKd13dFqts1INYWfmvYkPVqU5CGAKihipbzP7lu0AbmwiBjd/ViMv0aktfOXViQ==
+"@feature-sliced/steiger-plugin@0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@feature-sliced/steiger-plugin/-/steiger-plugin-0.5.7.tgz#1886fd2cc4bf88291dac49d5f8982f4c07841cc1"
+  integrity sha512-xENW2fvfU+UyMgcB3S+CCMPrH2Tq/BG1W9IxGp5B8+j0TtbgmbzT3DIj3A2HG4kouVYUjzgWA6JIuHbGo3lDzg==
   dependencies:
-    "@feature-sliced/filesystem" "^3.0.0"
+    "@feature-sliced/filesystem" "^3.0.1"
     fastest-levenshtein "^1.0.16"
     lodash-es "^4.17.21"
     pluralize "^8.0.0"
@@ -2480,10 +2480,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
-effector@^23.2.3:
-  version "23.3.0"
-  resolved "https://registry.yarnpkg.com/effector/-/effector-23.3.0.tgz#fe47d2e04749966abd1b3fc70bfae14ecbae03bb"
-  integrity sha512-ZnQ3POaNARlxT9+kxrK58PO/xmStBdxfPq0rceglENg8Ryxx/yx+1RsV/ziznrFPhLkZYc7NdDA1OKxnMW98/g==
+effector@^23.4.2:
+  version "23.4.4"
+  resolved "https://registry.yarnpkg.com/effector/-/effector-23.4.4.tgz#2d1d051d022daf44de9561cc9853d65aa493025e"
+  integrity sha512-QkZboRN28K/iwxigDhlJcI3ux3aNbt8kYGGH/GkqWG0OlGeyuBhb7PdM89Iu+ogV8Lmz16xIlwnXR2UNWI6psg==
 
 electron-to-chromium@^1.5.160:
   version "1.5.170"
@@ -2495,10 +2495,10 @@ emoji-regex@^8.0.0:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
-empathic@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/empathic/-/empathic-1.0.0.tgz#4a1faf607804e30d9ebbbee12a1d51180cad5956"
-  integrity sha512-qtKgI1Mv8rTacvpaTkh28HM2Lbf+IOjXb7rhpt/42kZxRm8TBb/IVlo5iL2ztT19kc/EHAFN0fZ641avlXAgdg==
+empathic@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/empathic/-/empathic-1.1.0.tgz#a0de7dcaab07695bcab54117116d44c92b89e79f"
+  integrity sha512-rsPft6CK3eHtrlp9Y5ALBb+hfK+DWnA4WFebbazxjWyx8vSm3rZeoM3z9irsjcqO3PYRzlfv27XIB4tz2DV7RA==
 
 encodeurl@^2.0.0:
   version "2.0.0"
@@ -2992,7 +2992,7 @@ globals@^15.9.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-15.15.0.tgz#7c4761299d41c32b075715a4ce1ede7897ff72a8"
   integrity sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==
 
-globby@^14.0.2:
+globby@^14.1.0:
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-14.1.0.tgz#138b78e77cf5a8d794e327b15dce80bf1fb0a73e"
   integrity sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==
@@ -5221,19 +5221,19 @@ statuses@^2.0.1, statuses@^2.0.2, statuses@~2.0.2:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.2.tgz#8f75eecef765b5e1cfcdc080da59409ed424e382"
   integrity sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==
 
-steiger@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/steiger/-/steiger-0.5.6.tgz#9270c78608d5387a9dc76dadaad2dffeb0026e1c"
-  integrity sha512-ShC50pPrfj3HNfx79OuHXKfzSMZ7wWPVDWhsLCrNd8+NhEdlbAqtTZeildpECpDul8BvltRdYQ0tni2ABLWE0w==
+steiger@^0.5.11:
+  version "0.5.11"
+  resolved "https://registry.yarnpkg.com/steiger/-/steiger-0.5.11.tgz#b675028e554770fa2ffe0a378357cccf60281b64"
+  integrity sha512-Sv6ovPX8tVlUufvAvGSUnwDQLupccYjcgfK5pbqECGP5KCe9M257U0IbRdjuLfUXfey4FprZWQQtnIz3qOPpWA==
   dependencies:
     "@clack/prompts" "^0.9.1"
-    "@feature-sliced/steiger-plugin" "0.5.5"
+    "@feature-sliced/steiger-plugin" "0.5.7"
     chokidar "^4.0.3"
     cosmiconfig "^9.0.0"
-    effector "^23.2.3"
-    empathic "^1.0.0"
+    effector "^23.4.2"
+    empathic "^1.1.0"
     fastest-levenshtein "^1.0.16"
-    globby "^14.0.2"
+    globby "^14.1.0"
     immer "^10.1.1"
     lodash-es "^4.17.21"
     micromatch "^4.0.8"
@@ -5241,8 +5241,8 @@ steiger@^0.5.6:
     picocolors "^1.1.1"
     prexit "^2.3.0"
     yargs "^17.7.2"
-    zod "^3.24.1"
-    zod-validation-error "^3.4.0"
+    zod "^3.25.76"
+    zod-validation-error "^3.5.3"
 
 stop-iteration-iterator@^1.0.0:
   version "1.1.0"
@@ -5468,6 +5468,11 @@ typescript@^5.8.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.2.tgz#8170b3702f74b79db2e5a96207c15e65807999e4"
   integrity sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==
 
+typescript@^5.8.3:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
+  integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
+
 ua-parser-js@^1.0.37:
   version "1.0.40"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.40.tgz#ac6aff4fd8ea3e794a6aa743ec9c2fc29e75b675"
@@ -5664,17 +5669,17 @@ yn@3.1.1:
   resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
-zod-validation-error@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-3.4.0.tgz#3a8a1f55c65579822d7faa190b51336c61bee2a6"
-  integrity sha512-ZOPR9SVY6Pb2qqO5XHt+MkkTRxGXb4EVtnjc9JpXUOtUB1T9Ru7mZOT361AN3MsetVe7R0a1KZshJDZdgp9miQ==
+zod-validation-error@^3.5.3:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-3.5.4.tgz#9072f829e4b45b9e27317c3002408c0c4cdd2bb4"
+  integrity sha512-+hEiRIiPobgyuFlEojnqjJnhFvg4r/i3cqgcm67eehZf/WBaK3g6cD02YU9mtdVxZjv8CzCA9n/Rhrs3yAAvAw==
 
-zod@^3.24.1:
-  version "3.24.2"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.2.tgz#8efa74126287c675e92f46871cfc8d15c34372b3"
-  integrity sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==
+zod@^3.25.76:
+  version "3.25.76"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.76.tgz#26841c3f6fd22a6a2760e7ccb719179768471e34"
+  integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
 
-zustand@^5.0.0-rc.2:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.3.tgz#b323435b73d06b2512e93c77239634374b0e407f"
-  integrity sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==
+zustand@^5.0.10:
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.10.tgz#4db510c0c4c25a5f1ae43227b307ddf1641a3210"
+  integrity sha512-U1AiltS1O9hSy3rul+Ub82ut2fqIAefiSuwECWt6jlMVUGejvf+5omLcRBSzqbRagSM3hQZbtzdeRc6QVScXTg==
